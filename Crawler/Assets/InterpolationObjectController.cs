@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+////https://github.com/develax/Smooth-Motion-in-Unity
 [DisallowMultipleComponent]
 [DefaultExecutionOrder(ORDER_EXECUTION)]
 public class InterpolationObjectController : MonoBehaviour
