@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    //Asia, jota kamera seuraa.
+    //Save the playercontroller as a field to track the character movement better with the camera
+    [SerializeField] PlayerController playerController;
+    //Target that the camera follows
     [SerializeField] Transform cameraTarget;
     //VEKTORIT
-    //Etäisyys, jolla kamera seuraa kameran targettia.
+    //The distance vector (as a constant) that the camera is offset from the target
     [SerializeField] Vector3 cameraOffset;
-    //YKSIARVOISET KENTÄT
+
     [SerializeField] float cameraMovementSpeed = 2;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.transform.position = Vector3.Lerp(transform.position, cameraTarget.position + cameraOffset, Time.deltaTime * cameraMovementSpeed);
+        Vector3 newMovementOffset = playerController.getPlayerMovementVector() / 3f; 
+        this.transform.position = Vector3.Lerp(transform.position, cameraTarget.position + cameraOffset + newMovementOffset, Time.deltaTime * cameraMovementSpeed);
     }
 }

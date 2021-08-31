@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float movementSpeedMultiplier = 5;
     //Asetetaan varsinainen vauhti tähän floattiin, voi muuttua esim vaikka kierähdyksestä ym.
     private float currentMovementSpeedMultiplier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,5 +56,9 @@ public class PlayerController : MonoBehaviour
         if (playerMovementInput.magnitude > 1) playerMovementInput = playerMovementInput.normalized;
         //Talletetaan inputti sitten uuteen vektoriin.
         playerMovementVector = playerMovementInput * currentMovementSpeedMultiplier;
+    }
+    public Vector3 getPlayerMovementVector()
+    {
+        return playerMovementVector;
     }
 }
