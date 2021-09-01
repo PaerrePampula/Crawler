@@ -2967,7 +2967,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -3011,12 +3011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf261d8a5cbeaed4f9e3129c0b77a063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heading: {fileID: 1245276806}
-  playerController: {fileID: 1245276803}
   cameraTarget: {fileID: 1245276805}
-  cameraOffset: {x: 0, y: 7, z: -7}
+  cameraOffset: {x: 0, y: 8, z: -8}
   cameraMovementSpeed: 8
-  mouseMovementPanMultiplier: 10
+  mouseMovementPanMultiplier: 15
 --- !u!1001 &1011290318
 PrefabInstance:
   m_ObjectHideFlags: 0
