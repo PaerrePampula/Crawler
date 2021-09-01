@@ -8,6 +8,9 @@ public class Heading : MonoBehaviour
     float angle;
     float angleInDegrees;
     Vector3 headVector;
+
+    public Vector3 MousePosInWorld { get => mousePosInWorld; set => mousePosInWorld = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,17 +29,17 @@ public class Heading : MonoBehaviour
         if (plane.Raycast(ray, out distance))
         {
             //A hit is found on the plane, the point of this hit will be saved as a vector
-            mousePosInWorld = ray.GetPoint(distance);
+            MousePosInWorld = ray.GetPoint(distance);
         }
         //Lets calculate the distance between the player and this ray point using the two components in a (z,x) graph Z is "upwards" and X is "right"
         //Meaning the graph is perpendicular to the upwards direction of the world. (facing up, laying down below the players' feet)
-        float differenceInX = mousePosInWorld.x - transform.position.x;
-        float differenceInZ = mousePosInWorld.z - transform.position.z;
+        float differenceInX = MousePosInWorld.x - transform.position.x;
+        float differenceInZ = MousePosInWorld.z - transform.position.z;
         //Calculate the angle, with Z representing an upwards direction, X representing the right direction
         //the opposite side of this triangle is the Z, the side on the right is X.
         angle = Mathf.Atan2(differenceInZ, differenceInX);
         //Then draw out this direction from the camera to the location to make sure that the location is right and just below the player
-        Debug.DrawLine(Camera.main.transform.position, mousePosInWorld);
+        Debug.DrawLine(Camera.main.transform.position, MousePosInWorld);
         //Also for readability in the inspector, save the value as a degree representation
         angleInDegrees = angle * Mathf.Rad2Deg;
         //Create a vector from the angle to draw from the player
@@ -44,4 +47,5 @@ public class Heading : MonoBehaviour
         //finally draw a ray of lenght 1 from below the players feet towards to this location with angle applied 
         Debug.DrawRay(transform.position, headVector, Color.red);
     }
+
 }
