@@ -46,8 +46,8 @@ class ProceduralGeneration : MonoBehaviour
     [SerializeField] int maximumMapHeight = 100;
     [SerializeField] float chanceForPathToBranch = 60f;
     [SerializeField] float chanceForBigRoomGeneration = 35f;
-    [Header("Dictates how long a path that isnt on the start->goal axis can maximally be.")]
-    int maxBranchingPathLength = 10;
+    [Tooltip("Dictates how long a path that isnt on the start->goal axis can maximally be.")]
+    [SerializeField] int maxBranchingPathLength = 10;
     [Tooltip("Distance is measured in unity units.")]
     [SerializeField] float requiredDistanceBetweenStartRoomAndGoalRoom = 5;
     Vector2 goalSpace;

@@ -626,10 +626,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac139b55f2a61141bded4f4e33d0f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumMapWidth: 35
-  maximumMapHeight: 35
-  chanceForPathToBranch: 60
+  maximumMapWidth: 20
+  maximumMapHeight: 20
+  chanceForPathToBranch: 85
   chanceForBigRoomGeneration: 60
+  maxBranchingPathLength: 10
   requiredDistanceBetweenStartRoomAndGoalRoom: 5
 --- !u!114 &1487252952
 MonoBehaviour:
