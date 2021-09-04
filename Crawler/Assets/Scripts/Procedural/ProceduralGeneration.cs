@@ -15,15 +15,10 @@ class ProceduralGeneration : MonoBehaviour
             return singleton;
         }
     }
-
     public int MapWidth { get => maximumMapWidth; set => maximumMapWidth = value; }
     public int MapHeight { get => maximumMapHeight; set => maximumMapHeight = value; }
     public Dictionary<Vector2, Cell> ReadyCells { get => readyCells; set => readyCells = value; }
-
     public Dictionary<Vector2, Cell> AvailableSpaces { get => availableSpaces; set => availableSpaces = value; }
-
-
-
     //Graph generation collections
     //Spaces that are so far free to use to make a room
     Dictionary<Vector2, Cell> availableSpaces;
@@ -31,7 +26,7 @@ class ProceduralGeneration : MonoBehaviour
     //Empty out the above list by reserving spaces for different size rooms
     List<Vector2> availableSpacesAsAList;
     //These are rooms that are reserved for possible rooms on the map
-    Dictionary<Vector2,Cell> readyCells;
+    Dictionary<Vector2, Cell> readyCells;
     //Pathfinding collections
     //A minimum heap version of currently considered pathfinding cells
     MinHeap<NodeRecord> openPathFindingCells;
@@ -306,7 +301,7 @@ class ProceduralGeneration : MonoBehaviour
             //Create a visualization of this node for now as a cube.
             GameObject go = GetComponent<RoomGen>().createRoomForCell(pathFromStartToGoal[i]);
             //Only create branching paths if the current node is not the goal or the start.
-            if (i > 0 && i < pathFromStartToGoal.Count-1)
+            if (i > 0 && i < pathFromStartToGoal.Count - 1)
             {
                 GenerateBranchingPaths(pathFromStartToGoal[i]);
             }
@@ -349,7 +344,7 @@ class ProceduralGeneration : MonoBehaviour
                     cell.NeighborCells[j].CurrentlyUsedOnMap = true;
                     //Increase the depth of this current branch by one.
                     currentBranchingPathCount++;
-                    GenerateBranchingPaths(cell.NeighborCells[j],currentBranchingPathCount);
+                    GenerateBranchingPaths(cell.NeighborCells[j], currentBranchingPathCount);
                     //One branching room per room should be enough, so break the loop if this one room is created.
                     break;
                 }

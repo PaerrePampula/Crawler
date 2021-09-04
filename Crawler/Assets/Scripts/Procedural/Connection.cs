@@ -13,7 +13,6 @@ public class Connection
         if (toNode != null)
             ToNode = toNode;
     }
-
     public int ConnectionCost { get => _connectionCost; set => _connectionCost = value; }
     public Vector2 FromNode { get => _fromNode; set => _fromNode = value; }
     public Vector2 ToNode { get => _toNode; set => _toNode = value; }

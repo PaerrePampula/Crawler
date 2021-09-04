@@ -6,13 +6,11 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] int _cellSize;
-
     GameObject roomPrefab;
     private void Awake()
     {
         RoomPrefab = GetComponent<GameObject>();
     }
-
     public GameObject RoomPrefab { get => roomPrefab; set => roomPrefab = value; }
     public int CellSize { get => _cellSize; set => _cellSize = value; }
 }

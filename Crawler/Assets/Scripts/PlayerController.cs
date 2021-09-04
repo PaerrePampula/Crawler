@@ -5,22 +5,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Monobehaviour komponentit
     CharacterController characterController;
     //VEKTORIT
     Vector3 playerMovementInput;
     Vector3 playerMovementVector;
     //YKSIARVOISET KENTÄT
-    //Serializefield exposee kentän unityn inspectorissa.
+    //Serializefield exposes a field value on the unity inspector
     [SerializeField] float movementSpeedMultiplier = 5;
-    //Asetetaan varsinainen vauhti tähän floattiin, voi muuttua esim vaikka kierähdyksestä ym.
+    //Save the actual current speed of the character using this field.
     private float currentMovementSpeedMultiplier;
 
     // Start is called before the first frame update
     void Start()
     {
         currentMovementSpeedMultiplier = movementSpeedMultiplier;
-        //Tarvitaan CharacterControllerin classin metodit, jotta voidaan liikuttaa pelaajan hahmoa sen avulla.
+        //We need to acces the public methods of the charactercontroller class to move it according to the charactercontroller.
         characterController = GetComponent<CharacterController>();
     }
 
@@ -29,32 +28,30 @@ public class PlayerController : MonoBehaviour
     {
         if (Globals.PlayerCanMove)
         {
-            //Input pelaajan liikkeelle setataan joka frame, mutta se päivitetään joka physics update (fixed update)
+            //Input is set to player every frame, but actual movement is calculated every fixed update
             SetInputMovement();
         }
 
     }
     private void FixedUpdate()
     {
-        //Pelaajan liikettä ei tehdä jokainen frame, jotta pelaajan liike olisi riippumaton koneen tehoista ym.
+        //Frame rate independent movement happens in fixed update.
         MoveCharacter();
     }
 
     private void MoveCharacter()
     {
-
-        //Liikutetaan hahmoa moven avulla frame rate independent.
         characterController.Move(playerMovementVector * Time.fixedDeltaTime);
     }
 
     private void SetInputMovement()
     {
-        //Horizontal liike muuttaa x akselia, Vertical muuttaa y akselia.
+        //Horizontal movement changes the x axis, vertical changes the z axis
         playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //Pelaaja liikkuu nopeammin jos hän yrittää liikkua sivuttain, joten tieto tarvitaan vielä normalisoida tarvittaessa
-        //W + A liike = 1.4, W liike = 1. normalisoituna arvo ei ole yli 1.
+        //Currently the player should be able to move faster diagonally, lets prevent this by changing the movement
+        //vector to be normalized, if its magnitude is bigger than one (the vector is longer than 1 unit)
         if (playerMovementInput.magnitude > 1) playerMovementInput = playerMovementInput.normalized;
-        //Talletetaan inputti sitten uuteen vektoriin.
+        //This should be then saved for the player movement using the MoveCharacter() method.
         playerMovementVector = playerMovementInput * currentMovementSpeedMultiplier;
     }
     public Vector3 getPlayerMovementVector()

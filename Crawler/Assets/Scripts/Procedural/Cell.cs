@@ -81,12 +81,8 @@ public class Cell
         {
             Cell connectionCell = ProceduralGeneration.Singleton.ReadyCells[new Vector2(valueToCompareX, valueToCompareY)];
             connection = new Connection(connectionCell.cellWeight, new Vector2(X, Y), new Vector2(valueToCompareX, valueToCompareY));
-
-
         }
         return connection;
-
-
     }
 
     public int getElementValue()

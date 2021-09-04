@@ -11,11 +11,9 @@ class NodeRecord : IMinimumHeapable
     Connection connection;
     VisitState visitState;
     int costSoFar;
-
     public Connection Connection { get => connection; set => connection = value; }    
     public int CostSoFar { get => costSoFar; set => costSoFar = value; }    public Cell Cell { get => cell; set => cell = value; }
-    internal VisitState VisitState { get => visitState; set => visitState = value; }
-
+    public VisitState VisitState { get => visitState; set => visitState = value; }
     public int getElementValue()
     {
         return Cell.CellWeight;

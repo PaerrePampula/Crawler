@@ -11,9 +11,7 @@
 class MinHeap<T> where T : IMinimumHeapable
 {
     public T[] heapArray;
-
     private int currentHeapSize;
-
     public int CurrentHeapSize { get => currentHeapSize; set => currentHeapSize = value; }
 
     public MinHeap(int heapSize)
