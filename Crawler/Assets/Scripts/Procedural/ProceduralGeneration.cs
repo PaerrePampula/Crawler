@@ -295,16 +295,17 @@ class ProceduralGeneration : MonoBehaviour
         {
             pathFromStartToGoal[i].CurrentlyUsedOnMap = true;
         }
+        //Once the paths are set to be used, iterate them, creating branching paths whenever chance dictates so
         for (int i = 0; i < pathFromStartToGoal.Count; i++)
         {
+            //Create a visualization of this node for now as a cube.
             GameObject go = GetComponent<RoomGen>().createRoomForCell(pathFromStartToGoal[i]);
-
+            //Only create branching paths if the current node is not the goal or the start.
             if (i > 0 && i < pathFromStartToGoal.Count-1)
             {
-
                 GenerateBranchingPaths(pathFromStartToGoal[i]);
             }
-
+            //Set the visualizing cube location to be the node location.
             go.transform.position = new Vector3(pathFromStartToGoal[i].X, 0, pathFromStartToGoal[i].Y);
         }
 
@@ -312,35 +313,40 @@ class ProceduralGeneration : MonoBehaviour
 
     private void GenerateBranchingPaths(Cell cell, int currentBranchingPathCount = 0)
     {
+        //Check if the branching path length is too deep, dont make the branching path any longer if it is so.
         if (currentBranchingPathCount >= maxBranchingPathLength) return;
+        //Use random chance if a branch room is created, including already on a branching path.
         float randomChanceForNonPathRooms = Random.Range(0, 101);
+        //If check succeeded, create the branching room
         if (randomChanceForNonPathRooms > chanceForPathToBranch)
         {
+            //Get the nearby cells for this particular cell.
             List<Cell> adjancentCells = new List<Cell>();
             adjancentCells.AddRange(cell.NeighborCells);
             //Shuffle the list a bit to make the branching path location vary side to side.
             FisherYatesShuffle(ref adjancentCells);
-
+            //Iterate these cells for rooms that arent on the start->goal path, and create a branching room on any of these
             for (int j = 0; j < cell.NeighborCells.Length; j++)
             {
                 if (cell.NeighborCells[j] != null)
                 {
                     //A check for already used adjancent cell can be very much simplified to a boolean in the cell class.
                     if (cell.NeighborCells[j].CurrentlyUsedOnMap) continue;
+                    //Create a visualization for this branch
                     GameObject goAdjancent = GetComponent<RoomGen>().createRoomForCell(cell.NeighborCells[j]);
                     goAdjancent.transform.position = new Vector3(cell.NeighborCells[j].X, 0, cell.NeighborCells[j].Y);
+                    //The 2x2 room has 4x small cubes as the "room". Loop through them all to give the branching path a bit different color.
                     foreach (var rendered in goAdjancent.transform.GetComponentsInChildren<MeshRenderer>())
                     {
                         rendered.material.color = new Color32(0, 0, 255, 0);
                     }
 
                     cell.NeighborCells[j].CurrentlyUsedOnMap = true;
+                    //Increase the depth of this current branch by one.
                     currentBranchingPathCount++;
                     GenerateBranchingPaths(cell.NeighborCells[j],currentBranchingPathCount);
+                    //One branching room per room should be enough, so break the loop if this one room is created.
                     break;
-
-                    //A cell that is not already on the path was found, make it a room
-                    //Then break
                 }
 
 
@@ -354,6 +360,8 @@ class ProceduralGeneration : MonoBehaviour
     }
     private void FisherYatesShuffle<T>(ref List<T> list)
     {
+        //Just a standard fisher yates shuffle
+        //https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
         for (int i = 0; i < list.Count; i++)
         {
             int fisherYatesShuffleRandomIndex = Random.Range(0, list.Count - 1);
