@@ -323,7 +323,7 @@ class ProceduralGeneration : MonoBehaviour
         //Use random chance if a branch room is created, including already on a branching path.
         float randomChanceForNonPathRooms = Random.Range(0, 101);
         //If check succeeded, create the branching room
-        if (randomChanceForNonPathRooms > chanceForPathToBranch)
+        if (randomChanceForNonPathRooms < chanceForPathToBranch)
         {
             //Get the nearby cells for this particular cell.
             List<Cell> adjancentCells = new List<Cell>();
