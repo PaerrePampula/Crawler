@@ -210,7 +210,6 @@ class ProceduralGeneration : MonoBehaviour
                 cell.CellWeight = randomWeight;
                 //start off with a small cell, change it later on if random chance dictates so.
                 cell.CellSize = 1;
-                //Lets get every third space, starting off at (1,1) and moving on to (3,1), the next available space.
                 AvailableSpaces.Add(vector, cell);
                 availableSpacesAsAList.Add(vector);
 
