@@ -55,6 +55,11 @@ class ProceduralGeneration : MonoBehaviour
 
     private void Start()
     {
+        ProcedurallyGenerateAMap();
+    }
+
+    private void ProcedurallyGenerateAMap()
+    {
         //ALGORITHM DESCRIPTION
         /* Generates all the rooms of the game with some algorithms by:
          * 1. Save a location for the start, and the end. There is a set minimum distance between these two.
