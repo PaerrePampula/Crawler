@@ -107,7 +107,7 @@ class ProceduralGeneration : MonoBehaviour
         openPathFindingCells.InsertKey(startingRecord);
         //Iterate through the minimum heap until its empty, or goal is reached.
         //Fail the algorithm if goal is not the currently inspected element after exiting the while loop
-        while (openPathFindingCells.CurrentHeapSize > 0)
+         while (openPathFindingCells.CurrentHeapSize > 0)
         {
             //The smallest element of the list should be the current record inspected
             currentRecord = openPathFindingCells.extractMinKey();
@@ -179,6 +179,7 @@ class ProceduralGeneration : MonoBehaviour
         {
             //NO PATH!!! This is a possible error in the algorithm
             Debug.LogError("ROOM PROCEDURAL CREATION FAILURE! Current node in algorithm doesnt match the goal space of the algorithm");
+
 
         }
         else
@@ -274,6 +275,8 @@ class ProceduralGeneration : MonoBehaviour
         ReadyCells.Add(goalSpace, availableSpaces[goalSpace]);
         availableSpaces[goalSpace].CellSize = 2;
         ReserveSpaces((int)goalSpace.x, (int)goalSpace.y, availableSpaces[goalSpace].CellSize);
+        Debug.Log("Start space is on " + startSpace);
+        Debug.Log("End space is on " + goalSpace);
     }
 
     private void ReserveSpaces(int xCoord, int yCoord, int scale)

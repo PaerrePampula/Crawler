@@ -27,7 +27,7 @@ public class Cell
             {
                 int xPosInGrid = x + X;
                 int yPosInGrid = y + Y;
-                if (xPosInGrid - 1 > 0)
+                if (xPosInGrid - 1 >= 0)
                 {
                     Connection c = FindNeighborFor( xPosInGrid - 1, yPosInGrid);
                     if (c != null)
@@ -47,7 +47,7 @@ public class Cell
                         NeighborCells[1] = cellToRight;
                     }
                 }
-                if (yPosInGrid - 1 > 0)
+                if (yPosInGrid - 1 >= 0)
                 {
                     Connection c = FindNeighborFor(xPosInGrid, yPosInGrid - 1);
                     if (c != null)
