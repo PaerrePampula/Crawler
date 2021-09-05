@@ -30,6 +30,13 @@ public class Cell
                 if (xPosInGrid - 1 >= 0)
                 {
                     Connection c = FindNeighborFor( xPosInGrid - 1, yPosInGrid);
+                    //You might have this checking the position at 1,0, but not being able to reach
+                    //the position at 0,0 because its only checking the adjancent cell.
+                    //adjust the search one longer if this is the case.
+                    if (c == null)
+                    {
+                        c = FindNeighborFor(xPosInGrid - 2, yPosInGrid);
+                    }
                     if (c != null)
                     {
                         connections.Add(c);
@@ -37,7 +44,7 @@ public class Cell
                         NeighborCells[0] = cellToLeft;
                     }
                 }
-                if (xPosInGrid + 1 < ProceduralGeneration.Singleton.MapWidth)
+                if (xPosInGrid + 1 <= ProceduralGeneration.Singleton.MapWidth)
                 {
                     Connection c = FindNeighborFor( xPosInGrid + 1, yPosInGrid);
                     if (c != null)
@@ -50,14 +57,21 @@ public class Cell
                 if (yPosInGrid - 1 >= 0)
                 {
                     Connection c = FindNeighborFor(xPosInGrid, yPosInGrid - 1);
+                    //You might have a position at 0,0 and this is trying to check e.g 1,0, but cant reach 0,0 because its 2x2 in size for example
+                    //Do another check in this case
+                    if (c == null)
+                    {
+                        c = FindNeighborFor(xPosInGrid, yPosInGrid - 2);
+                    }
                     if (c != null)
                     {
                         connections.Add(c);
                         cellBelow = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
                         NeighborCells[2] = cellBelow;
                     }
+
                 }
-                if (yPosInGrid + 1 < ProceduralGeneration.Singleton.MapHeight)
+                if (yPosInGrid + 1 <= ProceduralGeneration.Singleton.MapHeight)
                 {
                     Connection c = FindNeighborFor(xPosInGrid, yPosInGrid + 1);
                     if (c != null)

@@ -275,17 +275,15 @@ class ProceduralGeneration : MonoBehaviour
         ReadyCells.Add(goalSpace, availableSpaces[goalSpace]);
         availableSpaces[goalSpace].CellSize = 2;
         ReserveSpaces((int)goalSpace.x, (int)goalSpace.y, availableSpaces[goalSpace].CellSize);
-        Debug.Log("Start space is on " + startSpace);
-        Debug.Log("End space is on " + goalSpace);
     }
 
     private void ReserveSpaces(int xCoord, int yCoord, int scale)
     {
-        for (int x = xCoord; x < xCoord + scale; x++)
+        for (int x = 0; x < scale; x++)
         {
-            for (int y = yCoord; y < yCoord + scale; y++)
+            for (int y = 0; y < scale; y++)
             {
-                ReserveSpace(new Vector2(x, y));
+                ReserveSpace(new Vector2(xCoord+x, yCoord+y));
             }
         }
     }
