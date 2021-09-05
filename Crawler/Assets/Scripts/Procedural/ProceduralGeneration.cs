@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class ProceduralGeneration : MonoBehaviour
 {
@@ -50,9 +51,16 @@ class ProceduralGeneration : MonoBehaviour
 
     private void Start()
     {
+
         ProcedurallyGenerateAMap();
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
     private void ProcedurallyGenerateAMap()
     {
         //ALGORITHM DESCRIPTION
@@ -323,35 +331,33 @@ class ProceduralGeneration : MonoBehaviour
         {
             //Get the nearby cells for this particular cell.
             List<Cell> adjancentCells = new List<Cell>();
-            adjancentCells.AddRange(cell.NeighborCells);
+            adjancentCells.AddRange(cell.NeighborCells.Values);
             //Shuffle the list a bit to make the branching path location vary side to side.
             FisherYatesShuffle(ref adjancentCells);
             //Iterate these cells for rooms that arent on the start->goal path, and create a branching room on any of these
-            for (int j = 0; j < cell.NeighborCells.Length; j++)
+            foreach (Cell neighbor in cell.NeighborCells.Values)
             {
-                if (cell.NeighborCells[j] != null)
+                if (neighbor != null)
                 {
-                    //A check for already used adjancent cell can be very much simplified to a boolean in the cell class.
-                    if (cell.NeighborCells[j].CurrentlyUsedOnMap) continue;
+                    if (neighbor.CurrentlyUsedOnMap) continue;
                     //Create a visualization for this branch
-                    GameObject goAdjancent = GetComponent<RoomGen>().createRoomForCell(cell.NeighborCells[j]);
-                    goAdjancent.transform.position = new Vector3(cell.NeighborCells[j].X, 0, cell.NeighborCells[j].Y);
+                    GameObject goAdjancent = GetComponent<RoomGen>().createRoomForCell(neighbor);
+                    goAdjancent.transform.position = new Vector3(neighbor.X, 0, neighbor.Y);
                     //The 2x2 room has 4x small cubes as the "room". Loop through them all to give the branching path a bit different color.
                     foreach (var rendered in goAdjancent.transform.GetComponentsInChildren<MeshRenderer>())
                     {
                         rendered.material.color = new Color32(0, 0, 255, 0);
                     }
 
-                    cell.NeighborCells[j].CurrentlyUsedOnMap = true;
+                    neighbor.CurrentlyUsedOnMap = true;
                     //Increase the depth of this current branch by one.
                     currentBranchingPathCount++;
-                    GenerateBranchingPaths(cell.NeighborCells[j], currentBranchingPathCount);
+                    GenerateBranchingPaths(neighbor, currentBranchingPathCount);
                     //One branching room per room should be enough, so break the loop if this one room is created.
-                    break;
                 }
-
-
             }
+
+
         }
     }
 

@@ -8,11 +8,8 @@ public class Cell
     int _cellSize;
     int cellWeight;
     bool _currentlyUsedOnMap;
-    Cell cellToLeft;
-    Cell cellAbove;
-    Cell cellToRight;
-    Cell cellBelow;
-    Cell[] neighborCells = new Cell[4];
+
+    Dictionary<NeighborType, Cell> neighborCells = new Dictionary<NeighborType, Cell>();
     public Cell(int x, int y)
     {
         X = x;
@@ -29,6 +26,7 @@ public class Cell
                 int yPosInGrid = y + Y;
                 if (xPosInGrid - 1 >= 0)
                 {
+                    NeighborType neighborType = (y == Y) ? NeighborType.Left : NeighborType.LeftTop;
                     Connection c = FindNeighborFor( xPosInGrid - 1, yPosInGrid);
                     //You might have this checking the position at 1,0, but not being able to reach
                     //the position at 0,0 because its only checking the adjancent cell.
@@ -40,22 +38,22 @@ public class Cell
                     if (c != null)
                     {
                         connections.Add(c);
-                        cellToLeft = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
-                        NeighborCells[0] = cellToLeft;
+                        NeighborCells[neighborType]= ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
                     }
                 }
                 if (xPosInGrid + 1 <= ProceduralGeneration.Singleton.MapWidth)
                 {
+                    NeighborType neighborType = (y == Y) ? NeighborType.Right : NeighborType.RightTop;
                     Connection c = FindNeighborFor( xPosInGrid + 1, yPosInGrid);
                     if (c != null)
                     {
                         connections.Add(c);
-                        cellToRight = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
-                        NeighborCells[1] = cellToRight;
+                        NeighborCells[neighborType] = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
                     }
                 }
                 if (yPosInGrid - 1 >= 0)
                 {
+                    NeighborType neighborType = (x == X) ? NeighborType.Below : NeighborType.BelowRight;
                     Connection c = FindNeighborFor(xPosInGrid, yPosInGrid - 1);
                     //You might have a position at 0,0 and this is trying to check e.g 1,0, but cant reach 0,0 because its 2x2 in size for example
                     //Do another check in this case
@@ -66,19 +64,18 @@ public class Cell
                     if (c != null)
                     {
                         connections.Add(c);
-                        cellBelow = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
-                        NeighborCells[2] = cellBelow;
+                        NeighborCells[neighborType] = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
                     }
 
                 }
                 if (yPosInGrid + 1 <= ProceduralGeneration.Singleton.MapHeight)
                 {
+                    NeighborType neighborType = (x == X) ? NeighborType.Above : NeighborType.AboveRight;
                     Connection c = FindNeighborFor(xPosInGrid, yPosInGrid + 1);
                     if (c != null)
                     {
                         connections.Add(c);
-                        cellAbove = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
-                        NeighborCells[3] = cellAbove;
+                        NeighborCells[neighborType] = ProceduralGeneration.Singleton.ReadyCells[c.ToNode];
                     }
                 }
 
@@ -107,7 +104,19 @@ public class Cell
     public int X { get => _x; set => _x = value; }
     public int Y { get => _y; set => _y = value; }
     public int CellWeight { get => cellWeight; set => cellWeight = value; }
-    public Cell[] NeighborCells { get => neighborCells; set => neighborCells = value; }
+
     public bool CurrentlyUsedOnMap { get => _currentlyUsedOnMap; set => _currentlyUsedOnMap = value; }
     public int CellSize { get => _cellSize; set => _cellSize = value; }
+    public Dictionary<NeighborType, Cell> NeighborCells { get => neighborCells; set => neighborCells = value; }
+}
+public enum NeighborType
+{
+    Left,
+    Right,
+    Above,
+    Below,
+    LeftTop,
+    RightTop,
+    BelowRight,
+    AboveRight,
 }
