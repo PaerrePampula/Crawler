@@ -47,5 +47,13 @@ public class Heading : MonoBehaviour
         //finally draw a ray of lenght 1 from below the players feet towards to this location with angle applied 
         Debug.DrawRay(transform.position, headVector, Color.red);
     }
+    public float getPlayerHeadingAngle()
+    {
+        return angleInDegrees;
+    }
+    public Vector3 getHeadingVector()
+    {
+        return headVector;
+    }
 
 }

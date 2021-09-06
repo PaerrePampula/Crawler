@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     //VEKTORIT
     Vector3 playerMovementInput;
     Vector3 playerMovementVector;
+    Vector3 externalForce;
+    Coroutine extraForceCoRoutine;
     //YKSIARVOISET KENTÄT
     //Serializefield exposes a field value on the unity inspector
     [SerializeField] float movementSpeedMultiplier = 5;
@@ -53,10 +55,33 @@ public class PlayerController : MonoBehaviour
 
     private void MoveCharacter()
     {
-        characterController.Move(playerMovementVector * Time.fixedDeltaTime);
+        characterController.Move((playerMovementVector+externalForce) * Time.fixedDeltaTime);
+    }
+    IEnumerator changeExternalForce(Vector3 force)
+    {
+        Vector3 referenceForce = force;
+        float timer = 0;
+
+        while (timer < 0.5f)
+        {
+            externalForce = Vector3.Lerp(referenceForce, Vector3.zero, timer /0.5f);
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
+        externalForce = Vector3.zero;
+        extraForceCoRoutine = null;
 
     }
-
+    public void AddExternalForce(Vector3 force)
+    {
+        if (extraForceCoRoutine != null)
+        {
+            StopCoroutine(extraForceCoRoutine);
+            externalForce = Vector3.zero;
+        }
+        StartCoroutine(changeExternalForce(force));
+    }
     private void SetInputMovement()
     {
         //Horizontal movement changes the x axis, vertical changes the z axis
