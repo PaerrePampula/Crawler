@@ -80,20 +80,26 @@ public class BaseMook : MonoBehaviour, IDamageable
         //If the AI has not chased the player before, the distance will be _chaseRange
         float requiredMaxDistance = (hasReachedTarget == true) ? _reChaseRange : _chaseRange;
         //AI has no player as target at the moment (as pathfinding target).
+        //No target case, generate target for ai if ai is too far
         if (!hasTarget)
         {
             if (distanceBetweenPlayerAndAI > requiredMaxDistance)
             {
                 ChasePlayer();
             }
+
+
         }
+        //has target case, check if the AI is close enough and reset related booleans
         else if (distanceBetweenPlayerAndAI < requiredMaxDistance)
         {
             hasTarget = false;
             hasReachedTarget = true;
         }
+
+        //The ai might have reached the player, so the AI needs to do its action now.
         //The AI might already be attacking, so check if a new state was already triggered.
-        else if (!newStateTriggered) DoAIThing();
+        if (!newStateTriggered && hasReachedTarget) DoAIThing();
 
 
     }
