@@ -14,7 +14,11 @@ public class Room : MonoBehaviour
     GameObject roomPrefab;
     private void Start()
     {
-        if (this != CurrentRoomManager.Singleton.currentRoom) gameObject.SetActive(false);
+        if (CurrentRoomManager.Singleton != null)
+        {
+            if (this != CurrentRoomManager.Singleton.currentRoom) gameObject.SetActive(false);
+        }
+
         //Save the list as a dictionary to make lookups a bit better
         for (int i = 0; i < roomNeighborsList.Count; i++)
         {
