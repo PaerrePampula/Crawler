@@ -80,6 +80,7 @@ public class PlayerWeapon : MonoBehaviour
         //Check when there is a new collider coming into contact with the box
         while (i < hitColliders.Length)
         {
+            hitColliders[i].GetComponent<BaseMook>().ChangeHp(-playerAttacks[currentAttackIndex].Damage);
             //Output all of the collider names
             Debug.Log("Hit : " + hitColliders[i].name + i);
             //Increase the number of Colliders in the array

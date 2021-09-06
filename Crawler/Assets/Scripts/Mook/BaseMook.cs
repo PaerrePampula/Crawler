@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class BaseMook : MonoBehaviour, IDamageable
 {
     //TODO: CHASE
+    public delegate void MookDamaged(float amount, Vector3 location);
+    public static event MookDamaged onMookDamaged;
     NavMeshAgent navAgent;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _maxHP = 3;
@@ -26,6 +28,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         set
         {
             _hp = value;
+
             if (_hp <= 0)
             {
                 KillCharacter();
@@ -37,6 +40,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     {
         if (!isInvulnerable)
         {
+            onMookDamaged?.Invoke(damageAmount, transform.position);
             Hp += damageAmount;
         }
     }
@@ -60,6 +64,10 @@ public class BaseMook : MonoBehaviour, IDamageable
         hasTarget = true;
     }
     // Start is called before the first frame update
+    private void OnEnable()
+    {
+        Hp = _maxHP;
+    }
     void Start()
     {
         //Mook needs to have a navmeshagent to pathfind on standard unity 3d navmesh.
