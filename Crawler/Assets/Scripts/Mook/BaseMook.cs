@@ -74,19 +74,23 @@ public class BaseMook : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        float distanceBetweenPlayerAndAI = Vector3.Distance(PlayerController.Singleton.transform.position, transform.position);
+        //So basicly, the required current max distance until a new chase is going to be the rechase distance, if the player has reached
+        //the player before, but hasnt started chasing the player again.
+        //If the AI has not chased the player before, the distance will be _chaseRange
+        float requiredMaxDistance = (hasReachedTarget == true) ? _reChaseRange : _chaseRange;
         //AI has no player as target at the moment (as pathfinding target).
         if (!hasTarget)
         {
-            float distanceBetweenPlayerAndAI = Vector3.Distance(PlayerController.Singleton.transform.position, transform.position);
-            //So basicly, the required current max distance until a new chase is going to be the rechase distance, if the player has reached
-            //the player before, but hasnt started chasing the player again.
-            //If the AI has not chased the player before, the distance will be _chaseRange
-            float requiredMaxDistance = (hasReachedTarget == true) ? _reChaseRange : _chaseRange;
-
             if (distanceBetweenPlayerAndAI > requiredMaxDistance)
             {
                 ChasePlayer();
             }
+        }
+        else if (distanceBetweenPlayerAndAI < requiredMaxDistance)
+        {
+            hasTarget = false;
+            hasReachedTarget = true;
         }
         //The AI might already be attacking, so check if a new state was already triggered.
         else if (!newStateTriggered) DoAIThing();
