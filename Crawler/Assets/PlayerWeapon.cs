@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    [SerializeField] LayerMask enemyLayerMask;
     AudioSource audioSource;
-    bool gizmo_gameStarted = false;
     Heading heading;
+    bool gizmo_gameStarted = false;
     float lastAttackTime = 0;
     //secs of delay for attack
     float currentComboBufferTime = 0.5f;
@@ -74,7 +75,7 @@ public class PlayerWeapon : MonoBehaviour
         //make the hitbox pivot nicely around the heading direction of the player.
         //Scaling the box without having the pivot in the right place would mean that the player could hit enemies behind the player
         //the angle of the heading not only rotates on the wrong direction, but is also 90 degrees offset, so that needs to be corrected for the orientation of the hitbox
-        Collider[] hitColliders = Physics.OverlapBox( transform.position+heading.getHeadingVector().normalized*playerAttacks[currentAttackIndex].HitboxScale.z/2f, playerAttacks[currentAttackIndex].HitboxScale/2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0));
+        Collider[] hitColliders = Physics.OverlapBox( transform.position+heading.getHeadingVector().normalized*playerAttacks[currentAttackIndex].HitboxScale.z/2f, playerAttacks[currentAttackIndex].HitboxScale/2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0), enemyLayerMask);
         int i = 0;
         //Check when there is a new collider coming into contact with the box
         while (i < hitColliders.Length)

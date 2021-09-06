@@ -5592,6 +5592,7 @@ GameObject:
   - component: {fileID: 607402247}
   - component: {fileID: 607402246}
   - component: {fileID: 607402250}
+  - component: {fileID: 607402251}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5669,13 +5670,124 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ce0ce8fe01ad440aa52e02e9ce4b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   playerAttacks:
-  - damage: 1
+  - swingWeaponSoundEffect: {fileID: 8300000, guid: 903731b04e447bf4db854dbaf7e27a11, type: 3}
+    damage: 1
     delay: 0.1
-  - damage: 1
+    attackHitBoxDuration: 0
+    attackPlayerPushForwardForce: 15
+    hitboxScale: {x: 2, y: 1, z: 2}
+  - swingWeaponSoundEffect: {fileID: 8300000, guid: 903731b04e447bf4db854dbaf7e27a11, type: 3}
+    damage: 1
     delay: 0.1
-  - damage: 2
-    delay: 0.3
+    attackHitBoxDuration: 0
+    attackPlayerPushForwardForce: 25
+    hitboxScale: {x: 2, y: 1, z: 2}
+  - swingWeaponSoundEffect: {fileID: 8300000, guid: 40cc26ef1978031478283caf79323382, type: 3}
+    damage: 2
+    delay: 0.5
+    attackHitBoxDuration: 0
+    attackPlayerPushForwardForce: 50
+    hitboxScale: {x: 2.5, y: 1, z: 4}
+--- !u!82 &607402251
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607402245}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &618685206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8904,7 +9016,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.06
+  m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
