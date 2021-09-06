@@ -9,6 +9,16 @@ public class Cell
     int cellWeight;
     bool _currentlyUsedOnMap;
 
+    //Listing of all possible neighbors
+    //### A|AR ##
+    //#LT X X RT #
+    //##L X X R ##
+    //### B|BR ##
+    //###########
+    //The enum contains the possible neighbor types, also detailed above
+    //Diagonally to the above or below nodes are not considered neighbors,
+    //Since there is no way to have those rooms have connecting doors without
+    //Some extra trickery involved.
     Dictionary<NeighborType, Cell> neighborCells = new Dictionary<NeighborType, Cell>();
     public Cell(int x, int y)
     {
@@ -108,7 +118,13 @@ public class Cell
     public bool CurrentlyUsedOnMap { get => _currentlyUsedOnMap; set => _currentlyUsedOnMap = value; }
     public int CellSize { get => _cellSize; set => _cellSize = value; }
     public Dictionary<NeighborType, Cell> NeighborCells { get => neighborCells; set => neighborCells = value; }
+
 }
+/// <summary>
+/// Used by procedural generation cells and rooms. For each room, a location for a 
+/// door should be determined using neighbor type.
+/// Each room is not required to have all of the connecting doors to be valid.
+/// </summary>
 public enum NeighborType
 {
     Left,

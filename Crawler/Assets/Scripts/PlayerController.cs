@@ -5,6 +5,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    static PlayerController singleton;
+    public static PlayerController Singleton
+    {
+        get
+        {
+            if (singleton == null)
+            {
+                singleton = FindObjectOfType<PlayerController>();
+            }
+            return singleton;
+        }
+    }
     CharacterController characterController;
     //VEKTORIT
     Vector3 playerMovementInput;
@@ -42,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private void MoveCharacter()
     {
         characterController.Move(playerMovementVector * Time.fixedDeltaTime);
+
     }
 
     private void SetInputMovement()

@@ -74,6 +74,11 @@ class ProceduralGeneration : MonoBehaviour
          * 7. Once this is done, loop through the path, making the rooms. 
          * 8. Through random chance, make some branching rooms.
          * The level is now done!
+         * TODO:
+         *      Make the actual level pieces generate on the map
+         *      Add doors between rooms
+         *      Add doors to branches, with some randomness whether they should have a connection to every adjancent branch
+         *      Add connectivity between the room class to search specific neighbors of a cell for certain door connections
          * More info can be found from this stackexchange post, which inspired some general ideas of this particular algorithm.
          * https://gamedev.stackexchange.com/questions/148418/procedurally-generating-dungeons-using-predefined-rooms
          */
