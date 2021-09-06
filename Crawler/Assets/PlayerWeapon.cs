@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    AudioSource audioSource;
     bool gizmo_gameStarted = false;
     Heading heading;
     float lastAttackTime = 0;
@@ -22,6 +23,7 @@ public class PlayerWeapon : MonoBehaviour
         gizmo_gameStarted = true;
         maxAttackChain = playerAttacks.Count;
         heading = GetComponent<Heading>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class PlayerWeapon : MonoBehaviour
                     lastAttackTime = Time.time;
                     PlayerController.Singleton.AddExternalForce(transform.TransformDirection(heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].AttackPlayerPushForwardForce));
                     CastAttackCollider();
+                    audioSource.PlayOneShot(playerAttacks[currentAttackIndex].SwingWeaponSoundEffect);
                     //Increment chain by one, with clamping functioning
                     incrementAttackChain();
                     attackBuffered = false;
@@ -116,7 +119,7 @@ public class PlayerWeapon : MonoBehaviour
 [System.Serializable]
 class PlayerAttack
 {
-    
+    [SerializeField] AudioClip swingWeaponSoundEffect;
     [SerializeField] float damage;
     [SerializeField] float delay;
     [SerializeField] float attackHitBoxDuration;
@@ -127,4 +130,5 @@ class PlayerAttack
     public float AttackHitBoxDuration { get => attackHitBoxDuration; set => attackHitBoxDuration = value; }
     public Vector3 HitboxScale { get => hitboxScale; set => hitboxScale = value; }
     public float AttackPlayerPushForwardForce { get => attackPlayerPushForwardForce; set => attackPlayerPushForwardForce = value; }
+    public AudioClip SwingWeaponSoundEffect { get => swingWeaponSoundEffect; set => swingWeaponSoundEffect = value; }
 }
