@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,12 +23,15 @@ public class PlayerController : MonoBehaviour
     Vector3 playerMovementVector;
     Vector3 externalForce;
     Coroutine extraForceCoRoutine;
-    //YKSIARVOISET KENTÄT
+
     //Serializefield exposes a field value on the unity inspector
     [SerializeField] float movementSpeedMultiplier = 5;
     //Save the actual current speed of the character using this field.
     private float currentMovementSpeedMultiplier;
-
+    [SerializeField] float gravityAccelerationSpeed = 5f;
+    //The player might accidentally wander off the map and float, or jump on top of mooks, so the player needs to be grounded by gravity.
+    float verticalForce;
+    [SerializeField] LayerMask playerMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        applyGravity();
         //Frame rate independent movement happens in fixed update.
         MoveCharacter();
     }
@@ -56,6 +60,17 @@ public class PlayerController : MonoBehaviour
     private void MoveCharacter()
     {
         characterController.Move((playerMovementVector+externalForce) * Time.fixedDeltaTime);
+    }
+    void applyGravity()
+    {
+        if (isCharacterGrounded() == false)
+        {
+            verticalForce += gravityAccelerationSpeed * -1 * Time.fixedDeltaTime;
+        }
+        else
+        {
+            verticalForce = 0;
+        }
     }
     IEnumerator changeExternalForce(Vector3 force)
     {
@@ -90,10 +105,21 @@ public class PlayerController : MonoBehaviour
         //vector to be normalized, if its magnitude is bigger than one (the vector is longer than 1 unit)
         if (playerMovementInput.magnitude > 1) playerMovementInput = playerMovementInput.normalized;
         //This should be then saved for the player movement using the MoveCharacter() method.
-        playerMovementVector = playerMovementInput * currentMovementSpeedMultiplier;
+        playerMovementVector = new Vector3(playerMovementInput.x * currentMovementSpeedMultiplier, verticalForce, playerMovementInput.z*currentMovementSpeedMultiplier);
     }
     public Vector3 getPlayerMovementVector()
     {
         return playerMovementVector;
+    }
+    bool isCharacterGrounded()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, 0.3f, ~playerMask))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
