@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator changeExternalForce(Vector3 force)
     {
+        Globals.MovementControlsAreEnabled = false;
         Vector3 referenceForce = force;
         float timer = 0;
 
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
     //Should only be used (so far!) for the forward movement of attacking
     public void AddExternalForce(Vector3 force)
     {
-        Globals.MovementControlsAreEnabled = false;
+
         if (extraForceCoRoutine != null)
         {
             StopCoroutine(extraForceCoRoutine);
