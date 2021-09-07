@@ -6,7 +6,7 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
 {
     [SerializeField] NeighborType doorLocation;
     [SerializeField] Room otherRoom;
-
+    [SerializeField] string interactionText = "Press [E] to open";
     public void DoPlayerInteraction()
     {
         CurrentRoomManager.Singleton.setNewRoom(otherRoom, doorLocation);
@@ -14,7 +14,7 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
 
     public string getPlayerInteractionString()
     {
-        return "Press [E] to open";
+        return interactionText;
     }
 
 
