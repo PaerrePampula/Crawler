@@ -31,7 +31,7 @@ public class PlayerWeapon : MonoBehaviour
     void Update()
     {
         //Basicly if player isnt in a menu etc.
-        if (Globals.PlayerCanMove)
+        if (Globals.ControlsAreEnabled)
         {
             //Player might be just mashing the mouse button to do a full combo, so if a player tries to 
             //attack again during an attack or before the attack delay has ended, buffer another attack to be done after

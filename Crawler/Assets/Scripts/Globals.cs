@@ -1,6 +1,8 @@
 ﻿
 static class Globals
 {
-    static bool playerCanMove = true;
-    public static bool PlayerCanMove { get => playerCanMove; set => playerCanMove = value; }
+    static bool _movementControlsAreEnabled = true;
+    static bool _controlsAreEnabled = true;
+    public static bool ControlsAreEnabled { get => _controlsAreEnabled; set => _controlsAreEnabled = value; }
+    public static bool MovementControlsAreEnabled { get => _movementControlsAreEnabled; set => _movementControlsAreEnabled = value; }
 }

@@ -43,10 +43,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Globals.PlayerCanMove)
+        if (Globals.ControlsAreEnabled)
         {
-            //Input is set to player every frame, but actual movement is calculated every fixed update
-            SetInputMovement();
+            if (Globals.MovementControlsAreEnabled)
+            {
+                //Input is set to player every frame, but actual movement is calculated every fixed update
+                SetInputMovement();
+            }
+
         }
 
     }
@@ -86,10 +90,13 @@ public class PlayerController : MonoBehaviour
         }
         externalForce = Vector3.zero;
         extraForceCoRoutine = null;
+        Globals.MovementControlsAreEnabled = true;
 
     }
+    //Should only be used (so far!) for the forward movement of attacking
     public void AddExternalForce(Vector3 force)
     {
+        Globals.MovementControlsAreEnabled = false;
         if (extraForceCoRoutine != null)
         {
             StopCoroutine(extraForceCoRoutine);
