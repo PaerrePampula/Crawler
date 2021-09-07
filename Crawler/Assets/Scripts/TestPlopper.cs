@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestPlopper : MonoBehaviour
+public class TestPlopper : MonoBehaviour, IPlayerInteractable
 {
     [SerializeField] NeighborType doorLocation;
     [SerializeField] Room otherRoom;
-    // Start is called before the first frame update
-    private void OnTriggerStay(Collider other)
+
+    public void DoPlayerInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CurrentRoomManager.Singleton.setNewRoom(otherRoom, doorLocation);
-        }
+        CurrentRoomManager.Singleton.setNewRoom(otherRoom, doorLocation);
     }
+
+    public string getPlayerInteractionString()
+    {
+        return "Press [E] to open";
+    }
+
+
 }
