@@ -70,6 +70,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             currentAttackIndex = 0;
             currentAttackDelay = 0;
+            animator.SetTrigger("StopAttack");
         }
     }
 
@@ -93,7 +94,7 @@ public class PlayerWeapon : MonoBehaviour
             i++;
         }
         //Creates a slash effect for the swing
-        Instantiate(slashEffect, transform.position+heading.getHeadingVector(), transform.rotation);
+        Instantiate(slashEffect, transform.position+heading.getHeadingVector().normalized*playerAttacks[currentAttackIndex].HitboxScale.z/2f, transform.rotation);
     }
 
     void incrementAttackChain()
