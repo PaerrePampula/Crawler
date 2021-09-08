@@ -80,13 +80,15 @@ public class PlayerWeapon : MonoBehaviour
 
     private void CastAttackCollider()
     {
-        //Use the OverlapBox to detect if there are any other colliders within this box area.
+        //Use the OverlapBox to detect if
+        //there are any other colliders within this box area.
         //The overlapbox should spawn at the same location as the player+plus an offset to the heading direction (which should be normalized to one)
         //then the size on the z axis of the attack hitbox will be used to offset the overlap box to have the "origin" be a bit further, to
         //make the hitbox pivot nicely around the heading direction of the player.
         //Scaling the box without having the pivot in the right place would mean that the player could hit enemies behind the player
         //the angle of the heading not only rotates on the wrong direction, but is also 90 degrees offset, so that needs to be corrected for the orientation of the hitbox
-        Collider[] hitColliders = Physics.OverlapBox( transform.position+heading.getHeadingVector().normalized*playerAttacks[currentAttackIndex].HitboxScale.z/2f, playerAttacks[currentAttackIndex].HitboxScale/2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0), enemyLayerMask);
+        Vector3 headingVector = heading.getHeadingVector().normalized;
+        Collider[] hitColliders = Physics.OverlapBox( transform.position+headingVector*playerAttacks[currentAttackIndex].HitboxScale.z/2f, playerAttacks[currentAttackIndex].HitboxScale/2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0), enemyLayerMask);
         int i = 0;
         //Check when there is a new collider coming into contact with the box
         while (i < hitColliders.Length)
@@ -98,7 +100,11 @@ public class PlayerWeapon : MonoBehaviour
             i++;
         }
         //Creates a slash effect for the swing
-        Instantiate(slashEffect, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, transform.rotation);
+        GameObject slash = Instantiate(slashEffect, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, transform.rotation);
+        if (headingVector.x > 0)
+        {
+            slash.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     void incrementAttackChain()

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     //Was a public field on the other branch, does not need to be so. 
-    //get the component on start by getComponentsFromChildren
+    //get the component on start by getComponentFromChildren<Animator>()
     //if the component is needed from another gameobject in scene, use [SerializeField]
     Animator animator;
     CharacterController characterController;
