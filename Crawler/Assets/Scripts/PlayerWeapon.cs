@@ -110,7 +110,8 @@ public class PlayerWeapon : MonoBehaviour
             i++;
         }
         //Creates a slash effect for the swing
-        GameObject slash = Instantiate(slashEffect, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, transform.rotation);
+        GameObject slash = Instantiate(playerAttacks[currentAttackIndex].SwingSprite, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z/2f, transform.rotation);
+        slash.transform.localScale = playerAttacks[currentAttackIndex].SpriteScale;
         if (headingVector.x > 0)
         {
             slash.GetComponent<SpriteRenderer>().flipX = true;
@@ -150,16 +151,23 @@ public class PlayerWeapon : MonoBehaviour
 [System.Serializable]
 class PlayerAttack
 {
-    [SerializeField] AudioClip swingWeaponSoundEffect;
+
     [SerializeField] float damage;
     [SerializeField] float delay;
     [SerializeField] float attackHitBoxDuration;
     [SerializeField] float attackPlayerPushForwardForce = 10;
     [SerializeField] Vector3 hitboxScale = new Vector3();
+    [Header ("FX")]
+    [SerializeField] AudioClip swingWeaponSoundEffect;
+    [Header ("Sprite settings")]
+    [SerializeField] GameObject swingSprite;
+    [SerializeField] Vector3 spriteScale = new Vector3(1,1,1);
     public float Damage { get => damage; set => damage = value; }
     public float Delay { get => delay; set => delay = value; }
     public float AttackHitBoxDuration { get => attackHitBoxDuration; set => attackHitBoxDuration = value; }
     public Vector3 HitboxScale { get => hitboxScale; set => hitboxScale = value; }
     public float AttackPlayerPushForwardForce { get => attackPlayerPushForwardForce; set => attackPlayerPushForwardForce = value; }
     public AudioClip SwingWeaponSoundEffect { get => swingWeaponSoundEffect; set => swingWeaponSoundEffect = value; }
+    public GameObject SwingSprite { get => swingSprite; set => swingSprite = value; }
+    public Vector3 SpriteScale { get => spriteScale; set => spriteScale = value; }
 }
