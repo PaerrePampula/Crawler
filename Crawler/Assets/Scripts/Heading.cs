@@ -8,8 +8,11 @@ public class Heading : MonoBehaviour
     float angle;
     float angleInDegrees;
     Vector3 headVector;
+    bool headingRight = false;
 
     public Vector3 MousePosInWorld { get => mousePosInWorld; set => mousePosInWorld = value; }
+    public bool HeadingRight { get => headingRight; set => headingRight = value; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,8 @@ public class Heading : MonoBehaviour
         headVector = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
         //finally draw a ray of lenght 1 from below the players feet towards to this location with angle applied 
         Debug.DrawRay(transform.position, headVector, Color.red);
+        //Basicly if the players mouse is on the left hand side of the player, player heading is left, otherwise its right
+        HeadingRight = (Mathf.Abs(angleInDegrees) > 90) ? false : true;
     }
     public float getPlayerHeadingAngle()
     {

@@ -11,6 +11,8 @@ public class PlayerWeapon : MonoBehaviour
     //if the component is needed from another gameobject in scene or from prefab, use [SerializeField]
     Animator animator;
     [SerializeField] GameObject slashEffect;
+    //The flip component of the player, player needs to be flipped if the player attacks behind player
+    Flip flip;
 
     [SerializeField] LayerMask enemyLayerMask;
     AudioSource audioSource;
@@ -33,6 +35,7 @@ public class PlayerWeapon : MonoBehaviour
         heading = GetComponent<Heading>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
+        flip = GetComponentInChildren<Flip>();
     }
 
     // Update is called once per frame
@@ -56,8 +59,15 @@ public class PlayerWeapon : MonoBehaviour
                     currentAttackDelay = playerAttacks[currentAttackIndex].Delay;
                     //Set the last attack time to be current passed frames.
                     lastAttackTime = Time.time;
+                    //Flip the player if the player faces the wrong direction
+                    if (heading.HeadingRight != flip.HeadingRight)
+                    {
+                        flip.FlipPlayer();
+                    }
+                    //Push the player to attack direction
                     PlayerController.Singleton.AddExternalForce(transform.TransformDirection(heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].AttackPlayerPushForwardForce));
                     CastAttackCollider();
+                    //play sound effects for specific attack
                     audioSource.PlayOneShot(playerAttacks[currentAttackIndex].SwingWeaponSoundEffect);
                     //Increment chain by one, with clamping functioning
                     incrementAttackChain();
