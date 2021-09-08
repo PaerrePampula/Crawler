@@ -20,7 +20,8 @@ public class TransistionControl : MonoBehaviour
     }
     public void DoActionAfterTransistion()
     {
-        transistionAction();
+        if (transistionAction != null) transistionAction();
+
         transistionAction = null;
         anim.SetTrigger("EndTransistion");
     }
