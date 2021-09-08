@@ -112,6 +112,7 @@ public class PlayerWeapon : MonoBehaviour
         //Creates a slash effect for the swing
         GameObject slash = Instantiate(playerAttacks[currentAttackIndex].SwingSprite, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z/2f, transform.rotation);
         slash.transform.localScale = playerAttacks[currentAttackIndex].SpriteScale;
+        slash.GetComponent<SpriteRenderer>().color = playerAttacks[currentAttackIndex].SwingSpriteColor;
         if (headingVector.x > 0)
         {
             slash.GetComponent<SpriteRenderer>().flipX = true;
@@ -159,9 +160,12 @@ class PlayerAttack
     [SerializeField] Vector3 hitboxScale = new Vector3();
     [Header ("FX")]
     [SerializeField] AudioClip swingWeaponSoundEffect;
-    [Header ("Sprite settings")]
+    [Header("Sprite settings")]
+
     [SerializeField] GameObject swingSprite;
     [SerializeField] Vector3 spriteScale = new Vector3(1,1,1);
+    [ColorUsage(true, true)]
+    [SerializeField] Color swingSpriteColor = new Color();
     public float Damage { get => damage; set => damage = value; }
     public float Delay { get => delay; set => delay = value; }
     public float AttackHitBoxDuration { get => attackHitBoxDuration; set => attackHitBoxDuration = value; }
@@ -170,4 +174,5 @@ class PlayerAttack
     public AudioClip SwingWeaponSoundEffect { get => swingWeaponSoundEffect; set => swingWeaponSoundEffect = value; }
     public GameObject SwingSprite { get => swingSprite; set => swingSprite = value; }
     public Vector3 SpriteScale { get => spriteScale; set => spriteScale = value; }
+    public Color SwingSpriteColor { get => swingSpriteColor; set => swingSpriteColor = value; }
 }

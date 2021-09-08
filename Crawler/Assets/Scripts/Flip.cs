@@ -8,7 +8,8 @@ public class Flip : MonoBehaviour
     SpriteRenderer m_SpriteRenderer;
     bool _flipX;
     bool headingRight = false;
-    public GameObject dustEffect;
+    [SerializeField] GameObject dustEffect;
+    [SerializeField] Transform dustParent;
 
     public bool HeadingRight { get => headingRight; set => headingRight = value; }
 
@@ -40,7 +41,7 @@ public class Flip : MonoBehaviour
         HeadingRight = m_SpriteRenderer.flipX;
     }
     void dust(){
-        Instantiate(dustEffect, transform.position, transform.rotation);
+        Instantiate(dustEffect, dustParent.position, dustParent.rotation);
     }
 }
 
