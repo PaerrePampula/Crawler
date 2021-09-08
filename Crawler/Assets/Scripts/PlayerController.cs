@@ -17,8 +17,12 @@ public class PlayerController : MonoBehaviour
             return singleton;
         }
     }
+    //Was a public field on the other branch, does not need to be so. 
+    //get the component on start by getComponentsFromChildren
+    //if the component is needed from another gameobject in scene, use [SerializeField]
+    Animator animator;
     CharacterController characterController;
-    //VEKTORIT
+
     Vector3 playerMovementInput;
     Vector3 playerMovementVector;
     Vector3 externalForce;
@@ -38,6 +42,7 @@ public class PlayerController : MonoBehaviour
         currentMovementSpeedMultiplier = movementSpeedMultiplier;
         //We need to acces the public methods of the charactercontroller class to move it according to the charactercontroller.
         characterController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -114,6 +119,9 @@ public class PlayerController : MonoBehaviour
         if (playerMovementInput.magnitude > 1) playerMovementInput = playerMovementInput.normalized;
         //This should be then saved for the player movement using the MoveCharacter() method.
         playerMovementVector = new Vector3(playerMovementInput.x * currentMovementSpeedMultiplier, verticalForce, playerMovementInput.z*currentMovementSpeedMultiplier);
+
+        //This will let the animator know the speed, so it can determine if the run animation is to be played
+        animator.SetFloat("Speed", Mathf.Abs(playerMovementInput.magnitude));
     }
     public Vector3 getPlayerMovementVector()
     {

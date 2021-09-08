@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+
+    //Was a public field on the other branch, does not need to be so. 
+    //get the component on start by getComponentFromChildren
+    //if the component is needed from another gameobject in scene or from prefab, use [SerializeField]
+    Animator animator;
+    [SerializeField] GameObject slashEffect;
+
     [SerializeField] LayerMask enemyLayerMask;
     AudioSource audioSource;
     Heading heading;
@@ -25,6 +32,7 @@ public class PlayerWeapon : MonoBehaviour
         maxAttackChain = playerAttacks.Count;
         heading = GetComponent<Heading>();
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -42,6 +50,8 @@ public class PlayerWeapon : MonoBehaviour
                 //real version should rely on animation length, plus some tiny amount of extra delay on top.
                 if (AttackDelayHasPassed())
                 {
+                    animator.Play("Player-slice" + currentAttackIndex);
+
                     Debug.Log("Attack " + currentAttackIndex);
                     currentAttackDelay = playerAttacks[currentAttackIndex].Delay;
                     //Set the last attack time to be current passed frames.
@@ -64,6 +74,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             currentAttackIndex = 0;
             currentAttackDelay = 0;
+            animator.SetTrigger("StopAttack");
         }
     }
 
@@ -86,6 +97,8 @@ public class PlayerWeapon : MonoBehaviour
             //Increase the number of Colliders in the array
             i++;
         }
+        //Creates a slash effect for the swing
+        Instantiate(slashEffect, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, transform.rotation);
     }
 
     void incrementAttackChain()
