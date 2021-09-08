@@ -16,6 +16,6 @@ public class PlayerFeetFxFlipper : MonoBehaviour
     void Update()
     {
         facingRight = playerFlip.HeadingRight;
-        transform.rotation = (facingRight == true) ? Quaternion.Euler(transform.rotation.x, 0, 0) : Quaternion.Euler(transform.rotation.x, 180, 0);
+        transform.rotation = (facingRight == false) ? Quaternion.Euler(transform.rotation.x, 0, 0) : Quaternion.Euler(transform.rotation.x, 180, 0);
     }
 }
