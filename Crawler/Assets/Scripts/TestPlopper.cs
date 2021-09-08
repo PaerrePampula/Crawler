@@ -12,6 +12,7 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
     [SerializeField] string interactionText = "Press [E] to open";
     public void DoPlayerInteraction()
     {
+        //Declare an anonymous function and use it as the action parameter
         onTransistion?.Invoke(() => CurrentRoomManager.Singleton.setNewRoom(otherRoom, doorLocation));
 
     }
