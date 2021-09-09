@@ -98,7 +98,7 @@ public class PlayerWeapon : MonoBehaviour
         //Scaling the box without having the pivot in the right place would mean that the player could hit enemies behind the player
         //the angle of the heading not only rotates on the wrong direction, but is also 90 degrees offset, so that needs to be corrected for the orientation of the hitbox
         Vector3 headingVector = heading.getHeadingVector().normalized;
-        Collider[] hitColliders = Physics.OverlapBox( transform.position+headingVector*playerAttacks[currentAttackIndex].HitboxScale.z/2f, playerAttacks[currentAttackIndex].HitboxScale/2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0), enemyLayerMask);
+        Collider[] hitColliders = Physics.OverlapBox(transform.position + headingVector * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, playerAttacks[currentAttackIndex].HitboxScale / 2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0), enemyLayerMask);
         int i = 0;
         //Check when there is a new collider coming into contact with the box
         while (i < hitColliders.Length)
@@ -109,10 +109,18 @@ public class PlayerWeapon : MonoBehaviour
             //Increase the number of Colliders in the array
             i++;
         }
+        CreateAttackVisualFX(headingVector);
+    }
+
+    private void CreateAttackVisualFX(Vector3 headingVector)
+    {
         //Creates a slash effect for the swing
-        GameObject slash = Instantiate(playerAttacks[currentAttackIndex].SwingSprite, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z/2f, transform.rotation);
+        GameObject slash = Instantiate(playerAttacks[currentAttackIndex].SwingSprite, transform.position + heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, transform.rotation);
+        //Determine effect scale, color and orientation and direction;
         slash.transform.localScale = playerAttacks[currentAttackIndex].SpriteScale;
-        slash.GetComponent<SpriteRenderer>().color = playerAttacks[currentAttackIndex].SwingSpriteColor;
+        SpriteRenderer slashSpriteRenderer = slash.GetComponent<SpriteRenderer>();
+        slashSpriteRenderer.color = playerAttacks[currentAttackIndex].SwingSpriteColor;
+        slashSpriteRenderer.flipY = playerAttacks[currentAttackIndex].SpriteFlipOnY;
         if (headingVector.x > 0)
         {
             slash.GetComponent<SpriteRenderer>().flipX = true;
@@ -164,6 +172,7 @@ class PlayerAttack
 
     [SerializeField] GameObject swingSprite;
     [SerializeField] Vector3 spriteScale = new Vector3(1,1,1);
+    [SerializeField] bool spriteFlipOnY = false;
     [ColorUsage(true, true)]
     [SerializeField] Color swingSpriteColor = new Color();
     public float Damage { get => damage; set => damage = value; }
@@ -175,4 +184,5 @@ class PlayerAttack
     public GameObject SwingSprite { get => swingSprite; set => swingSprite = value; }
     public Vector3 SpriteScale { get => spriteScale; set => spriteScale = value; }
     public Color SwingSpriteColor { get => swingSpriteColor; set => swingSpriteColor = value; }
+    public bool SpriteFlipOnY { get => spriteFlipOnY; set => spriteFlipOnY = value; }
 }
