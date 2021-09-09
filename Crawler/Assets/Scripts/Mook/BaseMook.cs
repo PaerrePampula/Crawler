@@ -62,6 +62,10 @@ public class BaseMook : MonoBehaviour, IDamageable
         hasReachedTarget = false;
         //There is obviously a target for the agent now, so save this as well.
         hasTarget = true;
+
+        //Debug.Log("chasing");
+        Debug.DrawLine(this.transform.position, PlayerController.Singleton.transform.position);
+        navAgent.SetDestination(PlayerController.Singleton.transform.position);
     }
     // Start is called before the first frame update
     private void OnEnable()
