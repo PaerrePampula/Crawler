@@ -34,7 +34,9 @@ public class CameraController : MonoBehaviour
         middleOfScreenInWorldSpace = camera.ScreenToWorldPoint(Vector3.zero);
         distanceBetweenMiddleofScreenAndCursor = (new Vector3(mousePos.x, 0,mousePos.z) - new Vector3(middleOfScreenInWorldSpace.x, 0, middleOfScreenInWorldSpace.z));
         Vector3 mousePanVector = distanceBetweenMiddleofScreenAndCursor;
-
-        this.transform.position = cameraTarget.position + cameraOffset + mousePanVector*mouseMovementPanMultiplier;
+        //X and Z are affected by player pos and panning, but the Y axis always stays the same
+        Vector3 newCameraPosition = new Vector3(cameraTarget.position.x + cameraOffset.x + mousePanVector.x * mouseMovementPanMultiplier, cameraOffset.y,
+            cameraTarget.position.z + cameraOffset.z + mousePanVector.z * mouseMovementPanMultiplier);
+        this.transform.position = newCameraPosition;
     }
 }

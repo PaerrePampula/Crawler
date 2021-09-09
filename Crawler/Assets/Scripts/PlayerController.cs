@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     //The player might accidentally wander off the map and float, or jump on top of mooks, so the player needs to be grounded by gravity.
     float verticalForce;
     [SerializeField] LayerMask playerMask;
+    public bool isGrounded { get => isCharacterGrounded(); }
     // Start is called before the first frame update
     void Start()
     {
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour
     }
     bool isCharacterGrounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 0.3f, ~playerMask))
+        if (Physics.Raycast(transform.position, Vector3.down, 1f, ~playerMask))
         {
             return true;
         }
