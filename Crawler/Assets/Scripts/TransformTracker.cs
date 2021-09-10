@@ -41,7 +41,7 @@ public class TransformTracker : MonoBehaviour
     public void returnPlayerToSafety()
     {
 
-        transform.position = locationsWhereTransformTouchedGround[currentIndexReverseBy(5)];
+        transform.position = locationsWhereTransformTouchedGround[currentIndexReverseBy(3)];
         Physics.SyncTransforms();
     }
     //The edge case for player only touching ground for 5 frames is extremely unlikely, so lets 

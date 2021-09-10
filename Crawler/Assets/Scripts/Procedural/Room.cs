@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 //Used by all prefabs marked as rooms, rooms should have (currently) a size
@@ -13,6 +14,9 @@ public class Room : MonoBehaviour
     [SerializeField] List<RoomNeighbor> roomNeighborsList = new List<RoomNeighbor>();
     [SerializeField] int _cellSize;
     GameObject roomPrefab;
+    [SerializeField] Transform enemyContainer;
+    List<BaseMook> roomMooks = new List<BaseMook>();
+    int roomMookCount;
     private void Start()
     {
         if (CurrentRoomManager.Singleton != null)
@@ -29,8 +33,53 @@ public class Room : MonoBehaviour
         {
             neighborToDoorLocation.Add(doorLocations[i].NeighborType, doorLocations[i].Location);
         }
-
+        if (enemyContainer != null)
+        {
+            roomMooks.AddRange(enemyContainer.GetComponentsInChildren<BaseMook>());
+            roomMookCount = roomMooks.Count;
+        }
+        else
+        {
+            roomMookCount = 0;
+        }
     }
+    private void OnEnable()
+    {
+        if (roomMookCount > 0)
+        {
+            for (int i = 0; i < roomMooks.Count; i++)
+            {
+                roomMooks[i].onMookDeath += decrementMooksFromRoom;
+            }
+            SetDoorsLockState(true);
+        }
+    }
+
+    private void SetDoorsLockState(bool state)
+    {
+        for (int i = 0; i < doorLocations.Count; i++)
+        {
+            doorLocations[i].Location.GetComponent<TestPlopper>().SetLockState(state);
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < roomMooks.Count; i++)
+        {
+            roomMooks[i].onMookDeath -= decrementMooksFromRoom;
+        }
+    }
+
+    private void decrementMooksFromRoom()
+    {
+        roomMookCount--;
+        if (roomMookCount <= 0)
+        {
+            SetDoorsLockState(false);
+        }
+    }
+
     private void Awake()
     {
         RoomPrefab = GetComponent<GameObject>();

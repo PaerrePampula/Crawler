@@ -10,16 +10,30 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
     [SerializeField] NeighborType doorLocation;
     [SerializeField] Room otherRoom;
     [SerializeField] string interactionText = "Press [E] to open";
+    [SerializeField] string lockedDoorText = "Locked! Clear room of enemies to open";
+    bool locked = false;
+    [SerializeField] Transform lockVisual;
     public void DoPlayerInteraction()
     {
-        //Declare an anonymous function and use it as the action parameter
-        onTransistion?.Invoke(() => CurrentRoomManager.Singleton.setNewRoom(otherRoom, doorLocation));
+        if (!locked)
+        {
+            //Declare an anonymous function and use it as the action parameter
+            onTransistion?.Invoke(() => CurrentRoomManager.Singleton.setNewRoom(otherRoom, doorLocation));
+        }
+
 
     }
-
+    public void SetLockState(bool state)
+    {
+        locked = state;
+        if (lockVisual != null)
+        {
+            lockVisual.gameObject.SetActive(state);
+        }
+    }
     public string getPlayerInteractionString()
     {
-        return interactionText;
+        return (locked == false) ? interactionText : lockedDoorText;
     }
 
 

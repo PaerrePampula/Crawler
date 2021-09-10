@@ -8,6 +8,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     //TODO: CHASE
     public delegate void MookDamaged(float amount, Vector3 location);
     public static event MookDamaged onMookDamaged;
+    public delegate void MookDeath();
+    public event MookDeath onMookDeath;
     NavMeshAgent navAgent;
     Vector3 setTargetPosition;
     Vector3 newTargetPosition;
@@ -20,7 +22,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     //Has player as target.
     bool hasTarget = false;
     bool hasReachedTarget = false;
-    bool newStateTriggered = false;
+    protected bool newStateTriggered = false;
     public float Hp
     {
         get 
@@ -51,10 +53,12 @@ public class BaseMook : MonoBehaviour, IDamageable
     {
         //TODO: Animation in own class (some sort of animation manager).
         //TODO: Might also be its own class, loot has nothing to with AI
+        onMookDeath?.Invoke();
         Destroy(gameObject);
     }
     public virtual void DoAIThing()
     {
+        newStateTriggered = true;
         //Do the action, and eventually set the state not to be triggered again.
         //(To allow new triggers of attacking the player, etc.)
     }
