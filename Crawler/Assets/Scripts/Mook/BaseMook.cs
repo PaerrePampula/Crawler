@@ -9,6 +9,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     public delegate void MookDamaged(float amount, Vector3 location);
     public static event MookDamaged onMookDamaged;
     NavMeshAgent navAgent;
+    Vector3 setTargetPosition;
+    Vector3 newTargetPosition;
     [SerializeField] float _moveSpeed;
     [SerializeField] float _maxHP = 3;
     float _hp;
@@ -64,8 +66,9 @@ public class BaseMook : MonoBehaviour, IDamageable
         hasTarget = true;
 
         //Debug.Log("chasing");
+        setTargetPosition = PlayerController.Singleton.transform.position;
         Debug.DrawLine(this.transform.position, PlayerController.Singleton.transform.position);
-        navAgent.SetDestination(PlayerController.Singleton.transform.position);
+        navAgent.SetDestination(setTargetPosition);
     }
     // Start is called before the first frame update
     private void OnEnable()
@@ -86,7 +89,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        float distanceBetweenPlayerAndAI = Vector3.Distance(PlayerController.Singleton.transform.position, transform.position);
+        newTargetPosition = PlayerController.Singleton.transform.position;
+        float distanceBetweenPlayerAndAI = Vector3.Distance(newTargetPosition, transform.position);
         //So basicly, the required current max distance until a new chase is going to be the rechase distance, if the player has reached
         //the player before, but hasnt started chasing the player again.
         //If the AI has not chased the player before, the distance will be _chaseRange
@@ -108,7 +112,11 @@ public class BaseMook : MonoBehaviour, IDamageable
             hasTarget = false;
             hasReachedTarget = true;
         }
-
+        //has target, but the target has gained a bunch of distance from previous position
+        else if (Vector3.Distance(newTargetPosition, setTargetPosition) > 1)
+        {
+            ChasePlayer();
+        }
         //The ai might have reached the player, so the AI needs to do its action now.
         //The AI might already be attacking, so check if a new state was already triggered.
         if (!newStateTriggered && hasReachedTarget) DoAIThing();
