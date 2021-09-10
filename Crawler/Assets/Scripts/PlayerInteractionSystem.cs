@@ -64,6 +64,7 @@ public class PlayerInteractionSystem : MonoBehaviour
         {
             promptOn = false;
             interactionPrompt.gameObject.SetActive(false);
+            currentInteractable = null;
         }
     }
     void setInteractable(IPlayerInteractable newInteractable)
