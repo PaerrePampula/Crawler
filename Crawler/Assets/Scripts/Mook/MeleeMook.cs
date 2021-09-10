@@ -45,6 +45,8 @@ class MeleeMook : BaseMook
          * tagi on player, tai joku muu mikä on asetettu pelaajan objektille.
          * Layermaskaa collider ainoastaan rekisteröimään pelaajan layermask parametrin kohdalla
          * Muuten hyökkäys castaa vasten kokoajan jotain ihan epäolennaisia collidereita ja vie performancea.
+         * Castaus voisi myös castaa jotakin "Breakables" layeria vastaan, slimet varmaan jäis proppien taakke vaan läimimään tyhjää jos ne
+         * ei myös pystyisi rikkoa kyseisiä objekteja, mutta se on varmaan sit jotain myöhäisempää
          * 
          * Jos sellanen löytyy, tee mikä lie damagefunktio sille keksit. Funktion saa melko helpolla
          * jos kutsut pelaajan pelaajaskriptista changehpta ja vähennät sitä haluamalla määrälläsi. Pitäisi onnistua jos getcomponenttaat hitistä IDamageable damageable = (IDamageable)GetComponent(typeof (IDamageAble));
