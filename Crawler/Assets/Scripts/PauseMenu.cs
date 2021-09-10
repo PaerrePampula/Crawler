@@ -36,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         Paused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
+        Globals.ControlsAreEnabled = false;
     }
 
     void Resume()
@@ -43,6 +44,7 @@ public class PauseMenu : MonoBehaviour
         Paused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+        Globals.ControlsAreEnabled = true;
     }
     public void Return()
     {

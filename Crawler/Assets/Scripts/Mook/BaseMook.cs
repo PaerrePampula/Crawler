@@ -16,6 +16,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     [SerializeField] float _moveSpeed;
     [SerializeField] float _maxHP = 3;
     float _hp;
+    float lastActionTime = 0;
+    [SerializeField] float actionSpeed = 2f;
     bool isInvulnerable = false;
     [SerializeField] float _chaseRange;
     [SerializeField] float _reChaseRange;
@@ -59,6 +61,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     public virtual void DoAIThing()
     {
         newStateTriggered = true;
+        lastActionTime = Time.time;
+        Debug.Log("Did Ai thing");
         //Do the action, and eventually set the state not to be triggered again.
         //(To allow new triggers of attacking the player, etc.)
     }
@@ -71,7 +75,7 @@ public class BaseMook : MonoBehaviour, IDamageable
 
         //Debug.Log("chasing");
         setTargetPosition = PlayerController.Singleton.transform.position;
-        Debug.DrawLine(this.transform.position, PlayerController.Singleton.transform.position);
+        Debug.DrawLine(this.transform.position, setTargetPosition);
         navAgent.SetDestination(setTargetPosition);
     }
     // Start is called before the first frame update
@@ -121,10 +125,14 @@ public class BaseMook : MonoBehaviour, IDamageable
         {
             ChasePlayer();
         }
+
+        if ((Time.time > lastActionTime + actionSpeed) && newStateTriggered)
+        {
+            newStateTriggered = false;
+        }
+
         //The ai might have reached the player, so the AI needs to do its action now.
         //The AI might already be attacking, so check if a new state was already triggered.
         if (!newStateTriggered && hasReachedTarget) DoAIThing();
-
-
     }
 }
