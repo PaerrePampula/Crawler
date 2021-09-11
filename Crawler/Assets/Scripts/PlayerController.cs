@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
     //The player might accidentally wander off the map and float, or jump on top of mooks, so the player needs to be grounded by gravity.
     float verticalForce;
     [SerializeField] LayerMask playerMask;
+    bool _dashing = false;
+    bool _isStationary = true;
+    [SerializeField] float dashingTime = 1f;
+    [SerializeField] float dashDistanceMultiplier = 3f;
     public bool isGrounded { get => isCharacterGrounded(); }
     // Start is called before the first frame update
     void Start()
@@ -53,21 +57,60 @@ public class PlayerController : MonoBehaviour
         {
             if (Globals.MovementControlsAreEnabled)
             {
-                //Input is set to player every frame, but actual movement is calculated every fixed update
-                SetInputMovement();
+                if (!_dashing)
+                {
+                    //Input is set to player every frame, but actual movement is calculated every fixed update
+                    setInputMovement();
+                    pollDashing();
+                }
+
             }
 
         }
+
+    }
+
+    private void pollDashing()
+    {
+        if (!_isStationary)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Dash();
+            }
+        }
+
+    }
+    //Make player invunerable, dash the player to movement direction, and slow player afterwards
+    private void Dash()
+    {
+
+        StartCoroutine(addAndDiminishPlayerMovementDuringDash());
+        _dashing = true;
+        animator.Play("Player-dash");
+    }
+
+    IEnumerator addAndDiminishPlayerMovementDuringDash()
+    {
+        float timer = 0;
+        Vector3 originalReferenceVectorForMovement = playerMovementVector;
+        while (timer < dashingTime)
+        {
+            playerMovementVector = Vector3.Lerp(originalReferenceVectorForMovement * dashDistanceMultiplier,originalReferenceVectorForMovement ,  timer/dashingTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _dashing = false;
 
     }
     private void FixedUpdate()
     {
         applyGravity();
         //Frame rate independent movement happens in fixed update.
-        MoveCharacter();
+        moveCharacter();
     }
 
-    private void MoveCharacter()
+    private void moveCharacter()
     {
         characterController.Move((playerMovementVector+externalForce) * Time.fixedDeltaTime);
     }
@@ -111,16 +154,16 @@ public class PlayerController : MonoBehaviour
         }
         StartCoroutine(changeExternalForce(force));
     }
-    private void SetInputMovement()
+    private void setInputMovement()
     {
         //Horizontal movement changes the x axis, vertical changes the z axis
         playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        _isStationary = (playerMovementInput.magnitude == 0) ? true : false;
         //Currently the player should be able to move faster diagonally, lets prevent this by changing the movement
         //vector to be normalized, if its magnitude is bigger than one (the vector is longer than 1 unit)
         if (playerMovementInput.magnitude > 1) playerMovementInput = playerMovementInput.normalized;
         //This should be then saved for the player movement using the MoveCharacter() method.
         playerMovementVector = new Vector3(playerMovementInput.x * currentMovementSpeedMultiplier, verticalForce, playerMovementInput.z*currentMovementSpeedMultiplier);
-
         //This will let the animator know the speed, so it can determine if the run animation is to be played
         animator.SetFloat("Speed", Mathf.Abs(playerMovementInput.magnitude));
     }
