@@ -3536,6 +3536,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0c03fb8cf0d5c4d82c65523803680d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &209074668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209074659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d7f2d13721a524b85df6a6b2cfd0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 5
 --- !u!1001 &210096545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10234,7 +10247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2502881723631885059, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_PropertySheet.m_Int.m_Array.Array.data[0].m_Value
-      value: 75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2502881723631885059, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_PropertySheet.m_Int.m_Array.Array.data[0].m_Overridden
