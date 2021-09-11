@@ -94,6 +94,11 @@ public class PlayerController : MonoBehaviour
         _dashing = true;
         animator.Play("Player-dash");
 
+        if (extraForceCoRoutine != null)
+        {
+            StopCoroutine(extraForceCoRoutine);
+            externalForce = Vector3.zero;
+        }
     }
 
     IEnumerator addAndDiminishPlayerMovementDuringDash()
@@ -163,7 +168,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(extraForceCoRoutine);
             externalForce = Vector3.zero;
         }
-        StartCoroutine(changeExternalForce(force));
+        extraForceCoRoutine = StartCoroutine(changeExternalForce(force));
     }
     private void setInputMovement()
     {
