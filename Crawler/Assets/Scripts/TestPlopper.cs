@@ -28,7 +28,12 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
         locked = state;
         if (lockVisual != null)
         {
-            lockVisual.gameObject.SetActive(state);
+            if (!locked)
+            {
+                lockVisual.GetComponent<Animator>().Play("Dissolve");
+            }
+
+
         }
     }
     public string getPlayerInteractionString()

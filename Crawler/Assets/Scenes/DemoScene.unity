@@ -13684,7 +13684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &755882740
 Transform:
   m_ObjectHideFlags: 0
@@ -32800,6 +32800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1847824525}
   - component: {fileID: 1847824526}
+  - component: {fileID: 1847824527}
   m_Layer: 0
   m_Name: DoorLock
   m_TagString: Untagged
@@ -32841,6 +32842,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1847824527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847824524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fa049d38a31484885d5c53ffb0f7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectWithDissolvableMaterial: {fileID: 1333469976}
 --- !u!1001 &1852182361
 PrefabInstance:
   m_ObjectHideFlags: 0
