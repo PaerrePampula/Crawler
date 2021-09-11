@@ -5,6 +5,7 @@ class Player : MonoBehaviour,  IDamageable
     //The system probably could round hp to one halves for the heart display system, maybe?
     [SerializeField] float _maxHp = 5;
     float _hp;
+    bool _isInvunerable = false;
 
     public float Hp
     {
@@ -26,9 +27,17 @@ class Player : MonoBehaviour,  IDamageable
     }
     public void ChangeHp(float changeAmount)
     {
+        //The player is not getting healed by objects and is currently in an iframe, no damage.
+        if (changeAmount < 0)
+        {
+            if (_isInvunerable) return;
+        }
         Hp += changeAmount;
     }
-
+    public void setInvunerability(bool state)
+    {
+        _isInvunerable = state;
+    }
     public void KillCharacter()
     {
         Debug.Log("Player died, but death needs to implemented later");

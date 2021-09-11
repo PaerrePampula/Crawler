@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
     //if the component is needed from another gameobject in scene, use [SerializeField]
     Animator animator;
     CharacterController characterController;
+    Player playerComponent;
+    //Should really be in a class of its own but its bit of a bother just for a simple effect
+    [SerializeField] VisualEffect dashEffect;
 
     Vector3 playerMovementInput;
     Vector3 playerMovementVector;
@@ -44,6 +48,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerComponent = GetComponent<Player>();
         currentMovementSpeedMultiplier = movementSpeedMultiplier;
         //We need to acces the public methods of the charactercontroller class to move it according to the charactercontroller.
         characterController = GetComponent<CharacterController>();
@@ -88,18 +93,24 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(addAndDiminishPlayerMovementDuringDash());
         _dashing = true;
         animator.Play("Player-dash");
+
     }
 
     IEnumerator addAndDiminishPlayerMovementDuringDash()
     {
         float timer = 0;
+        float normalizedTimer = 0;
+        playerComponent.setInvunerability(true);
         Vector3 originalReferenceVectorForMovement = playerMovementVector;
         while (timer < dashingTime)
         {
-            playerMovementVector = Vector3.Lerp(originalReferenceVectorForMovement * dashDistanceMultiplier,originalReferenceVectorForMovement ,  timer/dashingTime);
+            normalizedTimer = timer / dashingTime;
+            dashEffect.SetInt("SpawnRate", (int)(75 * (1 - normalizedTimer)));
+            playerMovementVector = Vector3.Lerp(originalReferenceVectorForMovement * dashDistanceMultiplier,originalReferenceVectorForMovement ,  normalizedTimer);
             timer += Time.deltaTime;
             yield return null;
         }
+        playerComponent.setInvunerability(false);
         _dashing = false;
 
     }
