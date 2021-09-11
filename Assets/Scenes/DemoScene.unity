@@ -4129,12 +4129,20 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream:Assets/Scenes/DemoScene.unity
   - component: {fileID: 475357302}
   - component: {fileID: 475357305}
   - component: {fileID: 475357303}
   - component: {fileID: 475357304}
   m_Layer: 7
   m_Name: PlayerVisual
+=======
+  - component: {fileID: 299888999}
+  - component: {fileID: 299889000}
+  - component: {fileID: 299889001}
+  m_Layer: 6
+  m_Name: TotallyASlimeVisual
+>>>>>>> Stashed changes:Crawler/Assets/Scenes/DemoScene.unity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4205,17 +4213,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< Updated upstream:Assets/Scenes/DemoScene.unity
 --- !u!95 &475357304
+=======
+--- !u!95 &299889001
+>>>>>>> Stashed changes:Crawler/Assets/Scenes/DemoScene.unity
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream:Assets/Scenes/DemoScene.unity
   m_GameObject: {fileID: 475357301}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0d0d22aee3cd8e74a9f95e6dd1dbb767, type: 2}
+=======
+  m_GameObject: {fileID: 299888998}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0791f30ee739d94d8028ee9897d0db4, type: 2}
+>>>>>>> Stashed changes:Crawler/Assets/Scenes/DemoScene.unity
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4224,6 +4243,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+<<<<<<< Updated upstream:Assets/Scenes/DemoScene.unity
 --- !u!114 &475357305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4239,6 +4259,9 @@ MonoBehaviour:
   flipX: 0
   dustEffect: {fileID: 2244829604876097399, guid: f8961b0e409c9514f8f0261801ad8a6b, type: 3}
 --- !u!1001 &477336248
+=======
+--- !u!1001 &302198798
+>>>>>>> Stashed changes:Crawler/Assets/Scenes/DemoScene.unity
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
