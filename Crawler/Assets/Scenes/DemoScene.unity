@@ -10132,8 +10132,12 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608198, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: dashingTime
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608198, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: dashDistanceMultiplier
-      value: 15
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608200, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_RootOrder
@@ -10178,6 +10182,10 @@ PrefabInstance:
     - target: {fileID: 526691528913608200, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[2].attackPlayerPushForwardForce
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4950380413841514809, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Materials.Array.data[0]

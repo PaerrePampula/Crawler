@@ -5057,8 +5057,8 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 132
-  dashingTime: 0.6
-  dashDistanceMultiplier: 3
+  dashingTime: 0.45
+  dashDistanceMultiplier: 21
 --- !u!114 &526691528913608199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5092,6 +5092,7 @@ MonoBehaviour:
     delay: 0.1
     attackHitBoxDuration: 0
     attackPlayerPushForwardForce: 5
+    attackPlayerPushForwardTime: 0.2
     hitboxScale: {x: 2, y: 1, z: 2}
     swingWeaponSoundEffect: {fileID: 8300000, guid: 903731b04e447bf4db854dbaf7e27a11, type: 3}
     swingSprite: {fileID: 8912130283242121736, guid: e412941839211f342a81307c7a347659, type: 3}
@@ -5102,6 +5103,7 @@ MonoBehaviour:
     delay: 0.1
     attackHitBoxDuration: 0
     attackPlayerPushForwardForce: 12
+    attackPlayerPushForwardTime: 0.2
     hitboxScale: {x: 2, y: 1, z: 2}
     swingWeaponSoundEffect: {fileID: 8300000, guid: 903731b04e447bf4db854dbaf7e27a11, type: 3}
     swingSprite: {fileID: 8912130283242121736, guid: e412941839211f342a81307c7a347659, type: 3}
@@ -5111,7 +5113,8 @@ MonoBehaviour:
   - damage: 2
     delay: 0.5
     attackHitBoxDuration: 0
-    attackPlayerPushForwardForce: 12
+    attackPlayerPushForwardForce: 25
+    attackPlayerPushForwardTime: 0.2
     hitboxScale: {x: 2.5, y: 1, z: 4}
     swingWeaponSoundEffect: {fileID: 8300000, guid: 40cc26ef1978031478283caf79323382, type: 3}
     swingSprite: {fileID: 8912130283242121736, guid: e412941839211f342a81307c7a347659, type: 3}
