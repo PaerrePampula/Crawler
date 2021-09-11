@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -79,14 +80,40 @@ class MeleeMook : BaseMook
         if (!charging)
         {
             charging = true;
-            chargeStarted = Time.time;
+
             chargeDirection = (PlayerController.Singleton.transform.position - transform.position).normalized;
+            StartCoroutine(ChargeThing());
+            StartCoroutine(chargeMove());
             Debug.Log(chargeDirection);
             chargeDirection.y = 0;
             canMove = false;
         }    
     }
+    IEnumerator ChargeThing()
+    {
+        chargeStarted = Time.time;
 
+
+        while (Time.time > chargeStarted + chargeDuration)
+        {
+            CreateHitbox();
+            yield return null;
+        }
+        charging = false;
+        canMove = true;
+    }
+    IEnumerator chargeMove()
+    {
+        float chargeTimer = 0;
+        Vector3 reference = chargeDirection;
+        while (chargeTimer < 0.5f)
+        {
+            chargeDirection = Vector3.Lerp(reference, Vector3.zero, chargeTimer / 0.5f);
+            chargeTimer += Time.deltaTime;
+            yield return null;
+        }
+
+    }
     public void CreateHitbox()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, chargeHbRadius);
@@ -111,15 +138,9 @@ class MeleeMook : BaseMook
         if (charging)
         {
             controller.Move(chargeDirection * Time.deltaTime * chargeSpeed);
-            CreateHitbox();
-
-            if (Time.time > chargeStarted + chargeDuration)
-            {
-                charging = false;
-                canMove = true;
-            }
         }
     }
+
 
 }
 

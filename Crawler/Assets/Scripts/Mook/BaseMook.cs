@@ -86,18 +86,20 @@ public class BaseMook : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     private void OnEnable()
     {
+        //Mook needs to have a navmeshagent to pathfind on standard unity 3d navmesh.
+        navAgent = GetComponent<NavMeshAgent>();
         Hp = _maxHP;
     }
     void Start()
     {
-        //Mook needs to have a navmeshagent to pathfind on standard unity 3d navmesh.
-        navAgent = GetComponent<NavMeshAgent>();
+
         //Chase range can be set to be infinite, meaning the mook wont move to attack player.
         if (_chaseRange == 0)
         {
             _chaseRange = Mathf.Infinity;
         }
     }
+
 
     // Update is called once per frame
     void Update()
