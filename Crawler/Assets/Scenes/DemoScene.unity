@@ -10143,6 +10143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608196, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 526691528913608198, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: playerMask.m_Bits
       value: 132
@@ -27599,9 +27603,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 0
   _maxHP: 10
-  actionSpeed: 2
-  _chaseRange: 3
+  actionSpeed: 3
+  canMove: 1
+  _chaseRange: 6
   _reChaseRange: 6
+  chargeDuration: 1
+  chargeSpeed: 6
+  chargeHbRadius: 1.5
 --- !u!33 &1571793567
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -27624,7 +27632,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 2
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

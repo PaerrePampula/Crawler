@@ -7,10 +7,27 @@ using UnityEngine;
 
 class MeleeMook : BaseMook
     {
+
+    public float chargeDuration = 1f;
+    public float chargeSpeed = 1f;
+    public float chargeHbRadius = 0.5f;
+
+    float chargeStarted = 0;
+    bool charging = false;
+    Vector3 chargeDirection;
+    CharacterController controller;
+
+    public void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
     public override void DoAIThing()
     {
         base.DoAIThing();
-        Debug.Log("Melee thing");
+        //Debug.Log("Melee thing");
+        SlimeCharge();
+
         //Vinkkejä/Rakenne-ehdotuksia leeville
         /*
          * Periaatteessa tää rakennehan tulee sille slime äijälle,
@@ -54,6 +71,54 @@ class MeleeMook : BaseMook
          * Jos teet hyppy coroutinen erillisenä coroutinena hitbox coroutinesta, voit breakkaa
          * hitbox coroutinen aikasemmin, säästäen vähän performancea.
          */
+        //Too long, didn't read lamo
+    }
+
+    public void SlimeCharge()
+    {
+        if (!charging)
+        {
+            charging = true;
+            chargeStarted = Time.time;
+            chargeDirection = (PlayerController.Singleton.transform.position - transform.position).normalized;
+            Debug.Log(chargeDirection);
+            chargeDirection.y = 0;
+            canMove = false;
+        }    
+    }
+
+    public void CreateHitbox()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, chargeHbRadius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.tag == "Player")
+            {
+                //Tee damagea, huom. pitää olla iframet pelaajalla
+                Debug.Log("Hit player");
+            }
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chargeHbRadius);
+    }
+
+    public void LateUpdate()
+    {
+        if (charging)
+        {
+            controller.Move(chargeDirection * Time.deltaTime * chargeSpeed);
+            CreateHitbox();
+
+            if (Time.time > chargeStarted + chargeDuration)
+            {
+                charging = false;
+                canMove = true;
+            }
+        }
     }
 
 }
