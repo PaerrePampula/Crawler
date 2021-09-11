@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         float timer = 0;
         float normalizedTimer = 0;
         playerComponent.setInvunerability(true);
-        Vector3 originalReferenceVectorForMovement = playerMovementVector;
+        Vector3 originalReferenceVectorForMovement = playerMovementVector.normalized;
         while (timer < dashingTime)
         {
             normalizedTimer = timer / dashingTime;
