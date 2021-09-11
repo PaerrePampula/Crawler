@@ -65,7 +65,7 @@ public class PlayerWeapon : MonoBehaviour
                         flip.FlipPlayer();
                     }
                     //Push the player to attack direction
-                    PlayerController.Singleton.AddExternalForce(transform.TransformDirection(heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].AttackPlayerPushForwardForce));
+                    PlayerController.Singleton.AddExternalForce(transform.TransformDirection(heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].AttackPlayerPushForwardForce), playerAttacks[currentAttackIndex].AttackPlayerPushForwardTime);
                     CastAttackCollider();
                     //play sound effects for specific attack
                     audioSource.PlayOneShot(playerAttacks[currentAttackIndex].SwingWeaponSoundEffect);
@@ -165,6 +165,7 @@ class PlayerAttack
     [SerializeField] float delay;
     [SerializeField] float attackHitBoxDuration;
     [SerializeField] float attackPlayerPushForwardForce = 10;
+    [SerializeField] float attackPlayerPushForwardTime = 0.2f;
     [SerializeField] Vector3 hitboxScale = new Vector3();
     [Header ("FX")]
     [SerializeField] AudioClip swingWeaponSoundEffect;
@@ -185,4 +186,5 @@ class PlayerAttack
     public Vector3 SpriteScale { get => spriteScale; set => spriteScale = value; }
     public Color SwingSpriteColor { get => swingSpriteColor; set => swingSpriteColor = value; }
     public bool SpriteFlipOnY { get => spriteFlipOnY; set => spriteFlipOnY = value; }
+    public float AttackPlayerPushForwardTime { get => attackPlayerPushForwardTime; set => attackPlayerPushForwardTime = value; }
 }

@@ -141,15 +141,15 @@ public class PlayerController : MonoBehaviour
             verticalForce = 0;
         }
     }
-    IEnumerator changeExternalForce(Vector3 force)
+    IEnumerator changeExternalForce(Vector3 force, float forceTimer)
     {
         Globals.MovementControlsAreEnabled = false;
         Vector3 referenceForce = force;
         float timer = 0;
 
-        while (timer < 0.5f)
+        while (timer < forceTimer)
         {
-            externalForce = Vector3.Lerp(referenceForce, Vector3.zero, timer /0.5f);
+            externalForce = Vector3.Lerp(referenceForce, Vector3.zero, timer /forceTimer);
             timer += Time.deltaTime;
 
             yield return null;
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
     }
     //Should only be used (so far!) for the forward movement of attacking
-    public void AddExternalForce(Vector3 force)
+    public void AddExternalForce(Vector3 force, float externalForceTimer)
     {
 
         if (extraForceCoRoutine != null)
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(extraForceCoRoutine);
             externalForce = Vector3.zero;
         }
-        extraForceCoRoutine = StartCoroutine(changeExternalForce(force));
+        extraForceCoRoutine = StartCoroutine(changeExternalForce(force, externalForceTimer));
     }
     private void setInputMovement()
     {
