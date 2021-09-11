@@ -10299,6 +10299,10 @@ PrefabInstance:
       propertyPath: playerAttacks.Array.data[2].attackPlayerPushForwardForce
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[2].attackTargetHitPushForceMultiplier
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4950380413841514809, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -38885,6 +38889,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 845624983}
     m_Modifications:
+    - target: {fileID: 3470527518712568181, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
+      propertyPath: _maxHP
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4253378905552731610, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
       propertyPath: m_Name
       value: MookSlime
@@ -38956,6 +38964,18 @@ PrefabInstance:
     - target: {fileID: 7767137630051832305, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767137630051832305, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659258
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767137630051832305, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2588191
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767137630051832305, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}

@@ -104,6 +104,7 @@ public class PlayerWeapon : MonoBehaviour
         while (i < hitColliders.Length)
         {
             hitColliders[i].GetComponent<BaseMook>().ChangeHp(-playerAttacks[currentAttackIndex].Damage);
+            KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
             //Output all of the collider names
             Debug.Log("Hit : " + hitColliders[i].name + i);
             //Increase the number of Colliders in the array
@@ -142,6 +143,26 @@ public class PlayerWeapon : MonoBehaviour
     {
         return (Time.time > lastAttackTime + playerAttacks[currentAttackIndex].Delay);
     }
+    void KnockbackHitCharacter(CharacterController characterController)
+    {
+        Vector3 hitDirectionReversed = (characterController.transform.position - transform.position).normalized;
+        StartCoroutine(LessenPushBack(hitDirectionReversed, characterController));
+    }
+    IEnumerator LessenPushBack(Vector3 pushForce, CharacterController characterController)
+    {
+        float multiplier = playerAttacks[currentAttackIndex].AttackTargetHitPushForceMultiplier;
+        float timer = 0;
+        Vector3 referenceForce = pushForce;
+        Vector3 extraForce = Vector3.zero;
+        while (timer < 0.2f)
+        {
+            extraForce = Vector3.Lerp(referenceForce, Vector3.zero, timer / 0.2f);
+            characterController.Move(extraForce*Time.deltaTime*multiplier);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+    }
     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
     void OnDrawGizmos()
     {
@@ -166,6 +187,7 @@ class PlayerAttack
     [SerializeField] float attackHitBoxDuration;
     [SerializeField] float attackPlayerPushForwardForce = 10;
     [SerializeField] float attackPlayerPushForwardTime = 0.2f;
+    [SerializeField] float attackTargetHitPushForceMultiplier = 10f;
     [SerializeField] Vector3 hitboxScale = new Vector3();
     [Header ("FX")]
     [SerializeField] AudioClip swingWeaponSoundEffect;
@@ -187,4 +209,5 @@ class PlayerAttack
     public Color SwingSpriteColor { get => swingSpriteColor; set => swingSpriteColor = value; }
     public bool SpriteFlipOnY { get => spriteFlipOnY; set => spriteFlipOnY = value; }
     public float AttackPlayerPushForwardTime { get => attackPlayerPushForwardTime; set => attackPlayerPushForwardTime = value; }
+    public float AttackTargetHitPushForceMultiplier { get => attackTargetHitPushForceMultiplier; set => attackTargetHitPushForceMultiplier = value; }
 }

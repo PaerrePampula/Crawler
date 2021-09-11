@@ -32,8 +32,6 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
             {
                 lockVisual.GetComponent<Animator>().Play("Dissolve");
             }
-
-
         }
     }
     public string getPlayerInteractionString()
