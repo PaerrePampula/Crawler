@@ -94,7 +94,7 @@ class MeleeMook : BaseMook
         chargeStarted = Time.time;
 
 
-        while (Time.time > chargeStarted + chargeDuration)
+        while (Time.time < chargeStarted + chargeDuration)
         {
             CreateHitbox();
             yield return null;
@@ -106,7 +106,7 @@ class MeleeMook : BaseMook
     {
         float chargeTimer = 0;
         Vector3 reference = chargeDirection;
-        while (chargeTimer < 0.5f)
+        while (chargeTimer < chargeDuration)
         {
             chargeDirection = Vector3.Lerp(reference, Vector3.zero, chargeTimer / 0.5f);
             chargeTimer += Time.deltaTime;
