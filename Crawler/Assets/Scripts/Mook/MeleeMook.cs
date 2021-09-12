@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +8,27 @@ using UnityEngine;
 
 class MeleeMook : BaseMook
     {
+
+    public float chargeDuration = 1f;
+    public float chargeSpeed = 1f;
+    public float chargeHbRadius = 0.5f;
+
+    float chargeStarted = 0;
+    bool charging = false;
+    Vector3 chargeDirection;
+    CharacterController controller;
+
+    public void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
     public override void DoAIThing()
     {
         base.DoAIThing();
-        Debug.Log("Melee thing");
+        //Debug.Log("Melee thing");
+        SlimeCharge();
+
         //Vinkkejä/Rakenne-ehdotuksia leeville
         /*
          * Periaatteessa tää rakennehan tulee sille slime äijälle,
@@ -54,7 +72,75 @@ class MeleeMook : BaseMook
          * Jos teet hyppy coroutinen erillisenä coroutinena hitbox coroutinesta, voit breakkaa
          * hitbox coroutinen aikasemmin, säästäen vähän performancea.
          */
+        //Too long, didn't read lamo
     }
+
+    public void SlimeCharge()
+    {
+        if (!charging)
+        {
+            charging = true;
+
+            chargeDirection = (PlayerController.Singleton.transform.position - transform.position).normalized;
+            StartCoroutine(ChargeThing());
+            StartCoroutine(chargeMove());
+            Debug.Log(chargeDirection);
+            chargeDirection.y = 0;
+            canMove = false;
+        }    
+    }
+    IEnumerator ChargeThing()
+    {
+        chargeStarted = Time.time;
+
+
+        while (Time.time > chargeStarted + chargeDuration)
+        {
+            CreateHitbox();
+            yield return null;
+        }
+        charging = false;
+        canMove = true;
+    }
+    IEnumerator chargeMove()
+    {
+        float chargeTimer = 0;
+        Vector3 reference = chargeDirection;
+        while (chargeTimer < 0.5f)
+        {
+            chargeDirection = Vector3.Lerp(reference, Vector3.zero, chargeTimer / 0.5f);
+            chargeTimer += Time.deltaTime;
+            yield return null;
+        }
+
+    }
+    public void CreateHitbox()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, chargeHbRadius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.tag == "Player")
+            {
+                //Tee damagea, huom. pitää olla iframet pelaajalla
+                Debug.Log("Hit player");
+            }
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chargeHbRadius);
+    }
+
+    public void LateUpdate()
+    {
+        if (charging)
+        {
+            controller.Move(chargeDirection * Time.deltaTime * chargeSpeed);
+        }
+    }
+
 
 }
 

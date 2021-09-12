@@ -19,6 +19,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     float lastActionTime = 0;
     [SerializeField] float actionSpeed = 2f;
     bool isInvulnerable = false;
+    public bool canMove = true;
     [SerializeField] float _chaseRange;
     [SerializeField] float _reChaseRange;
     //Has player as target.
@@ -68,31 +69,37 @@ public class BaseMook : MonoBehaviour, IDamageable
     }
     public void ChasePlayer()
     {
-        //If the bool for has reached target is set to true, first reset it
-        hasReachedTarget = false;
-        //There is obviously a target for the agent now, so save this as well.
-        hasTarget = true;
+        if (canMove)
+        {
+            //If the bool for has reached target is set to true, first reset it
+            hasReachedTarget = false;
+            //There is obviously a target for the agent now, so save this as well.
+            hasTarget = true;
 
-        //Debug.Log("chasing");
-        setTargetPosition = PlayerController.Singleton.transform.position;
-        Debug.DrawLine(this.transform.position, setTargetPosition);
-        navAgent.SetDestination(setTargetPosition);
+            //Debug.Log("chasing");
+            setTargetPosition = PlayerController.Singleton.transform.position;
+            Debug.DrawLine(transform.position, setTargetPosition);
+            navAgent.SetDestination(setTargetPosition);
+        }
+
     }
     // Start is called before the first frame update
     private void OnEnable()
     {
+        //Mook needs to have a navmeshagent to pathfind on standard unity 3d navmesh.
+        navAgent = GetComponent<NavMeshAgent>();
         Hp = _maxHP;
     }
     void Start()
     {
-        //Mook needs to have a navmeshagent to pathfind on standard unity 3d navmesh.
-        navAgent = GetComponent<NavMeshAgent>();
+
         //Chase range can be set to be infinite, meaning the mook wont move to attack player.
         if (_chaseRange == 0)
         {
             _chaseRange = Mathf.Infinity;
         }
     }
+
 
     // Update is called once per frame
     void Update()
