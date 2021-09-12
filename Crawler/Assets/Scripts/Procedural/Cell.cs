@@ -25,6 +25,11 @@ public class Cell
         X = x;
         Y = y;
     }
+    //Once the node map is done, some branches are generated. Once some branches are generated, meaning the connections need to be updated.
+    public void RegenerateConnections()
+    {
+        GetConnections();
+    }
     public List<Connection> GetConnections()
     {
         List<Connection> connections = new List<Connection>();

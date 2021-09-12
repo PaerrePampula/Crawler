@@ -9,7 +9,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     Dictionary<NeighborType, Room> roomNeighbors = new Dictionary<NeighborType, Room>();
-    Dictionary<NeighborType, GameObject> neighborToDoorLocation = new Dictionary<NeighborType, GameObject>();
+    Dictionary<NeighborType, GameObject> roomDoors = new Dictionary<NeighborType, GameObject>();
     [SerializeField] List<DoorLocation> doorLocations = new List<DoorLocation>();
     [SerializeField] List<RoomNeighbor> roomNeighborsList = new List<RoomNeighbor>();
     [SerializeField] int _cellSize;
@@ -17,6 +17,11 @@ public class Room : MonoBehaviour
     [SerializeField] Transform enemyContainer;
     List<BaseMook> roomMooks = new List<BaseMook>();
     int roomMookCount;
+    Cell _cell;
+    public void AddRoomDoor(NeighborType neighborType, GameObject door)
+    {
+        roomDoors.Add(neighborType, door);
+    }
     private void Start()
     {
         if (CurrentRoomManager.Singleton != null)
@@ -24,6 +29,12 @@ public class Room : MonoBehaviour
             if (this != CurrentRoomManager.Singleton.currentRoom) gameObject.SetActive(false);
         }
 
+        SaveListsToDictionaries();
+        SetInfoAboutRoomMooks();
+    }
+
+    private void SaveListsToDictionaries()
+    {
         //Save the list as a dictionary to make lookups a bit better
         for (int i = 0; i < roomNeighborsList.Count; i++)
         {
@@ -31,8 +42,12 @@ public class Room : MonoBehaviour
         }
         for (int i = 0; i < doorLocations.Count; i++)
         {
-            neighborToDoorLocation.Add(doorLocations[i].NeighborType, doorLocations[i].Location);
+            roomDoors.Add(doorLocations[i].NeighborType, doorLocations[i].Location);
         }
+    }
+
+    private void SetInfoAboutRoomMooks()
+    {
         if (enemyContainer != null)
         {
             roomMooks.AddRange(enemyContainer.GetComponentsInChildren<BaseMook>());
@@ -43,6 +58,7 @@ public class Room : MonoBehaviour
             roomMookCount = 0;
         }
     }
+
     private void OnEnable()
     {
         if (roomMookCount > 0)
@@ -84,11 +100,20 @@ public class Room : MonoBehaviour
     {
         RoomPrefab = GetComponent<GameObject>();
     }
+    public Room getNeighbor(NeighborType neighborType)
+    {
+        Cell neighborCell;
+        _cell.NeighborCells.TryGetValue(neighborType, out neighborCell);
+        if (neighborCell == null) return null;
+        return ProceduralGeneration.Singleton.GetRoomByCell(_cell.NeighborCells[neighborType]);
+    }
     public GameObject RoomPrefab { get => roomPrefab; set => roomPrefab = value; }
     public int CellSize { get => _cellSize; set => _cellSize = value; }
+    public Cell Cell { get => _cell; set => _cell = value; }
+
     public void WarpPlayerToDoorLocation(NeighborType neighborType)
     {
-        PlayerController.Singleton.transform.position = neighborToDoorLocation[neighborType].transform.position;
+        PlayerController.Singleton.transform.position = roomDoors[neighborType].transform.position+roomDoors[neighborType].transform.TransformDirection(Vector3.forward);
         //The change in position wont be updated correctly if changes in transforms are not flushed correctly
         Physics.SyncTransforms();
     }

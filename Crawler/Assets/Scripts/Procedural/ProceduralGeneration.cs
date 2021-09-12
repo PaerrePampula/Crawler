@@ -37,6 +37,8 @@ class ProceduralGeneration : MonoBehaviour
     NodeRecord currentRecord;
     //A pathfinded route from the beginning room to "boss room". Generated through the dijikstra algorithm.
     public List<Cell> pathFromStartToGoal = new List<Cell>();
+    List<Cell> allCellsUsedByDungeon = new List<Cell>();
+    Dictionary<Cell, Room> _cellToDoor = new Dictionary<Cell, Room>();
     [Header("Procedurally generated map parameters")]
     [SerializeField] int maximumMapWidth = 100;
     [SerializeField] int maximumMapHeight = 100;
@@ -308,12 +310,13 @@ class ProceduralGeneration : MonoBehaviour
         for (int i = 0; i < pathFromStartToGoal.Count; i++)
         {
             pathFromStartToGoal[i].CurrentlyUsedOnMap = true;
+            allCellsUsedByDungeon.Add(pathFromStartToGoal[i]);
         }
         //Once the paths are set to be used, iterate them, creating branching paths whenever chance dictates so
         for (int i = 0; i < pathFromStartToGoal.Count; i++)
         {
             //Create a visualization of this node for now as a cube.
-            GameObject go = GetComponent<RoomGen>().createRoomForCell(pathFromStartToGoal[i]);
+            GameObject go = GetComponent<RoomGen>().createNodeVisualizationForCell(pathFromStartToGoal[i]);
             //Only create branching paths if the current node is not the goal or the start.
             if (i > 0 && i < pathFromStartToGoal.Count - 1)
             {
@@ -322,6 +325,17 @@ class ProceduralGeneration : MonoBehaviour
             //Set the visualizing cube location to be the node location.
             go.transform.position = new Vector3(pathFromStartToGoal[i].X, 0, pathFromStartToGoal[i].Y);
         }
+        for (int i = 0; i < allCellsUsedByDungeon.Count; i++)
+        {
+            GetComponent<RoomGen>().createRoomForCell(allCellsUsedByDungeon[i]);
+        }
+        for (int i = 0; i < allCellsUsedByDungeon.Count; i++)
+        {
+            allCellsUsedByDungeon[i].RegenerateConnections();
+
+        }
+        CurrentRoomManager.Singleton.currentRoom = _cellToDoor[allCellsUsedByDungeon[0]];
+        _cellToDoor[allCellsUsedByDungeon[0]].gameObject.SetActive(true);
 
     }
 
@@ -346,7 +360,7 @@ class ProceduralGeneration : MonoBehaviour
                 {
                     if (neighbor.CurrentlyUsedOnMap) continue;
                     //Create a visualization for this branch
-                    GameObject goAdjancent = GetComponent<RoomGen>().createRoomForCell(neighbor);
+                    GameObject goAdjancent = GetComponent<RoomGen>().createNodeVisualizationForCell(neighbor);
                     goAdjancent.transform.position = new Vector3(neighbor.X, 0, neighbor.Y);
                     //The 2x2 room has 4x small cubes as the "room". Loop through them all to give the branching path a bit different color.
                     foreach (var rendered in goAdjancent.transform.GetComponentsInChildren<MeshRenderer>())
@@ -355,8 +369,10 @@ class ProceduralGeneration : MonoBehaviour
                     }
 
                     neighbor.CurrentlyUsedOnMap = true;
+                    allCellsUsedByDungeon.Add(neighbor);
                     //Increase the depth of this current branch by one.
                     currentBranchingPathCount++;
+
                     GenerateBranchingPaths(neighbor, currentBranchingPathCount);
                     //One branching room per room should be enough, so break the loop if this one room is created.
                 }
@@ -392,5 +408,15 @@ class ProceduralGeneration : MonoBehaviour
             }
         }
         return false;
+    }
+    public Room GetRoomByCell(Cell cell)
+    {
+        Room room;
+        _cellToDoor.TryGetValue(cell, out room);
+        return room;
+    }
+    public void AddCellToRoomInformation(Cell cell, Room room)
+    {
+        _cellToDoor.Add(cell, room);
     }
 }

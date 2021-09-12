@@ -11,6 +11,7 @@ public class TransistionControl : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         TestPlopper.onTransistion += makeTransistion;
+        Door.onTransistion += makeTransistion;
     }
 
     private void makeTransistion(Action actionAfterTransistion)
@@ -28,6 +29,7 @@ public class TransistionControl : MonoBehaviour
     private void OnDisable()
     {
         TestPlopper.onTransistion -= makeTransistion;
+        Door.onTransistion -= makeTransistion;
     }
     // Start is called before the first frame update
     void Start()
