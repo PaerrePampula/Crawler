@@ -38822,13 +38822,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 845624983}
     m_Modifications:
+    - target: {fileID: 2944828298529014239, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
+      propertyPath: m_Acceleration
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3470527518712568181, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
       propertyPath: _maxHP
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3470527518712568181, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
       propertyPath: chargeSpeed
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4253378905552731610, guid: c3a4754e38198634fbac6450c37d8c70, type: 3}
       propertyPath: m_Name
