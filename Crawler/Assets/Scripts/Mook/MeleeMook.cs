@@ -10,10 +10,11 @@ class MeleeMook : BaseMook
     {
 
     public float chargeDuration = 1f;
-    public float chargeSpeed = 1f;
+    public float chargePower = 2f;
     public float chargeHbRadius = 0.5f;
 
     float chargeStarted = 0;
+
     bool charging = false;
     Vector3 chargeDirection;
     CharacterController controller;
@@ -81,7 +82,7 @@ class MeleeMook : BaseMook
         {
             charging = true;
 
-            chargeDirection = (PlayerController.Singleton.transform.position - transform.position).normalized;
+            chargeDirection = (PlayerController.Singleton.transform.position - transform.position);
             StartCoroutine(ChargeThing());
             StartCoroutine(chargeMove());
             Debug.Log(chargeDirection);
@@ -137,7 +138,7 @@ class MeleeMook : BaseMook
     {
         if (charging)
         {
-            controller.Move(chargeDirection * Time.deltaTime * chargeSpeed);
+            controller.Move(chargeDirection * Time.deltaTime * chargePower);
         }
     }
 

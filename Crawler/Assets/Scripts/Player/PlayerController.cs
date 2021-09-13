@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
     }
     bool isCharacterGrounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 1f, ~playerMask))
+        if (Physics.Raycast(transform.position, Vector3.down, 0.8f, ~playerMask))
         {
             return true;
         }
