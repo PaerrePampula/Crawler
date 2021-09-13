@@ -25,7 +25,8 @@ public class PlayerWeapon : MonoBehaviour
     int currentAttackIndex = 0;
     int maxAttackChain;
     bool attackBuffered = false;
-
+    public delegate void OnPlayerAttacks();
+    public static event OnPlayerAttacks onPlayerAttacks;
     [SerializeField] List<PlayerAttack> playerAttacks = new List<PlayerAttack>();
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,7 @@ public class PlayerWeapon : MonoBehaviour
                     //Increment chain by one, with clamping functioning
                     incrementAttackChain();
                     attackBuffered = false;
+                    onPlayerAttacks?.Invoke();
                 }
                 else
                 {
