@@ -6,7 +6,7 @@ public class TransformTracker : MonoBehaviour
 {
     int locationHistoryAmount = 50;
     int locationIndex = 0;
-    Vector3[] locationsWhereTransformTouchedGround = new Vector3[50];
+    Vector3 locationWhereTransformTouchedGround;
     PlayerController playerController;
     public int LocationIndex
     {
@@ -33,29 +33,18 @@ public class TransformTracker : MonoBehaviour
     {
         if (playerController.isGrounded)
         {
-            locationsWhereTransformTouchedGround[LocationIndex] = transform.position;
-            LocationIndex++;
+            locationWhereTransformTouchedGround = transform.position;
+
         }
 
     }
     public void returnPlayerToSafety()
     {
 
-        transform.position = locationsWhereTransformTouchedGround[currentIndexReverseBy(3)];
+        transform.position = locationWhereTransformTouchedGround;
         Physics.SyncTransforms();
     }
-    //The edge case for player only touching ground for 5 frames is extremely unlikely, so lets 
-    //not worry about that
-    int currentIndexReverseBy(int toReverse)
-    {
-        int newIndex = locationIndex-toReverse;
-        if (newIndex < 0)
-        {
-            newIndex = locationHistoryAmount - 1 - newIndex;
-        }
-        return newIndex;
 
-    }
     // Update is called once per frame
     void Update()
     {
