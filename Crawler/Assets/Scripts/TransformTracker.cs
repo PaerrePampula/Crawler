@@ -7,21 +7,7 @@ public class TransformTracker : MonoBehaviour
 
     Vector3 locationWhereTransformTouchedGround;
     PlayerController playerController;
-    public int LocationIndex
-    {
-        get 
-        { 
-            return locationIndex; 
-        }
-        set
-        {
-            if (value > locationHistoryAmount - 1)
-            {
-                value = 0;
-            }
-            locationIndex = value;
-        }
-    }
+
 
     // Start is called before the first frame update
     void Start()
