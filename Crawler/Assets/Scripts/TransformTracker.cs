@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TransformTracker : MonoBehaviour
 {
-    int locationHistoryAmount = 50;
-    int locationIndex = 0;
+
     Vector3 locationWhereTransformTouchedGround;
     PlayerController playerController;
     public int LocationIndex
