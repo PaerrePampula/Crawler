@@ -45,7 +45,7 @@ public class MapCell : MonoBehaviour
     {
         
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (Cell != null)
         {
