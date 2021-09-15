@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Tracks the player location, and returns the player to the location tracked when triggered
+/// </summary>
 public class TransformTracker : MonoBehaviour
 {
-
     Vector3 locationWhereTransformTouchedGround;
     PlayerController playerController;
-
-
-    // Start is called before the first frame update
     void Start()
     {
         playerController = GetComponent<PlayerController>();
@@ -28,11 +26,5 @@ public class TransformTracker : MonoBehaviour
 
         transform.position = locationWhereTransformTouchedGround;
         Physics.SyncTransforms();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

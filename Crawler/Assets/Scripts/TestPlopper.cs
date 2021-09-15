@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Prototype version of the door script, used in tutorial
+/// </summary>
 public class TestPlopper : MonoBehaviour, IPlayerInteractable
 {
     public delegate void Transistion(Action actionAfterTransistion);

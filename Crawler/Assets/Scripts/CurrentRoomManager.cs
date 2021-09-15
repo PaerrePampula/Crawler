@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Controls what room is active in scene. The room active is always the room where the player is
+/// </summary>
 public class CurrentRoomManager : MonoBehaviour
 {
     //Save all possible combinations of doors as a dictionary to speed up lookup signifigantly (much faster than a switch case etc.)

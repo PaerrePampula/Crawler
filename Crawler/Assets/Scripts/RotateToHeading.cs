@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Simply rotates any object that is a child of an object with heading component, then rotates
+/// the object to the heading angle found in the heading script.
+/// </summary>
 public class RotateToHeading : MonoBehaviour
 {
     Heading heading;

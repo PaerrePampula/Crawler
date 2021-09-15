@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// A script for the ui element tracking how far the player is from being able to attack again
+/// </summary>
 public class WeaponAttackDelayTracker : MonoBehaviour
 {
     PlayerWeapon PlayerWeapon;

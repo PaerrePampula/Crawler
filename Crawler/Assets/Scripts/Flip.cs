@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Flips the player character according to movement heading
+/// </summary>
 public class Flip : MonoBehaviour
 {
     SpriteRenderer m_SpriteRenderer;

@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Tracks the location of the mouse relative to player character, then saves
+/// the angle between the mouse on the plane perpendicular to the playercharacter.
+/// </summary>
 public class Heading : MonoBehaviour
 {
     Vector3 mousePosInWorld;

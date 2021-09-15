@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-
+/// <summary>
+/// Saves infomration about player hp and also invokes events involving player dodging attacks or attacking
+/// </summary>
 class Player : MonoBehaviour,  IDamageable
 {
     Animator anim;

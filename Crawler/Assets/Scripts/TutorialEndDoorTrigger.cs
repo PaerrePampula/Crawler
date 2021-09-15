@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-
+/// <summary>
+/// Just a prototype script for the tutorial, triggers the end scene of tutorial
+/// </summary>
 public class TutorialEndDoorTrigger : MonoBehaviour, IPlayerInteractable
 {
     [SerializeField] PlayableDirector director;
