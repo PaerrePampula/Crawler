@@ -48,8 +48,8 @@ class ProceduralGeneration : MonoBehaviour
     Vector2 goalSpace;
     Vector2 startSpace;
     #endregion
-    public delegate void OnMapGenerated(List<Cell> cellsInDungeon);
-    public static event OnMapGenerated onMapGenerated;
+    public delegate void GenerationComplete(List<Cell> cellsInDungeon);
+    public static event GenerationComplete onGenerationComplete;
     private void Start()
     {
         ProcedurallyGenerateAMap();
@@ -269,7 +269,7 @@ class ProceduralGeneration : MonoBehaviour
         }
         CurrentRoomManager.Singleton.currentRoom = _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]];
         _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]].gameObject.SetActive(true);
-        onMapGenerated.Invoke(allCellsUsedByGeneratedDungeon);
+        onGenerationComplete.Invoke(allCellsUsedByGeneratedDungeon);
 
     }
 

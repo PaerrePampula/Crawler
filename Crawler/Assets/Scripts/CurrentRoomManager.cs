@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class CurrentRoomManager : MonoBehaviour
         { NeighborType.Above, NeighborType.Below },
 
     };
+    public delegate void OnRoomSet(Room setRoom);
+    public static event OnRoomSet onPlayerRoomSet;
     static CurrentRoomManager singleton;
     public static CurrentRoomManager Singleton
     {
@@ -28,6 +31,19 @@ public class CurrentRoomManager : MonoBehaviour
             return singleton;
         }
     }
+    private void OnEnable()
+    {
+        DungeonMap.onMapGenerationComplete += invokeInitialRoomInformation;
+    }
+    private void OnDisable()
+    {
+        DungeonMap.onMapGenerationComplete -= invokeInitialRoomInformation;
+    }
+    private void invokeInitialRoomInformation()
+    {
+        //Player is spawned in currenly with just info in the inspector about current room
+        onPlayerRoomSet?.Invoke(currentRoom);
+    }
 
     [SerializeField] public Room currentRoom;
     public void setNewRoom(Room nextRoom, NeighborType connectingNeighborDoor)
@@ -38,6 +54,7 @@ public class CurrentRoomManager : MonoBehaviour
         //Get the opposite neighbor type door to plop the player at the other room.
         NeighborType doorTypeToPlopPlayerTo = matchingDoorTypes[connectingNeighborDoor];
         currentRoom.WarpPlayerToDoorLocation(doorTypeToPlopPlayerTo);
+        onPlayerRoomSet?.Invoke(currentRoom);
     }
 
 }

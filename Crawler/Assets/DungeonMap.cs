@@ -6,6 +6,23 @@ using UnityEngine.UI;
 
 public class DungeonMap : MonoBehaviour
 {
+    public delegate void MapGenerationComplete();
+    public static event MapGenerationComplete onMapGenerationComplete;
+    static DungeonMap singleton;
+    public static DungeonMap Singleton
+    {
+        get
+        {
+            if (singleton == null)
+            {
+                singleton = FindObjectOfType<DungeonMap>();
+            }
+            return singleton;
+        }
+    }
+
+    public Dictionary<Vector2, MapCell> DungeonCells { get => dungeonCells; set => dungeonCells = value; }
+
     [SerializeField] GameObject mapNode;
     [SerializeField] GameObject endNode;
     [SerializeField] GameObject startNode;
@@ -14,16 +31,19 @@ public class DungeonMap : MonoBehaviour
     Vector3 oldMousePos = Vector3.zero;
     float mapZoomAmount = 1;
     float mapCellSize = 50;
+    bool mapOpen = false;
+    Dictionary<Vector2, MapCell> dungeonCells = new Dictionary<Vector2, MapCell>();
     private void OnEnable()
     {
-        ProceduralGeneration.onMapGenerated += createMap;
+        ProceduralGeneration.onGenerationComplete += createMap;
     }
     private void OnDisable()
     {
-        ProceduralGeneration.onMapGenerated -= createMap;
+        ProceduralGeneration.onGenerationComplete -= createMap;
     }
     private void createMap(List<Cell> cellsInDungeon)
     {
+        //The start node will be located in the middle of the transform for the map container, all other cells of the map are offset by this
         Vector2 offset = new Vector2(cellsInDungeon[0].X * mapCellSize + mapParent.transform.localPosition.x, cellsInDungeon[0].Y * mapCellSize + mapParent.transform.localPosition.y);
         for (int i = 0; i < cellsInDungeon.Count; i++)
         {
@@ -41,7 +61,11 @@ public class DungeonMap : MonoBehaviour
             go.GetComponent<RectTransform>().anchoredPosition = new Vector2(mapCellSize/2f, mapCellSize/2f);
             go.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             go.transform.localPosition = new Vector2(mapCellSize * cellsInDungeon[i].X, mapCellSize * cellsInDungeon[i].Y) - offset;
+            MapCell mapCell = go.GetComponent<MapCell>();
+            mapCell.Initialize(cellsInDungeon[i]);
+            DungeonCells.Add(new Vector2(cellsInDungeon[i].X, cellsInDungeon[i].Y), mapCell);
         }
+        onMapGenerationComplete?.Invoke();
     }
 
     // Start is called before the first frame update
@@ -49,12 +73,29 @@ public class DungeonMap : MonoBehaviour
     {
         
     }
+    public void InvokeFullMapShow()
+    {
+        foreach (Cell cell in ProceduralGeneration.Singleton.CellsTable.Values)
+        {
+            cell.InvokeCellDiscover();
+
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        PanMap();
-        ZoomMap();
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            mapOpen = !mapOpen;
+            mapParent.transform.gameObject.SetActive(mapOpen);
+        }
+        if (mapOpen)
+        {
+            PanMap();
+            ZoomMap();
+        }
+
     }
 
     private void ZoomMap()

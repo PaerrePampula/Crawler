@@ -8,7 +8,8 @@ public class Cell
     CellType cellType;
     int cellWeight;
     bool _currentlyUsedOnMap;
-
+    public delegate void CellDiscovery();
+    public event CellDiscovery onCellDiscover;
     //Listing of all possible neighbors
     //### A|AR ##
     //#LT X X RT #
@@ -83,6 +84,11 @@ public class Cell
     public int getElementValue()
     {
         return cellWeight;
+    }
+    //Used to discover adjancent cells when moving to an unexplored cell of the map
+    public void InvokeCellDiscover()
+    {
+        onCellDiscover?.Invoke();
     }
 
     public int X { get => _x; set => _x = value; }
