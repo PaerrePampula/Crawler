@@ -14,6 +14,7 @@ public class MapCell : MonoBehaviour
     public Cell Cell { get => _cell; set => _cell = value; }
     private void Start()
     {
+
         if (discoveredByPlayer == false)
         {
             gameObject.SetActive(false);
@@ -21,23 +22,29 @@ public class MapCell : MonoBehaviour
     }
     public void Initialize(Cell cell)
     {
+        cellImage = GetComponent<Image>();
         Cell = cell;
-        CurrentRoomManager.onPlayerRoomSet += checkIfDiscovered;
+        CurrentRoomManager.onPlayerRoomSet += checkIfDiscoveredAndIfIsCurrentRoom;
         Cell.onCellDiscover += discoverMapCell;
     }
 
-    private void checkIfDiscovered(Room setRoom)
+    private void checkIfDiscoveredAndIfIsCurrentRoom(Room setRoom)
     {
         //Player room is the same room as the cell represented by this ui element
         if (setRoom.Cell == Cell)
         {
             discoverMapCell();
+            cellImage.color = Color.red;
             foreach (Cell cell in Cell.NeighborCells.Values)
             {
                 //Avoid having to find the actual mapcells from some collection by just invoking 
                 //discovery in the other cells
                 cell.InvokeCellDiscover();
             }
+        }
+        else
+        {
+            cellImage.color = Color.white;
         }
     }
 
@@ -49,7 +56,7 @@ public class MapCell : MonoBehaviour
     {
         if (Cell != null)
         {
-            CurrentRoomManager.onPlayerRoomSet -= checkIfDiscovered;
+            CurrentRoomManager.onPlayerRoomSet -= checkIfDiscoveredAndIfIsCurrentRoom;
             Cell.onCellDiscover -= discoverMapCell;
         }
     }

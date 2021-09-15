@@ -152,13 +152,15 @@ class ProceduralGeneration : MonoBehaviour
         {
             //The smallest element of the list should be the current record inspected
             currentRecord = openPathFindingCells.extractMinKey();
+
+
+            //Make a record of all the connecting nodes, then loop these.
+            List<Connection> connections = currentRecord.Cell.GetConnections();
             //This code will exit if the current cell is the goal prematurely before the algorithm runs all the way the list of nodes to
             //save computing time. A suboptimal shortest route is good enough for most games, including this, especially when its only used to 
             //generate maps on runtime once per game.
+            //in this case its nice to have the end cell have remember its neighbors though, so the doors can be inserted easily in the final product
             if (areSameCells(currentRecord.Cell, cellsTable[goalSpace])) break;
-            //Make a record of all the connecting nodes, then loop these.
-            List<Connection> connections = currentRecord.Cell.GetConnections();
-
             for (int i = 0; i < connections.Count; i++)
             {
                 //Save the current cost + the cost to this connection
