@@ -9,9 +9,10 @@ using UnityEngine;
 class MeleeMook : BaseMook
     {
 
-    public float chargeDuration = 1f;
-    public float chargePower = 2f;
-    public float chargeHbRadius = 0.5f;
+    [SerializeField] float chargeDuration = 1f;
+    [SerializeField] float chargePower = 2f;
+    [SerializeField] float chargeHbRadius = 0.5f;
+    [SerializeField] float meleeDamage;
 
     float chargeStarted = 0;
 
@@ -83,21 +84,19 @@ class MeleeMook : BaseMook
             charging = true;
 
             chargeDirection = (PlayerController.Singleton.transform.position - transform.position);
-            StartCoroutine(ChargeThing());
+            StartCoroutine(chargeAttack());
             StartCoroutine(chargeMove());
             Debug.Log(chargeDirection);
             chargeDirection.y = 0;
             canMove = false;
         }    
     }
-    IEnumerator ChargeThing()
+    IEnumerator chargeAttack()
     {
         chargeStarted = Time.time;
-
-
         while (Time.time < chargeStarted + chargeDuration)
         {
-            CreateHitbox();
+            if (CreateHitBoxAndReturnHitSuccess() == true) break;
             yield return null;
         }
         charging = false;
@@ -115,17 +114,27 @@ class MeleeMook : BaseMook
         }
 
     }
-    public void CreateHitbox()
+    public bool CreateHitBoxAndReturnHitSuccess()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, chargeHbRadius);
+        bool hasHit = false;
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, chargeHbRadius, playerMask);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.tag == "Player")
-            {
-                //Tee damagea, huom. pitää olla iframet pelaajalla
-                Debug.Log("Hit player");
-            }
+            IDamageable damageable = (IDamageable)hitCollider.GetComponent(typeof(IDamageable));
+            damageable.ChangeHp(-meleeDamage);
+            //Will return true if there are hits
+            hasHit = true;
         }
+        //if (!hasHit)
+        //{
+        //    //If the player dashed out of the way of the hitbox,
+        //    if (Vector3.Distance(PlayerController.Singleton.getLastDashPoint(), transform.position) <= chargeHbRadius / 2f)
+        //    {
+
+        //    }
+        //}
+        //Will return false if there are no hits
+        return hasHit;
     }
 
     void OnDrawGizmos()

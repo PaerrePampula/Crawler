@@ -26,6 +26,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     bool hasTarget = false;
     bool hasReachedTarget = false;
     protected bool newStateTriggered = false;
+    [SerializeField]protected LayerMask playerMask;
     public float Hp
     {
         get 

@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     Player playerComponent;
     //Should really be in a class of its own but its bit of a bother just for a simple effect
     [SerializeField] VisualEffect dashEffect;
-
+    Vector3 lastDashPoint;
     Vector3 playerMovementInput;
     Vector3 playerMovementVector;
     Vector3 externalForce;
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     //Make player invunerable, dash the player to movement direction, and slow player afterwards
     private void Dash()
     {
-
+        lastDashPoint = transform.position;
         StartCoroutine(addAndDiminishPlayerMovementDuringDash());
         _dashing = true;
         animator.Play("Player-dash");
@@ -186,6 +186,10 @@ public class PlayerController : MonoBehaviour
     public Vector3 getPlayerMovementVector()
     {
         return playerMovementVector;
+    }
+    public Vector3 getLastDashPoint()
+    {
+        return lastDashPoint;
     }
     bool isCharacterGrounded()
     {

@@ -143,7 +143,7 @@ public class PlayerWeapon : MonoBehaviour
     }
     bool AttackDelayHasPassed()
     {
-        return (Time.time > lastAttackTime + playerAttacks[currentAttackIndex].Delay);
+        return (Time.time > lastAttackTime + currentAttackDelay);
     }
     void KnockbackHitCharacter(CharacterController characterController)
     {
@@ -178,6 +178,10 @@ public class PlayerWeapon : MonoBehaviour
         }
 
 
+    }
+    public float getCurrentAttackDelay()
+    {
+        return currentAttackDelay;
     }
 }
 [System.Serializable]

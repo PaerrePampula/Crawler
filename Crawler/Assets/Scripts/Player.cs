@@ -2,6 +2,11 @@
 
 class Player : MonoBehaviour,  IDamageable
 {
+    Animator anim;
+    public delegate void PlayerDamaged();
+    public static event PlayerDamaged onPlayerDamaged;
+    public delegate void PlayerDodged();
+    public static event PlayerDodged onPlayerDodged;
     //The system probably could round hp to one halves for the heart display system, maybe?
     [SerializeField] float _maxHp = 5;
     float _hp;
@@ -30,7 +35,14 @@ class Player : MonoBehaviour,  IDamageable
         //The player is not getting healed by objects and is currently in an iframe, no damage.
         if (changeAmount < 0)
         {
-            if (_isInvunerable) return;
+            if (_isInvunerable)
+            {
+                onPlayerDodged?.Invoke();
+                return;
+            }
+
+            onPlayerDamaged?.Invoke();
+
         }
         Hp += changeAmount;
     }
@@ -42,6 +54,7 @@ class Player : MonoBehaviour,  IDamageable
     {
         Debug.Log("Player died, but death needs to implemented later");
         Debug.Log("Player shouldnt be able to move right now");
+        anim.Play("Player-die");
         Globals.ControlsAreEnabled = false;
     }
     private void Start()
@@ -49,6 +62,7 @@ class Player : MonoBehaviour,  IDamageable
         //Reset player hp to max on start
         //Current default 5 hp would mean 5 hearts, change to whatever if there is a better number.
         Hp = _maxHp;
+        anim = GetComponentInChildren<Animator>();
     }
 }
 
