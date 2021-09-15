@@ -157,11 +157,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219d6eb22d2d170429a37679e58236c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageEffect: {fileID: 2358425389147943458, guid: 5a806a0224cf7fe469b988662a37242a, type: 3}
+  dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   _moveSpeed: 0
   _maxHP: 10
   actionSpeed: 2
+  canMove: 1
   _chaseRange: 3
   _reChaseRange: 6
+  chargeDuration: 1
+  chargePower: 2
+  chargeHbRadius: 0.5
 --- !u!195 &2944828298529014239
 NavMeshAgent:
   m_ObjectHideFlags: 0

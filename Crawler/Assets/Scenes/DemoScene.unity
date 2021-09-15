@@ -5040,6 +5040,18 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[0].swingWeaponSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 6eef1523ea1165f4b8f58e5afc715fbc, type: 3}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[1].swingWeaponSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a29c9f02afe08347bba26e13a69fa23, type: 3}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[2].swingWeaponSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 16706c3f586b91841beb1c5492509980, type: 3}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: playerAttacks.Array.data[2].attackPlayerPushForwardForce
       value: 25
       objectReference: {fileID: 0}

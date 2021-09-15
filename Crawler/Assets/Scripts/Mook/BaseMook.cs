@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class BaseMook : MonoBehaviour, IDamageable
 {
     //TODO: CHASE
+    [SerializeField] GameObject damageEffect;
+    [SerializeField] GameObject dieEffect;
     public delegate void MookDamaged(float amount, Vector3 location);
     public static event MookDamaged onMookDamaged;
     public delegate void MookDeath();
@@ -49,6 +51,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         {
             onMookDamaged?.Invoke(damageAmount, transform.position);
             Hp += damageAmount;
+            Instantiate(damageEffect, transform.position, transform.rotation);
         }
     }
 
@@ -57,6 +60,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         //TODO: Animation in own class (some sort of animation manager).
         //TODO: Might also be its own class, loot has nothing to with AI
         onMookDeath?.Invoke();
+        Instantiate(dieEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     public virtual void DoAIThing()
