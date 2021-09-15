@@ -89,6 +89,7 @@ class MeleeMook : BaseMook
             Debug.Log(chargeDirection);
             chargeDirection.y = 0;
             canMove = false;
+
         }    
     }
     IEnumerator chargeAttack()
@@ -101,6 +102,7 @@ class MeleeMook : BaseMook
         }
         charging = false;
         canMove = true;
+
     }
     IEnumerator chargeMove()
     {
@@ -108,7 +110,7 @@ class MeleeMook : BaseMook
         Vector3 reference = chargeDirection;
         while (chargeTimer < chargeDuration)
         {
-            chargeDirection = Vector3.Lerp(reference, Vector3.zero, chargeTimer / 0.5f);
+            chargeDirection = Vector3.Lerp(reference, Vector3.zero, chargeTimer / chargeDuration);
             chargeTimer += Time.deltaTime;
             yield return null;
         }
@@ -139,8 +141,12 @@ class MeleeMook : BaseMook
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, chargeHbRadius);
+        if (charging)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, chargeHbRadius);
+        }
+
     }
 
     public void LateUpdate()

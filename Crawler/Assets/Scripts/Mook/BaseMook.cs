@@ -64,6 +64,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     {
         newStateTriggered = true;
         lastActionTime = Time.time;
+        navAgent.ResetPath();
         Debug.Log("Did Ai thing");
         //Do the action, and eventually set the state not to be triggered again.
         //(To allow new triggers of attacking the player, etc.)
