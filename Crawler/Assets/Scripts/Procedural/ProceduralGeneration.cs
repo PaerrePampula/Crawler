@@ -48,6 +48,8 @@ class ProceduralGeneration : MonoBehaviour
     Vector2 goalSpace;
     Vector2 startSpace;
     #endregion
+    public delegate void OnMapGenerated(List<Cell> cellsInDungeon);
+    public static event OnMapGenerated onMapGenerated;
     private void Start()
     {
         ProcedurallyGenerateAMap();
@@ -56,7 +58,7 @@ class ProceduralGeneration : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
     private void ProcedurallyGenerateAMap()
@@ -119,6 +121,7 @@ class ProceduralGeneration : MonoBehaviour
     {
         //The first space from the shuffled list shall be reserved for the start
         startSpace = allCellLocations[0];
+        cellsTable[startSpace].CellType = CellType.Start;
         //Prevent degenerate maps from being made with there being set minimum distance between goal and start
         //The next index of the list shall be the goal, but change the index if above isnt satisfied
         int indexForGoal = 1;
@@ -127,6 +130,7 @@ class ProceduralGeneration : MonoBehaviour
             indexForGoal++;
         }
         goalSpace = allCellLocations[indexForGoal];
+        cellsTable[goalSpace].CellType = CellType.End;
     }
     #endregion
     #region Pathfinding algorithm (Dijikstras' algorithm of shortest route)
@@ -250,14 +254,14 @@ class ProceduralGeneration : MonoBehaviour
         for (int i = 0; i < pathFromStartToGoal.Count; i++)
         {
             //Create a visualization of this node for now as a cube.
-            GameObject go = GetComponent<RoomGen>().createNodeVisualizationForCell(pathFromStartToGoal[i]);
+            //GameObject go = GetComponent<RoomGen>().createNodeVisualizationForCell(pathFromStartToGoal[i]);
             //Only create branching paths if the current node is not the goal or the start.
             if (i > 0 && i < pathFromStartToGoal.Count - 1)
             {
                 GenerateBranchingPaths(pathFromStartToGoal[i]);
             }
             //Set the visualizing cube location to be the node location.
-            go.transform.position = new Vector3(pathFromStartToGoal[i].X, 0, pathFromStartToGoal[i].Y);
+            //go.transform.position = new Vector3(pathFromStartToGoal[i].X, 0, pathFromStartToGoal[i].Y);
         }
         for (int i = 0; i < allCellsUsedByGeneratedDungeon.Count; i++)
         {
@@ -265,6 +269,7 @@ class ProceduralGeneration : MonoBehaviour
         }
         CurrentRoomManager.Singleton.currentRoom = _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]];
         _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]].gameObject.SetActive(true);
+        onMapGenerated.Invoke(allCellsUsedByGeneratedDungeon);
 
     }
 

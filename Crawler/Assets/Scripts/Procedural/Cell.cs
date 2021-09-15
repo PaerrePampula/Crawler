@@ -5,7 +5,7 @@ public class Cell
 {
     int _x;
     int _y;
-
+    CellType cellType;
     int cellWeight;
     bool _currentlyUsedOnMap;
 
@@ -92,7 +92,7 @@ public class Cell
     public bool CurrentlyUsedOnMap { get => _currentlyUsedOnMap; set => _currentlyUsedOnMap = value; }
 
     public Dictionary<NeighborType, Cell> NeighborCells { get => neighborCells; set => neighborCells = value; }
-
+    internal CellType CellType { get => cellType; set => cellType = value; }
 }
 /// <summary>
 /// Used by procedural generation cells and rooms. For each room, a location for a 
@@ -105,4 +105,10 @@ public enum NeighborType
     Right,
     Above,
     Below,
+}
+enum CellType
+{
+    Normal,
+    Start,
+    End
 }
