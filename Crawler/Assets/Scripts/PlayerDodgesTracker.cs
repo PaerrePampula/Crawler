@@ -7,12 +7,9 @@ using UnityEngine;
 public class PlayerDodgesTracker : MonoBehaviour
 {
     float dodgesCount;
-    TextMeshProUGUI textMeshPro;
-    // Start is called before the first frame update
-    void Start()
-    {
-        textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
-    }
+    Coroutine waitRoutineForClosingTrackerText;
+    [SerializeField] TextMeshProUGUI trackerText;
+
     private void OnEnable()
     {
         Player.onPlayerDodged += addToDodges;
@@ -28,17 +25,32 @@ public class PlayerDodgesTracker : MonoBehaviour
     {
         if (dodgesCount > 1)
         {
-            textMeshPro.text = "Dodge break!";
+            trackerText.text = "Dodge break!";
+            dodgesCount = 0;
+            showTracker();
+
         }
-        dodgesCount = 0;
+
+
     }
 
     private void addToDodges()
     {
         dodgesCount++;
-        textMeshPro.text = "Dodge " + dodgesCount+"x!"; 
+        trackerText.text = "Dodge " + dodgesCount+"x!";
+        showTracker();
     }
-
+    void showTracker()
+    {
+        trackerText.gameObject.SetActive(true);
+        if (waitRoutineForClosingTrackerText != null) StopCoroutine(waitRoutineForClosingTrackerText);
+        waitRoutineForClosingTrackerText = StartCoroutine(waitForAWhileAndCloseTracker());
+    }
+    IEnumerator waitForAWhileAndCloseTracker()
+    {
+        yield return new WaitForSeconds(3f);
+        trackerText.gameObject.SetActive(false); 
+    }
     // Update is called once per frame
     void Update()
     {
