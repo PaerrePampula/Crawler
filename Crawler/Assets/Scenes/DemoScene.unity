@@ -4793,7 +4793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &534158094
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5028,6 +5028,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 209074668, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: _maxHp
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: interactionPrompt
       value: 
@@ -5471,6 +5475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e5f3450c5a0f74e93a877c318586d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trackerText: {fileID: 534158095}
 --- !u!1 &680511878
 GameObject:
   m_ObjectHideFlags: 0
