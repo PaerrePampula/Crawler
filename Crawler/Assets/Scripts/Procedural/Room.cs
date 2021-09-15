@@ -69,6 +69,7 @@ public class Room : MonoBehaviour
             }
             SetDoorsLockState(true);
         }
+
     }
 
     private void SetDoorsLockState(bool state)
@@ -107,6 +108,7 @@ public class Room : MonoBehaviour
         if (neighborCell == null) return null;
         return ProceduralGeneration.Singleton.GetRoomByCell(_cell.NeighborCells[neighborType]);
     }
+
     public GameObject RoomPrefab { get => roomPrefab; set => roomPrefab = value; }
     public int CellSize { get => _cellSize; set => _cellSize = value; }
     public Cell Cell { get => _cell; set => _cell = value; }
