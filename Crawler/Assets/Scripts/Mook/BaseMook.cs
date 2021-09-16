@@ -5,28 +5,42 @@ using UnityEngine.AI;
 
 public class BaseMook : MonoBehaviour, IDamageable
 {
-    //TODO: CHASE
+    #region events
     public delegate void MookDamaged(float amount, Vector3 location);
     public static event MookDamaged onMookDamaged;
     public delegate void MookDeath();
     public event MookDeath onMookDeath;
+    #endregion
+
+    #region fields
+    [Header("VFX")]
+    [SerializeField] GameObject damageEffect;
+    [SerializeField] GameObject dieEffect;
+
     NavMeshAgent navAgent;
     Vector3 setTargetPosition;
     Vector3 newTargetPosition;
-    [SerializeField] float _moveSpeed;
-    [SerializeField] float _maxHP = 3;
-    float _hp;
-    float lastActionTime = 0;
-    [SerializeField] float actionSpeed = 2f;
-    bool isInvulnerable = false;
-    public bool canMove = true;
+    [Header("Chase parameters")]
     [SerializeField] float _chaseRange;
     [SerializeField] float _reChaseRange;
+    [SerializeField] float _moveSpeed;
     //Has player as target.
     bool hasTarget = false;
     bool hasReachedTarget = false;
+    [Header("Attack/RPG parameters")]
+    [SerializeField] float _maxHP = 3;
+    float _hp;
+
+    float lastActionTime = 0;
+    [SerializeField] float actionSpeed = 2f;
+    [SerializeField] protected LayerMask playerMask;
+
+    bool isInvulnerable = false;
+    public bool canMove = true;
+
     protected bool newStateTriggered = false;
-    [SerializeField]protected LayerMask playerMask;
+    #endregion
+
     public float Hp
     {
         get 
@@ -50,6 +64,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         {
             onMookDamaged?.Invoke(damageAmount, transform.position);
             Hp += damageAmount;
+            Instantiate(damageEffect, transform.position, transform.rotation);
         }
     }
 
@@ -58,6 +73,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         //TODO: Animation in own class (some sort of animation manager).
         //TODO: Might also be its own class, loot has nothing to with AI
         onMookDeath?.Invoke();
+        Instantiate(dieEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
     public virtual void DoAIThing()
