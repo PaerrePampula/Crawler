@@ -18,11 +18,18 @@ public class Room : MonoBehaviour
     GameObject roomPrefab;
     [SerializeField] Transform enemyContainer;
     List<BaseMook> roomMooks = new List<BaseMook>();
-    int roomMookCount;
+    int roomMookCount = 0;
     Cell _cell;
     public void AddRoomDoor(NeighborType neighborType, GameObject door)
     {
         roomDoors.Add(neighborType, door);
+    }
+    public void AddMookToRoom(BaseMook mook)
+    {
+        roomMooks.Add(mook);
+        mook.onMookDeath += decrementMooksFromRoom;
+        roomMookCount++;
+        SetDoorsLockState(true);
     }
     private void Start()
     {
@@ -30,9 +37,8 @@ public class Room : MonoBehaviour
         {
             if (this != CurrentRoomManager.Singleton.currentRoom) gameObject.SetActive(false);
         }
-
         SaveListsToDictionaries();
-        SetInfoAboutRoomMooks();
+
     }
 
     private void SaveListsToDictionaries()
@@ -48,31 +54,7 @@ public class Room : MonoBehaviour
         }
     }
 
-    private void SetInfoAboutRoomMooks()
-    {
-        if (enemyContainer != null)
-        {
-            roomMooks.AddRange(enemyContainer.GetComponentsInChildren<BaseMook>());
-            roomMookCount = roomMooks.Count;
-        }
-        else
-        {
-            roomMookCount = 0;
-        }
-    }
 
-    private void OnEnable()
-    {
-        if (roomMookCount > 0)
-        {
-            for (int i = 0; i < roomMooks.Count; i++)
-            {
-                roomMooks[i].onMookDeath += decrementMooksFromRoom;
-            }
-            SetDoorsLockState(true);
-        }
-
-    }
 
     private void SetDoorsLockState(bool state)
     {
@@ -80,7 +62,7 @@ public class Room : MonoBehaviour
         onLockStateChange?.Invoke(state);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         for (int i = 0; i < roomMooks.Count; i++)
         {
@@ -96,6 +78,7 @@ public class Room : MonoBehaviour
             SetDoorsLockState(false);
         }
     }
+
 
     private void Awake()
     {

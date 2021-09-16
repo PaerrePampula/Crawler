@@ -104,9 +104,18 @@ public class BaseMook : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     private void OnEnable()
     {
+
         //Mook needs to have a navmeshagent to pathfind on standard unity 3d navmesh.
         navAgent = GetComponent<NavMeshAgent>();
         Hp = _maxHP;
+    }
+    private void Awake()
+    {
+        Room room = transform.root.GetComponent<Room>();
+        if (room != null)
+        {
+            room.AddMookToRoom(this);
+        }
     }
     void Start()
     {
