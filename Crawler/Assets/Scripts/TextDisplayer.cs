@@ -7,16 +7,18 @@ using UnityEngine;
 /// </summary>
 public class TextDisplayer : MonoBehaviour, IPlayerInteractable
 {
+
+    [SerializeField] string text = "Press [E] to read";
     [TextArea]
-    [SerializeField] string textToDisplay;
+    [SerializeField] string playerDialog = "";
     public void DoPlayerInteraction()
     {
-        //Does nothing but displays text.
+        PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay(playerDialog);
     }
 
     public string getPlayerInteractionString()
     {
-        return textToDisplay;
+        return text;
     }
 
 }

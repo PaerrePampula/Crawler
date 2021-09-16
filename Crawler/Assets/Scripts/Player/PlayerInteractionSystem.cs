@@ -22,9 +22,12 @@ public class PlayerInteractionSystem : MonoBehaviour
     float interactionDistance = 3;
     //Cache player for a bit more faster accessing
     Transform player;
+    PlayerController playerController;
     private void Start()
     {
+        Globals.ControlsAreEnabled = true;
         player = PlayerController.Singleton.transform;
+        playerController = GetComponent<PlayerController>();
     }
     // Update is called once per frame
     void Update()
@@ -34,39 +37,63 @@ public class PlayerInteractionSystem : MonoBehaviour
 
     private void PollInteractionRaycast()
     {
-        //Find the position of mouse on screen, raycast any interactables that are below the mouse cursor
-        //generate any interaction prompts
-        //only activate if the distance between interactable and player is small enough
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactionLayer))
+        if (Globals.ControlsAreEnabled)
         {
-            if (hit.collider != null)
+            //Find the position of mouse on screen, raycast any interactables that are below the mouse cursor
+            //generate any interaction prompts
+            //only activate if the distance between interactable and player is small enough
+            //also check for objects directly in front of player movement, use those as interactable objects also
+            Collider[] hitOnMovement = Physics.OverlapSphere(transform.position + playerController.getLatestMovementInput(), 1, interactionLayer);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactionLayer))
             {
-                if (Vector3.Distance(hit.transform.position, player.transform.position) <= interactionDistance)
-                {
-                    setInteractable((IPlayerInteractable)hit.collider.GetComponent(typeof(IPlayerInteractable)));
-                    if (!promptOn)
-                    {
-                        promptOn = true;
-                        interactionPrompt.gameObject.SetActive(true);
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        currentInteractable.DoPlayerInteraction();
-                    }
-                }
-
+                SetInteractableThroughRaycast(hit.collider);
+            }
+            else if (hitOnMovement.Length > 0)
+            {
+                SetInteractableThroughRaycast(hitOnMovement[0]);
+            }
+            else if (promptOn)
+            {
+                DisableCurrentPrompt();
             }
         }
         else if (promptOn)
         {
-            promptOn = false;
-            interactionPrompt.gameObject.SetActive(false);
-            currentInteractable = null;
+            DisableCurrentPrompt();
         }
     }
+
+    private void DisableCurrentPrompt()
+    {
+        promptOn = false;
+        interactionPrompt.gameObject.SetActive(false);
+        currentInteractable = null;
+    }
+
+    private void SetInteractableThroughRaycast(Collider hit)
+    {
+        if (hit != null)
+        {
+            if (Vector3.Distance(hit.transform.position, player.transform.position) <= interactionDistance)
+            {
+                setInteractable((IPlayerInteractable)hit.GetComponent(typeof(IPlayerInteractable)));
+                if (!promptOn)
+                {
+                    promptOn = true;
+                    interactionPrompt.gameObject.SetActive(true);
+                }
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    currentInteractable.DoPlayerInteraction();
+                }
+            }
+
+        }
+    }
+
     void setInteractable(IPlayerInteractable newInteractable)
     {
         if (currentInteractable == newInteractable) return;

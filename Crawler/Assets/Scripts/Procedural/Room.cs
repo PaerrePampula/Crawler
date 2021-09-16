@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public delegate void OnLockState(bool state);
+    public event OnLockState onLockStateChange;
     Dictionary<NeighborType, Room> roomNeighbors = new Dictionary<NeighborType, Room>();
     Dictionary<NeighborType, GameObject> roomDoors = new Dictionary<NeighborType, GameObject>();
     [SerializeField] List<DoorLocation> doorLocations = new List<DoorLocation>();
@@ -74,10 +76,8 @@ public class Room : MonoBehaviour
 
     private void SetDoorsLockState(bool state)
     {
-        for (int i = 0; i < doorLocations.Count; i++)
-        {
-            doorLocations[i].Location.GetComponent<TestPlopper>().SetLockState(state);
-        }
+        //All lockable items subscribe to this. Will lock or unlock all items in room after clearing or entering room
+        onLockStateChange?.Invoke(state);
     }
 
     private void OnDisable()

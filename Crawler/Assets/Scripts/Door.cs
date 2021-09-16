@@ -8,8 +8,8 @@ public class Door : MonoBehaviour, IPlayerInteractable
     public delegate void Transistion(Action actionAfterTransistion);
     public static event Transistion onTransistion;
     [SerializeField] NeighborType doorLocation;
-    [SerializeField] string interactionText = "Press [E] to open";
-    [SerializeField] string lockedDoorText = "Locked! Clear room of enemies to open";
+    [SerializeField] string interactionText = "Open";
+    [SerializeField] string lockedDoorText = "A magical curse prevents me from opening this!";
     bool locked = false;
     [SerializeField] Transform lockVisual;
     Room room;
@@ -30,8 +30,12 @@ public class Door : MonoBehaviour, IPlayerInteractable
         {
             gameObject.SetActive(false);
         }
+        room.onLockStateChange += SetLockState;
     }
-
+    private void OnDisable()
+    {
+        room.onLockStateChange += SetLockState;
+    }
     public void DoPlayerInteraction()
     {
         if (!locked)

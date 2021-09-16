@@ -8,27 +8,37 @@ using UnityEngine.Playables;
 public class TutorialEndDoorTrigger : MonoBehaviour, IPlayerInteractable
 {
     [SerializeField] PlayableDirector director;
-    [SerializeField] string interactionText = "Press [E] to continue once ready!";
-
+    [SerializeField] string interactionText = "Continue";
+    [SerializeField] string lockedInteractionText = "Some weird power prevents me from opening this right now!";
+    bool locked = false;
     public void DoPlayerInteraction()
     {
-        director.Play();
+        if (!locked)
+        {
+            director.Play();
+            Globals.ControlsAreEnabled = false;
+        }
+        else
+        {
+            PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay(lockedInteractionText);
+        }
     }
 
     public string getPlayerInteractionString()
     {
         return interactionText;
     }
-
-    // Start is called before the first frame update
-    void Start()
+    public void SetLockState(bool state)
     {
-        
+        locked = state;
+
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        transform.root.GetComponent<Room>().onLockStateChange += SetLockState;
+    }
+    private void OnDisable()
+    {
+        transform.root.GetComponent<Room>().onLockStateChange -= SetLockState;
     }
 }

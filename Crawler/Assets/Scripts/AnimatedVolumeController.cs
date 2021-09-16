@@ -18,6 +18,10 @@ public class AnimatedVolumeController : MonoBehaviour
     {
         Player.onPlayerDamaged += playPlayerHitEffect;
     }
+    private void OnDisable()
+    {
+        Player.onPlayerDamaged -= playPlayerHitEffect;
+    }
 
     private void playPlayerHitEffect()
     {

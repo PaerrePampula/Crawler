@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     Player playerComponent;
     //Should really be in a class of its own but its bit of a bother just for a simple effect
     [SerializeField] VisualEffect dashEffect;
+    Vector3 latestInputDirectionNormalized;
     Vector3 lastDashPoint;
     Vector3 playerMovementInput;
     Vector3 playerMovementVector;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
                 {
                     //Input is set to player every frame, but actual movement is calculated every fixed update
                     setInputMovement();
+                    cacheLatestInputVectorNormalized();
                     pollDashing();
                 }
 
@@ -74,6 +76,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+
 
     private void pollDashing()
     {
@@ -190,6 +194,15 @@ public class PlayerController : MonoBehaviour
     public Vector3 getLastDashPoint()
     {
         return lastDashPoint;
+    }
+    //Basicly returns a of length one facing the latest move dir.
+    public Vector3 getLatestMovementInput()
+    {
+        return latestInputDirectionNormalized;
+    }
+    private void cacheLatestInputVectorNormalized()
+    {
+        if (!_isStationary) latestInputDirectionNormalized = playerMovementInput.normalized;
     }
     bool isCharacterGrounded()
     {
