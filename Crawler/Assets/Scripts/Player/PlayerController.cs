@@ -72,8 +72,19 @@ public class PlayerController : MonoBehaviour
                 }
 
             }
+            else
+            {
+                playerMovementInput = Vector3.zero;
+                playerMovementVector = Vector3.zero;
+            }
 
         }
+        else
+        {
+            playerMovementInput = Vector3.zero;
+            playerMovementVector = Vector3.zero;
+        }
+
 
     }
 
