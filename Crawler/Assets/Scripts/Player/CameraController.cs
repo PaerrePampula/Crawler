@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
     Vector3 mousePos;
     Vector3 distanceBetweenMiddleofScreenAndCursor;
 
+
     //A multiplier for how much the camera can move away from the player when the player moves the mouse nearer the window border
     [SerializeField] float mouseMovementPanMultiplier;
     // Start is called before the first frame update
@@ -31,12 +32,16 @@ public class CameraController : MonoBehaviour
         //Need to include the camera clip plane to prevent the only vector given being the camera position
         mousePos = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,camera.nearClipPlane));
 
-        middleOfScreenInWorldSpace = camera.ScreenToWorldPoint(Vector3.zero);
+        middleOfScreenInWorldSpace = camera.ScreenToWorldPoint(new Vector3(Screen.width/2f, Screen.height/2f, camera.nearClipPlane));
         distanceBetweenMiddleofScreenAndCursor = (new Vector3(mousePos.x, 0,mousePos.z) - new Vector3(middleOfScreenInWorldSpace.x, 0, middleOfScreenInWorldSpace.z));
         Vector3 mousePanVector = distanceBetweenMiddleofScreenAndCursor;
+
         //X and Z are affected by player pos and panning, but the Y axis always stays the same
         Vector3 newCameraPosition = new Vector3(cameraTarget.position.x + cameraOffset.x + mousePanVector.x * mouseMovementPanMultiplier, cameraOffset.y,
-            cameraTarget.position.z + cameraOffset.z + mousePanVector.z * mouseMovementPanMultiplier);
+                        cameraTarget.position.z + cameraOffset.z + mousePanVector.z * mouseMovementPanMultiplier);
+
+
+
         this.transform.position = Vector3.Lerp(transform.position, newCameraPosition, Time.deltaTime*cameraMovementSpeed);
     }
 }
