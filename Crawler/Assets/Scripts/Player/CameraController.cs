@@ -37,6 +37,6 @@ public class CameraController : MonoBehaviour
         //X and Z are affected by player pos and panning, but the Y axis always stays the same
         Vector3 newCameraPosition = new Vector3(cameraTarget.position.x + cameraOffset.x + mousePanVector.x * mouseMovementPanMultiplier, cameraOffset.y,
             cameraTarget.position.z + cameraOffset.z + mousePanVector.z * mouseMovementPanMultiplier);
-        this.transform.position = newCameraPosition;
+        this.transform.position = Vector3.Lerp(transform.position, newCameraPosition, Time.deltaTime*cameraMovementSpeed);
     }
 }

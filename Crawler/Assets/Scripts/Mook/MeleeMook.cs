@@ -94,9 +94,11 @@ class MeleeMook : BaseMook
     }
     IEnumerator chargeAttack()
     {
-        chargeStarted = Time.time;
-        while (Time.time < chargeStarted + chargeDuration)
+        float chargeAttackTimer = 0;
+
+        while (chargeAttackTimer < chargeDuration)
         {
+            chargeAttackTimer += Time.deltaTime;
             if (CreateHitBoxAndReturnHitSuccess() == true) break;
             yield return null;
         }
