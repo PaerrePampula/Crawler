@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Controls the transistion slide-in, slide-out effect between rooms
+/// </summary>
 public class TransistionControl : MonoBehaviour
 {
+    public delegate void TransistionDone();
+    public static event TransistionDone onTransistionDone;
     Animator anim;
     Action transistionAction;
     private void OnEnable()
@@ -21,6 +25,7 @@ public class TransistionControl : MonoBehaviour
     }
     public void DoActionAfterTransistion()
     {
+        onTransistionDone?.Invoke();
         if (transistionAction != null) transistionAction();
 
         transistionAction = null;

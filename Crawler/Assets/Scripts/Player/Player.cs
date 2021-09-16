@@ -32,21 +32,22 @@ class Player : MonoBehaviour,  IDamageable
             }
         }
     }
-    public void ChangeHp(float changeAmount)
+    public bool ChangeHp(float changeAmount)
     {
         //The player is not getting healed by objects and is currently in an iframe, no damage.
         if (changeAmount < 0)
         {
             if (_isInvunerable)
             {
-                onPlayerDodged?.Invoke();
-                return;
+
+                return false;
             }
 
             onPlayerDamaged?.Invoke();
 
         }
         Hp += changeAmount;
+        return true;
     }
     public void setInvunerability(bool state)
     {

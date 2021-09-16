@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+/// <summary>
+/// Saves all basic information about enemies, like hp, chase behaviour and such.
+/// </summary>
 public class BaseMook : MonoBehaviour, IDamageable
 {
     #region events
@@ -58,14 +60,16 @@ public class BaseMook : MonoBehaviour, IDamageable
         }
     }
 
-    public void ChangeHp(float damageAmount)
+    public bool ChangeHp(float damageAmount)
     {
         if (!isInvulnerable)
         {
             onMookDamaged?.Invoke(damageAmount, transform.position);
             Hp += damageAmount;
             Instantiate(damageEffect, transform.position, transform.rotation);
+            return true;
         }
+        return false;
     }
 
     public void KillCharacter()

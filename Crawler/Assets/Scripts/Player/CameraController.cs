@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     //VEKTORIT
     //The distance vector (as a constant) that the camera is offset from the target
     [SerializeField] Vector3 cameraOffset;
+    Vector3 newCameraPosition;
     [SerializeField] float cameraMovementSpeed = 2;
     //Need to cache the current main camera to prevent pointless finding objects with tag on updates (Camera.main does that)
     Camera camera;
@@ -24,8 +25,16 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         camera = Camera.main;
-    }
 
+    }
+    private void OnEnable()
+    {
+        TransistionControl.onTransistionDone += moveCameraWithoutLerping;
+    }
+    private void OnDisable()
+    {
+        TransistionControl.onTransistionDone -= moveCameraWithoutLerping;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -37,11 +46,18 @@ public class CameraController : MonoBehaviour
         Vector3 mousePanVector = distanceBetweenMiddleofScreenAndCursor;
 
         //X and Z are affected by player pos and panning, but the Y axis always stays the same
-        Vector3 newCameraPosition = new Vector3(cameraTarget.position.x + cameraOffset.x + mousePanVector.x * mouseMovementPanMultiplier, cameraOffset.y,
+        newCameraPosition = new Vector3(cameraTarget.position.x + cameraOffset.x + mousePanVector.x * mouseMovementPanMultiplier, cameraOffset.y,
                         cameraTarget.position.z + cameraOffset.z + mousePanVector.z * mouseMovementPanMultiplier);
 
 
 
         this.transform.position = Vector3.Lerp(transform.position, newCameraPosition, Time.deltaTime*cameraMovementSpeed);
     }
+    //Will instamove camera to tracked location, to make e.g some transistions seem more seamless.
+    void moveCameraWithoutLerping()
+    {
+        transform.position = newCameraPosition;
+        Physics.SyncTransforms();
+    }
+
 }

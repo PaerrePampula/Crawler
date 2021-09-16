@@ -13,11 +13,14 @@ public class PlayerDodgesTracker : MonoBehaviour
     private void OnEnable()
     {
         Player.onPlayerDodged += addToDodges;
+        MeleeMook.onAttackWhiff += addToDodges;
         Player.onPlayerDamaged += resetDodges;
+
     }
     private void OnDisable()
     {
         Player.onPlayerDodged -= addToDodges;
+        MeleeMook.onAttackWhiff -= addToDodges;
         Player.onPlayerDamaged -= resetDodges;
     }
 
@@ -28,10 +31,7 @@ public class PlayerDodgesTracker : MonoBehaviour
             trackerText.text = "Dodge break!";
             dodgesCount = 0;
             showTracker();
-
         }
-
-
     }
 
     private void addToDodges()
@@ -51,9 +51,5 @@ public class PlayerDodgesTracker : MonoBehaviour
         yield return new WaitForSeconds(3f);
         trackerText.gameObject.SetActive(false); 
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

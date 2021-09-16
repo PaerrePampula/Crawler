@@ -8,13 +8,15 @@ using UnityEngine;
 
 class MeleeMook : BaseMook
     {
-
+    public delegate void WhiffedAttackOnDodgedPlayer();
+    public static event WhiffedAttackOnDodgedPlayer onAttackWhiff;
     [SerializeField] float chargeDuration = 1f;
     [SerializeField] float chargePower = 2f;
     [SerializeField] float chargeHbRadius = 0.5f;
     [SerializeField] float meleeDamage;
-
+    bool playerDodgedAttackSuccessfully = false;
     float chargeStarted = 0;
+
 
     bool charging = false;
     Vector3 chargeDirection;
@@ -99,9 +101,19 @@ class MeleeMook : BaseMook
         while (chargeAttackTimer < chargeDuration)
         {
             chargeAttackTimer += Time.deltaTime;
-            if (CreateHitBoxAndReturnHitSuccess() == true) break;
+            if (CreateHitBoxAndReturnHitSuccess() == true)
+            {
+                playerDodgedAttackSuccessfully = false;
+                break;
+            }
             yield return null;
         }
+        if (playerDodgedAttackSuccessfully)
+        {
+            playerDodgedAttackSuccessfully = false;
+            onAttackWhiff?.Invoke();
+        }
+
         charging = false;
         canMove = true;
 
@@ -121,22 +133,27 @@ class MeleeMook : BaseMook
     public bool CreateHitBoxAndReturnHitSuccess()
     {
         bool hasHit = false;
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, chargeHbRadius, playerMask);
         foreach (var hitCollider in hitColliders)
         {
             IDamageable damageable = (IDamageable)hitCollider.GetComponent(typeof(IDamageable));
-            damageable.ChangeHp(-meleeDamage);
-            //Will return true if there are hits
-            hasHit = true;
-        }
-        //if (!hasHit)
-        //{
-        //    //If the player dashed out of the way of the hitbox,
-        //    if (Vector3.Distance(PlayerController.Singleton.getLastDashPoint(), transform.position) <= chargeHbRadius / 2f)
-        //    {
+            hasHit = damageable.ChangeHp(-meleeDamage);
 
-        //    }
-        //}
+            //Will return true if there are hits that do damage
+
+        }
+        if (!hasHit)
+        {
+            //If the player dashed out of the way of the hitbox,
+            if (Vector3.Distance(PlayerController.Singleton.getLastDashPoint(), transform.position) <= chargeHbRadius / 2f)
+            {
+                playerDodgedAttackSuccessfully = true;
+            }
+        }
+
+
+
         //Will return false if there are no hits
         return hasHit;
     }

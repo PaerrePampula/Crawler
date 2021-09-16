@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Controls the shader of the material that allows the player to see the playercharacter behind obstacles
+/// </summary>
 public class SeeThroughCircleController : MonoBehaviour
 {
     static int PosID = Shader.PropertyToID("_PlayerPosition");

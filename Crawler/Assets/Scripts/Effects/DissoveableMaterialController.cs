@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Controls the cool dissolve effect on e.g door locks
+/// </summary>
 public class DissoveableMaterialController : MonoBehaviour
 {
     [SerializeField] Transform objectWithDissolvableMaterial;

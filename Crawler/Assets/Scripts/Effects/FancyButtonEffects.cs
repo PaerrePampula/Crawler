@@ -7,7 +7,8 @@ using UnityEngine.UI;
 /// <summary>
 /// Images with none as the source image makes the engine render the area of the
 /// image as a blank square, this is used to make otherwise invisible-by-area
-/// buttons have a cool effect whenever they are highlighted
+/// buttons have a cool effect whenever they are highlighted, so they will appear with no alpha when not highlighted, but
+/// with max alpha when highlighted
 /// </summary>
 public class FancyButtonEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {

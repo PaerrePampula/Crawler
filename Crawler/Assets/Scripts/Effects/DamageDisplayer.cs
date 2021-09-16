@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+/// <summary>
+/// Displays player damage ingame as a floating text.
+/// </summary>
 public class DamageDisplayer : MonoBehaviour
 {
     [SerializeField] GameObject damageDisplayPrefab;

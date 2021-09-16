@@ -1,6 +1,6 @@
 ﻿
 interface IDamageable
 {
-    public void ChangeHp(float changeAmount);
+    public bool ChangeHp(float changeAmount);
     void KillCharacter();
 }
