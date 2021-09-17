@@ -9,6 +9,7 @@ public class Flip : MonoBehaviour
     bool _flipX;
     bool headingRight = false;
     [SerializeField] GameObject dustEffect;
+    [SerializeField] GameObject dashEffect;
     [SerializeField] Transform dustParent;
 
     public bool HeadingRight { get => headingRight; set => headingRight = value; }
@@ -41,7 +42,11 @@ public class Flip : MonoBehaviour
         HeadingRight = m_SpriteRenderer.flipX;
     }
     void dust(){
-        Instantiate(dustEffect, dustParent.position, dustParent.rotation);
+        Instantiate(dustEffect, transform.position + Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));   
+    }
+
+    void dash(){
+        Instantiate(dashEffect, transform.position + Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
     }
 }
 

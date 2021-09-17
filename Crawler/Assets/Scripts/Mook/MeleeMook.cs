@@ -9,6 +9,8 @@ using UnityEngine;
 class MeleeMook : BaseMook
     {
 
+    Animator animator;
+
     public float chargeDuration = 1f;
     public float chargePower = 2f;
     public float chargeHbRadius = 0.5f;
@@ -22,6 +24,7 @@ class MeleeMook : BaseMook
     public void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public override void DoAIThing()
@@ -79,7 +82,7 @@ class MeleeMook : BaseMook
     public void SlimeCharge()
     {
         if (!charging)
-        {
+        {                  
             charging = true;
 
             chargeDirection = (PlayerController.Singleton.transform.position - transform.position);
@@ -91,9 +94,8 @@ class MeleeMook : BaseMook
         }    
     }
     IEnumerator ChargeThing()
-    {
+    { 
         chargeStarted = Time.time;
-
 
         while (Time.time < chargeStarted + chargeDuration)
         {
