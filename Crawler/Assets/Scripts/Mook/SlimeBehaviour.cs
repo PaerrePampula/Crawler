@@ -36,7 +36,7 @@ class SlimeBehaviour : MonoBehaviour
         _stateMachine = new StateMachine();
         _baseMook = GetComponent<BaseMook>();
 
-        ChaseTarget chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
+        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
         slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack);
         //Add transistions for statemachine
@@ -45,7 +45,11 @@ class SlimeBehaviour : MonoBehaviour
         //Set default state to chase player in state machine
         _stateMachine.SetState(chaseTarget);
     }
-    private void OnDestroy()
+    private void OnEnable()
+    {
+
+    }
+    private void OnDisable()
     {
         chaseTarget.OnTargetReachedStateChange -= updateChaseState;
     }
