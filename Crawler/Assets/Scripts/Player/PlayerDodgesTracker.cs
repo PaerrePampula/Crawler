@@ -13,14 +13,14 @@ public class PlayerDodgesTracker : MonoBehaviour
     private void OnEnable()
     {
         Player.onPlayerDodged += addToDodges;
-        MeleeMook.onAttackWhiff += addToDodges;
+       // MeleeMook.onAttackWhiff += addToDodges;
         Player.onPlayerDamaged += resetDodges;
 
     }
     private void OnDisable()
     {
         Player.onPlayerDodged -= addToDodges;
-        MeleeMook.onAttackWhiff -= addToDodges;
+      //  MeleeMook.onAttackWhiff -= addToDodges;
         Player.onPlayerDamaged -= resetDodges;
     }
 

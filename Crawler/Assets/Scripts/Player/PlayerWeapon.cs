@@ -159,7 +159,8 @@ public class PlayerWeapon : MonoBehaviour
         while (timer < 0.2f)
         {
             extraForce = Vector3.Lerp(referenceForce, Vector3.zero, timer / 0.2f);
-            characterController.Move(extraForce*Time.deltaTime*multiplier);
+            //The target may have already died, so 
+            characterController?.Move(extraForce*Time.deltaTime*multiplier);
             timer += Time.deltaTime;
             yield return null;
         }

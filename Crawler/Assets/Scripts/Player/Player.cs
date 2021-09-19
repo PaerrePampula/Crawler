@@ -5,6 +5,9 @@
 class Player : MonoBehaviour,  IDamageable
 {
     Animator anim;
+    public delegate void OnPlayerHpChanged(float newHP);
+    public static event OnPlayerHpChanged onCurrentHpChanged;
+    public static event OnPlayerHpChanged onMaxHPChanged;
     public delegate void PlayerDamaged();
     public static event PlayerDamaged onPlayerDamaged;
     public delegate void PlayerDodged();
@@ -30,8 +33,12 @@ class Player : MonoBehaviour,  IDamageable
             {
                 KillCharacter();
             }
+            onCurrentHpChanged?.Invoke(_hp);
         }
     }
+
+    public float MaxHp { get => _maxHp; set => _maxHp = value; }
+
     public bool ChangeHp(float changeAmount)
     {
         //The player is not getting healed by objects and is currently in an iframe, no damage.
@@ -47,6 +54,7 @@ class Player : MonoBehaviour,  IDamageable
 
         }
         Hp += changeAmount;
+
         return true;
     }
     public void setInvunerability(bool state)
@@ -55,8 +63,7 @@ class Player : MonoBehaviour,  IDamageable
     }
     public void KillCharacter()
     {
-        Debug.Log("Player died, but death needs to implemented later");
-        Debug.Log("Player shouldnt be able to move right now");
+
         anim.Play("Player-die");
         Globals.ControlsAreEnabled = false;
     }
@@ -64,7 +71,8 @@ class Player : MonoBehaviour,  IDamageable
     {
         //Reset player hp to max on start
         //Current default 5 hp would mean 5 hearts, change to whatever if there is a better number.
-        Hp = _maxHp;
+        onMaxHPChanged?.Invoke(MaxHp);
+        Hp = MaxHp;
         anim = GetComponentInChildren<Animator>();
     }
 }
