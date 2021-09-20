@@ -24,6 +24,6 @@ public class DamageDisplayer : MonoBehaviour
         float randomRotation = UnityEngine.Random.Range(-17f, 17f);
         GameObject textClone = Instantiate(damageDisplayPrefab, location, Quaternion.identity);
         textClone.transform.rotation = Quaternion.Euler(0, 0, randomRotation);
-        textClone.GetComponentInChildren<TextMeshPro>().text = Math.Abs(amount).ToString();
+        textClone.GetComponentInChildren<TextMeshPro>().text = Math.Abs(amount).ToString("0");
     }
 }

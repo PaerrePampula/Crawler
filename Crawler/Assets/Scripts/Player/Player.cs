@@ -1,9 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 /// <summary>
 /// Saves infomration about player hp and also invokes events involving player dodging attacks or attacking
 /// </summary>
 class Player : MonoBehaviour,  IDamageable
 {
+    static Player singleton;
+    public static Player Singleton
+    {
+        get
+        {
+            if (singleton == null)
+            {
+                singleton = FindObjectOfType<Player>();
+            }
+            return singleton;
+        }
+    }
     Animator anim;
     public delegate void OnPlayerHpChanged(float newHP);
     public static event OnPlayerHpChanged onCurrentHpChanged;
@@ -12,6 +25,14 @@ class Player : MonoBehaviour,  IDamageable
     public static event PlayerDamaged onPlayerDamaged;
     public delegate void PlayerDodged();
     public static event PlayerDodged onPlayerDodged;
+
+    Dictionary<string, Item> _playerItems = new Dictionary<string, Item>();
+    Dictionary<StatType, float> _buffModifiers = new Dictionary<StatType, float>()
+    {
+        {
+            StatType.Damage, 0f
+        }
+    };
     //The system probably could round hp to one halves for the heart display system, maybe?
     [SerializeField] float _maxHp = 5;
     float _hp;
@@ -74,6 +95,26 @@ class Player : MonoBehaviour,  IDamageable
         onMaxHPChanged?.Invoke(MaxHp);
         Hp = MaxHp;
         anim = GetComponentInChildren<Animator>();
+    }
+    public void GivePlayerItem(Item item)
+    {
+        Item listItem;
+        if (_playerItems.TryGetValue(item.ItemScriptable.ItemID, out listItem) == true)
+        {
+            listItem.ItemCount += 1;
+        }
+        else
+        {
+            _playerItems[item.ItemScriptable.ItemID] = item;
+        }
+    }
+    public void BuffStatModifier(StatType statType, float amount)
+    {
+        _buffModifiers[statType] += amount;
+    }
+    public float getBonusDamage(float damage)
+    {
+        return damage * _buffModifiers[StatType.Damage];
     }
 }
 

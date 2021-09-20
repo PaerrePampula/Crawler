@@ -8,8 +8,17 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+
     public delegate void OnLockState(bool state);
     public event OnLockState onLockStateChange;
+    public delegate void OnRoomClear(Room room);
+    public static event OnRoomClear onRoomClear;
+
+    public GameObject RoomPrefab { get => roomPrefab; set => roomPrefab = value; }
+    public int CellSize { get => _cellSize; set => _cellSize = value; }
+    public Cell Cell { get => _cell; set => _cell = value; }
+    public Transform PickupsDropPointOnRoomClear { get => pickupsDropPointOnRoomClear; set => pickupsDropPointOnRoomClear = value; }
+
     Dictionary<NeighborType, Room> roomNeighbors = new Dictionary<NeighborType, Room>();
     Dictionary<NeighborType, GameObject> roomDoors = new Dictionary<NeighborType, GameObject>();
     [SerializeField] List<DoorLocation> doorLocations = new List<DoorLocation>();
@@ -17,11 +26,17 @@ public class Room : MonoBehaviour
     [SerializeField] int _cellSize;
     GameObject roomPrefab;
     [SerializeField] Transform enemyContainer;
+    [SerializeField] Transform pickupsDropPointOnRoomClear;
     List<BaseMook> roomMooks = new List<BaseMook>();
     int roomMookCount = 0;
     Cell _cell;
     public void AddRoomDoor(NeighborType neighborType, GameObject door)
     {
+        if (roomDoors.ContainsKey(neighborType))
+        {
+            Debug.LogError("A room is initializing its doors, but some of them " +
+                "have the same doortype, check all doors in the prefab for instantiated room '" + gameObject.name + "'");
+        }
         roomDoors.Add(neighborType, door);
     }
     public void AddMookToRoom(BaseMook mook)
@@ -76,6 +91,7 @@ public class Room : MonoBehaviour
         if (roomMookCount <= 0)
         {
             SetDoorsLockState(false);
+            onRoomClear?.Invoke(this);
         }
     }
 
@@ -91,17 +107,15 @@ public class Room : MonoBehaviour
         if (neighborCell == null) return null;
         return ProceduralGeneration.Singleton.GetRoomByCell(_cell.NeighborCells[neighborType]);
     }
-
-    public GameObject RoomPrefab { get => roomPrefab; set => roomPrefab = value; }
-    public int CellSize { get => _cellSize; set => _cellSize = value; }
-    public Cell Cell { get => _cell; set => _cell = value; }
-
     public void WarpPlayerToDoorLocation(NeighborType neighborType)
     {
-        PlayerController.Singleton.transform.position = roomDoors[neighborType].transform.position+roomDoors[neighborType].transform.TransformDirection(Vector3.forward);
+        PlayerController.Singleton.transform.position = roomDoors[neighborType].transform.position + roomDoors[neighborType].transform.TransformDirection(Vector3.forward);
         //The change in position wont be updated correctly if changes in transforms are not flushed correctly
         Physics.SyncTransforms();
     }
+
+
+
 }
 [System.Serializable]
 class RoomNeighbor

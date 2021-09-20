@@ -1,0 +1,5 @@
+﻿
+    interface IPickupAble
+    {
+      void PickupItem();
+    }
