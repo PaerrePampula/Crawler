@@ -10,19 +10,26 @@ using UnityEngine;
 public class RoomGen : MonoBehaviour
 {
 
-    [SerializeField] List<GameObject> allNodeVisuals = new List<GameObject>();
     [SerializeField] List<GameObject> allRooms = new List<GameObject>();
-
-    public GameObject createNodeVisualizationForCell(Cell cell)
+    [SerializeField] Dictionary<RoomType, List<GameObject>> roomsByRoomType = new Dictionary<RoomType, List<GameObject>>();
+    private void Awake()
     {
-        int random = Random.Range(0, allNodeVisuals.Count);
-        GameObject go = Instantiate(allNodeVisuals[random]);
-        return go;
+        for (int i = 0; i < allRooms.Count; i++)
+        {
+            List<GameObject> listForRoomType;
+            roomsByRoomType.TryGetValue(allRooms[i].GetComponent<Room>().RoomType, out listForRoomType);
+            if (listForRoomType == null)
+            {
+                listForRoomType = new List<GameObject>();
+                roomsByRoomType[allRooms[i].GetComponent<Room>().RoomType] = listForRoomType;
+            }
+            listForRoomType.Add(allRooms[i]);
+        }
     }
     public GameObject createRoomForCell(Cell cell)
     {
-        int random = Random.Range(0, allRooms.Count);
-        GameObject go = Instantiate(allRooms[random]);
+        int random = Random.Range(0, roomsByRoomType[cell.RoomType].Count);
+        GameObject go = Instantiate(roomsByRoomType[cell.RoomType][random]);
         go.GetComponent<Room>().Cell = cell;
         ProceduralGeneration.Singleton.AddCellToRoomInformation(cell, go.GetComponent<Room>());
         return go;

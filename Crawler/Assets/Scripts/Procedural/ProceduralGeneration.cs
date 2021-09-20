@@ -122,6 +122,7 @@ class ProceduralGeneration : MonoBehaviour
         //The first space from the shuffled list shall be reserved for the start
         startSpace = allCellLocations[0];
         cellsTable[startSpace].CellType = CellType.Start;
+        cellsTable[startSpace].RoomType = RoomType.Start;
         //Prevent degenerate maps from being made with there being set minimum distance between goal and start
         //The next index of the list shall be the goal, but change the index if above isnt satisfied
         int indexForGoal = 1;
@@ -131,6 +132,7 @@ class ProceduralGeneration : MonoBehaviour
         }
         goalSpace = allCellLocations[indexForGoal];
         cellsTable[goalSpace].CellType = CellType.End;
+        cellsTable[goalSpace].RoomType = RoomType.BossBattle;
     }
     #endregion
     #region Pathfinding algorithm (Dijikstras' algorithm of shortest route)
@@ -256,7 +258,6 @@ class ProceduralGeneration : MonoBehaviour
         for (int i = 0; i < pathFromStartToGoal.Count; i++)
         {
             //Create a visualization of this node for now as a cube.
-            //GameObject go = GetComponent<RoomGen>().createNodeVisualizationForCell(pathFromStartToGoal[i]);
             //Only create branching paths if the current node is not the goal or the start.
             if (i > 0 && i < pathFromStartToGoal.Count - 1)
             {
@@ -265,6 +266,8 @@ class ProceduralGeneration : MonoBehaviour
             //Set the visualizing cube location to be the node location.
             //go.transform.position = new Vector3(pathFromStartToGoal[i].X, 0, pathFromStartToGoal[i].Y);
         }
+        int randomCellForShop = Random.Range(1, allCellsUsedByGeneratedDungeon.Count - 2);
+        allCellsUsedByGeneratedDungeon[randomCellForShop].RoomType = RoomType.Shop;
         for (int i = 0; i < allCellsUsedByGeneratedDungeon.Count; i++)
         {
             GetComponent<RoomGen>().createRoomForCell(allCellsUsedByGeneratedDungeon[i]);
@@ -296,15 +299,6 @@ class ProceduralGeneration : MonoBehaviour
                 if (neighbor != null)
                 {
                     if (neighbor.CurrentlyUsedOnMap) continue;
-                    //Create a visualization for this branch
-                    GameObject goAdjancent = GetComponent<RoomGen>().createNodeVisualizationForCell(neighbor);
-                    goAdjancent.transform.position = new Vector3(neighbor.X, 0, neighbor.Y);
-                    //The 2x2 room has 4x small cubes as the "room". Loop through them all to give the branching path a bit different color.
-                    foreach (var rendered in goAdjancent.transform.GetComponentsInChildren<MeshRenderer>())
-                    {
-                        rendered.material.color = new Color32(0, 0, 255, 0);
-                    }
-
                     neighbor.CurrentlyUsedOnMap = true;
                     allCellsUsedByGeneratedDungeon.Add(neighbor);
                     //Increase the depth of this current branch by one.

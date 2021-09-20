@@ -43,6 +43,10 @@ public class Door : MonoBehaviour, IPlayerInteractable
             //Declare an anonymous function and use it as the action parameter
             onTransistion?.Invoke(() => CurrentRoomManager.Singleton.setNewRoom(room.getNeighbor(doorLocation), doorLocation));
         }
+        else
+        {
+            PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay(lockedDoorText);
+        }
 
 
     }
@@ -59,6 +63,6 @@ public class Door : MonoBehaviour, IPlayerInteractable
     }
     public string getPlayerInteractionString()
     {
-        return (locked == false) ? interactionText : lockedDoorText;
+        return interactionText;
     }
 }

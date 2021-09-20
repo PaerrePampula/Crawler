@@ -6,6 +6,7 @@ public class Cell
     int _x;
     int _y;
     CellType cellType;
+    RoomType _roomType;
     int cellWeight;
     bool _currentlyUsedOnMap;
     public delegate void CellDiscovery();
@@ -99,6 +100,7 @@ public class Cell
 
     public Dictionary<NeighborType, Cell> NeighborCells { get => neighborCells; set => neighborCells = value; }
     internal CellType CellType { get => cellType; set => cellType = value; }
+    public RoomType RoomType { get => _roomType; set => _roomType = value; }
 }
 /// <summary>
 /// Used by procedural generation cells and rooms. For each room, a location for a 

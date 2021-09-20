@@ -18,6 +18,7 @@ public class Room : MonoBehaviour
     public int CellSize { get => _cellSize; set => _cellSize = value; }
     public Cell Cell { get => _cell; set => _cell = value; }
     public Transform PickupsDropPointOnRoomClear { get => pickupsDropPointOnRoomClear; set => pickupsDropPointOnRoomClear = value; }
+    internal RoomType RoomType { get => roomType; set => roomType = value; }
 
     Dictionary<NeighborType, Room> roomNeighbors = new Dictionary<NeighborType, Room>();
     Dictionary<NeighborType, GameObject> roomDoors = new Dictionary<NeighborType, GameObject>();
@@ -25,11 +26,12 @@ public class Room : MonoBehaviour
     [SerializeField] List<RoomNeighbor> roomNeighborsList = new List<RoomNeighbor>();
     [SerializeField] int _cellSize;
     GameObject roomPrefab;
-    [SerializeField] Transform enemyContainer;
+
     [SerializeField] Transform pickupsDropPointOnRoomClear;
     List<BaseMook> roomMooks = new List<BaseMook>();
     int roomMookCount = 0;
     Cell _cell;
+    [SerializeField] RoomType roomType;
     public void AddRoomDoor(NeighborType neighborType, GameObject door)
     {
         if (roomDoors.ContainsKey(neighborType))
@@ -38,6 +40,7 @@ public class Room : MonoBehaviour
                 "have the same doortype, check all doors in the prefab for instantiated room '" + gameObject.name + "'");
         }
         roomDoors.Add(neighborType, door);
+        CheckRoomLockState();
     }
     public void AddMookToRoom(BaseMook mook)
     {
@@ -88,10 +91,19 @@ public class Room : MonoBehaviour
     private void decrementMooksFromRoom()
     {
         roomMookCount--;
+        CheckRoomLockState();
+    }
+
+    private void CheckRoomLockState()
+    {
         if (roomMookCount <= 0)
         {
             SetDoorsLockState(false);
             onRoomClear?.Invoke(this);
+        }
+        else
+        {
+            SetDoorsLockState(true);
         }
     }
 
@@ -109,7 +121,7 @@ public class Room : MonoBehaviour
     }
     public void WarpPlayerToDoorLocation(NeighborType neighborType)
     {
-        PlayerController.Singleton.transform.position = roomDoors[neighborType].transform.position + roomDoors[neighborType].transform.TransformDirection(Vector3.forward);
+        PlayerController.Singleton.transform.position = roomDoors[neighborType].transform.position + roomDoors[neighborType].transform.TransformDirection(Vector3.forward + Vector3.up);
         //The change in position wont be updated correctly if changes in transforms are not flushed correctly
         Physics.SyncTransforms();
     }
@@ -134,4 +146,11 @@ class DoorLocation
 
     public NeighborType NeighborType { get => neighborType; set => neighborType = value; }
     public GameObject Location { get => location; set => location = value; }
+}
+public enum RoomType
+{
+    NormalBattle,
+    BossBattle,
+    Start,
+    Shop
 }
