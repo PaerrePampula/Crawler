@@ -24,7 +24,7 @@ public class Room : MonoBehaviour
     Dictionary<NeighborType, GameObject> roomDoors = new Dictionary<NeighborType, GameObject>();
     [SerializeField] List<DoorLocation> doorLocations = new List<DoorLocation>();
     [SerializeField] List<RoomNeighbor> roomNeighborsList = new List<RoomNeighbor>();
-    [SerializeField] int _cellSize;
+    int _cellSize;
     GameObject roomPrefab;
 
     [SerializeField] Transform pickupsDropPointOnRoomClear;
