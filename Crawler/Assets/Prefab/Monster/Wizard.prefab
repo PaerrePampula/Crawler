@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4669514849777589574}
   - component: {fileID: 2612305091437849676}
   - component: {fileID: 7499428755913017714}
-  - component: {fileID: 7499428755913017715}
+  - component: {fileID: 1604348480171750}
   m_Layer: 6
   m_Name: Wizard
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
   damageEffect: {fileID: 2358425389147943458, guid: 5a806a0224cf7fe469b988662a37242a, type: 3}
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   _maxHP: 5
---- !u!114 &7499428755913017715
+--- !u!114 &1604348480171750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,21 +108,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1249352874547124854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2deccb9ab1c98904db2807b1fe2c8947, type: 3}
+  m_Script: {fileID: 11500000, guid: b5b689c80d996724795c867cad753ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _chaseRange: 5
-  _reChaseRange: 6
+  _reChaseRange: 7
   _moveSpeed: 1
   _layersToCastAgainstOnAttack:
     serializedVersion: 2
     m_Bits: 128
-  slimeAttack:
-    chargeDuration: 0.7
-    chargePower: 3
-    chargeHbRadius: 1
-    meleeDamage: 1
-    actionDelay: 1.5
+  animator: {fileID: 544606261435817528}
+  fireBallAttack:
+    _hitLayers:
+      serializedVersion: 2
+      m_Bits: 128
+    attackAnimationTriggerName: FireBallAttack
+    fireballPrefab: {fileID: 3627784119438503513, guid: 14cdd28b2add3c54cacb3009ec98b2bd, type: 3}
+    fireballSpeed: 500
+    fireballDamage: 2
 --- !u!1 &6426967713863779638
 GameObject:
   m_ObjectHideFlags: 0

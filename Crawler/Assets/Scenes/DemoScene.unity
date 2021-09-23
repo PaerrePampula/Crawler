@@ -996,8 +996,6 @@ MonoBehaviour:
   roomNeighborsList:
   - neighborType: 1
     neighborRoom: {fileID: 2074518007}
-  _cellSize: 1
-  enemyContainer: {fileID: 0}
   pickupsDropPointOnRoomClear: {fileID: 0}
   roomType: 0
 --- !u!4 &118805985
@@ -5064,6 +5062,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1313625235, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857996993, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: interactionPrompt
       value: 
@@ -5119,6 +5125,34 @@ PrefabInstance:
     - target: {fileID: 4950380413841514809, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5054675399487264074, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531844677304014636, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531844677304014636, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531844677304014636, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531844677304014636, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531844677304014636, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531844677304014636, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
@@ -6362,7 +6396,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1012.6, y: 673.6}
+  m_SizeDelta: {x: 948, y: 458}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &772181479
 MonoBehaviour:
@@ -6377,14 +6411,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.7924528, g: 0.078497685, b: 0.078497685, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ec8a685f62959c439b311d050652678, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fac07d17c69d7d4ea89611a579fe5a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9461,8 +9495,6 @@ MonoBehaviour:
   roomNeighborsList:
   - neighborType: 1
     neighborRoom: {fileID: 2074518007}
-  _cellSize: 1
-  enemyContainer: {fileID: 845624983}
   pickupsDropPointOnRoomClear: {fileID: 745495279}
   roomType: 0
 --- !u!4 &1107070810
@@ -16091,8 +16123,6 @@ MonoBehaviour:
   roomNeighborsList:
   - neighborType: 1
     neighborRoom: {fileID: 1107070809}
-  _cellSize: 1
-  enemyContainer: {fileID: 0}
   pickupsDropPointOnRoomClear: {fileID: 0}
   roomType: 0
 --- !u!4 &2074518008
