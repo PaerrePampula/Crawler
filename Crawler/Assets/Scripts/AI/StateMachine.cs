@@ -92,7 +92,13 @@ class StateMachine
                     {
                         return transistion;
                     }
+                    else
+                    {
+                        continue;
+                    }
                 }
+
+                return transistion;
 
             }
         }
@@ -114,10 +120,10 @@ class StateMachine
 
         public Transistion(IState to,Func<bool> condition, bool readinessNeeded = false, IState from = null)
         {
-            StateReadinessConditionIsNeeded = true;
+            StateReadinessConditionIsNeeded = readinessNeeded;
             Condition = condition;
             To = to;
-            From = to;
+            From = from;
         }
     }
 }

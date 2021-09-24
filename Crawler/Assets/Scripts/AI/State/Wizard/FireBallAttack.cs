@@ -50,13 +50,14 @@ public class FireBallAttack : IState
         Vector3 projectileDirection = (_target.position - _baseMook.transform.position).normalized;
         GameObject go = GameObject.Instantiate(fireballPrefab, _baseMook.transform.position + projectileDirection, Quaternion.identity);
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
+        readyToChangeState = true;
     }
     IEnumerator actionWait()
     {
         while (true)
         {
             yield return new WaitForSeconds(2);
-            readyToChangeState = true;
+
             TriggerAttack();
         }
 
