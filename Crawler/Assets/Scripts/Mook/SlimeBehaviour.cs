@@ -25,6 +25,7 @@ class SlimeBehaviour : MonoBehaviour
     //AI behaviours
     //AI for attack sequence
     [SerializeField] SlimeAttack slimeAttack;
+    AudioSource _audioSource;
     //Ai for chase sequence (player too far etc.)
     ChaseTarget chaseTarget;
     #endregion
@@ -34,10 +35,10 @@ class SlimeBehaviour : MonoBehaviour
         _navAgent = GetComponent<NavMeshAgent>();
         _stateMachine = new StateMachine();
         _baseMook = GetComponent<BaseMook>();
-
+        _audioSource = GetComponent<AudioSource>();
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
-        slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack);
+        slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack, _audioSource);
         //Add transistions for statemachine
         _stateMachine.AddTransistion(slimeAttack, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
         _stateMachine.AddTransistion(chaseTarget, slimeAttack, targetTooFar(PlayerController.Singleton.transform, transform), true);

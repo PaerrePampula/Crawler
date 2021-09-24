@@ -16,30 +16,32 @@ class SlimeAttack : IState
     [SerializeField] float chargeHbRadius = 1f;
     [SerializeField] float meleeDamage = 1f;
     [SerializeField] float actionDelay = 0.25f;
-
+    [SerializeField] AudioClip attackingAudioClip;
     bool playerDodgedAttackSuccessfully = false;
     Vector3 chargeDirection;
     CharacterController _controller;
     Transform _transform;
     BaseMook _baseMook;
     LayerMask _playerMask;
+    AudioSource _audioSource;
     Coroutine attackRoutine;
     Coroutine chargeRoutine;
     bool readyToChangeState = true;
-    public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask)
+    public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask, AudioSource audioSource = null)
     {
         _controller = controller;
         _playerMask = playerMask;
         _baseMook = baseMook;
         _transform = transform;
         _playerMask = playerMask;
+        _audioSource = audioSource;
     }
 
     public void OnStateEnter()
     {
         readyToChangeState = false;
         SlimeCharge();
-
+        _audioSource?.PlayOneShot(attackingAudioClip);
     }
 
     public void OnStateExit()
