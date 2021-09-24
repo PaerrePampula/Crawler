@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    //The room is complete with the start method, this is ran afterwards
     public delegate void RoomReadyForUse();
     public event RoomReadyForUse onRoomReadyForUse;
     public delegate void OnLockState(bool state);
@@ -15,25 +16,25 @@ public class Room : MonoBehaviour
     public delegate void OnRoomClear(Room room);
     public static event OnRoomClear onRoomClear;
 
-    public GameObject RoomPrefab { get => roomPrefab; set => roomPrefab = value; }
-    public int CellSize { get => _cellSize; set => _cellSize = value; }
     public Cell Cell { get => _cell; set => _cell = value; }
     public Transform PickupsDropPointOnRoomClear { get => pickupsDropPointOnRoomClear; set => pickupsDropPointOnRoomClear = value; }
     internal RoomType RoomType { get => roomType; set => roomType = value; }
+    public bool RoomLocked { get => roomLocked; set => roomLocked = value; }
 
     Dictionary<NeighborType, Room> roomNeighbors = new Dictionary<NeighborType, Room>();
     Dictionary<NeighborType, GameObject> roomDoors = new Dictionary<NeighborType, GameObject>();
     [SerializeField] List<DoorLocation> doorLocations = new List<DoorLocation>();
     [SerializeField] List<RoomNeighbor> roomNeighborsList = new List<RoomNeighbor>();
-    int _cellSize;
-    GameObject roomPrefab;
 
+    //The point where the game will drop an item on clear
     [SerializeField] Transform pickupsDropPointOnRoomClear;
     List<BaseMook> roomMooks = new List<BaseMook>();
     int roomMookCount = 0;
     //If a room is empty for example, the room might try to drop loot, this circumvents the problem
     bool roomHasHadMooksAdded = false;
+    bool roomLocked = false;
     Cell _cell;
+    //Is the room a store, normal room, boss room, etc.
     [SerializeField] RoomType roomType;
     public void AddRoomDoor(NeighborType neighborType, GameObject door)
     {
@@ -47,6 +48,7 @@ public class Room : MonoBehaviour
     }
     public void AddMookToRoom(BaseMook mook)
     {
+        //Add a mook to the room, change the tracking counter, and set the doors to be locked.
         roomMooks.Add(mook);
         mook.onMookDeath += decrementMooksFromRoom;
         roomMookCount++;
@@ -82,6 +84,7 @@ public class Room : MonoBehaviour
     {
         //All lockable items subscribe to this. Will lock or unlock all items in room after clearing or entering room
         onLockStateChange?.Invoke(state);
+        RoomLocked = state;
     }
 
     private void OnDestroy()
@@ -114,12 +117,6 @@ public class Room : MonoBehaviour
             SetDoorsLockState(true);
         }
     }
-
-
-    private void Awake()
-    {
-        RoomPrefab = GetComponent<GameObject>();
-    }
     public Room getNeighbor(NeighborType neighborType)
     {
         Cell neighborCell;
@@ -132,10 +129,6 @@ public class Room : MonoBehaviour
         PlayerController.Singleton.transform.position = roomDoors[neighborType].transform.position + roomDoors[neighborType].transform.TransformDirection(Vector3.forward + Vector3.up);
         //The change in position wont be updated correctly if changes in transforms are not flushed correctly
         Physics.SyncTransforms();
-    }
-    private void OnEnable()
-    {
-
     }
 
 

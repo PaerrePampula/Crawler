@@ -27,7 +27,13 @@ public class Door : MonoBehaviour, IPlayerInteractable
         room.onRoomReadyForUse -= checkIfDoorIsNeeded;
         room.onLockStateChange -= SetLockState;
     }
-
+    private void Start()
+    {
+        if (room != null)
+        {
+            SetLockState(room.RoomLocked);
+        }
+    }
     private void checkIfDoorIsNeeded()
     {
         //Disable this door location if there is no connection available.
