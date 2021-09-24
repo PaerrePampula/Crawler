@@ -16,6 +16,7 @@ public class FireBallAttack : IState
     Coroutine waitForAction;
     [SerializeField] float fireballSpeed;
     [SerializeField] float fireballDamage;
+    bool readyToChangeState = true;
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator)
     {
         _target = target;
@@ -25,7 +26,8 @@ public class FireBallAttack : IState
     public void OnStateEnter()
     {
         AttackWithFireBall();
-        waitForAction = _baseMook.StartCoroutine(waitFor());
+        readyToChangeState = false;
+        waitForAction = _baseMook.StartCoroutine(actionWait());
     }
 
     private void AttackWithFireBall()
@@ -35,22 +37,30 @@ public class FireBallAttack : IState
         GameObject go = GameObject.Instantiate(fireballPrefab, _baseMook.transform.position + projectileDirection, Quaternion.identity);
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
     }
-    IEnumerator waitFor()
+    IEnumerator actionWait()
     {
         while (true)
         {
             yield return new WaitForSeconds(2);
+            readyToChangeState = true;
             AttackWithFireBall();
         }
+
 
     }
     public void OnStateExit()
     {
+        readyToChangeState = true;
         _baseMook.StopCoroutine(waitForAction);
     }
 
     public void Tick()
     {
 
+    }
+    //Needs to have waited the attack delay to transistion
+    public bool StateReadyToTransistion()
+    {
+        return readyToChangeState;
     }
 }

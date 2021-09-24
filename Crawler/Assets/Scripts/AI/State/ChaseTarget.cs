@@ -34,5 +34,11 @@ class ChaseTarget : IState
     {
         _chasingAgent.SetDestination(_target.position);
     }
+
+    //Can always transistion from moving
+    public bool StateReadyToTransistion()
+    {
+        return true;
+    }
 }
 

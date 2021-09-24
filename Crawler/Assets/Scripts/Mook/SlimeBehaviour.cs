@@ -40,7 +40,7 @@ class SlimeBehaviour : MonoBehaviour
         slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack);
         //Add transistions for statemachine
         _stateMachine.AddTransistion(slimeAttack, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
-        _stateMachine.AddTransistion(chaseTarget, slimeAttack, targetTooFar(PlayerController.Singleton.transform, transform));
+        _stateMachine.AddTransistion(chaseTarget, slimeAttack, targetTooFar(PlayerController.Singleton.transform, transform), true);
         //Set default state to chase player in state machine
         _stateMachine.SetState(chaseTarget);
     }

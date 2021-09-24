@@ -16,6 +16,7 @@ class SlimeAttack : IState
     [SerializeField] float chargeHbRadius = 1f;
     [SerializeField] float meleeDamage = 1f;
     [SerializeField] float actionDelay = 0.25f;
+
     bool playerDodgedAttackSuccessfully = false;
     Vector3 chargeDirection;
     CharacterController _controller;
@@ -24,6 +25,7 @@ class SlimeAttack : IState
     LayerMask _playerMask;
     Coroutine attackRoutine;
     Coroutine chargeRoutine;
+    bool readyToChangeState = true;
     public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask)
     {
         _controller = controller;
@@ -35,12 +37,14 @@ class SlimeAttack : IState
 
     public void OnStateEnter()
     {
-
+        readyToChangeState = false;
         SlimeCharge();
+
     }
 
     public void OnStateExit()
     {
+        readyToChangeState = true;
         if (attackRoutine != null) _baseMook.StopCoroutine(attackRoutine);
         if (chargeRoutine != null) _baseMook.StopCoroutine(chargeRoutine);
     }
@@ -74,7 +78,7 @@ class SlimeAttack : IState
             actionDelaytimer += Time.deltaTime;
             yield return null;
         }
-
+        readyToChangeState = true;
         SlimeCharge();
 
     }
@@ -122,5 +126,10 @@ class SlimeAttack : IState
         _controller.Move(chargeDirection * Time.deltaTime * chargePower);
         _transform.position = new Vector3(_transform.position.x, 2, _transform.position.z);
 
+    }
+    //Needs to have waited the attack delay to transistion
+    public bool StateReadyToTransistion()
+    {
+        return readyToChangeState;
     }
 }

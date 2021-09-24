@@ -50,7 +50,7 @@ class StateMachine
     /// The state where the transistion leads</param>
     /// <param name="predicate">
     /// The parameters (in a method form) that trigger this state change</param>
-    public void AddTransistion(IState to, IState from, Func<bool> predicate)
+    public void AddTransistion(IState to, IState from, Func<bool> predicate, bool stateReadinessRequired = false)
     {
         //So no transistions were found in the all transistions, add this as a new list of transistions for
         //this type of states
@@ -60,7 +60,7 @@ class StateMachine
             _allTransistions[from.GetType()] = transistions;
         }
 
-        transistions.Add(new Transistion(to, predicate));
+        transistions.Add(new Transistion(to, predicate, stateReadinessRequired, from));
     }
     /// <summary>
     /// Add a transistion from any state to any other state e.g a low hp character might ALWAYS try to run,
@@ -86,7 +86,14 @@ class StateMachine
         {
             if (transistion.ConditionIsMet)
             {
-                return transistion;
+                if (transistion.StateReadinessConditionIsNeeded)
+                {
+                    if (transistion.From.StateReadyToTransistion())
+                    {
+                        return transistion;
+                    }
+                }
+
             }
         }
         //No transistion was found
@@ -96,12 +103,18 @@ class StateMachine
     class Transistion
     {
         public bool ConditionIsMet { get => Condition(); }
+        bool stateReadinessConditionIsNeeded;
         Func<bool> Condition { get; }
         public IState To { get; }
-        public Transistion(IState to,Func<bool> condition)
+        public IState From { get; }
+        public bool StateReadinessConditionIsNeeded { get => stateReadinessConditionIsNeeded; set => stateReadinessConditionIsNeeded = value; }
+
+        public Transistion(IState to,Func<bool> condition, bool readinessNeeded = false, IState from = null)
         {
+            StateReadinessConditionIsNeeded = true;
             Condition = condition;
             To = to;
+            From = to;
         }
     }
 }
