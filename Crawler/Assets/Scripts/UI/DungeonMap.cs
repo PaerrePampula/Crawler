@@ -28,6 +28,8 @@ public class DungeonMap : MonoBehaviour
     [SerializeField] GameObject startNode;
     [SerializeField] GameObject storeNode;
     [SerializeField] Transform mapParent;
+    [SerializeField] AudioClip mapOpenSound;
+    AudioSource _audioSource;
     Vector3 mousePos = Vector3.zero;
     Vector3 oldMousePos = Vector3.zero;
     float mapZoomAmount = 1;
@@ -76,7 +78,7 @@ public class DungeonMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _audioSource = GetComponent<AudioSource>();
     }
     public void InvokeFullMapShow()
     {
@@ -94,6 +96,7 @@ public class DungeonMap : MonoBehaviour
         {
             mapOpen = !mapOpen;
             mapParent.transform.gameObject.SetActive(mapOpen);
+            _audioSource.PlayOneShot(mapOpenSound);
         }
         if (mapOpen)
         {
