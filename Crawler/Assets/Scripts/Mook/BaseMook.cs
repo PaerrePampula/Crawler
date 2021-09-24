@@ -52,7 +52,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         {
             onMookDamaged?.Invoke(damageAmount, transform.position);
             Hp += damageAmount;
-            Instantiate(damageEffect, transform.position, transform.rotation);
+            Instantiate(damageEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         //TODO: Animation in own class (some sort of animation manager).
         //TODO: Might also be its own class, loot has nothing to with AI
         onMookDeath?.Invoke();
-        Instantiate(dieEffect, transform.position, transform.rotation);
+        Instantiate(dieEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
         Destroy(gameObject);
     }
     // Start is called before the first frame update

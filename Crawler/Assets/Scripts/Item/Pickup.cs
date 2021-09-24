@@ -8,6 +8,8 @@ public class Pickup : MonoBehaviour
     [SerializeField] ItemScriptable _itemScriptable;
     Item _item;
     [SerializeField] SpriteRenderer _spriteRenderer;
+
+    [SerializeField] GameObject collectEffect;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -36,6 +38,7 @@ public class Pickup : MonoBehaviour
     protected void PickupItem()
     {
         _item.DoItemPickupActionAccordingToItemType();
+        Instantiate(collectEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
         Destroy(gameObject);
 
     }
