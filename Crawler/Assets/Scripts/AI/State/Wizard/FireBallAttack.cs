@@ -25,14 +25,21 @@ public class FireBallAttack : IState
     }
     public void OnStateEnter()
     {
-        AttackWithFireBall();
-        readyToChangeState = false;
+        //Only trigger the animation to play, and also subscribe an event to watch for state change on the animation
+        TriggerAttack();
         waitForAction = _baseMook.StartCoroutine(actionWait());
+    }
+
+    private void TriggerAttack()
+    {
+        _animator.SetTrigger(attackAnimationTriggerName);
+        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
+        readyToChangeState = false;
     }
 
     private void AttackWithFireBall()
     {
-        _animator.SetTrigger(attackAnimationTriggerName);
+
         Vector3 projectileDirection = (_target.position - _baseMook.transform.position).normalized;
         GameObject go = GameObject.Instantiate(fireballPrefab, _baseMook.transform.position + projectileDirection, Quaternion.identity);
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
@@ -43,13 +50,14 @@ public class FireBallAttack : IState
         {
             yield return new WaitForSeconds(2);
             readyToChangeState = true;
-            AttackWithFireBall();
+            TriggerAttack();
         }
 
 
     }
     public void OnStateExit()
     {
+        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState -= AttackWithFireBall;
         readyToChangeState = true;
         _baseMook.StopCoroutine(waitForAction);
     }
