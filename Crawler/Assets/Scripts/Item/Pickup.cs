@@ -38,6 +38,8 @@ public class Pickup : MonoBehaviour
     protected void PickupItem()
     {
         _item.DoItemPickupActionAccordingToItemType();
+        
+        PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("I just received an item: " + _item.ItemScriptable.ItemName);
         Instantiate(collectEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
         Destroy(gameObject);
 
