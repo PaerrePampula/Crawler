@@ -58,7 +58,6 @@ public class Room : MonoBehaviour
     private void Start()
     {
 
-        SaveListsToDictionaries();
         onRoomReadyForUse?.Invoke();
     }
     private void Awake()
@@ -67,6 +66,7 @@ public class Room : MonoBehaviour
         {
             if (this != CurrentRoomManager.Singleton.currentRoom) gameObject.SetActive(false);
         }
+        SaveListsToDictionaries();
     }
     private void SaveListsToDictionaries()
     {

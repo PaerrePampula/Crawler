@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using UnityEngine;
 
 class BuffItemType : IPlayerItemableBehaviourType
 {
@@ -11,6 +11,8 @@ class BuffItemType : IPlayerItemableBehaviourType
     {
         BuffItemScriptable buffItemScriptable = (BuffItemScriptable)item.ItemScriptable;
         Player.Singleton.GivePlayerItem(item);
+        if (item.ItemScriptable.PickupSound != null)
+        Player.Singleton.GetComponent<AudioSource>().PlayOneShot(item.ItemScriptable.PickupSound);
         Player.Singleton.BuffStatModifier(buffItemScriptable.StatToBuff, buffItemScriptable.BuffAmountPercentage);
     }
 }

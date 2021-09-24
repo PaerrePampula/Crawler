@@ -741,18 +741,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 526691528913608198, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: dashingTime
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 526691528913608198, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: dashDistanceMultiplier
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 526691528913608198, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: gravityAccelerationSpeed
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 526691528913608200, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -796,22 +784,6 @@ PrefabInstance:
     - target: {fileID: 526691528913608200, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 526691528913608201, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: m_SlopeLimit
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: playerAttacks.Array.data[0].damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: playerAttacks.Array.data[2].attackPlayerPushForwardForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: playerAttacks.Array.data[2].attackTargetHitPushForceMultiplier
-      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4950380413841514809, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3435,7 +3407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2d93e4c50e76d45abdb2eea6a8a674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyGenerateOneRoom: 0
+  onlyGenerateOneRoom: 1
   oneRoomToGenerate: {fileID: 1552857032272671205, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
   allRooms:
   - {fileID: 27197362926567381, guid: 78d2fe12aac325948923751b67f59fe5, type: 3}

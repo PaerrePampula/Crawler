@@ -42,12 +42,14 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
     }
     private void OnEnable()
     {
+
         transform.root.GetComponent<Room>().onLockStateChange += SetLockState;
     }
     private void OnDisable()
     {
         transform.root.GetComponent<Room>().onLockStateChange -= SetLockState;
     }
+
     public string getPlayerInteractionString()
     {
         return  interactionText;

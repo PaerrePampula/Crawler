@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using UnityEngine;
 
 class HealingItemType : IPlayerItemableBehaviourType
 {
@@ -12,6 +12,8 @@ class HealingItemType : IPlayerItemableBehaviourType
     {
         //Typecast the scriptable to correct type to use the info found on scriptable correctly
         HealingItemScriptable healingItemScriptable = (HealingItemScriptable)item.ItemScriptable;
+        if (item.ItemScriptable.PickupSound != null)
+            Player.Singleton.GetComponent<AudioSource>().PlayOneShot(item.ItemScriptable.PickupSound);
         Player.Singleton.ChangeHp(healingItemScriptable.HealingAmount);
     }
 }
