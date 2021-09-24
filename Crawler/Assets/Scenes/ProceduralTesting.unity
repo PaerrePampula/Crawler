@@ -890,6 +890,10 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[0].damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: playerAttacks.Array.data[2].attackPlayerPushForwardForce
       value: 25
       objectReference: {fileID: 0}
@@ -5346,6 +5350,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2779595648357661188, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914653820585554061, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6801980049393733073, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5375,6 +5387,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6801980050769402905, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113437534098394797, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
