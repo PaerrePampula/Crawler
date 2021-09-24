@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,7 +27,7 @@ class WizardBehaviour : MonoBehaviour
     Animator _animator;
     //Needed to play back audio on attacking.
     AudioSource _audioSource;
-
+    [SerializeField] TextMeshPro stateText;
     [SerializeField] FireBallAttack fireBallAttack;
     ChaseTarget chaseTarget;
     void Awake()
@@ -53,6 +54,7 @@ class WizardBehaviour : MonoBehaviour
     private void Update()
     {
         _stateMachine.Tick();
+        stateText.text = _stateMachine.getCurrentState().GetType().ToString();
     }
     float getChaseRange()
     {

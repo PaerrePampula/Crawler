@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,6 +29,7 @@ class SlimeBehaviour : MonoBehaviour
     AudioSource _audioSource;
     //Ai for chase sequence (player too far etc.)
     ChaseTarget chaseTarget;
+    [SerializeField] TextMeshPro stateText;
     #endregion
 
     void Awake()
@@ -37,6 +39,7 @@ class SlimeBehaviour : MonoBehaviour
         _baseMook = GetComponent<BaseMook>();
         _audioSource = GetComponent<AudioSource>();
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
+
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
         slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack, _audioSource);
         //Add transistions for statemachine
@@ -61,6 +64,7 @@ class SlimeBehaviour : MonoBehaviour
     private void Update()
     {
         _stateMachine.Tick();
+        stateText.text = _stateMachine.getCurrentState().GetType().ToString();
     }
     float getChaseRange()
     {

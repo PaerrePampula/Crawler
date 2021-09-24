@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 [System.Serializable]
 
@@ -26,6 +27,7 @@ class SlimeAttack : IState
     AudioSource _audioSource;
     Coroutine attackRoutine;
     Coroutine chargeRoutine;
+
     bool readyToChangeState = true;
     public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask, AudioSource audioSource = null)
     {

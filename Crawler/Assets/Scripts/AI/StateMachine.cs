@@ -99,7 +99,10 @@ class StateMachine
         //No transistion was found
         return null;
     }
-
+    public IState getCurrentState()
+    {
+        return _currentState;
+    }
     class Transistion
     {
         public bool ConditionIsMet { get => Condition(); }
