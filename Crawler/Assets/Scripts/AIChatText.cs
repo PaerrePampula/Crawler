@@ -13,6 +13,7 @@ class AIChatText : ScriptableObject
 class Chat
 {
     public string chatIdentifier;
-    [TextArea] public string chatText;
+    [TextArea]
+    public List<string> chatTexts;
 }
 

@@ -3249,6 +3249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1298185818}
   - component: {fileID: 1298185817}
+  - component: {fileID: 1298185819}
   m_Layer: 0
   m_Name: GameSingleton
   m_TagString: Untagged
@@ -3283,6 +3284,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1298185819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298185816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9a83f0a42f9e14f9adb4eea0cdaa82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppableItems:
+  - {fileID: 11400000, guid: cacf1303244db7540a91932745aa9a1d, type: 2}
+  genericPickup: {fileID: 5422449294699349652, guid: 7ab4d8a249252b5488899b17d79c9d0c, type: 3}
 --- !u!1 &1303192913
 GameObject:
   m_ObjectHideFlags: 0

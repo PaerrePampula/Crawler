@@ -5,9 +5,13 @@ using UnityEngine;
 public class Seller : MonoBehaviour, IPlayerInteractable
 {
     [SerializeField] string buyItem;
+    [SerializeField] Transform itemTossPoint;
+    public delegate void OnGamble(bool success);
+    public static event OnGamble onGamble;
     public void DoPlayerInteraction()
     {
-        throw new System.NotImplementedException();
+        onGamble?.Invoke(true);
+        ItemDropper.Singleton.GenerateRandomItemAtCurrentRoomDropPoint(itemTossPoint.position);
     }
 
     public string getPlayerInteractionString()

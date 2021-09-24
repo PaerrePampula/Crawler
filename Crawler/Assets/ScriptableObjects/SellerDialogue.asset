@@ -14,8 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chats:
   - chatIdentifier: Greet_NewPlayer
-    chatText: Heya there! Welcome to my store!
+    chatTexts:
+    - Hey there! Another stable mind! Welcome to my humble store!
   - chatIdentifier: Greet_MetPlayer
-    chatText: Ah, hello there again my friend!
+    chatTexts:
+    - Oh, hey there again my friend, up for a bit of a gamble?
+    - Welcome back!
+    - Welcome back my friend!
+    - Ah my favorite customer!
+    - Nice to see you again! Wish to gamble a bit?
   - chatIdentifier: Saying_Goodbye
-    chatText: Dont be a stranger!
+    chatTexts:
+    - Dont be a stranger!
+    - See you later then!
+    - Please do come back later!
+    - Come back alive again!
+  - chatIdentifier: Gambling_Success
+    chatTexts:
+    - "Et voil\xE1!"
+    - Here you go!
+    - Rolling for a natural 20!
+    - I hope you enjoy!
+  - chatIdentifier: Gambling_Failure
+    chatTexts: []
