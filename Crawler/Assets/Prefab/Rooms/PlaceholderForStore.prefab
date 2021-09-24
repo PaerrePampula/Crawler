@@ -63,6 +63,7 @@ Transform:
   - {fileID: 7544060936127682027}
   - {fileID: 1143160355116589052}
   - {fileID: 6748057869145790610}
+  - {fileID: 1950364069879168112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,18 +83,6 @@ MonoBehaviour:
   roomNeighborsList: []
   pickupsDropPointOnRoomClear: {fileID: 1552857030904758333}
   roomType: 3
---- !u!114 &4396650801154388745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803117279878685023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e97bc4430c457e40a9b4c52adce619f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1428647974612958526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +109,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talkingText: {fileID: 6364566080592246751}
+--- !u!114 &4396650801154388745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803117279878685023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e97bc4430c457e40a9b4c52adce619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyItem: Gamble for loot
 --- !u!1 &2186837546409481073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1679,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SalesWizard
       objectReference: {fileID: 0}
+    - target: {fileID: 4119202889018624668, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117822370359684948, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
 --- !u!114 &6364566080592246751 stripped
@@ -1761,6 +1771,75 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0a4382b2a1369884b9e2d247803c6c65, type: 3}
   m_PrefabInstance: {fileID: 2411275139924392839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3781808964411135656
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1552857032272671207}
+    m_Modifications:
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.32719874
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.431488
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3534117
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.4788188
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8779138
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 122.783
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948251, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: m_Name
+      value: MagicBookStand
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: playerDialog
+      value: 'A magic bookstand with glowing letters: "...The dungeon contains some
+        possible unsavory but friendly folk, some sell items to travelers exploring
+        the dungeon by randomly choosing prizes to give out for money..." I wonder
+        if that guy has read this...'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+--- !u!4 &1950364069879168112 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3416748871219948248, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+  m_PrefabInstance: {fileID: 3781808964411135656}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3814156362216351093
 PrefabInstance:
