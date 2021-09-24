@@ -18,20 +18,25 @@ public class Door : MonoBehaviour, IPlayerInteractable
     {
         room = transform.root.GetComponent<Room>();
         room.AddRoomDoor(doorLocation, this.gameObject);
+        room.onRoomReadyForUse += checkIfDoorIsNeeded;
+        room.onLockStateChange += SetLockState;
+
     }
-    private void OnEnable()
+    private void OnDestroy()
     {
-        if (room == null)
-        {
-            room = transform.root.GetComponent<Room>();
-        }
+        room.onRoomReadyForUse -= checkIfDoorIsNeeded;
+        room.onLockStateChange -= SetLockState;
+    }
+
+    private void checkIfDoorIsNeeded()
+    {
         //Disable this door location if there is no connection available.
         if (room.getNeighbor(doorLocation) == null)
         {
             gameObject.SetActive(false);
         }
-        room.onLockStateChange += SetLockState;
     }
+
     private void OnDisable()
     {
         room.onLockStateChange += SetLockState;

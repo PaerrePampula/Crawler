@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-
+    public delegate void RoomReadyForUse();
+    public event RoomReadyForUse onRoomReadyForUse;
     public delegate void OnLockState(bool state);
     public event OnLockState onLockStateChange;
     public delegate void OnRoomClear(Room room);
@@ -40,7 +41,6 @@ public class Room : MonoBehaviour
                 "have the same doortype, check all doors in the prefab for instantiated room '" + gameObject.name + "'");
         }
         roomDoors.Add(neighborType, door);
-        CheckRoomLockState();
     }
     public void AddMookToRoom(BaseMook mook)
     {
@@ -56,7 +56,7 @@ public class Room : MonoBehaviour
             if (this != CurrentRoomManager.Singleton.currentRoom) gameObject.SetActive(false);
         }
         SaveListsToDictionaries();
-
+        onRoomReadyForUse?.Invoke();
     }
 
     private void SaveListsToDictionaries()
@@ -125,7 +125,10 @@ public class Room : MonoBehaviour
         //The change in position wont be updated correctly if changes in transforms are not flushed correctly
         Physics.SyncTransforms();
     }
+    private void OnEnable()
+    {
 
+    }
 
 
 }

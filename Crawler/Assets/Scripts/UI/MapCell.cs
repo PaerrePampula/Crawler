@@ -10,6 +10,7 @@ public class MapCell : MonoBehaviour
     //Actual cell on the procedural map
     Cell _cell;
     Image cellImage;
+    Color32 originalColor;
 
     public Cell Cell { get => _cell; set => _cell = value; }
     private void Start()
@@ -22,7 +23,9 @@ public class MapCell : MonoBehaviour
     }
     public void Initialize(Cell cell)
     {
+
         cellImage = GetComponent<Image>();
+        originalColor = cellImage.color;
         Cell = cell;
         CurrentRoomManager.onPlayerRoomSet += checkIfDiscoveredAndIfIsCurrentRoom;
         Cell.onCellDiscover += discoverMapCell;
@@ -44,14 +47,10 @@ public class MapCell : MonoBehaviour
         }
         else
         {
-            cellImage.color = Color.white;
+            cellImage.color = originalColor;
         }
     }
 
-    private void OnEnable()
-    {
-        
-    }
     private void OnDestroy()
     {
         if (Cell != null)

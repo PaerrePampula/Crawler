@@ -26,6 +26,7 @@ public class DungeonMap : MonoBehaviour
     [SerializeField] GameObject mapNode;
     [SerializeField] GameObject endNode;
     [SerializeField] GameObject startNode;
+    [SerializeField] GameObject storeNode;
     [SerializeField] Transform mapParent;
     Vector3 mousePos = Vector3.zero;
     Vector3 oldMousePos = Vector3.zero;
@@ -49,13 +50,17 @@ public class DungeonMap : MonoBehaviour
         {
 
             GameObject toInstantiate = mapNode;
-            if (cellsInDungeon[i].CellType == CellType.Start)
+            if (cellsInDungeon[i].RoomType == RoomType.Start)
             {
                 toInstantiate = startNode;
             }
-            if (cellsInDungeon[i].CellType == CellType.End)
+            if (cellsInDungeon[i].RoomType == RoomType.BossBattle)
             {
                 toInstantiate = endNode;
+            }
+            if (cellsInDungeon[i].RoomType == RoomType.Shop)
+            {
+                toInstantiate = storeNode;
             }
             GameObject go = Instantiate(toInstantiate, mapParent);
             go.GetComponent<RectTransform>().anchoredPosition = new Vector2(mapCellSize/2f, mapCellSize/2f);
