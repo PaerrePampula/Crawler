@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WizardFireball : MonoBehaviour
 {
+    [SerializeField] GameObject hitEffect;
     Rigidbody rigidbody;
     LayerMask hitLayerMask;
     float _damage;
@@ -27,7 +28,13 @@ public class WizardFireball : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 other.GetComponent<Player>().ChangeHp(-_damage);
+
             }
+            if (hitEffect != null)
+            {
+                GameObject go = Instantiate(hitEffect, transform.position, transform.rotation);
+            }
+
             Destroy(this.gameObject);
         }
 
