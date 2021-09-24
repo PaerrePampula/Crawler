@@ -254,7 +254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorLocations: []
   roomNeighborsList: []
-  _cellSize: 1
   pickupsDropPointOnRoomClear: {fileID: 0}
   roomType: 1
 --- !u!1 &4218164612684343255
@@ -632,7 +631,8 @@ PrefabInstance:
     - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
       propertyPath: playerDialog
       value: 'A magic bookstand with glowing letters: "...This cell will eventually
-        contain the boss battle..."'
+        contain the boss battle..." That means I have completed the game now, yay
+        me!'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}
