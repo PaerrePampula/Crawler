@@ -116,5 +116,10 @@ class Player : MonoBehaviour,  IDamageable
     {
         return damage * _buffModifiers[StatType.Damage];
     }
+    public bool isInvurnerable()
+    {
+        return _isInvunerable;
+    }
+
 }
 

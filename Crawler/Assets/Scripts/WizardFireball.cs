@@ -27,18 +27,34 @@ public class WizardFireball : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<Player>().ChangeHp(-_damage);
+                Player player = other.GetComponent<Player>();
+                if (!player.isInvurnerable())
+                {
+                    other.GetComponent<Player>().ChangeHp(-_damage);
+                    CreateHitEffects();
+                }
+
+
 
             }
-            if (hitEffect != null)
+            else
             {
-                GameObject go = Instantiate(hitEffect, transform.position, transform.rotation);
+                CreateHitEffects();
             }
 
-            Destroy(this.gameObject);
         }
 
     }
+
+    private void CreateHitEffects()
+    {
+        if (hitEffect != null)
+        {
+            GameObject go = Instantiate(hitEffect, transform.position, transform.rotation);
+        }
+        Destroy(this.gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {

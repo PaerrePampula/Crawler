@@ -53,46 +53,6 @@ MonoBehaviour:
   roomNeighborsList: []
   pickupsDropPointOnRoomClear: {fileID: 6506992309611940350}
   roomType: 3
---- !u!114 &1428647974612958526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803117279878685023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82afb855cb2695a4a8cd5513471220bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sellerChatScriptable: {fileID: 11400000, guid: 5862ce54ece70694a94fc1810781e19b, type: 2}
---- !u!114 &2916827478016240919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803117279878685023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909621b19eae42c48aeba280a5ff817a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkingText: {fileID: 6364566080592246751}
---- !u!114 &4396650801154388745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803117279878685023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e97bc4430c457e40a9b4c52adce619f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buyItem: Gamble for loot
-  itemTossPoint: {fileID: 6506992309611940350}
 --- !u!1 &2186837546409481073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,10 +1592,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1552857032272671207}
     m_Modifications:
-    - target: {fileID: 3145191356305431938, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 3455104129791620159, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1684,35 +1640,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SalesWizard
       objectReference: {fileID: 0}
-    - target: {fileID: 4119202889018624668, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6117822370359684948, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 4396650801154388745, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
+      propertyPath: itemTossPoint
+      value: 
+      objectReference: {fileID: 6506992309611940350}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
 --- !u!4 &1143160355116589052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3455104129791620159, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
-  m_PrefabInstance: {fileID: 2319262201379974083}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6364566080592246751 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8682051187505962012, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
-  m_PrefabInstance: {fileID: 2319262201379974083}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1803117279878685023 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4119202889018624668, guid: 17026061e15c71d44a791023bb56a16d, type: 3}
   m_PrefabInstance: {fileID: 2319262201379974083}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2411275139924392839

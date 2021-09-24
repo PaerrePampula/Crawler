@@ -12,9 +12,10 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        //Lataa valitun scene, väliaikaisesti demo scenen
-        //Pitäiskö lisätä joku loading screen tai vastaava btw
-        SceneManager.LoadScene("DemoScene");
+
+        //TODO: 
+        //Async loading screen
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void QuitGame()
