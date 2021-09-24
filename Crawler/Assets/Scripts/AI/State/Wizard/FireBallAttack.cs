@@ -8,6 +8,7 @@ public class FireBallAttack : IState
     BaseMook _baseMook;
     [SerializeField] LayerMask _hitLayers;
     Animator _animator;
+    AudioSource _audioSource;
     //Information to animator
     //SetTrigger can be used to trigger any animation transistion to a state named by the parameter
     //meaning another ranged mook, that isnt necessary a wizard, and has a different animator can possibly run this as well.
@@ -17,11 +18,13 @@ public class FireBallAttack : IState
     [SerializeField] float fireballSpeed;
     [SerializeField] float fireballDamage;
     bool readyToChangeState = true;
-    public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator)
+    [SerializeField] AudioClip castingAudioClip;
+    public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
     {
         _target = target;
         _baseMook = baseMook;
         _animator = animator;
+        _audioSource = audioSource;
 
     }
     public void OnStateEnter()
@@ -34,8 +37,10 @@ public class FireBallAttack : IState
 
     private void TriggerAttack()
     {
+        //only triggers the animator and sound, animation triggers event
+        //which this system subscribes to.
         _animator.SetTrigger(attackAnimationTriggerName);
-
+        _audioSource?.PlayOneShot(castingAudioClip);
         readyToChangeState = false;
     }
 

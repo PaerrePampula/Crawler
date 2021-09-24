@@ -24,6 +24,8 @@ class WizardBehaviour : MonoBehaviour
     //Moving AI, so needs a navAgent
     NavMeshAgent _navAgent;
     [SerializeField] Animator animator;
+    //Needed to play back audio on attacking.
+    AudioSource _audioSource;
 
     [SerializeField] FireBallAttack fireBallAttack;
     ChaseTarget chaseTarget;
@@ -32,7 +34,8 @@ class WizardBehaviour : MonoBehaviour
         _navAgent = GetComponent<NavMeshAgent>();
         _stateMachine = new StateMachine();
         _baseMook = GetComponent<BaseMook>();
-        fireBallAttack.InitializeFireBallAttack(PlayerController.Singleton.transform, _baseMook, animator);
+        _audioSource = GetComponent<AudioSource>();
+        fireBallAttack.InitializeFireBallAttack(PlayerController.Singleton.transform, _baseMook, animator, _audioSource);
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
 
