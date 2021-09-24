@@ -46,7 +46,7 @@ class ItemDropper : MonoBehaviour
     {
         int randomItemChoice = UnityEngine.Random.Range(0, droppableItems.Count);
         ItemScriptable itemScriptable = droppableItems[randomItemChoice];
-        GameObject newPickup = Instantiate(genericPickup, position, Quaternion.identity);
+        GameObject newPickup = Instantiate(genericPickup, position, Quaternion.identity, CurrentRoomManager.Singleton.currentRoom.gameObject.transform);
         newPickup.GetComponent<Pickup>().InitializePickUp(itemScriptable);
     }
 
