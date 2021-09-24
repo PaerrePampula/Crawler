@@ -22,9 +22,11 @@ public class FireBallAttack : IState
         _target = target;
         _baseMook = baseMook;
         _animator = animator;
+
     }
     public void OnStateEnter()
     {
+        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
         //Only trigger the animation to play, and also subscribe an event to watch for state change on the animation
         TriggerAttack();
         waitForAction = _baseMook.StartCoroutine(actionWait());
@@ -33,7 +35,7 @@ public class FireBallAttack : IState
     private void TriggerAttack()
     {
         _animator.SetTrigger(attackAnimationTriggerName);
-        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
+
         readyToChangeState = false;
     }
 
