@@ -414,7 +414,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppableItems:
   - {fileID: 11400000, guid: cacf1303244db7540a91932745aa9a1d, type: 2}
+  - {fileID: 11400000, guid: 642d091822c35ec4facdcecbfa11614f, type: 2}
   genericPickup: {fileID: 5422449294699349652, guid: 7ab4d8a249252b5488899b17d79c9d0c, type: 3}
+  hPItemAndSpawnChances:
+  - hpItemDroppedByMook: {fileID: 11400000, guid: cacf1303244db7540a91932745aa9a1d, type: 2}
+    weight: 80
+  - hpItemDroppedByMook: {fileID: 11400000, guid: ae31a32eddc5d8841a52b7105caeb637, type: 2}
+    weight: 20
 --- !u!1 &1423482501
 GameObject:
   m_ObjectHideFlags: 0

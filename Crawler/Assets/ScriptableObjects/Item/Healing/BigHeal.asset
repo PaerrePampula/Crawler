@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78624cc31d0bded449971ecaa0356d82, type: 3}
-  m_Name: SmallHealing
+  m_Name: BigHeal
   m_EditorClassIdentifier: 
   itemID: 
-  itemName: Small healing potion
-  itemDescription: Heals some health
+  itemName: Big Healing potion
+  itemDescription: 
   itemType: 0
   itemSprite: {fileID: 21300000, guid: 688cebc148900544dabcc2a91d904bf1, type: 3}
   pickupSound: {fileID: 0}
-  healingAmount: 5
+  healingAmount: 10

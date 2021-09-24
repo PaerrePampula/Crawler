@@ -13,6 +13,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     public static event MookDamaged onMookDamaged;
     public delegate void MookDeath();
     public event MookDeath onMookDeath;
+    public delegate void MookDeathSpawnItem(Vector3 position);
+    public static event MookDeathSpawnItem onMookPossibleItemDrop;
     #endregion
 
     #region fields
@@ -63,6 +65,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         //TODO: Animation in own class (some sort of animation manager).
         //TODO: Might also be its own class, loot has nothing to with AI
         onMookDeath?.Invoke();
+        onMookPossibleItemDrop?.Invoke(transform.position);
         Instantiate(dieEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
         Destroy(gameObject);
     }
