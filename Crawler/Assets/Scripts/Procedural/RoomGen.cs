@@ -9,11 +9,17 @@ using UnityEngine;
 /// </summary>
 public class RoomGen : MonoBehaviour
 {
-
+  
+    [SerializeField] bool onlyGenerateOneRoom = false;
+    [SerializeField] GameObject oneRoomToGenerate;
     [SerializeField] List<GameObject> allRooms = new List<GameObject>();
     [SerializeField] Dictionary<RoomType, List<GameObject>> roomsByRoomType = new Dictionary<RoomType, List<GameObject>>();
     private void Awake()
     {
+        if (onlyGenerateOneRoom == true)
+        {
+            Debug.Log("Debug choice for only generating one type of room is on, disable this if not used on purpose");
+        }
         for (int i = 0; i < allRooms.Count; i++)
         {
             List<GameObject> listForRoomType;
@@ -28,10 +34,20 @@ public class RoomGen : MonoBehaviour
     }
     public GameObject createRoomForCell(Cell cell)
     {
-        int random = Random.Range(0, roomsByRoomType[cell.RoomType].Count);
-        GameObject go = Instantiate(roomsByRoomType[cell.RoomType][random]);
+        GameObject go = null;
+        if (!onlyGenerateOneRoom)
+        {
+            int random = Random.Range(0, roomsByRoomType[cell.RoomType].Count);
+            go = Instantiate(roomsByRoomType[cell.RoomType][random]);
+
+        }
+        else
+        {
+            go = Instantiate(oneRoomToGenerate);
+        }
         go.GetComponent<Room>().Cell = cell;
         ProceduralGeneration.Singleton.AddCellToRoomInformation(cell, go.GetComponent<Room>());
+
         return go;
     }
 }
