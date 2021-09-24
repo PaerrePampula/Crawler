@@ -31,6 +31,8 @@ public class Room : MonoBehaviour
     [SerializeField] Transform pickupsDropPointOnRoomClear;
     List<BaseMook> roomMooks = new List<BaseMook>();
     int roomMookCount = 0;
+    //If a room is empty for example, the room might try to drop loot, this circumvents the problem
+    bool roomHasHadMooksAdded = false;
     Cell _cell;
     [SerializeField] RoomType roomType;
     public void AddRoomDoor(NeighborType neighborType, GameObject door)
@@ -41,6 +43,7 @@ public class Room : MonoBehaviour
                 "have the same doortype, check all doors in the prefab for instantiated room '" + gameObject.name + "'");
         }
         roomDoors.Add(neighborType, door);
+        CheckRoomLockState();
     }
     public void AddMookToRoom(BaseMook mook)
     {
@@ -48,6 +51,7 @@ public class Room : MonoBehaviour
         mook.onMookDeath += decrementMooksFromRoom;
         roomMookCount++;
         SetDoorsLockState(true);
+        roomHasHadMooksAdded = true;
     }
     private void Start()
     {
@@ -99,7 +103,11 @@ public class Room : MonoBehaviour
         if (roomMookCount <= 0)
         {
             SetDoorsLockState(false);
-            onRoomClear?.Invoke(this);
+            if (roomHasHadMooksAdded)
+            {
+                onRoomClear?.Invoke(this);
+            }
+
         }
         else
         {

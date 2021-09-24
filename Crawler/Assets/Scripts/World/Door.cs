@@ -37,10 +37,7 @@ public class Door : MonoBehaviour, IPlayerInteractable
         }
     }
 
-    private void OnDisable()
-    {
-        room.onLockStateChange += SetLockState;
-    }
+
     public void DoPlayerInteraction()
     {
         if (!locked)

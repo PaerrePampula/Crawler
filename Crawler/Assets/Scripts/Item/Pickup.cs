@@ -36,6 +36,7 @@ public class Pickup : MonoBehaviour
     protected void PickupItem()
     {
         _item.DoItemPickupActionAccordingToItemType();
+        PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("I just received an item: " + _item.ItemScriptable.ItemName);
         Destroy(gameObject);
 
     }
