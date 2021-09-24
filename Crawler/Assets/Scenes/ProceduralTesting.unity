@@ -3418,11 +3418,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac139b55f2a61141bded4f4e33d0f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumMapWidth: 10
-  maximumMapHeight: 10
+  maximumMapWidth: 12
+  maximumMapHeight: 12
   chanceForPathToBranch: 50
   maxBranchingPathLength: 2
-  requiredDistanceBetweenStartRoomAndGoalRoom: 5
+  requiredDistanceBetweenStartRoomAndGoalRoom: 4
 --- !u!114 &1487252952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3435,7 +3435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2d93e4c50e76d45abdb2eea6a8a674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyGenerateOneRoom: 0
+  onlyGenerateOneRoom: 1
   oneRoomToGenerate: {fileID: 1552857032272671205, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
   allRooms:
   - {fileID: 27197362926567381, guid: 78d2fe12aac325948923751b67f59fe5, type: 3}

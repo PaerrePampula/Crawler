@@ -57,14 +57,17 @@ public class Room : MonoBehaviour
     }
     private void Start()
     {
+
+        SaveListsToDictionaries();
+        onRoomReadyForUse?.Invoke();
+    }
+    private void Awake()
+    {
         if (CurrentRoomManager.Singleton != null)
         {
             if (this != CurrentRoomManager.Singleton.currentRoom) gameObject.SetActive(false);
         }
-        SaveListsToDictionaries();
-        onRoomReadyForUse?.Invoke();
     }
-
     private void SaveListsToDictionaries()
     {
         //Save the list as a dictionary to make lookups a bit better

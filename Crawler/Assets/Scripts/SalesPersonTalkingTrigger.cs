@@ -9,10 +9,12 @@ public class SalesPersonTalkingTrigger : MonoBehaviour
     public static event OnPersonApproachTrigger onPersonLeave;
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
         onPersonApproach?.Invoke();
     }
     private void OnTriggerExit(Collider other)
     {
-        onPersonLeave?.Invoke();
+        if (other.CompareTag("Player"))
+            onPersonLeave?.Invoke();
     }
 }

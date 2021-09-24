@@ -17,6 +17,7 @@ public class Door : MonoBehaviour, IPlayerInteractable
     void Awake()
     {
         room = transform.root.GetComponent<Room>();
+
         room.AddRoomDoor(doorLocation, this.gameObject);
         room.onRoomReadyForUse += checkIfDoorIsNeeded;
         room.onLockStateChange += SetLockState;
