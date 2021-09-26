@@ -10,8 +10,9 @@ public class Seller : MonoBehaviour, IPlayerInteractable
     public static event OnGamble onGamble;
     public void DoPlayerInteraction()
     {
-        onGamble?.Invoke(true);
-        ItemDropper.Singleton.GenerateRandomItemAtCurrentRoomDropPoint(itemTossPoint.position);
+        bool successInGambling = PlayerEconomy.Singleton.ChangePlayerMoney(-1);
+        onGamble?.Invoke(successInGambling);
+        if (successInGambling) ItemDropper.Singleton.GenerateRandomItemAtCurrentRoomDropPoint(itemTossPoint.position);
     }
 
     public string getPlayerInteractionString()

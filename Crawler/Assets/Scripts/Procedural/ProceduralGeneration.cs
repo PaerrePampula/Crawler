@@ -266,8 +266,8 @@ class ProceduralGeneration : MonoBehaviour
             //Set the visualizing cube location to be the node location.
             //go.transform.position = new Vector3(pathFromStartToGoal[i].X, 0, pathFromStartToGoal[i].Y);
         }
-        int randomCellForShop = Random.Range(1, allCellsUsedByGeneratedDungeon.Count - 2);
-        allCellsUsedByGeneratedDungeon[randomCellForShop].RoomType = RoomType.Shop;
+        int randomCellForShop = Random.Range(1, pathFromStartToGoal.Count - 2);
+        pathFromStartToGoal[randomCellForShop].RoomType = RoomType.Shop;
         for (int i = 0; i < allCellsUsedByGeneratedDungeon.Count; i++)
         {
             GetComponent<RoomGen>().createRoomForCell(allCellsUsedByGeneratedDungeon[i]);

@@ -93,7 +93,8 @@ class SlimeAttack : IState
         Vector3 reference = chargeDirection;
         while (chargeTimer < chargeDuration)
         {
-            chargeDirection = Vector3.Lerp(reference, Vector3.zero,chargeTimer/chargeDuration);
+            Debug.DrawLine(_transform.position, _transform.position+ chargeDirection, Color.red);
+            chargeDirection = Vector3.Slerp(reference, Vector3.zero,chargeTimer/chargeDuration);
             chargeTimer += Time.deltaTime;
             yield return null;
         }
@@ -127,7 +128,7 @@ class SlimeAttack : IState
 
     public void Tick()
     {
-        _controller.Move(chargeDirection * Time.deltaTime * chargePower);
+        _controller.Move(_transform.TransformDirection(chargeDirection * Time.deltaTime * chargePower));
         _transform.position = new Vector3(_transform.position.x, 2, _transform.position.z);
 
     }

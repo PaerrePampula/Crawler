@@ -12,7 +12,7 @@ class BuffItemType : IPlayerItemableBehaviourType
         BuffItemScriptable buffItemScriptable = (BuffItemScriptable)item.ItemScriptable;
         Player.Singleton.GivePlayerItem(item);
         if (item.ItemScriptable.PickupSound != null)
-        Player.Singleton.GetComponent<AudioSource>().PlayOneShot(item.ItemScriptable.PickupSound);
+            Player.Singleton.GetComponent<AudioSource>().PlayOneShot(item.ItemScriptable.PickupSound);
         Player.Singleton.BuffStatModifier(buffItemScriptable.StatToBuff, buffItemScriptable.BuffAmountPercentage);
     }
 }

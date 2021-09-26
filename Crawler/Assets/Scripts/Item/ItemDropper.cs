@@ -79,6 +79,7 @@ class ItemDropper : MonoBehaviour
                 if (hPItemAndSpawnChances[middle].MinimumValue < randomChanceForSpecificHealthItem && hPItemAndSpawnChances[middle].MaximumValue > randomChanceForSpecificHealthItem)
                 {
                     chosenIndex = middle;
+                    break;
                 }
                 else if (hPItemAndSpawnChances[middle].MinimumValue > randomChanceForSpecificHealthItem) maxNumber = middle - 1;
                 else
@@ -99,6 +100,7 @@ class ItemDropper : MonoBehaviour
         for (int i = 0; i < hPItemAndSpawnChances.Count; i++)
         {
             sumOfWeights += hPItemAndSpawnChances[i].Weight;
+            hPItemAndSpawnChances[i].MaximumValue = hPItemAndSpawnChances[i].Weight;
         }
         normalizingValue = normalizingValue / sumOfWeights;
         for (int i = 0; i < hPItemAndSpawnChances.Count; i++)

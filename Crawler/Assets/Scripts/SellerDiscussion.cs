@@ -27,7 +27,8 @@ public class SellerDiscussion : MonoBehaviour
 
     private void discussGamble(bool success)
     {
-        characterText.InvokeTextDisplay(chooseRandomFromIdentifierForChat("Gambling_Success"));
+        string state = (success) ? "Gambling_Success" : "Buy_Failure";
+        characterText.InvokeTextDisplay(chooseRandomFromIdentifierForChat(state));
     }
 
     private void sayGoodByeToPlayer()

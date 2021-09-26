@@ -8,6 +8,7 @@ public class FallDownHurtBox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<TransformTracker>() != null)
         other.GetComponent<TransformTracker>().returnPlayerToSafety();
     }
     // Start is called before the first frame update
