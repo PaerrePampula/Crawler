@@ -2,27 +2,30 @@
 using UnityEngine;
 
 
-    public class PlayerEconomy : MonoBehaviour
+public class PlayerEconomy : MonoBehaviour
+{
+    public delegate void MoneyChange(int newAmount);
+    public static event MoneyChange onMoneyChange;
+    static PlayerEconomy singleton;
+    public static PlayerEconomy Singleton
     {
-        static PlayerEconomy singleton;
-        public static PlayerEconomy Singleton
+        get
         {
-            get
-            {
-                if (singleton == null) singleton = FindObjectOfType<PlayerEconomy>();
-                return singleton;
-            }
-        }
-        int playerMoney;
-        public bool ChangePlayerMoney(int amount)
-        {
-            if (playerMoney + amount < 0) return false;
-            //Past the fail state, change money
-            playerMoney += amount;
-            return true;
-        }
-        public int GetPlayerMoney()
-        {
-            return playerMoney;
+            if (singleton == null) singleton = FindObjectOfType<PlayerEconomy>();
+            return singleton;
         }
     }
+    int playerMoney;
+    public bool ChangePlayerMoney(int amount)
+    {
+        if (playerMoney + amount < 0) return false;
+        //Past the fail state, change money
+        playerMoney += amount;
+        onMoneyChange?.Invoke(playerMoney);
+        return true;
+    }
+    public int GetPlayerMoney()
+    {
+        return playerMoney;
+    }
+}
