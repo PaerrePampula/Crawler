@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chaseRange: 5
-  _reChaseRange: 6
+  _reChaseRange: 9
   _moveSpeed: 1
   _layersToCastAgainstOnAttack:
     serializedVersion: 2
@@ -419,7 +419,8 @@ MonoBehaviour:
     chargePower: 3
     chargeHbRadius: 1
     meleeDamage: 1
-    actionDelay: 1.5
+    actionDelayMinimum: 0.6
+    actionDelayMaximum: 1
     attackingAudioClip: {fileID: 8300000, guid: d828d8306c0ddf8428836ed350ae6d42, type: 3}
   stateText: {fileID: 4716783017199750482}
 --- !u!82 &1136941065991055061

@@ -16,7 +16,8 @@ class SlimeAttack : IState
     [SerializeField] float chargePower = 2f;
     [SerializeField] float chargeHbRadius = 1f;
     [SerializeField] float meleeDamage = 1f;
-    [SerializeField] float actionDelay = 0.25f;
+    [SerializeField] float actionDelayMinimum = 0.25f;
+    [SerializeField] float actionDelayMaximum = 0.85f;
     [SerializeField] AudioClip attackingAudioClip;
     bool playerDodgedAttackSuccessfully = false;
     Vector3 chargeDirection;
@@ -29,6 +30,7 @@ class SlimeAttack : IState
     Coroutine attackRoutine;
     Coroutine chargeRoutine;
     Coroutine windupRoutine;
+
     bool readyToChangeState = true;
     public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask, Animator animator, AudioSource audioSource = null)
     {
@@ -44,7 +46,8 @@ class SlimeAttack : IState
     public void OnStateEnter()
     {
         readyToChangeState = false;
-        windupRoutine = _baseMook.StartCoroutine(attackWindup());
+        float randomDelay = UnityEngine.Random.Range(actionDelayMinimum, actionDelayMaximum);
+        windupRoutine = _baseMook.StartCoroutine(attackWindup(randomDelay));
 
     }
 
@@ -54,17 +57,18 @@ class SlimeAttack : IState
         if (attackRoutine != null) _baseMook.StopCoroutine(attackRoutine);
         if (chargeRoutine != null) _baseMook.StopCoroutine(chargeRoutine);
         if (windupRoutine != null) _baseMook.StopCoroutine(windupRoutine);
+        chargeDirection = Vector3.zero;
     }
     public void SlimeCharge()
     {
         chargeRoutine = _baseMook.StartCoroutine(chargeAttack());
         attackRoutine = _baseMook.StartCoroutine(chargeMove());
     }
-    IEnumerator attackWindup()
+    IEnumerator attackWindup(float delay)
     {
         _animator.SetTrigger("slime-windup");
         float actionDelaytimer = 0;
-        while (actionDelaytimer <= actionDelay)
+        while (actionDelaytimer <= delay)
         {
             actionDelaytimer += Time.deltaTime;
             yield return null;
@@ -92,12 +96,8 @@ class SlimeAttack : IState
             playerDodgedAttackSuccessfully = false;
             onAttackWhiff?.Invoke();
         }
-        float actionDelaytimer = 0;
-        while (actionDelaytimer <= actionDelay)
-        {
-            actionDelaytimer += Time.deltaTime;
-            yield return null;
-        }
+
+
         readyToChangeState = true;
 
 

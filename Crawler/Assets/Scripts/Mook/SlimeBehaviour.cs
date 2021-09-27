@@ -45,9 +45,9 @@ class SlimeBehaviour : MonoBehaviour
         slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack,GetComponentInChildren<Animator>() , _audioSource);
         //Add transistions for statemachine
         _stateMachine.AddTransistion(slimeAttack, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
-        _stateMachine.AddTransistion(chaseTarget, slimeAttack, targetTooFar(PlayerController.Singleton.transform, transform), true);
+        _stateMachine.AddTransistion(chaseTarget, slimeAttack, targetTooFar(PlayerController.Singleton.transform, transform));
         _stateMachine.AddTransistion(attackWander, slimeAttack, targetReached(PlayerController.Singleton.transform, transform), true);
-        _stateMachine.AddTransistion(slimeAttack, attackWander, wanderComplete(attackWander));
+        _stateMachine.AddTransistion(chaseTarget, attackWander, wanderComplete(attackWander));
         //Set default state to chase player in state machine
         _stateMachine.SetState(chaseTarget);
     }
