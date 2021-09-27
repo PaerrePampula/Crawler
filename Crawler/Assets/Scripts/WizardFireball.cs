@@ -2,19 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Controls the actual fireball shot by the wizards
+/// </summary>
 public class WizardFireball : MonoBehaviour
 {
     [SerializeField] GameObject hitEffect;
     Rigidbody rigidbody;
     LayerMask hitLayerMask;
     float _damage;
-    float _fireballSpeed;
+
     public void InitializeFireball(Vector3 fireDir, LayerMask _hitLayerMask, float damage, float fireballSpeed)
     {
         hitLayerMask = _hitLayerMask;
         _damage = damage;
-        _fireballSpeed = fireballSpeed;
         rigidbody.AddForce(fireDir * fireballSpeed);
     }
     private void OnEnable()

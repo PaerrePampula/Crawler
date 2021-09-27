@@ -23,26 +23,28 @@ class SlimeAttack : IState
     CharacterController _controller;
     Transform _transform;
     BaseMook _baseMook;
+    Animator _animator;
     LayerMask _playerMask;
     AudioSource _audioSource;
     Coroutine attackRoutine;
     Coroutine chargeRoutine;
-
+    Coroutine windupRoutine;
     bool readyToChangeState = true;
-    public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask, AudioSource audioSource = null)
+    public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask, Animator animator, AudioSource audioSource = null)
     {
         _controller = controller;
         _playerMask = playerMask;
         _baseMook = baseMook;
         _transform = transform;
         _playerMask = playerMask;
+        _animator = animator;
         _audioSource = audioSource;
     }
 
     public void OnStateEnter()
     {
         readyToChangeState = false;
-        SlimeCharge();
+        windupRoutine = _baseMook.StartCoroutine(attackWindup());
         _audioSource?.PlayOneShot(attackingAudioClip);
     }
 
@@ -51,14 +53,27 @@ class SlimeAttack : IState
         readyToChangeState = true;
         if (attackRoutine != null) _baseMook.StopCoroutine(attackRoutine);
         if (chargeRoutine != null) _baseMook.StopCoroutine(chargeRoutine);
+        if (windupRoutine != null) _baseMook.StopCoroutine(windupRoutine);
     }
     public void SlimeCharge()
     {
         chargeRoutine = _baseMook.StartCoroutine(chargeAttack());
         attackRoutine = _baseMook.StartCoroutine(chargeMove());
     }
+    IEnumerator attackWindup()
+    {
+        _animator.SetTrigger("slime-windup");
+        float actionDelaytimer = 0;
+        while (actionDelaytimer <= actionDelay)
+        {
+            actionDelaytimer += Time.deltaTime;
+            yield return null;
+        }
+        SlimeCharge();
+    }
     IEnumerator chargeAttack()
     {
+        _animator.SetTrigger("slime-attack");
         float chargeAttackTimer = 0;
 
         while (chargeAttackTimer < chargeDuration)
@@ -83,7 +98,7 @@ class SlimeAttack : IState
             yield return null;
         }
         readyToChangeState = true;
-        SlimeCharge();
+
 
     }
     IEnumerator chargeMove()

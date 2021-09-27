@@ -29,6 +29,7 @@ class SlimeBehaviour : MonoBehaviour
     AudioSource _audioSource;
     //Ai for chase sequence (player too far etc.)
     ChaseTarget chaseTarget;
+    RandomWander attackWander;
     [SerializeField] TextMeshPro stateText;
     #endregion
 
@@ -39,19 +40,18 @@ class SlimeBehaviour : MonoBehaviour
         _baseMook = GetComponent<BaseMook>();
         _audioSource = GetComponent<AudioSource>();
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
-
+        attackWander = new RandomWander(GetComponent<CharacterController>(), _baseMook);
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
-        slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack, _audioSource);
+        slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack,GetComponentInChildren<Animator>() , _audioSource);
         //Add transistions for statemachine
         _stateMachine.AddTransistion(slimeAttack, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
         _stateMachine.AddTransistion(chaseTarget, slimeAttack, targetTooFar(PlayerController.Singleton.transform, transform), true);
+        _stateMachine.AddTransistion(attackWander, slimeAttack, targetReached(PlayerController.Singleton.transform, transform), true);
+        _stateMachine.AddTransistion(slimeAttack, attackWander, wanderComplete(attackWander));
         //Set default state to chase player in state machine
         _stateMachine.SetState(chaseTarget);
     }
-    private void OnEnable()
-    {
 
-    }
     private void OnDisable()
     {
         chaseTarget.OnTargetReachedStateChange -= updateChaseState;
@@ -73,5 +73,6 @@ class SlimeBehaviour : MonoBehaviour
 
     Func<bool> targetReached(Transform target, Transform thisTransform) => () => Math.Abs(Vector3.Distance(target.position, thisTransform.position)) < getChaseRange();
     Func<bool> targetTooFar(Transform target, Transform thisTransform) => () => !targetReached(target, thisTransform).Invoke();
+    Func<bool> wanderComplete(RandomWander wander) => () => wander.WanderIsDone();
 }
 

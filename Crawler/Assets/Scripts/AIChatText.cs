@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+/// <summary>
+/// An asset for all possible dialogue for a character
+/// a single text asset is accessed using the identifier.
+/// </summary>
 [CreateAssetMenu (menuName = "NPC Dialogue")]
 class AIChatText : ScriptableObject
 {

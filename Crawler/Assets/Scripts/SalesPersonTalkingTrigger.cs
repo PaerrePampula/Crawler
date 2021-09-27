@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// A trigger, that makes the seller greet the player character
+/// </summary>
 public class SalesPersonTalkingTrigger : MonoBehaviour
 {
     public delegate void OnPersonApproachTrigger();

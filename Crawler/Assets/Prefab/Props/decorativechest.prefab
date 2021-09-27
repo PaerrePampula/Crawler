@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2273717074074161028}
   - component: {fileID: 4064827315639466830}
   - component: {fileID: 7124468227658257625}
+  - component: {fileID: 2311942144151119752}
   m_Layer: 0
   m_Name: decorativechest
   m_TagString: Untagged
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: -0.50000006, w: 0.49999997}
   m_LocalPosition: {x: -0.8261839, y: 1.5212144, z: 4.14037}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,3 +99,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9709492, y: 2.8519874, z: 1.4944041}
   m_Center: {x: 0.0000009834766, y: -0.00000022208619, z: 0.7259883}
+--- !u!208 &2311942144151119752
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551806612395334299}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.9850001, y: 1.4260001, z: 0.74700004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.726}
+  m_TimeToStationary: 0.5

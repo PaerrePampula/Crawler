@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Controls all the mechanics for the seller characters' speech
+/// </summary>
 public class SellerDiscussion : MonoBehaviour
 {
     bool hasMetPlayer = false;
@@ -58,5 +60,6 @@ public class SellerDiscussion : MonoBehaviour
     {
         SalesPersonTalkingTrigger.onPersonApproach -= greetPlayer;
         SalesPersonTalkingTrigger.onPersonLeave -= sayGoodByeToPlayer;
+        Seller.onGamble -= discussGamble;
     }
 }

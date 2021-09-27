@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Controls all the actual selling mechanics of the seller character
+/// </summary>
 public class Seller : MonoBehaviour, IPlayerInteractable
 {
     [SerializeField] string buyItem;
@@ -20,15 +22,5 @@ public class Seller : MonoBehaviour, IPlayerInteractable
         return buyItem;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

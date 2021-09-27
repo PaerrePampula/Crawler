@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Simply controls the Health ui with event driven logic.
+/// </summary>
 public class PlayerHealthUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI currentHpText;

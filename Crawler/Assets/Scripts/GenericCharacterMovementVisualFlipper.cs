@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Flips any character to face the last movement direction on the x-axis (only on sprite level)
+/// </summary>
 public class GenericCharacterMovementVisualFlipper : MonoBehaviour
 {
     SpriteRenderer m_SpriteRenderer;

@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-
+/// <summary>
+/// Simply tracks the player money, and also changes it once needed
+/// </summary>
 public class PlayerEconomy : MonoBehaviour
 {
     public delegate void MoneyChange(int newAmount);

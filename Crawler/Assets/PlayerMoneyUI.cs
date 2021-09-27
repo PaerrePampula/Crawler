@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+/// <summary>
+/// Simply displays player money using event driven behaviour on the UI
+/// </summary>
 public class PlayerMoneyUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI playerMoney;

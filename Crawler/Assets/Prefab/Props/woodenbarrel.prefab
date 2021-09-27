@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1421454980359478199}
   - component: {fileID: 3773720237713239933}
   - component: {fileID: 6205008814083736464}
+  - component: {fileID: 6348159145744547168}
   m_Layer: 0
   m_Name: woodenbarrel
   m_TagString: Untagged
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: -0.50000006, w: 0.49999997}
   m_LocalPosition: {x: -4.116561, y: 1.5000005, z: -0.6542554}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -96,3 +99,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.52072054
   m_Center: {x: -0.00000014901161, y: -0.0000011635257, z: 0.5207205}
+--- !u!208 &6348159145744547168
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413182059667394216}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.50100005, y: 0.50100005, z: 0.521}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.521}
+  m_TimeToStationary: 0.5
