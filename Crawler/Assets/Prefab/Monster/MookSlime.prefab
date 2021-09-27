@@ -371,7 +371,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 0.71
-  m_Radius: 0.37
+  m_Radius: 0.58
   m_SlopeLimit: 75
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -392,6 +392,10 @@ MonoBehaviour:
   damageEffect: {fileID: 2358425389147943458, guid: 5a806a0224cf7fe469b988662a37242a, type: 3}
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   _maxHP: 5
+  gravityForce: 5
+  mookMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &2013666211912055005
 MonoBehaviour:
   m_ObjectHideFlags: 0

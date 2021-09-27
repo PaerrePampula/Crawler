@@ -27,8 +27,10 @@ public class BaseMook : MonoBehaviour, IDamageable
     [SerializeField] float _maxHP = 3;
     float _hp;
     bool isInvulnerable = false;
-
-
+    CharacterController characterController;
+    float gravity;
+    [SerializeField] float gravityForce = 5;
+    [SerializeField] LayerMask mookMask;
     #endregion
 
     public float Hp
@@ -47,6 +49,8 @@ public class BaseMook : MonoBehaviour, IDamageable
             }
         }
     }
+
+    public float Gravity { get => gravity; set => gravity = value; }
 
     public bool ChangeHp(float damageAmount)
     {
@@ -84,8 +88,37 @@ public class BaseMook : MonoBehaviour, IDamageable
         {
             room.AddMookToRoom(this);
         }
+        characterController = GetComponent<CharacterController>();
+
+    }
+    private void Update()
+    {
+        ApplyGravity();
 
     }
 
+    private void ApplyGravity()
+    {
+        if (isCharacterGrounded() == false)
+        {
+            Gravity += gravityForce * -1 * Time.fixedDeltaTime;
+        }
+        else
+        {
+            Gravity = 0;
+        }
+    }
+
+    bool isCharacterGrounded()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, 0.8f, ~mookMask))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
