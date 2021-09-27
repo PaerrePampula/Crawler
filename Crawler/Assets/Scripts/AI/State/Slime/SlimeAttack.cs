@@ -45,7 +45,7 @@ class SlimeAttack : IState
     {
         readyToChangeState = false;
         windupRoutine = _baseMook.StartCoroutine(attackWindup());
-        _audioSource?.PlayOneShot(attackingAudioClip);
+
     }
 
     public void OnStateExit()
@@ -73,6 +73,7 @@ class SlimeAttack : IState
     }
     IEnumerator chargeAttack()
     {
+        _audioSource?.PlayOneShot(attackingAudioClip);
         _animator.SetTrigger("slime-attack");
         float chargeAttackTimer = 0;
 

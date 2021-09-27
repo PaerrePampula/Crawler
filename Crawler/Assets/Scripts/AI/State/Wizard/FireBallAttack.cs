@@ -19,6 +19,7 @@ public class FireBallAttack : IState
     [SerializeField] float fireballDamage;
     bool readyToChangeState = true;
     [SerializeField] AudioClip castingAudioClip;
+    [SerializeField] AudioClip telegraphingWindupSound;
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
     {
         _target = target;
@@ -29,10 +30,11 @@ public class FireBallAttack : IState
     }
     public void OnStateEnter()
     {
+        waitForAction = _baseMook.StartCoroutine(actionWait());
         _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
         //Only trigger the animation to play, and also subscribe an event to watch for state change on the animation
         TriggerAttack();
-        waitForAction = _baseMook.StartCoroutine(actionWait());
+
     }
 
     private void TriggerAttack()
@@ -40,7 +42,7 @@ public class FireBallAttack : IState
         //only triggers the animator and sound, animation triggers event
         //which this system subscribes to.
         _animator.SetTrigger(attackAnimationTriggerName);
-
+        _audioSource?.PlayOneShot(telegraphingWindupSound);
         readyToChangeState = false;
     }
 
