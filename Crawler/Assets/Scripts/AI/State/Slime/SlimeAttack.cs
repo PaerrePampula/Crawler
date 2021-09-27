@@ -143,8 +143,9 @@ class SlimeAttack : IState
 
     public void Tick()
     {
-        _controller.Move(_transform.TransformDirection(chargeDirection * Time.deltaTime * chargePower));
-        _transform.position = new Vector3(_transform.position.x, 2, _transform.position.z);
+        Vector3 moveDir = new Vector3(chargeDirection.x, _baseMook.Gravity, chargeDirection.z);
+        _controller.Move(_transform.TransformDirection(moveDir * Time.deltaTime * chargePower));
+
 
     }
     //Needs to have waited the attack delay to transistion

@@ -18,6 +18,7 @@ public class GenericCharacterMovementVisualFlipper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (lastFramePos == transform.position) return;
         //So, if the character was further right last frame, meaning the character wandered left...
         if (lastFramePos.x > transform.position.x)
         {
