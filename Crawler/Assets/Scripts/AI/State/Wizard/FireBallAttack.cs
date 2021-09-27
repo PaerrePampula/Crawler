@@ -20,6 +20,8 @@ public class FireBallAttack : IState
     bool readyToChangeState = true;
     [SerializeField] AudioClip castingAudioClip;
     [SerializeField] AudioClip telegraphingWindupSound;
+    [SerializeField] float attackCycleWaitTimeMinimum;
+    [SerializeField] float attackCycleWaitTimeMaximum;
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
     {
         _target = target;
@@ -30,7 +32,8 @@ public class FireBallAttack : IState
     }
     public void OnStateEnter()
     {
-        waitForAction = _baseMook.StartCoroutine(actionWait());
+        float randomWait = Random.Range(attackCycleWaitTimeMinimum, attackCycleWaitTimeMaximum);
+        waitForAction = _baseMook.StartCoroutine(actionWait(randomWait));
         _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
         //Only trigger the animation to play, and also subscribe an event to watch for state change on the animation
         TriggerAttack();
@@ -54,11 +57,11 @@ public class FireBallAttack : IState
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
         readyToChangeState = true;
     }
-    IEnumerator actionWait()
+    IEnumerator actionWait(float timer)
     {
         while (true)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(timer);
 
             TriggerAttack();
         }
