@@ -40,13 +40,13 @@ public class FireBallAttack : IState
         //only triggers the animator and sound, animation triggers event
         //which this system subscribes to.
         _animator.SetTrigger(attackAnimationTriggerName);
-        _audioSource?.PlayOneShot(castingAudioClip);
+
         readyToChangeState = false;
     }
 
     private void AttackWithFireBall()
     {
-
+        _audioSource?.PlayOneShot(castingAudioClip);
         Vector3 projectileDirection = (_target.position - _baseMook.transform.position).normalized;
         GameObject go = GameObject.Instantiate(fireballPrefab, _baseMook.transform.position + projectileDirection, Quaternion.identity);
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
