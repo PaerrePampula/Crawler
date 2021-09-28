@@ -53,6 +53,15 @@ class ProceduralGeneration : MonoBehaviour
     public static event GenerationComplete onGenerationComplete;
     private void Start()
     {
+        if (Globals.GenerationSettings != null)
+        {
+            requiredDistanceBetweenStartRoomAndGoalRoom = Globals.GenerationSettings.MinDistanceToBoss;
+            maxDistanceBetweenStartRoomAndGoalRoom = Globals.GenerationSettings.MaxDistanceToBoss;
+            maximumMapHeight = Globals.GenerationSettings.MaxMapHeight;
+            maximumMapWidth = Globals.GenerationSettings.MaxMapWidth;
+            maxBranchingPathLength = Globals.GenerationSettings.MaxBranchingPathLength;
+            chanceForPathToBranch = Globals.GenerationSettings.ChanceForBranchingPathsToDiverge;
+        }
         ProcedurallyGenerateAMap();
     }
     private void Update()
