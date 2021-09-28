@@ -105,6 +105,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.086, y: 0, z: 0.813}
   m_TimeToStationary: 0.5
+--- !u!65 &191774778356773972
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971322821051819167}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0014226, y: 1.0014225, z: 1.0414408}
+  m_Center: {x: 0.000000029802322, y: -0.0000001788139, z: 0.5207204}
 --- !u!208 &1892363437856159550
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -121,19 +134,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.521}
   m_TimeToStationary: 0.5
---- !u!65 &191774778356773972
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4971322821051819167}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0014226, y: 1.0014225, z: 1.0414408}
-  m_Center: {x: 0.000000029802322, y: -0.0000001788139, z: 0.5207204}
 --- !u!65 &8862889171847995454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,6 +208,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.416}
   m_TimeToStationary: 0.5
+--- !u!65 &2488295322521298989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971322822098649449}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0014226, y: 1.0014225, z: 1.0414408}
+  m_Center: {x: 0.000000029802322, y: -0.0000001788139, z: 0.5207204}
 --- !u!208 &565901266775945631
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -224,19 +237,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.521}
   m_TimeToStationary: 0.5
---- !u!65 &2488295322521298989
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4971322822098649449}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0014226, y: 1.0014225, z: 1.0414408}
-  m_Center: {x: 0.000000029802322, y: -0.0000001788139, z: 0.5207204}
 --- !u!1 &5205253065818550335
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5205253066150204786
 Transform:
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 1d8bf36ebd00c75438b3c2c0fbbb2ef3, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 45151ee773517ae4b9b8bead59173965, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &5205253066214800269
 GameObject:
@@ -818,6 +818,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.13
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918463675614525 stripped
@@ -947,6 +951,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918463612128224 stripped
@@ -1008,6 +1016,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
       propertyPath: m_Name
       value: GroundCircle90Degrees
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 287644365a1c8864eacc456fb4502709, type: 3}
@@ -1071,6 +1083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGrate.10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
 --- !u!4 &5743918463536946053 stripped
@@ -1132,6 +1148,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
       propertyPath: m_Name
       value: GroundConvex
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
@@ -1195,6 +1215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
 --- !u!4 &5743918463420074445 stripped
@@ -1256,6 +1280,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -1319,6 +1347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGrate.5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
 --- !u!4 &5743918463411863304 stripped
@@ -1380,6 +1412,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -1451,6 +1487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall2m1mWidth.2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bea765ac7f17cea41bf02223638e85d3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea765ac7f17cea41bf02223638e85d3, type: 3}
 --- !u!4 &5743918463354755385 stripped
@@ -1512,6 +1552,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
       propertyPath: m_Name
       value: GroundConvex.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
@@ -1587,6 +1631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground.2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
 --- !u!4 &5743918463331595365 stripped
@@ -1648,6 +1696,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
       propertyPath: m_Name
       value: GroundConvex.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
@@ -1711,6 +1763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGrate.12
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
 --- !u!4 &5743918463299212179 stripped
@@ -1772,6 +1828,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 128b492f7cd523348980eeedb284751f, type: 3}
       propertyPath: m_Name
       value: wallPillar.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 128b492f7cd523348980eeedb284751f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128b492f7cd523348980eeedb284751f, type: 3}
@@ -2124,6 +2184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground3.2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
 --- !u!4 &5743918463159800619 stripped
@@ -2185,6 +2249,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
       propertyPath: m_Name
       value: Ground3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
@@ -2248,6 +2316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGrate.18
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
 --- !u!4 &5743918463097184838 stripped
@@ -2309,6 +2381,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3893cf96d5766cd4884e41f2c98638e0, type: 3}
       propertyPath: m_Name
       value: Ground1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3893cf96d5766cd4884e41f2c98638e0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3893cf96d5766cd4884e41f2c98638e0, type: 3}
@@ -2450,6 +2526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground.5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
 --- !u!4 &5743918462936442933 stripped
@@ -2512,6 +2592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.11
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918462891825419 stripped
@@ -2573,6 +2657,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
       propertyPath: m_Name
       value: GroundCircle90Degrees.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 287644365a1c8864eacc456fb4502709, type: 3}
@@ -2702,6 +2790,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -2851,6 +2943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
 --- !u!4 &5743918462832663249 stripped
@@ -2912,6 +3008,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -3048,6 +3148,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -3251,6 +3355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground.4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
 --- !u!4 &5743918462648018916 stripped
@@ -3312,6 +3420,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0a4382b2a1369884b9e2d247803c6c65, type: 3}
       propertyPath: m_Name
       value: 2mPillar.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a4382b2a1369884b9e2d247803c6c65, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a4382b2a1369884b9e2d247803c6c65, type: 3}
@@ -3379,6 +3491,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -3516,6 +3632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGrate.7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
 --- !u!4 &5743918462509362862 stripped
@@ -3577,6 +3697,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -3640,6 +3764,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground3.8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
 --- !u!4 &5743918462434695276 stripped
@@ -3701,6 +3829,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
       propertyPath: m_Name
       value: GroundCircle90Degrees.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 287644365a1c8864eacc456fb4502709, type: 3}
@@ -3764,6 +3896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground3.7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
 --- !u!4 &5743918462432448866 stripped
@@ -3825,6 +3961,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -3888,6 +4028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918462448484629 stripped
@@ -3949,6 +4093,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -4012,6 +4160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGrate.14
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
 --- !u!4 &5743918462425449926 stripped
@@ -4073,6 +4225,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 128b492f7cd523348980eeedb284751f, type: 3}
       propertyPath: m_Name
       value: wallPillar
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 128b492f7cd523348980eeedb284751f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128b492f7cd523348980eeedb284751f, type: 3}
@@ -4147,6 +4303,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
       propertyPath: m_Name
       value: Ground.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
@@ -4271,6 +4431,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
       propertyPath: m_Name
       value: Ground3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
@@ -4463,6 +4627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918462259207421 stripped
@@ -4524,6 +4692,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -4662,6 +4834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall2m1mWidth
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bea765ac7f17cea41bf02223638e85d3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea765ac7f17cea41bf02223638e85d3, type: 3}
 --- !u!4 &5743918462203560281 stripped
@@ -4723,6 +4899,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
       propertyPath: m_Name
       value: GroundConvex.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
@@ -4860,6 +5040,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wallPillar.2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 128b492f7cd523348980eeedb284751f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128b492f7cd523348980eeedb284751f, type: 3}
 --- !u!4 &5743918462144733831 stripped
@@ -4922,6 +5106,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wallPillar.1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 128b492f7cd523348980eeedb284751f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128b492f7cd523348980eeedb284751f, type: 3}
 --- !u!4 &5743918462155558478 stripped
@@ -4983,6 +5171,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
       propertyPath: m_Name
       value: GroundConvex.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
@@ -5120,6 +5312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sewergrate.1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dff4cbd040401844ab51c9e14161d84, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dff4cbd040401844ab51c9e14161d84, type: 3}
 --- !u!4 &5743918462103459913 stripped
@@ -5248,6 +5444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918462067476461 stripped
@@ -5310,6 +5510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918462011042108 stripped
@@ -5371,6 +5575,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0a4382b2a1369884b9e2d247803c6c65, type: 3}
       propertyPath: m_Name
       value: 2mPillar
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a4382b2a1369884b9e2d247803c6c65, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a4382b2a1369884b9e2d247803c6c65, type: 3}
@@ -5438,6 +5646,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -5508,6 +5720,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bea765ac7f17cea41bf02223638e85d3, type: 3}
       propertyPath: m_Name
       value: Wall2m1mWidth.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bea765ac7f17cea41bf02223638e85d3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea765ac7f17cea41bf02223638e85d3, type: 3}
@@ -5641,6 +5857,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -5926,6 +6146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground3.1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
 --- !u!4 &5743918461784264961 stripped
@@ -6053,6 +6277,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
       propertyPath: m_Name
       value: GroundGrate.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
@@ -6190,6 +6418,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground3.6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
 --- !u!4 &5743918461704929386 stripped
@@ -6251,6 +6483,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3893cf96d5766cd4884e41f2c98638e0, type: 3}
       propertyPath: m_Name
       value: Ground1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3893cf96d5766cd4884e41f2c98638e0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3893cf96d5766cd4884e41f2c98638e0, type: 3}
@@ -6388,6 +6624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGrate.1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc989e6170d8ba04db0e23e93461fa57, type: 3}
 --- !u!4 &5743918461667796440 stripped
@@ -6450,6 +6690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918461672490147 stripped
@@ -6511,6 +6755,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
       propertyPath: m_Name
       value: GroundCircle90Degrees.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 287644365a1c8864eacc456fb4502709, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 287644365a1c8864eacc456fb4502709, type: 3}
@@ -6648,6 +6896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundConvex.1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11020dda3bcaff64cbca19eda946428c, type: 3}
 --- !u!4 &5743918461658937784 stripped
@@ -6710,6 +6962,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground3.3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
 --- !u!4 &5743918461621453685 stripped
@@ -6771,6 +7027,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
       propertyPath: m_Name
       value: Ground3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e641125caa3ee4644afe604d8406788f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e641125caa3ee4644afe604d8406788f, type: 3}
@@ -6895,6 +7155,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2dff4cbd040401844ab51c9e14161d84, type: 3}
       propertyPath: m_Name
       value: sewergrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dff4cbd040401844ab51c9e14161d84, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dff4cbd040401844ab51c9e14161d84, type: 3}

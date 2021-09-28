@@ -27,6 +27,8 @@ public class DungeonMap : MonoBehaviour
     [SerializeField] GameObject endNode;
     [SerializeField] GameObject startNode;
     [SerializeField] GameObject storeNode;
+    [SerializeField] GameObject playerIcon;
+    GameObject instantiatedPlayerIcon;
     [SerializeField] Transform mapParent;
     [SerializeField] AudioClip mapOpenSound;
     AudioSource _audioSource;
@@ -40,9 +42,21 @@ public class DungeonMap : MonoBehaviour
     private void OnEnable()
     {
         ProceduralGeneration.onGenerationComplete += createMap;
+        CurrentRoomManager.onPlayerRoomSet += setPlayerIconToCurrentLocation;
+        instantiatedPlayerIcon = Instantiate(playerIcon);
+
     }
+
+    private void setPlayerIconToCurrentLocation(Room setRoom)
+    {
+        instantiatedPlayerIcon.transform.SetParent(dungeonCells[new Vector2( setRoom.Cell.X, setRoom.Cell.Y)].transform, false);
+        instantiatedPlayerIcon.SetActive(true);
+
+    }
+
     private void OnDisable()
     {
+        CurrentRoomManager.onPlayerRoomSet -= setPlayerIconToCurrentLocation;
         ProceduralGeneration.onGenerationComplete -= createMap;
     }
     private void createMap(List<Cell> cellsInDungeon)
