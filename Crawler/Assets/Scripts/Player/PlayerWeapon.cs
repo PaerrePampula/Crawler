@@ -107,6 +107,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             float totalDamage = playerAttacks[currentAttackIndex].Damage + Player.Singleton.getBonusDamage(playerAttacks[currentAttackIndex].Damage);
             hitColliders[i].GetComponent<BaseMook>().ChangeHp(-totalDamage);
+            audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
             KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
             //Output all of the collider names
             Debug.Log("Hit : " + hitColliders[i].name + i);
@@ -201,6 +202,7 @@ class PlayerAttack
     [SerializeField] Vector3 hitboxScale = new Vector3();
     [Header ("FX")]
     [SerializeField] AudioClip swingWeaponSoundEffect;
+    [SerializeField] AudioClip characterHitSoundEffect;
     [Header("Sprite settings")]
 
     [SerializeField] GameObject swingSprite;
@@ -220,4 +222,5 @@ class PlayerAttack
     public bool SpriteFlipOnY { get => spriteFlipOnY; set => spriteFlipOnY = value; }
     public float AttackPlayerPushForwardTime { get => attackPlayerPushForwardTime; set => attackPlayerPushForwardTime = value; }
     public float AttackTargetHitPushForceMultiplier { get => attackTargetHitPushForceMultiplier; set => attackTargetHitPushForceMultiplier = value; }
+    public AudioClip CharacterHitSoundEffect { get => characterHitSoundEffect; set => characterHitSoundEffect = value; }
 }

@@ -23,6 +23,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     [Header("VFX")]
     [SerializeField] GameObject damageEffect;
     [SerializeField] GameObject dieEffect;
+    [SerializeField] AudioClip mookDeath;
 
 
     [Header("RPG parameters")]
@@ -72,6 +73,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     {
         //TODO: Animation in own class (some sort of animation manager).
         //TODO: Might also be its own class, loot has nothing to with AI
+        GlobalAudioSource.Singleton.PlaySound(mookDeath);
         onMookDeath?.Invoke();
         onMookPossibleItemDrop?.Invoke(transform.position);
         Instantiate(dieEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
