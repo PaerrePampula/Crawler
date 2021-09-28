@@ -35,6 +35,7 @@ public class DungeonMap : MonoBehaviour
     float mapZoomAmount = 1;
     float mapCellSize = 50;
     bool mapOpen = false;
+    [SerializeField] float mapPanStrength = 5f;
     Dictionary<Vector2, MapCell> dungeonCells = new Dictionary<Vector2, MapCell>();
     private void OnEnable()
     {
@@ -121,8 +122,9 @@ public class DungeonMap : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            mousePos = Input.mousePosition;
-            mapParent.transform.position = mapParent.transform.position - (oldMousePos - mousePos);
+            mousePos = Input.mousePosition ;
+            mapParent.transform.position =mapParent.transform.position - (oldMousePos - mousePos) * mapPanStrength;
+
         }
     }
 

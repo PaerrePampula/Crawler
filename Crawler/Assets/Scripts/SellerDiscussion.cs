@@ -19,6 +19,7 @@ public class SellerDiscussion : MonoBehaviour
             sellerChats[sellerChatScriptable.chats[i].chatIdentifier] = sellerChatScriptable.chats[i].chatTexts;
         }
         characterText = GetComponent<CharacterTextBox>();
+        characterText.InitializeSpecialSounds(sellerChatScriptable.specialChatSoundsForCharacter);
     }
     private void OnEnable()
     {

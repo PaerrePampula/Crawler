@@ -12,6 +12,7 @@ using UnityEngine;
 class AIChatText : ScriptableObject
 {
     public List<Chat> chats = new List<Chat>();
+    public SpecialChatSound[] specialChatSoundsForCharacter;
 }
 [Serializable]
 class Chat
@@ -20,4 +21,9 @@ class Chat
     [TextArea]
     public List<string> chatTexts;
 }
-
+[Serializable]
+public class SpecialChatSound
+{
+    public string characterIdentifier;
+    public AudioClip specialSound;
+}

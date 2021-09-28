@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MapCell : MonoBehaviour
 {
     bool discoveredByPlayer;
+    bool visitedByPlayer = false;
     //Actual cell on the procedural map
     Cell _cell;
     Image cellImage;
@@ -20,6 +21,8 @@ public class MapCell : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+
     }
     public void Initialize(Cell cell)
     {
@@ -38,6 +41,7 @@ public class MapCell : MonoBehaviour
         {
             discoverMapCell();
             cellImage.color = Color.red;
+            visitedByPlayer = true;
             foreach (Cell cell in Cell.NeighborCells.Values)
             {
                 //Avoid having to find the actual mapcells from some collection by just invoking 
@@ -47,7 +51,15 @@ public class MapCell : MonoBehaviour
         }
         else
         {
-            cellImage.color = originalColor;
+            if (!visitedByPlayer)
+            {
+                cellImage.color = new Color32((byte)(originalColor.r - 125), (byte)(originalColor.g - 125), (byte)(originalColor.b - 125), 255);
+            }
+            else
+            {
+                cellImage.color = originalColor;
+            }
+
         }
     }
 
@@ -62,6 +74,7 @@ public class MapCell : MonoBehaviour
     void discoverMapCell()
     {
         discoveredByPlayer = true;
+
         gameObject.SetActive(true);
     }
 }

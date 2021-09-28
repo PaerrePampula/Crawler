@@ -9,8 +9,16 @@ public class CharacterTextBox : MonoBehaviour
     Coroutine rollingTextRoutine;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _characterTalkingSoundEffect;
+    Dictionary<string, AudioClip> specialSounds = new Dictionary<string, AudioClip>();
     // Start is called before the first frame update
 
+    public void InitializeSpecialSounds(SpecialChatSound[] specialChatSounds)
+    {
+        for (int i = 0; i < specialChatSounds.Length; i++)
+        {
+            specialSounds[specialChatSounds[i].characterIdentifier] = specialChatSounds[i].specialSound;
+        }
+    }
 
     public void InvokeTextDisplay(string text)
     {
@@ -28,9 +36,13 @@ public class CharacterTextBox : MonoBehaviour
         {
             float delay = referenceDelay;
             //Every third letter...
-            if (i%3 == 0 || i == 0 || text[i].ToString() == ".")
+            if (specialSounds.ContainsKey(text[i].ToString()))
             {
-                _audioSource?.PlayOneShot(_characterTalkingSoundEffect);
+                _audioSource?.PlayOneShot(specialSounds[text[i].ToString()]);
+            }
+            else if (i%3 == 0 || i == 0 || text[i].ToString() == ".")
+            {
+               _audioSource?.PlayOneShot(_characterTalkingSoundEffect);
             }
             if (text[i].ToString() == ".")
             {
