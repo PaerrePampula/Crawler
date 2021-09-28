@@ -826,12 +826,14 @@ MonoBehaviour:
     maxMapWidth: 12
     maxMapHeight: 12
     maxBranchingPathLength: 5
+    chanceForBranchingPathsToDiverge: 45
   shortSettings:
     maxDistanceToBoss: 8
     minDistanceToBoss: 4
     maxMapWidth: 8
     maxMapHeight: 8
     maxBranchingPathLength: 2
+    chanceForBranchingPathsToDiverge: 75
 --- !u!1 &337927728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,12 +2961,14 @@ MonoBehaviour:
     maxMapWidth: 0
     maxMapHeight: 0
     maxBranchingPathLength: 0
+    chanceForBranchingPathsToDiverge: 0
   shortSettings:
     maxDistanceToBoss: 0
     minDistanceToBoss: 0
     maxMapWidth: 0
     maxMapHeight: 0
     maxBranchingPathLength: 0
+    chanceForBranchingPathsToDiverge: 0
 --- !u!224 &820201564
 RectTransform:
   m_ObjectHideFlags: 0
