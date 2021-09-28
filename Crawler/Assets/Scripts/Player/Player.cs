@@ -74,6 +74,13 @@ class Player : MonoBehaviour,  IDamageable
             onPlayerDamaged?.Invoke();
 
         }
+        else
+        {
+            if (Hp == MaxHp)
+            {
+                return false;
+            }
+        }
         Hp += changeAmount;
 
         return true;

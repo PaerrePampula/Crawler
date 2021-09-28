@@ -11,6 +11,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     #region events
     public delegate void MookDamaged(float amount, Vector3 location);
     public static event MookDamaged onMookDamaged;
+    public delegate void MookInstanceDamaged(float newHP);
+    public event MookInstanceDamaged onMookInstanceDamaged;
     public delegate void MookDeath();
     public event MookDeath onMookDeath;
     public delegate void MookDeathSpawnItem(Vector3 position);
@@ -51,6 +53,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     }
 
     public float Gravity { get => gravity; set => gravity = value; }
+    public float MaxHP { get => _maxHP; set => _maxHP = value; }
 
     public bool ChangeHp(float damageAmount)
     {
@@ -58,6 +61,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         {
             onMookDamaged?.Invoke(damageAmount, transform.position);
             Hp += damageAmount;
+            onMookInstanceDamaged?.Invoke(Hp);
             Instantiate(damageEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
             return true;
         }
@@ -78,7 +82,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     {
 
         //Set the unset hp to be the max hp of the character
-        Hp = _maxHP;
+        Hp = MaxHP;
 
     }
     private void Awake()

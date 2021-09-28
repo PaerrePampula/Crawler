@@ -10,8 +10,16 @@ public class Door : MonoBehaviour, IPlayerInteractable
     [SerializeField] NeighborType doorLocation;
     [SerializeField] string interactionText = "Open";
     [SerializeField] string lockedDoorText = "A magical curse prevents me from opening this!";
+
+    [SerializeField]
+    [TextArea]
+    string bossDoorText = "There is a super ominous skull above the door"
+        + "I should make sure that I am ready to move on, make sure that I am ready for a fight (Interact again to continue to room)";
+    bool bossDoor;
+    bool hasInteractedWithOnce;
     bool locked = false;
     [SerializeField] Transform lockVisual;
+    [SerializeField] GameObject bossDoorVisuals;
     Room room;
     // Start is called before the first frame update
     void Awake()
@@ -41,6 +49,12 @@ public class Door : MonoBehaviour, IPlayerInteractable
         if (room.getNeighbor(doorLocation) == null)
         {
             gameObject.SetActive(false);
+            return;
+        }
+        if (room.getNeighbor(doorLocation).RoomType == RoomType.BossBattle)
+        {
+            GameObject bossVisuals = Instantiate(bossDoorVisuals, transform);
+            bossDoor = true;
         }
     }
 
@@ -49,11 +63,21 @@ public class Door : MonoBehaviour, IPlayerInteractable
     {
         if (!locked)
         {
+            if (bossDoor)
+            {
+                if (!hasInteractedWithOnce)
+                {
+                    PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay(bossDoorText);
+                    hasInteractedWithOnce = true;
+                    return;
+                }
+            }
             //Declare an anonymous function and use it as the action parameter
             onTransistion?.Invoke(() => CurrentRoomManager.Singleton.setNewRoom(room.getNeighbor(doorLocation), doorLocation));
         }
         else
         {
+
             PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay(lockedDoorText);
         }
 
