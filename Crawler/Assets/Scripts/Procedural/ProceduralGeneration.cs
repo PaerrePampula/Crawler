@@ -45,6 +45,7 @@ class ProceduralGeneration : MonoBehaviour
     [SerializeField] int maxBranchingPathLength = 10;
     [Tooltip("Distance is measured in unity units.")]
     [SerializeField] float requiredDistanceBetweenStartRoomAndGoalRoom = 5;
+    [SerializeField] float maxDistanceBetweenStartRoomAndGoalRoom = 8;
     Vector2 goalSpace;
     Vector2 startSpace;
     #endregion
@@ -126,7 +127,7 @@ class ProceduralGeneration : MonoBehaviour
         //Prevent degenerate maps from being made with there being set minimum distance between goal and start
         //The next index of the list shall be the goal, but change the index if above isnt satisfied
         int indexForGoal = 1;
-        while (Vector2.Distance(allCellLocations[indexForGoal], startSpace) < requiredDistanceBetweenStartRoomAndGoalRoom)
+        while (Vector2.Distance(allCellLocations[indexForGoal], startSpace) < requiredDistanceBetweenStartRoomAndGoalRoom || Vector2.Distance(allCellLocations[indexForGoal], startSpace) > maxDistanceBetweenStartRoomAndGoalRoom)
         {
             indexForGoal++;
         }
