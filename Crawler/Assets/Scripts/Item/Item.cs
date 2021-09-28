@@ -22,10 +22,10 @@ public class Item
     IPlayerItemableBehaviourType itemable;
     int _itemCount = 1;
     public int ItemCount { get => _itemCount; set => _itemCount = value; }
-    public void DoItemPickupActionAccordingToItemType()
+    public bool DoItemPickupActionAccordingToItemType()
     {
         //Pass in this item class to do action according to the itemscriptable, which can be any 
         //Scriptable of type itemscriptable on the base level
-        itemable.DoItemPickupAction(this);
+        return itemable.DoItemPickupAction(this);
     }
 }

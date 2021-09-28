@@ -10,7 +10,7 @@ public class Door : MonoBehaviour, IPlayerInteractable
     [SerializeField] NeighborType doorLocation;
     [SerializeField] string interactionText = "Open";
     [SerializeField] string lockedDoorText = "A magical curse prevents me from opening this!";
-
+    [SerializeField] AudioClip openAudioClip;
     [SerializeField]
     [TextArea]
     string bossDoorText = "There is a super ominous skull above the door"
@@ -72,6 +72,8 @@ public class Door : MonoBehaviour, IPlayerInteractable
                     return;
                 }
             }
+
+            GlobalAudioSource.Singleton.PlaySound(openAudioClip);
             //Declare an anonymous function and use it as the action parameter
             onTransistion?.Invoke(() => CurrentRoomManager.Singleton.setNewRoom(room.getNeighbor(doorLocation), doorLocation));
         }

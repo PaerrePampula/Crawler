@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 1773754724}
   - component: {fileID: 1773754725}
   m_Layer: 7
-  m_Name: QuieterAudioSourceForText
+  m_Name: QuieterAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,7 +765,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.397
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5903,6 +5903,7 @@ GameObject:
   - component: {fileID: 5190365495908188723}
   - component: {fileID: 526691528517289846}
   - component: {fileID: 526691528517289849}
+  - component: {fileID: 5763848922570278114}
   m_Layer: 7
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -6013,6 +6014,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5763848922570278114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526691528517289844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5185e7a34092548848732e4169b3ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runSounds:
+  - {fileID: 8300000, guid: f476aa024652d994c8bcd54ff7ddaa87, type: 3}
+  - {fileID: 8300000, guid: 7eec036b5ff68c54585b90e72399ef46, type: 3}
+  audioSource: {fileID: 1773754725}
 --- !u!1 &526691528913608196
 GameObject:
   m_ObjectHideFlags: 0
@@ -6032,6 +6049,7 @@ GameObject:
   - component: {fileID: 8192644359578246542}
   - component: {fileID: 209074660}
   - component: {fileID: 569139271}
+  - component: {fileID: 928176473}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -6200,6 +6218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashEffect: {fileID: 2502881723631885059}
+  dashSound: {fileID: 8300000, guid: 5ed4eb6760fdac54aaf954ce4366b689, type: 3}
   movementSpeedMultiplier: 8
   gravityAccelerationSpeed: 9
   playerMask:
@@ -6331,6 +6350,18 @@ MonoBehaviour:
   talkingText: {fileID: 1857996996}
   _audioSource: {fileID: 1773754725}
   _characterTalkingSoundEffect: {fileID: 8300000, guid: 921310e56ddf5c54cb98cd3da8d0479a, type: 3}
+--- !u!114 &928176473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526691528913608196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659cf102ae820244584590a7f6d5b3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1384042638241165932
 GameObject:
   m_ObjectHideFlags: 0
@@ -6455,6 +6486,7 @@ GameObject:
   - component: {fileID: 7755215765869144410}
   - component: {fileID: 5660956575117589890}
   - component: {fileID: 824319367248997907}
+  - component: {fileID: 293434870}
   m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
@@ -6540,6 +6572,26 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!114 &824319367248997907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766105221038586024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &293434870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

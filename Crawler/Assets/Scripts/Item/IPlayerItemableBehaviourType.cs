@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 public interface IPlayerItemableBehaviourType
 {
-   public void DoItemPickupAction(Item item);
+   public bool DoItemPickupAction(Item item);
 }
 

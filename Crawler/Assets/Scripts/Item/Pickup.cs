@@ -13,7 +13,9 @@ public class Pickup : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        PickupItem();
+        {
+            PickupItem();
+        }
     }
     public void InitializePickUp(ItemScriptable itemScriptable)
     {
@@ -37,11 +39,16 @@ public class Pickup : MonoBehaviour
     }
     protected void PickupItem()
     {
-        _item.DoItemPickupActionAccordingToItemType();
+        //Item pickup returns pickup success
+        //If item returns false == player cant pick up, do nothing
+        if (_item.DoItemPickupActionAccordingToItemType())
+        {
+            PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("I just received an item: " + _item.ItemScriptable.ItemName);
+            Instantiate(collectEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
+            Destroy(gameObject);
+        }
         
-        PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("I just received an item: " + _item.ItemScriptable.ItemName);
-        Instantiate(collectEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
-        Destroy(gameObject);
+
 
     }
 }

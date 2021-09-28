@@ -76,9 +76,14 @@ class Player : MonoBehaviour,  IDamageable
         }
         else
         {
-            if (Hp == MaxHp)
+            if (Hp >= MaxHp)
             {
                 return false;
+            }
+            if (Hp + changeAmount > MaxHp)
+            {
+                Hp = MaxHp;
+                return true;
             }
         }
         Hp += changeAmount;

@@ -7,12 +7,14 @@ using UnityEngine;
 
 class BuffItemType : IPlayerItemableBehaviourType
 {
-    public void DoItemPickupAction(Item item)
+    public bool DoItemPickupAction(Item item)
     {
         BuffItemScriptable buffItemScriptable = (BuffItemScriptable)item.ItemScriptable;
         Player.Singleton.GivePlayerItem(item);
         if (item.ItemScriptable.PickupSound != null)
             Player.Singleton.GetComponent<AudioSource>().PlayOneShot(item.ItemScriptable.PickupSound);
         Player.Singleton.BuffStatModifier(buffItemScriptable.StatToBuff, buffItemScriptable.BuffAmountPercentage);
+        //Can always pickup buffs
+        return true;
     }
 }

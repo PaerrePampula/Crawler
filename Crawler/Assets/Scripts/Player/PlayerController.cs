@@ -24,8 +24,11 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     CharacterController characterController;
     Player playerComponent;
+    AudioSource audioSource;
     //Should really be in a class of its own but its bit of a bother just for a simple effect
+
     [SerializeField] VisualEffect dashEffect;
+    [SerializeField] AudioClip dashSound;
     Vector3 latestInputDirectionNormalized;
     Vector3 lastDashPoint;
     Vector3 playerMovementInput;
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         playerComponent = GetComponent<Player>();
         currentMovementSpeedMultiplier = movementSpeedMultiplier;
         //We need to acces the public methods of the charactercontroller class to move it according to the charactercontroller.
@@ -108,7 +112,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(addAndDiminishPlayerMovementDuringDash());
         _dashing = true;
         animator.Play("Player-dash");
-
+        audioSource.PlayOneShot(dashSound);
         if (extraForceCoRoutine != null)
         {
             StopCoroutine(extraForceCoRoutine);
