@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject runLengthPopup;
     [SerializeField] GenerationSettings longSettings;
     [SerializeField] GenerationSettings shortSettings;
+    [SerializeField] AudioClip buttonPress;
+
     public void StartGame()
     {
 
@@ -56,6 +58,7 @@ public class MainMenu : MonoBehaviour
             Settings = true;
         }
     }
+
 }
 [System.Serializable]
 class GenerationSettings
