@@ -197,6 +197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 279568578, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: interactionPrompt
       value: 
@@ -1146,7 +1150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyGenerateOneRoom: 0
-  oneRoomToGenerate: {fileID: 1552857032272671205, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
+  oneRoomToGenerate: {fileID: 4218164611480388997, guid: 63fd836aee5773440a6e32c9d16099ef, type: 3}
   allRooms:
   - {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
   - {fileID: 4218164611480388997, guid: 63fd836aee5773440a6e32c9d16099ef, type: 3}
