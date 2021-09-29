@@ -100,7 +100,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     private void Update()
     {
         ApplyGravity();
-
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     private void ApplyGravity()
