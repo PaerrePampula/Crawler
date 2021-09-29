@@ -1550,6 +1550,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2714921113718360847, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714921113718360847, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 230
+      objectReference: {fileID: 0}
     - target: {fileID: 3885053854815021364, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1569,14 +1577,6 @@ PrefabInstance:
     - target: {fileID: 3885053855474047042, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
       propertyPath: m_Name
       value: PlayerUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3885053855474047096, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
-      propertyPath: playerIcon
-      value: 
-      objectReference: {fileID: 8251730522752852852, guid: 5c50356f41d77f74fbe9fca689fd0bfa, type: 3}
-    - target: {fileID: 3885053855474047096, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
-      propertyPath: mapPanStrength
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3885053855474047097, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
       propertyPath: m_Pivot.x
