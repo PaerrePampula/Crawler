@@ -16,6 +16,7 @@ public class FireBallAttack : AiActionWaiter, IState
     [SerializeField] string attackAnimationTriggerName = "FireBallAttack";
     [SerializeField] protected GameObject fireballPrefab;
     Coroutine waitForAction;
+    Coroutine coolDownForAttack;
     [SerializeField] protected float fireballSpeed;
     [SerializeField] protected float fireballDamage;
     protected bool readyToChangeState = true;
@@ -23,13 +24,21 @@ public class FireBallAttack : AiActionWaiter, IState
     [SerializeField] AudioClip telegraphingWindupSound;
     [SerializeField] float attackCycleWaitTimeMinimum;
     [SerializeField] float attackCycleWaitTimeMaximum;
+    [SerializeField] int maxAttackUses;
+    int currentAttackUses;
+    float attacksUsedCoolDown = 2f;
     float lastAttackTime = Mathf.Infinity;
+    public delegate void OnFireballAttackCoolDownStart(float cooldownLength, int maxAttacks);
+    public event OnFireballAttackCoolDownStart onFireballCoolDown;
+    public delegate void OnAttack(int attacksLeft);
+    public event OnAttack onAttack;
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
     {
         _target = target;
         _baseMook = baseMook;
         _animator = animator;
         _audioSource = audioSource;
+        currentAttackUses = maxAttackUses;
 
     }
     public void OnStateEnter()
@@ -40,10 +49,25 @@ public class FireBallAttack : AiActionWaiter, IState
 
     protected void DoAttack()
     {
-        if (lastAttackTime == Mathf.Infinity) lastAttackTime = Time.time;
-        if (waitForAction != null) _baseMook.StopCoroutine(waitForAction);
-        waitForAction = _baseMook.StartCoroutine(actionWait(() => TriggerAttack(), lastAttackTime));
+        if (currentAttackUses <= 0)
+        {
+            onFireballCoolDown?.Invoke(attacksUsedCoolDown, maxAttackUses);
+            coolDownForAttack = _baseMook.StartCoroutine(actionWait(() => ResetUses(), Time.time + attacksUsedCoolDown));
+        }
+        else
+        {
+            if (lastAttackTime == Mathf.Infinity) lastAttackTime = Time.time;
+            if (waitForAction != null) _baseMook.StopCoroutine(waitForAction);
+            waitForAction = _baseMook.StartCoroutine(actionWait(() => TriggerAttack(), lastAttackTime));
+        }
 
+
+    }
+    void ResetUses()
+    {
+        currentAttackUses = maxAttackUses;
+        lastAttackTime = Time.time + UnityEngine.Random.Range(attackCycleWaitTimeMinimum, attackCycleWaitTimeMaximum);
+        DoAttack();
     }
 
     private void TriggerAttack()
@@ -66,6 +90,8 @@ public class FireBallAttack : AiActionWaiter, IState
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
         readyToChangeState = true;
         _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState -= AttackWithFireBall;
+        currentAttackUses--;
+        onAttack?.Invoke(currentAttackUses);
         DoAttack();
     }
 

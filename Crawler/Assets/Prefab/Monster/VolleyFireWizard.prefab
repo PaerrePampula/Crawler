@@ -234,6 +234,7 @@ MonoBehaviour:
     telegraphingWindupSound: {fileID: 8300000, guid: 83a610395fedd2741bda6f3bb17662b0, type: 3}
     attackCycleWaitTimeMinimum: 2
     attackCycleWaitTimeMaximum: 4
+    maxAttackUses: 1
   VolleyfireBallAttack:
     _hitLayers:
       serializedVersion: 2
@@ -246,6 +247,7 @@ MonoBehaviour:
     telegraphingWindupSound: {fileID: 8300000, guid: 83a610395fedd2741bda6f3bb17662b0, type: 3}
     attackCycleWaitTimeMinimum: 3
     attackCycleWaitTimeMaximum: 5
+    maxAttackUses: 1
     volleyCount: 4
     delayInVolley: 0.2
     aimRandomnessMin: -2.5

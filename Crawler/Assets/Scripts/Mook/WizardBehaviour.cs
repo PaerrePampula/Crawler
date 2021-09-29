@@ -63,7 +63,10 @@ public class WizardBehaviour : MonoBehaviour
     {
         return (hasReachedTargetAndHasNotYetStartedChasingAgain == true) ? _reChaseRange : _chaseRange;
     }
-
+    public FireBallAttack GetFireBallAttack()
+    {
+        return fireBallAttack;
+    }
     Func<bool> targetReached(Transform target, Transform thisTransform) => () => Math.Abs(Vector3.Distance(target.position, thisTransform.position)) < getChaseRange();
     Func<bool> targetTooFar(Transform target, Transform thisTransform) => () => !targetReached(target, thisTransform).Invoke();
     Func<bool> wanderComplete(RandomWander wander) => () => wander.WanderIsDone();
