@@ -29,6 +29,7 @@ public class WizardBehaviour : MonoBehaviour
     AudioSource _audioSource;
     [SerializeField] TextMeshPro stateText;
     [SerializeField] protected FireBallAttack fireBallAttack;
+
     ChaseTarget chaseTarget;
     protected virtual void Awake()
     {
@@ -37,6 +38,7 @@ public class WizardBehaviour : MonoBehaviour
         _stateMachine = new StateMachine();
         _baseMook = GetComponent<BaseMook>();
         _audioSource = GetComponent<AudioSource>();
+
         fireBallAttack.InitializeFireBallAttack(PlayerController.Singleton.transform, _baseMook, _animator, _audioSource);
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
@@ -44,6 +46,7 @@ public class WizardBehaviour : MonoBehaviour
         //Add transistions for statemachine
         _stateMachine.AddTransistion(fireBallAttack, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
         _stateMachine.AddTransistion(chaseTarget,fireBallAttack, targetTooFar(PlayerController.Singleton.transform, transform), true);
+
         //Set default state to chase player in state machine
         _stateMachine.SetState(chaseTarget);
     }
@@ -63,5 +66,6 @@ public class WizardBehaviour : MonoBehaviour
 
     Func<bool> targetReached(Transform target, Transform thisTransform) => () => Math.Abs(Vector3.Distance(target.position, thisTransform.position)) < getChaseRange();
     Func<bool> targetTooFar(Transform target, Transform thisTransform) => () => !targetReached(target, thisTransform).Invoke();
+    Func<bool> wanderComplete(RandomWander wander) => () => wander.WanderIsDone();
 }
 

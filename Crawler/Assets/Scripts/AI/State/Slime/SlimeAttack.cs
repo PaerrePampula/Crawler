@@ -19,6 +19,7 @@ class SlimeAttack : IState
     [SerializeField] float actionDelayMinimum = 0.25f;
     [SerializeField] float actionDelayMaximum = 0.85f;
     [SerializeField] AudioClip attackingAudioClip;
+    float lastAttackTime = Mathf.Infinity;
     bool playerDodgedAttackSuccessfully = false;
     Vector3 chargeDirection;
     CharacterController _controller;
@@ -45,11 +46,19 @@ class SlimeAttack : IState
 
     public void OnStateEnter()
     {
-        readyToChangeState = false;
-        float randomDelay = UnityEngine.Random.Range(actionDelayMinimum, actionDelayMaximum);
-        windupRoutine = _baseMook.StartCoroutine(attackWindup(randomDelay));
+        ReadyAttack();
 
     }
+
+    private void ReadyAttack()
+    {
+
+        readyToChangeState = false;
+        if (lastAttackTime == Mathf.Infinity) lastAttackTime = Time.time + actionDelayMinimum;
+        _animator.SetTrigger("slime-windup");
+        windupRoutine = _baseMook.StartCoroutine(AiActionWaiter.actionWait(() => SlimeCharge(), lastAttackTime));
+    }
+
 
     public void OnStateExit()
     {
@@ -61,19 +70,9 @@ class SlimeAttack : IState
     }
     public void SlimeCharge()
     {
+        lastAttackTime = Time.time + UnityEngine.Random.Range(actionDelayMinimum, actionDelayMaximum);
         chargeRoutine = _baseMook.StartCoroutine(chargeAttack());
         attackRoutine = _baseMook.StartCoroutine(chargeMove());
-    }
-    IEnumerator attackWindup(float delay)
-    {
-        _animator.SetTrigger("slime-windup");
-        float actionDelaytimer = 0;
-        while (actionDelaytimer <= delay)
-        {
-            actionDelaytimer += Time.deltaTime;
-            yield return null;
-        }
-        SlimeCharge();
     }
     IEnumerator chargeAttack()
     {

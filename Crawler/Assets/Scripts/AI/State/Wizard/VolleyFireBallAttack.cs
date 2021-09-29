@@ -19,9 +19,9 @@ class VolleyFireBallAttack : FireBallAttack
         Vector3 projectileDirection = ((_target.position - _baseMook.transform.position) + new Vector3(randomInAccuracyAmount, 0, randomInAccuracyAmount)).normalized;
         GameObject go = GameObject.Instantiate(fireballPrefab, _baseMook.transform.position + projectileDirection, Quaternion.identity);
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
-
-
         readyToChangeState = true;
+        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState -= AttackWithFireBall;
+        
     }
 
     IEnumerator doVolley()
@@ -34,6 +34,7 @@ class VolleyFireBallAttack : FireBallAttack
             yield return new WaitForSeconds(delayInVolley);
             shotVolleys++;
         }
+        DoAttack();
     }
 }
 

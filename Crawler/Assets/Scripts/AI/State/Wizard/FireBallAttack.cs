@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
-public class FireBallAttack : IState
+public class FireBallAttack : AiActionWaiter, IState
 {
     protected Transform _target;
     protected BaseMook _baseMook;
@@ -22,6 +23,7 @@ public class FireBallAttack : IState
     [SerializeField] AudioClip telegraphingWindupSound;
     [SerializeField] float attackCycleWaitTimeMinimum;
     [SerializeField] float attackCycleWaitTimeMaximum;
+    float lastAttackTime = Mathf.Infinity;
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
     {
         _target = target;
@@ -32,21 +34,28 @@ public class FireBallAttack : IState
     }
     public void OnStateEnter()
     {
-        float randomWait = Random.Range(attackCycleWaitTimeMinimum, attackCycleWaitTimeMaximum);
-        waitForAction = _baseMook.StartCoroutine(actionWait(randomWait));
-        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
-        //Only trigger the animation to play, and also subscribe an event to watch for state change on the animation
-        TriggerAttack();
+        DoAttack();
+
+    }
+
+    protected void DoAttack()
+    {
+        if (lastAttackTime == Mathf.Infinity) lastAttackTime = Time.time;
+        if (waitForAction != null) _baseMook.StopCoroutine(waitForAction);
+        waitForAction = _baseMook.StartCoroutine(actionWait(() => TriggerAttack(), lastAttackTime));
 
     }
 
     private void TriggerAttack()
     {
+        lastAttackTime = Time.time + UnityEngine.Random.Range(attackCycleWaitTimeMinimum, attackCycleWaitTimeMaximum);
+        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
         //only triggers the animator and sound, animation triggers event
         //which this system subscribes to.
         _animator.SetTrigger(attackAnimationTriggerName);
         _audioSource?.PlayOneShot(telegraphingWindupSound);
         readyToChangeState = false;
+
     }
 
     protected virtual void AttackWithFireBall()
@@ -56,23 +65,15 @@ public class FireBallAttack : IState
         GameObject go = GameObject.Instantiate(fireballPrefab, _baseMook.transform.position + projectileDirection, Quaternion.identity);
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
         readyToChangeState = true;
+        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState -= AttackWithFireBall;
+        DoAttack();
     }
-    IEnumerator actionWait(float timer)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(timer);
 
-            TriggerAttack();
-        }
-
-
-    }
     public void OnStateExit()
     {
-        _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState -= AttackWithFireBall;
+
         readyToChangeState = true;
-        _baseMook.StopCoroutine(waitForAction);
+        if (waitForAction != null) _baseMook.StopCoroutine(waitForAction);
     }
 
     public void Tick()
