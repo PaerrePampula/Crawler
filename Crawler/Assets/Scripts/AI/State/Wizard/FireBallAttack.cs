@@ -51,8 +51,13 @@ public class FireBallAttack : AiActionWaiter, IState
     {
         if (currentAttackUses <= 0)
         {
-            onFireballCoolDown?.Invoke(attacksUsedCoolDown, maxAttackUses);
-            coolDownForAttack = _baseMook.StartCoroutine(actionWait(() => ResetUses(), Time.time + attacksUsedCoolDown));
+            //If the AI re-enters this state, the AI might try to start "cooldowning" again
+            if (coolDownForAttack == null)
+            {
+                onFireballCoolDown?.Invoke(attacksUsedCoolDown, maxAttackUses);
+                coolDownForAttack = _baseMook.StartCoroutine(actionWait(() => ResetUses(), Time.time + attacksUsedCoolDown));
+            }
+
         }
         else
         {
@@ -68,6 +73,7 @@ public class FireBallAttack : AiActionWaiter, IState
         currentAttackUses = maxAttackUses;
         lastAttackTime = Time.time + UnityEngine.Random.Range(attackCycleWaitTimeMinimum, attackCycleWaitTimeMaximum);
         DoAttack();
+        coolDownForAttack = null;
     }
 
     private void TriggerAttack()
