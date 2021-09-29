@@ -26,7 +26,7 @@ public class FireBallAttack : AiActionWaiter, IState
     [SerializeField] float attackCycleWaitTimeMaximum;
     [SerializeField] int maxAttackUses;
     int currentAttackUses;
-    float attacksUsedCoolDown = 2f;
+    [SerializeField] float attacksUsedCoolDown = 2f;
     float lastAttackTime = Mathf.Infinity;
     public delegate void OnFireballAttackCoolDownStart(float cooldownLength, int maxAttacks);
     public event OnFireballAttackCoolDownStart onFireballCoolDown;
@@ -49,6 +49,8 @@ public class FireBallAttack : AiActionWaiter, IState
 
     protected void DoAttack()
     {
+        //The wizard can only attack set number of times, make sure that the AI can attack, 
+        //If the AI cannot attack, reset the attacks to the cooldown amount
         if (currentAttackUses <= 0)
         {
             //If the AI re-enters this state, the AI might try to start "cooldowning" again
@@ -61,6 +63,8 @@ public class FireBallAttack : AiActionWaiter, IState
         }
         else
         {
+            //If the character can attack, the attack action is ran through a coroutine, that adds the attack delay
+            //if the chracter attacked before
             if (lastAttackTime == Mathf.Infinity) lastAttackTime = Time.time;
             if (waitForAction != null) _baseMook.StopCoroutine(waitForAction);
             waitForAction = _baseMook.StartCoroutine(actionWait(() => TriggerAttack(), lastAttackTime));
@@ -70,9 +74,12 @@ public class FireBallAttack : AiActionWaiter, IState
     }
     void ResetUses()
     {
+        //Reset all attack uses to the initial state
         currentAttackUses = maxAttackUses;
         lastAttackTime = Time.time + UnityEngine.Random.Range(attackCycleWaitTimeMinimum, attackCycleWaitTimeMaximum);
+        //Pretend the player attacked, this is added on top of the cooldown, to make the AI even less brutal
         DoAttack();
+        //Now that the cooldown has been reset, make sure to null the coroutine, to allow new cooldowns
         coolDownForAttack = null;
     }
 
