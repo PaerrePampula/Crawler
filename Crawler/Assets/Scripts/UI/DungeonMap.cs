@@ -29,6 +29,7 @@ public class DungeonMap : MonoBehaviour
     [SerializeField] GameObject storeNode;
     [SerializeField] GameObject playerIcon;
     GameObject instantiatedPlayerIcon;
+    [SerializeField] Transform mapMask;
     [SerializeField] Transform mapParent;
     [SerializeField] AudioClip mapOpenSound;
     AudioSource _audioSource;
@@ -110,7 +111,7 @@ public class DungeonMap : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             mapOpen = !mapOpen;
-            mapParent.transform.gameObject.SetActive(mapOpen);
+            mapMask.transform.gameObject.SetActive(mapOpen);
             _audioSource.PlayOneShot(mapOpenSound);
         }
         if (mapOpen)
