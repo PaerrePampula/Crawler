@@ -63,7 +63,7 @@ public class BaseMook : MonoBehaviour, IDamageable
             onMookDamaged?.Invoke(damageAmount, transform.position);
             Hp += damageAmount;
             onMookInstanceDamaged?.Invoke(Hp);
-            Instantiate(damageEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
+            Instantiate(damageEffect, transform.position + Vector3.up * 0.5f, transform.rotation);
             return true;
         }
         return false;
@@ -100,7 +100,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     private void Update()
     {
         ApplyGravity();
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+
     }
 
     private void ApplyGravity()
