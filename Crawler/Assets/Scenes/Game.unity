@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &252950203 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 526691528517289846, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+  m_PrefabInstance: {fileID: 293434868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &280309911
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,9 +202,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 209074668, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 252950203}
+    - target: {fileID: 229797949, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_Name
+      value: AttackDelayCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 279568577, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 279568577, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 279568578, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dfe0ccccb7b79604ba8f00406fe9577c, type: 3}
+    - target: {fileID: 279568578, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.1764706
+      objectReference: {fileID: 0}
     - target: {fileID: 279568578, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_FillAmount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 669494092, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_Name
+      value: '[Unused] DodgeTrackerCanvas'
       objectReference: {fileID: 0}
     - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: interactionPrompt

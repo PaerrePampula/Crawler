@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Saves infomration about player hp and also invokes events involving player dodging attacks or attacking
@@ -18,6 +19,7 @@ class Player : MonoBehaviour,  IDamageable
         }
     }
     Animator anim;
+    SpriteRenderer spriteRenderer;
     public delegate void OnPlayerHpChanged(float newHP);
     public static event OnPlayerHpChanged onCurrentHpChanged;
     public static event OnPlayerHpChanged onMaxHPChanged;
@@ -35,6 +37,8 @@ class Player : MonoBehaviour,  IDamageable
     };
     //The system probably could round hp to one halves for the heart display system, maybe?
     [SerializeField] float _maxHp = 5;
+    //How long player stays invicible after being hit.
+    [SerializeField] float _playerHitIFramesInSeconds = 1f;
     float _hp;
     bool _isInvunerable = false;
 
@@ -70,7 +74,7 @@ class Player : MonoBehaviour,  IDamageable
 
                 return false;
             }
-
+            GivePlayerInvicibilityAfterHit();
             onPlayerDamaged?.Invoke();
 
         }
@@ -107,6 +111,8 @@ class Player : MonoBehaviour,  IDamageable
         onMaxHPChanged?.Invoke(MaxHp);
         Hp = MaxHp;
         anim = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
     }
     public void GivePlayerItem(Item item)
     {
@@ -131,6 +137,31 @@ class Player : MonoBehaviour,  IDamageable
     public bool isInvurnerable()
     {
         return _isInvunerable;
+    }
+    void GivePlayerInvicibilityAfterHit()
+    {
+        StartCoroutine(playerHitInvicibility());
+    }
+    IEnumerator playerHitInvicibility()
+    {
+        _isInvunerable = true;
+        float timer = 0;
+        float invisTimer = 0;
+        while (timer <= _playerHitIFramesInSeconds)
+        {
+            timer += Time.deltaTime;
+            invisTimer += Time.deltaTime;
+            if (invisTimer < 0.1f) spriteRenderer.color = new Color32(255, 255, 255, 0);
+            if (invisTimer > 0.1f)
+            {
+                spriteRenderer.color = new Color32(255, 255, 255, 255);
+                if (invisTimer > 0.2f) invisTimer = 0;
+            }
+            yield return null;
+
+        }
+        spriteRenderer.color = new Color32(255, 255, 255, 255);
+        _isInvunerable = false;
     }
 
 }
