@@ -67,6 +67,10 @@ class SlimeAttack : IState
         if (chargeRoutine != null) _baseMook.StopCoroutine(chargeRoutine);
         if (windupRoutine != null) _baseMook.StopCoroutine(windupRoutine);
         chargeDirection = Vector3.zero;
+        _animator.SetTrigger("slime-attack");
+
+
+
     }
     public void SlimeCharge()
     {
