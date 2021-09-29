@@ -4,21 +4,21 @@ using UnityEngine;
 [System.Serializable]
 public class FireBallAttack : IState
 {
-    Transform _target;
-    BaseMook _baseMook;
-    [SerializeField] LayerMask _hitLayers;
-    Animator _animator;
-    AudioSource _audioSource;
+    protected Transform _target;
+    protected BaseMook _baseMook;
+    [SerializeField] protected LayerMask _hitLayers;
+    protected Animator _animator;
+    protected AudioSource _audioSource;
     //Information to animator
     //SetTrigger can be used to trigger any animation transistion to a state named by the parameter
     //meaning another ranged mook, that isnt necessary a wizard, and has a different animator can possibly run this as well.
     [SerializeField] string attackAnimationTriggerName = "FireBallAttack";
-    [SerializeField] GameObject fireballPrefab;
+    [SerializeField] protected GameObject fireballPrefab;
     Coroutine waitForAction;
-    [SerializeField] float fireballSpeed;
-    [SerializeField] float fireballDamage;
-    bool readyToChangeState = true;
-    [SerializeField] AudioClip castingAudioClip;
+    [SerializeField] protected float fireballSpeed;
+    [SerializeField] protected float fireballDamage;
+    protected bool readyToChangeState = true;
+    [SerializeField] protected  AudioClip castingAudioClip;
     [SerializeField] AudioClip telegraphingWindupSound;
     [SerializeField] float attackCycleWaitTimeMinimum;
     [SerializeField] float attackCycleWaitTimeMaximum;
@@ -49,7 +49,7 @@ public class FireBallAttack : IState
         readyToChangeState = false;
     }
 
-    private void AttackWithFireBall()
+    protected virtual void AttackWithFireBall()
     {
         _audioSource?.PlayOneShot(castingAudioClip);
         Vector3 projectileDirection = (_target.position - _baseMook.transform.position).normalized;

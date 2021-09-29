@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!212 &252950203 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 526691528517289846, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-  m_PrefabInstance: {fileID: 293434868}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &280309911
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,36 +198,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 209074668, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: spriteRenderer
-      value: 
-      objectReference: {fileID: 252950203}
-    - target: {fileID: 229797949, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: _playerHitIFramesInSeconds
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 279568576, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Name
-      value: AttackDelayCircle
+      value: CircleImage
       objectReference: {fileID: 0}
-    - target: {fileID: 279568577, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 279568577, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 279568578, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: dfe0ccccb7b79604ba8f00406fe9577c, type: 3}
     - target: {fileID: 279568578, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Color.a
-      value: 0.1764706
+      value: 0.28627452
       objectReference: {fileID: 0}
-    - target: {fileID: 279568578, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 669494092, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+    - target: {fileID: 309033251, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Name
-      value: '[Unused] DodgeTrackerCanvas'
+      value: CircleArrows
+      objectReference: {fileID: 0}
+    - target: {fileID: 576347499, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_Name
+      value: PlayerAttackFacingIndicatorCircle
       objectReference: {fileID: 0}
     - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: interactionPrompt
@@ -1183,7 +1166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyGenerateOneRoom: 0
-  oneRoomToGenerate: {fileID: 4218164611480388997, guid: 63fd836aee5773440a6e32c9d16099ef, type: 3}
+  oneRoomToGenerate: {fileID: 5980495309415950063, guid: b7a98c8589b470b408f322c7f8ff41b3, type: 3}
   allRooms:
   - {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
   - {fileID: 4218164611480388997, guid: 63fd836aee5773440a6e32c9d16099ef, type: 3}
@@ -1192,6 +1175,11 @@ MonoBehaviour:
   - {fileID: 5205253066214800269, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
   - {fileID: 2701988372367606790, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
   - {fileID: 8622497468050805066, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
+  - {fileID: 5980495309415950063, guid: b7a98c8589b470b408f322c7f8ff41b3, type: 3}
+  - {fileID: 8345637659892957615, guid: 99a93195bec383346b4e9c513a84b3ac, type: 3}
+  - {fileID: 3457202305668795620, guid: 9facc92ef1a681048afd493043e839a1, type: 3}
+  - {fileID: 8126506237170994096, guid: 7d07b945ddb5c7f468fc771822df7f41, type: 3}
+  - {fileID: 3798185136635531389, guid: 56c51ff8de80bd04abd85d828d016320, type: 3}
 --- !u!4 &1487252953
 Transform:
   m_ObjectHideFlags: 0

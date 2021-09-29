@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-class WizardBehaviour : MonoBehaviour
+public class WizardBehaviour : MonoBehaviour
 {
     [Header("Wizard AI chase parameters")]
     [SerializeField] float _chaseRange;
@@ -28,9 +28,9 @@ class WizardBehaviour : MonoBehaviour
     //Needed to play back audio on attacking.
     AudioSource _audioSource;
     [SerializeField] TextMeshPro stateText;
-    [SerializeField] FireBallAttack fireBallAttack;
+    [SerializeField] protected FireBallAttack fireBallAttack;
     ChaseTarget chaseTarget;
-    void Awake()
+    protected virtual void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
         _navAgent = GetComponent<NavMeshAgent>();
