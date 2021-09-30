@@ -284,7 +284,7 @@ class ProceduralGeneration : MonoBehaviour
         }
         CurrentRoomManager.Singleton.currentRoom = _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]];
         _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]].gameObject.SetActive(true);
-        onGenerationComplete.Invoke(allCellsUsedByGeneratedDungeon);
+        onGenerationComplete?.Invoke(allCellsUsedByGeneratedDungeon);
 
     }
 

@@ -40,13 +40,7 @@ public class DungeonMap : MonoBehaviour
     bool mapOpen = false;
     [SerializeField] float mapPanStrength = 5f;
     Dictionary<Vector2, MapCell> dungeonCells = new Dictionary<Vector2, MapCell>();
-    private void OnEnable()
-    {
-        ProceduralGeneration.onGenerationComplete += createMap;
-        CurrentRoomManager.onPlayerRoomSet += setPlayerIconToCurrentLocation;
-        instantiatedPlayerIcon = Instantiate(playerIcon);
 
-    }
 
     private void setPlayerIconToCurrentLocation(Room setRoom)
     {
@@ -55,7 +49,7 @@ public class DungeonMap : MonoBehaviour
 
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         CurrentRoomManager.onPlayerRoomSet -= setPlayerIconToCurrentLocation;
         ProceduralGeneration.onGenerationComplete -= createMap;
@@ -91,9 +85,13 @@ public class DungeonMap : MonoBehaviour
         onMapGenerationComplete?.Invoke();
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
+        ProceduralGeneration.onGenerationComplete += createMap;
+        CurrentRoomManager.onPlayerRoomSet += setPlayerIconToCurrentLocation;
+        instantiatedPlayerIcon = Instantiate(playerIcon);
         _audioSource = GetComponent<AudioSource>();
     }
     public void InvokeFullMapShow()

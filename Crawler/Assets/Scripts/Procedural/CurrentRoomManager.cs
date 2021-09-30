@@ -35,7 +35,7 @@ public class CurrentRoomManager : MonoBehaviour
     {
         DungeonMap.onMapGenerationComplete += invokeInitialRoomInformation;
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         DungeonMap.onMapGenerationComplete -= invokeInitialRoomInformation;
     }

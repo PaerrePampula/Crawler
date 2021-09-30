@@ -27,6 +27,8 @@ class Player : MonoBehaviour,  IDamageable
     public static event PlayerDamaged onPlayerDamaged;
     public delegate void PlayerDodged();
     public static event PlayerDodged onPlayerDodged;
+    public delegate void PlayerDeath();
+    public static event PlayerDeath onPlayerDeath;
 
     Dictionary<string, Item> _playerItems = new Dictionary<string, Item>();
     Dictionary<StatType, float> _buffModifiers = new Dictionary<StatType, float>()
@@ -103,6 +105,7 @@ class Player : MonoBehaviour,  IDamageable
 
         anim.Play("Player-die");
         Globals.ControlsAreEnabled = false;
+        onPlayerDeath?.Invoke();
     }
     private void Start()
     {

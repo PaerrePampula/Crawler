@@ -32,14 +32,13 @@ public class Minimap : MonoBehaviour
     float mapCellSize = 50;
     Vector2 offset;
     Dictionary<Vector2, MapCell> dungeonCells = new Dictionary<Vector2, MapCell>();
+
     private void OnEnable()
     {
         ProceduralGeneration.onGenerationComplete += createMap;
         CurrentRoomManager.onPlayerRoomSet += setPlayerIconToCurrentLocation;
         instantiatedPlayerIcon = Instantiate(playerIcon);
-
     }
-
     private void setPlayerIconToCurrentLocation(Room setRoom)
     {
         instantiatedPlayerIcon.transform.SetParent(dungeonCells[new Vector2(setRoom.Cell.X, setRoom.Cell.Y)].transform, false);
@@ -48,7 +47,7 @@ public class Minimap : MonoBehaviour
 
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         CurrentRoomManager.onPlayerRoomSet -= setPlayerIconToCurrentLocation;
         ProceduralGeneration.onGenerationComplete -= createMap;
@@ -81,6 +80,6 @@ public class Minimap : MonoBehaviour
             mapCell.Initialize(cellsInDungeon[i]);
             DungeonCells.Add(new Vector2(cellsInDungeon[i].X, cellsInDungeon[i].Y), mapCell);
         }
-        onMapGenerationComplete?.Invoke();
+
     }
 }

@@ -13,13 +13,10 @@ public class SceneChanger : MonoBehaviour
     {
         
     }
-    private void OnEnable()
+
+    public void ChangeScene(string sceneName)
     {
-        ChangeScene();
-    }
-    public void ChangeScene()
-    {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sceneName);
     }
     // Update is called once per frame
     void Update()

@@ -13,15 +13,16 @@ public class MapCell : MonoBehaviour
     Image cellImage;
     Color32 originalColor;
 
+
     public Cell Cell { get => _cell; set => _cell = value; }
-    private void Start()
+    private void Awake()
     {
 
         if (discoveredByPlayer == false)
         {
             gameObject.SetActive(false);
         }
-
+        cellImage = GetComponent<Image>();
 
     }
     public void Initialize(Cell cell)
@@ -34,8 +35,10 @@ public class MapCell : MonoBehaviour
         Cell.onCellDiscover += discoverMapCell;
     }
 
+
     private void checkIfDiscoveredAndIfIsCurrentRoom(Room setRoom)
     {
+
         //Player room is the same room as the cell represented by this ui element
         if (setRoom.Cell == Cell)
         {
@@ -51,25 +54,32 @@ public class MapCell : MonoBehaviour
         }
         else
         {
-            if (!visitedByPlayer)
+            if (cellImage != null)
             {
-                cellImage.color = new Color32((byte)(originalColor.r - 125), (byte)(originalColor.g - 125), (byte)(originalColor.b - 125), 255);
+                if (!visitedByPlayer)
+                {
+                    cellImage.color = new Color32((byte)(originalColor.r - 125), (byte)(originalColor.g - 125), (byte)(originalColor.b - 125), 255);
+                }
+                else
+                {
+                    cellImage.color = originalColor;
+                }
             }
-            else
-            {
-                cellImage.color = originalColor;
-            }
+
 
         }
     }
-
+    private void OnDisable()
+    {
+        
+    }
     private void OnDestroy()
     {
-        if (Cell != null)
-        {
-            CurrentRoomManager.onPlayerRoomSet -= checkIfDiscoveredAndIfIsCurrentRoom;
-            Cell.onCellDiscover -= discoverMapCell;
-        }
+
+
+        Cell.onCellDiscover -= discoverMapCell;
+
+        CurrentRoomManager.onPlayerRoomSet -= checkIfDiscoveredAndIfIsCurrentRoom;
     }
     void discoverMapCell()
     {
