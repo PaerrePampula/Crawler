@@ -50,35 +50,7 @@ public class PlayerWeapon : MonoBehaviour
             //the delay is over.
             if (Input.GetKeyDown(KeyCode.Mouse0) || attackBuffered)
             {
-                //currently the delay of attacking is controlled solely by an overly long fixed delay per one attack, but the 
-                //real version should rely on animation length, plus some tiny amount of extra delay on top.
-                if (AttackDelayHasPassed())
-                {
-                    animator.Play("Player-slice" + currentAttackIndex);
-
-                    Debug.Log("Attack " + currentAttackIndex);
-                    currentAttackDelay = playerAttacks[currentAttackIndex].Delay;
-                    //Set the last attack time to be current passed frames.
-                    lastAttackTime = Time.time;
-                    //Flip the player if the player faces the wrong direction
-                    if (heading.HeadingRight != flip.HeadingRight)
-                    {
-                        flip.FlipPlayer();
-                    }
-                    //Push the player to attack direction
-                    PlayerController.Singleton.AddExternalForce(transform.TransformDirection(heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].AttackPlayerPushForwardForce), playerAttacks[currentAttackIndex].AttackPlayerPushForwardTime);
-                    CastAttackCollider();
-                    //play sound effects for specific attack
-                    audioSource.PlayOneShot(playerAttacks[currentAttackIndex].SwingWeaponSoundEffect);
-                    //Increment chain by one, with clamping functioning
-                    incrementAttackChain();
-                    attackBuffered = false;
-                    onPlayerAttacks?.Invoke();
-                }
-                else
-                {
-                    attackBuffered = true;
-                }
+                Attack();
             }
         }
         //Reset the combo chain if the player hasnt attacked in a while.
@@ -87,6 +59,39 @@ public class PlayerWeapon : MonoBehaviour
             currentAttackIndex = 0;
             currentAttackDelay = 0;
             animator.SetTrigger("StopAttack");
+        }
+    }
+
+    private void Attack()
+    {
+        //currently the delay of attacking is controlled solely by an overly long fixed delay per one attack, but the 
+        //real version should rely on animation length, plus some tiny amount of extra delay on top.
+        if (AttackDelayHasPassed())
+        {
+            animator.Play("Player-slice" + currentAttackIndex);
+
+            Debug.Log("Attack " + currentAttackIndex);
+            currentAttackDelay = playerAttacks[currentAttackIndex].Delay;
+            //Set the last attack time to be current passed frames.
+            lastAttackTime = Time.time;
+            //Flip the player if the player faces the wrong direction
+            if (heading.HeadingRight != flip.HeadingRight)
+            {
+                flip.FlipPlayer();
+            }
+            //Push the player to attack direction
+            PlayerController.Singleton.AddExternalForce(transform.TransformDirection(heading.getHeadingVector().normalized * playerAttacks[currentAttackIndex].AttackPlayerPushForwardForce), playerAttacks[currentAttackIndex].AttackPlayerPushForwardTime);
+            CastAttackCollider();
+            //play sound effects for specific attack
+            audioSource.PlayOneShot(playerAttacks[currentAttackIndex].SwingWeaponSoundEffect);
+            //Increment chain by one, with clamping functioning
+            incrementAttackChain();
+            attackBuffered = false;
+            onPlayerAttacks?.Invoke();
+        }
+        else
+        {
+            attackBuffered = true;
         }
     }
 

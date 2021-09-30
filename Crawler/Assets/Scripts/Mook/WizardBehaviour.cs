@@ -31,6 +31,7 @@ public class WizardBehaviour : MonoBehaviour
     [SerializeField] protected FireBallAttack fireBallAttack;
 
     ChaseTarget chaseTarget;
+
     protected virtual void Awake()
     {
         _animator = GetComponentInChildren<Animator>();

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6331310346733729472}
   - component: {fileID: 7246803117135505454}
   m_Layer: 6
-  m_Name: GameObject.2
+  m_Name: PlaceholderText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BOSS PLACEHOLDER
+  m_text: 'ROCK BOSS
+
+    VISUAL PLACEHOLDER'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -402,7 +404,7 @@ GameObject:
   - component: {fileID: 8518299826295836113}
   - component: {fileID: 7697655310782148051}
   m_Layer: 6
-  m_Name: WizardVisual
+  m_Name: RockMonsterVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,7 +470,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -3763824636803078212, guid: 4a1d3cb491d83c940acc4199fed0c760, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8832259, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -488,7 +490,7 @@ Animator:
   m_GameObject: {fileID: 1362693161104254703}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 17fe195ada9877147b79220164fe1dee, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b8f70a9c7e8a8e4bad0a7e081c712cb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -746,7 +748,7 @@ GameObject:
   - component: {fileID: 1582830841371499888}
   - component: {fileID: 5298961177612973964}
   m_Layer: 6
-  m_Name: GameObject
+  m_Name: State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,13 +994,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5500688604164769548}
-  - component: {fileID: 4448974829955922318}
   - component: {fileID: 798575451028061855}
   - component: {fileID: 8041364616948780949}
   - component: {fileID: 2579222934714575531}
+  - component: {fileID: 6022688149113437254}
   - component: {fileID: 2253272019112187563}
   m_Layer: 6
-  m_Name: BossPlaceholder
+  m_Name: BossTwoRockMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1021,14 +1023,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4448974829955922318
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6525426626975955375}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!195 &798575451028061855
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1089,6 +1083,48 @@ MonoBehaviour:
   mookMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &6022688149113437254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6525426626975955375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274cb2652b3000f48aa6c30a4c59964a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chaseRange: 2
+  _reChaseRange: 4
+  _moveSpeed: 1
+  _layersToCastAgainstOnAttack:
+    serializedVersion: 2
+    m_Bits: 128
+  stateText: {fileID: 5298961177612973964}
+  rightHook:
+    _windupAttackSound: {fileID: 8300000, guid: 05b0f82417e77be4ca818533dde7e038, type: 3}
+    _attackHitSuccessSound: {fileID: 8300000, guid: 547bce3c6810a8042bae22cdcda4410c, type: 3}
+    _attackAnimationWindupStateName: RightHook
+    attackEffect: {fileID: 2929450487905684785, guid: c34e27680327ba64e949c1c5bfe45bb5, type: 3}
+    hitboxSize: {x: 4, y: 3}
+    attackDamage: 0
+    attackDelayMinimum: 2
+    attackDelayMaximum: 3
+  hitboxAttainmentForBasicAttack:
+    hitBoxSize: {x: 4, y: 0, z: 3}
+  pummelStrike:
+    _windupAttackSound: {fileID: 8300000, guid: 83a610395fedd2741bda6f3bb17662b0, type: 3}
+    _attackHitSuccessSound: {fileID: 8300000, guid: 547bce3c6810a8042bae22cdcda4410c, type: 3}
+    _attackAnimationWindupStateName: AOEStrike
+    attackEffect: {fileID: 2929450487905684785, guid: c34e27680327ba64e949c1c5bfe45bb5, type: 3}
+    hitboxSize: {x: 0, y: 0}
+    attackDamage: 3
+    attackDelayMinimum: 2
+    attackDelayMaximum: 3
+  hitBoxAttainmentForPummelStrike:
+    hitBoxRadius: 5
+    hitBoxObject: {fileID: 6217692446538946009, guid: 44a24f1b2bff5614b8ff1c6a045a9a7c, type: 3}
 --- !u!82 &2253272019112187563
 AudioSource:
   m_ObjectHideFlags: 0
