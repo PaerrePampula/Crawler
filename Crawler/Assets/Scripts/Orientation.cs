@@ -20,5 +20,12 @@ class Orientation
         float angle = headingAngleFor(t1, t2)*Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
     }
+    public static Vector3 getVectorRotatedOnYAxisFor(float angle, Vector3 vector)
+    {
+        float AngleofComparison = angle * Mathf.Deg2Rad;
+        float xRotated = vector.x * Mathf.Cos(AngleofComparison) - vector.y * Mathf.Sin(AngleofComparison);
+        float yRotated = vector.x * Mathf.Sin(AngleofComparison) + vector.y * Mathf.Cos(AngleofComparison);
+        return new Vector3(xRotated, 0, yRotated);
+    }
 }
 

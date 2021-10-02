@@ -1095,8 +1095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274cb2652b3000f48aa6c30a4c59964a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chaseRange: 50
-  _reChaseRange: 500
+  _chaseRange: 3
+  _reChaseRange: 6
   _moveSpeed: 1
   _layersToCastAgainstOnAttack:
     serializedVersion: 2
@@ -1128,7 +1128,7 @@ MonoBehaviour:
     hitBoxRadius: 5
     hitBoxObject: {fileID: 6217692446538946009, guid: 44a24f1b2bff5614b8ff1c6a045a9a7c, type: 3}
   cooldownForPummelStrike:
-    stateActionCooldownLength: 5
+    stateActionCooldownLength: 6
   tornadoAoE:
     attackLength: 3
     attackDamage: 3
@@ -1137,7 +1137,7 @@ MonoBehaviour:
     hitBoxRadius: 3
     hitBoxObject: {fileID: 6217692446538946009, guid: 44a24f1b2bff5614b8ff1c6a045a9a7c, type: 3}
   cooldownForTornadoAttack:
-    stateActionCooldownLength: 7
+    stateActionCooldownLength: 10
 --- !u!82 &2253272019112187563
 AudioSource:
   m_ObjectHideFlags: 0
