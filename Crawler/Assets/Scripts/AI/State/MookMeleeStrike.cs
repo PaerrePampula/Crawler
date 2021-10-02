@@ -53,7 +53,6 @@ class MookMeleeStrike : IState
     }
     public void OnStateEnter()
     {
-
         windupRoutine = _baseMook.StartCoroutine(AiActionWaiter.actionWait(() => ReadyMeleeStrike(), Time.time + UnityEngine.Random.Range(attackDelayMinimum, attackDelayMaximum)));
     }
     void ReadyMeleeStrike()

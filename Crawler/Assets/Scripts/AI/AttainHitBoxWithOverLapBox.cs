@@ -17,7 +17,7 @@ class AttainHitBoxWithOverLapBox
         _character = character;
         _hitMask = layerMask;
     }
-    public Func<float, Collider[]> getHitBoxes() => (angle) => Physics.OverlapBox(_character.position, new Vector3(hitBoxSize.x / 2f, 500, hitBoxSize.z / 2f),
+    public Func<float, Collider[]> getHitBoxes() => (angle) => Physics.OverlapBox(_character.position + _character.transform.TransformDirection(new Vector3(0, 0, hitBoxSize.z / 2f)), new Vector3(hitBoxSize.x / 2f, 500, hitBoxSize.z / 2f),
         Quaternion.Euler(0, angle, 0), _hitMask);
 }
 
