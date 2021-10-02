@@ -12,6 +12,10 @@ class ChaseTarget : IState
     NavMeshAgent _chasingAgent;
     public delegate void TargetReachedStateChange(bool state);
     public event TargetReachedStateChange OnTargetReachedStateChange;
+    public event StateComplete onStateComplete;
+    public Action onCharacterChase;
+    public Action onCharacterChaseUpdate;
+    public Action onCharacterChaseExit;
     public ChaseTarget(Transform target, NavMeshAgent chasingAgent)
     {
         _target = target;
@@ -21,6 +25,7 @@ class ChaseTarget : IState
     {
         _chasingAgent.enabled = true;
         OnTargetReachedStateChange?.Invoke(false);
+        onCharacterChase?.Invoke();
         //Possible animation system triggering here later on
     }
 
@@ -28,10 +33,17 @@ class ChaseTarget : IState
     {
         _chasingAgent.enabled = false;
         OnTargetReachedStateChange?.Invoke(true);
-    }
+        onCharacterChaseExit?.Invoke();
 
+    }
+    public void EndStateManual()
+    {
+        onStateComplete?.Invoke();
+    }
     public void Tick()
     {
+
+        onCharacterChaseUpdate?.Invoke();
         _chasingAgent.SetDestination(_target.position);
     }
 
@@ -40,5 +52,6 @@ class ChaseTarget : IState
     {
         return true;
     }
+
 }
 

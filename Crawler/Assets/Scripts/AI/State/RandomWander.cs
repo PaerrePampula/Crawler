@@ -14,6 +14,9 @@ class RandomWander : IState
     int wanderCount;
     int currentWanders = 0;
     bool _wanderDone;
+
+    public event StateComplete onStateComplete;
+
     public RandomWander(CharacterController characterController, BaseMook baseMook)
     {
         _baseMook = baseMook;
@@ -72,5 +75,7 @@ class RandomWander : IState
     {
         return _wanderDone;
     }
+
+
 }
 

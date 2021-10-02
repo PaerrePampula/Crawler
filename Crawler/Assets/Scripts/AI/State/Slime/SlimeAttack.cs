@@ -12,6 +12,8 @@ class SlimeAttack : IState
 {
     public delegate void WhiffedAttackOnDodgedPlayer();
     public static event WhiffedAttackOnDodgedPlayer onAttackWhiff;
+    public event StateComplete onStateComplete;
+
     [SerializeField] float chargeDuration = 1f;
     [SerializeField] float chargePower = 2f;
     [SerializeField] float chargeHbRadius = 1f;
@@ -157,4 +159,5 @@ class SlimeAttack : IState
     {
         return readyToChangeState;
     }
+
 }

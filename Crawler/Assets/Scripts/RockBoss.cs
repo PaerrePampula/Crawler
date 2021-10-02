@@ -25,12 +25,25 @@ public class RockBoss : MonoBehaviour
 
     bool gizmo_gameStarted = false;
     ChaseTarget chaseTarget;
+
+    ChooseAttackState attackChooser;
+
+    //Basic attack class + its delegates
     [SerializeField] MookMeleeStrike rightHook;
     [SerializeField] AttainHitBoxWithOverLapBox hitboxAttainmentForBasicAttack;
+    [SerializeField] StateActionCooldown cooldownForBasicAttack;
+    //"Ground smash" attack + its delegates
     [SerializeField] MookMeleeStrike pummelStrike;
     [SerializeField] AttainHitBoxWithCircle hitBoxAttainmentForPummelStrike;
+    [SerializeField] StateActionCooldown cooldownForPummelStrike;
+    //Tornado attack and its delegates
+    ChaseTarget tornadoAttackChaseTarget;
+    [SerializeField] AoEPassiveAttack tornadoAoE;
+    [SerializeField] AttainHitBoxWithCircle tornadoHitBoxCircle;
+    [SerializeField] StateActionCooldown cooldownForTornadoAttack;
     private void Awake()
     {
+        //get all required components
         gizmo_gameStarted = true;
         _animator = GetComponentInChildren<Animator>();
         stateOnAnimationTrigger = GetComponentInChildren<StateOnAnimationTrigger>();
@@ -38,21 +51,47 @@ public class RockBoss : MonoBehaviour
         _stateMachine = new StateMachine();
         _baseMook = GetComponent<BaseMook>();
         _audioSource = GetComponent<AudioSource>();
+        tornadoAttackChaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
 
-
+        //Initialize variables for delegates
         hitboxAttainmentForBasicAttack.InitializeVariables( _layersToCastAgainstOnAttack, transform);
         hitBoxAttainmentForPummelStrike.InitializeVariables(_layersToCastAgainstOnAttack, transform);
+        tornadoHitBoxCircle.InitializeVariables(_layersToCastAgainstOnAttack, transform);
+
+
+        //Initialize the actual attacks
         rightHook.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitboxAttainmentForBasicAttack.getHitBoxes());
         pummelStrike.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitBoxAttainmentForPummelStrike.getHitBoxes());
+        tornadoAoE.InitializeAoEPassiveAttack(tornadoHitBoxCircle.getHitBoxes(),tornadoAttackChaseTarget.EndStateManual ,  _baseMook, tornadoAttackChaseTarget);
 
-        pummelStrike.attackSpecialEffects = hitBoxAttainmentForPummelStrike.displayHitBoxWarning();
-        pummelStrike.attackSpecialEffectsUpdate = hitBoxAttainmentForPummelStrike.updateHitBoxWarning();
-        pummelStrike.attackSpecialEffectsEnd = hitBoxAttainmentForPummelStrike.stopWarning();
+        //Add in delegates for special attacks
+        pummelStrike.attackReady = hitBoxAttainmentForPummelStrike.displayHitBoxWarning();
+        pummelStrike.updateAttack = hitBoxAttainmentForPummelStrike.updateHitBoxWarning();
+        pummelStrike.attackHitEnd += hitBoxAttainmentForPummelStrike.stopWarning();
+        pummelStrike.attackHitEnd += cooldownForPummelStrike.setCooldown();
+        tornadoAttackChaseTarget.onCharacterChase += cooldownForTornadoAttack.setCooldown();
+        tornadoAttackChaseTarget.onCharacterChase += () => tornadoAoE.StartAOE();
+
+        rightHook.attackHitEnd += cooldownForBasicAttack.setCooldown();
+
+        //Initialize the attack chooser class
+        List<(IState, StateActionCooldown)> attacksForAttackChooser = new List<(IState, StateActionCooldown)>();
+
+        attacksForAttackChooser.Add((pummelStrike, cooldownForPummelStrike));
+        attacksForAttackChooser.Add((tornadoAttackChaseTarget, cooldownForTornadoAttack));
+        attacksForAttackChooser.Add((rightHook, cooldownForBasicAttack));
+
+        attackChooser = new ChooseAttackState(ref _stateMachine, attacksForAttackChooser);
+
+
+        //Make transistions to different states
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
-        _stateMachine.AddTransistion(pummelStrike, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
-        _stateMachine.AddTransistion(chaseTarget, pummelStrike, targetTooFar(PlayerController.Singleton.transform, transform), true);
-        _stateMachine.SetState(chaseTarget);
+
+
+        _stateMachine.AddTransistion(attackChooser, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
+        _stateMachine.AddTransistionFromAnyState(chaseTarget, targetTooFar(PlayerController.Singleton.transform, transform), true);
+        _stateMachine.SetState(attackChooser);
     }
     private void updateChaseState(bool state)
     {

@@ -32,6 +32,8 @@ public class FireBallAttack : AiActionWaiter, IState
     public event OnFireballAttackCoolDownStart onFireballCoolDown;
     public delegate void OnAttack(int attacksLeft);
     public event OnAttack onAttack;
+    public event StateComplete onStateComplete;
+
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
     {
         _target = target;
@@ -124,4 +126,6 @@ public class FireBallAttack : AiActionWaiter, IState
     {
         return readyToChangeState;
     }
+
+
 }

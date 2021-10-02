@@ -7,7 +7,7 @@ class StateMachine
     //The current state is cached, only one state is active for an AI
     IState _currentState;
     //All transistions for all registered states are cached here, similar to the animator tab transistions
-    Dictionary<Type, List<Transistion>> _allTransistions = new Dictionary<Type, List<Transistion>>();
+    Dictionary<IState, List<Transistion>> _allTransistions = new Dictionary<IState, List<Transistion>>();
     //All the transistions for state _currentState shall be cached here
     List<Transistion> _currentTransistions = new List<Transistion>();
     //All the transistions that can be transistioned from ANY state are cached here
@@ -36,7 +36,7 @@ class StateMachine
         //Then set the new state as the current state
         _currentState = state;
         //Figure out the new transistion states, if there are none, set the transistions to be none
-        _allTransistions.TryGetValue(_currentState.GetType(), out _currentTransistions);
+        _allTransistions.TryGetValue(_currentState, out _currentTransistions);
         //No transistions were found for this type of state, so lets set the transistions to be empty
         if (_currentTransistions == null) _currentTransistions = EmptyTransistionList;
         //New state was entered, so the enter method must be ran
@@ -54,10 +54,10 @@ class StateMachine
     {
         //So no transistions were found in the all transistions, add this as a new list of transistions for
         //this type of states
-        if (_allTransistions.TryGetValue(from.GetType(), out List<Transistion> transistions) == false)
+        if (_allTransistions.TryGetValue(from, out List<Transistion> transistions) == false)
         {
             transistions = new List<Transistion>();
-            _allTransistions[from.GetType()] = transistions;
+            _allTransistions[from] = transistions;
         }
 
         transistions.Add(new Transistion(to, predicate, stateReadinessRequired, from));
@@ -66,9 +66,9 @@ class StateMachine
     /// Add a transistion from any state to any other state e.g a low hp character might ALWAYS try to run,
     /// try to heal, etc over every other transistion
     /// </summary>
-    public void AddTransistionFromAnyState(IState state , Func<bool> predicate)
+    public void AddTransistionFromAnyState(IState state , Func<bool> predicate, bool stateReadinessRequired = false)
     {
-        _transistionsFromAnyState.Add(new Transistion(state, predicate));
+        _transistionsFromAnyState.Add(new Transistion(state, predicate, stateReadinessRequired));
     }
 
     Transistion GetTransistion()
@@ -78,6 +78,17 @@ class StateMachine
         {
             if (transistion.ConditionIsMet)
             {
+                if (transistion.StateReadinessConditionIsNeeded)
+                {
+                    if (_currentState.StateReadyToTransistion())
+                    {
+                        return transistion;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
                 return transistion;
             }
         }

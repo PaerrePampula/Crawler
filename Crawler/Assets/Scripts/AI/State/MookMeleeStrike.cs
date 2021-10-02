@@ -12,9 +12,9 @@ class MookMeleeStrike : IState
     //The collider attainment method is only passed as a func pointer, making the switching of the way of attaining the hit characters
     //a variable (some attacks might get their hitboxes using squares, some might use circles, so different methods are needed)
     public Func<float,Collider[]> hitBoxAttainMethod;
-    public Action attackSpecialEffects;
-    public Action attackSpecialEffectsEnd;
-    public Action attackSpecialEffectsUpdate;
+    public Action attackReady;
+    public Action attackHitEnd;
+    public Action updateAttack;
     Animator _animator;
     AudioSource _audioSource;
     BaseMook _baseMook;
@@ -40,6 +40,9 @@ class MookMeleeStrike : IState
     public Vector2 HitboxSize { get => hitboxSize; set => hitboxSize = value; }
 
     Coroutine windupRoutine;
+
+    public event StateComplete onStateComplete;
+
     public void InitializeMeleeStrike(Animator animator, AudioSource audioSource, BaseMook baseMook, StateOnAnimationTrigger stateOnAnimationTrigger, Func<float, Collider[]> colliderFunc)
     {
         hitBoxAttainMethod = colliderFunc;
@@ -50,21 +53,17 @@ class MookMeleeStrike : IState
     }
     public void OnStateEnter()
     {
-        readyToChangeState = false;
-        if (lastAttackTime == Mathf.Infinity) lastAttackTime = Time.time + attackDelayMinimum;
-        windupRoutine = _baseMook.StartCoroutine(AiActionWaiter.actionWait(() => ReadyMeleeStrike(), lastAttackTime));
+
+        windupRoutine = _baseMook.StartCoroutine(AiActionWaiter.actionWait(() => ReadyMeleeStrike(), Time.time + UnityEngine.Random.Range(attackDelayMinimum, attackDelayMaximum)));
     }
     void ReadyMeleeStrike()
     {
-
-
-        lastAttackTime = Time.time + UnityEngine.Random.Range(attackDelayMinimum, attackDelayMaximum);
+        readyToChangeState = false;
         _audioSource.PlayOneShot(_windupAttackSound);
         _animator.SetTrigger(_attackAnimationWindupStateName);
-
         attackEffectInstance = GameObject.Instantiate(attackEffect, _baseMook.transform);
         attackEffectInstance.transform.localPosition = -Orientation.getHeadingVectorFor(_baseMook.transform.position, PlayerController.Singleton.transform.position) + Vector3.up;
-        attackSpecialEffects?.Invoke();
+        attackReady?.Invoke();
         _animationTrigger.onTriggerState += CastAttackHitBox;
         _animationTrigger.onTriggerStateLeave += StopCastingHitBox;
     }
@@ -99,25 +98,26 @@ class MookMeleeStrike : IState
     }
     void StopCastingHitBox()
     {
+        _animationTrigger.onTriggerState -= CastAttackHitBox;
+        _animationTrigger.onTriggerStateLeave -= StopCastingHitBox;
         if (attackHitBoxRoutine != null)
         {
             _baseMook.StopCoroutine(attackHitBoxRoutine);
             attackHitBoxRoutine = null;
 
         }
-        attackSpecialEffectsEnd?.Invoke();
-        readyToChangeState = true;
-        _animationTrigger.onTriggerState -= CastAttackHitBox;
-        _animationTrigger.onTriggerStateLeave -= StopCastingHitBox;
-        GameObject.Destroy(attackEffectInstance);
 
+        readyToChangeState = true;
+
+        GameObject.Destroy(attackEffectInstance);
+        attackHitEnd?.Invoke();
+        onStateComplete?.Invoke();
     }
 
     public void OnStateExit()
     {
         if (windupRoutine != null) _baseMook.StopCoroutine(windupRoutine);
-        //If the casting is still happening on the hitbox, but state changes, reset the hitbox
-        StopCastingHitBox();
+
 
     }
 
@@ -128,7 +128,8 @@ class MookMeleeStrike : IState
 
     public void Tick()
     {
-        attackSpecialEffectsUpdate?.Invoke();
+        updateAttack?.Invoke();
     }
+
 
 }
