@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
@@ -31,13 +32,17 @@ class Player : MonoBehaviour,  IDamageable
     public static event PlayerDeath onPlayerDeath;
     public delegate void PlayerReceivedItem(Item item);
     public static event PlayerReceivedItem onPlayerReceivedItem;
+    Dictionary<StatType, List<Delegate>> delegatesOnStatBuff;
 
     Dictionary<string, Item> _playerItems = new Dictionary<string, Item>();
     Dictionary<StatType, float> _buffModifiers = new Dictionary<StatType, float>()
     {
         {
             StatType.Damage, 0f
-        }
+        },
+        {
+            StatType.MaxHP, 0f
+        },
     };
     //The system probably could round hp to one halves for the heart display system, maybe?
     [SerializeField] float _maxHp = 5;
@@ -66,7 +71,18 @@ class Player : MonoBehaviour,  IDamageable
         }
     }
 
-    public float MaxHp { get => _maxHp; set => _maxHp = value; }
+    public float MaxHp
+    {
+        get 
+        {
+
+            return _maxHp + (_buffModifiers[StatType.MaxHP]); 
+        }
+        set
+        {
+            _maxHp = value;
+        }
+    }
 
     public bool ChangeHp(float changeAmount)
     {
@@ -169,6 +185,12 @@ class Player : MonoBehaviour,  IDamageable
         spriteRenderer.color = new Color32(255, 255, 255, 255);
         _isInvunerable = false;
     }
-
+    public void AddDelegateOnStatBuff(StatType statType, Delegate newDelegate)
+    {
+        if (delegatesOnStatBuff.ContainsKey(statType))
+        {
+            //delegatesOnStatBuff.Add
+        }
+    }
 }
 
