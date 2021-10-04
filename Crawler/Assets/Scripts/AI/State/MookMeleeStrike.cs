@@ -60,8 +60,12 @@ class MookMeleeStrike : IState
         readyToChangeState = false;
         _audioSource.PlayOneShot(_windupAttackSound);
         _animator.SetTrigger(_attackAnimationWindupStateName);
-        attackEffectInstance = GameObject.Instantiate(attackEffect, _baseMook.transform);
-        attackEffectInstance.transform.localPosition = -Orientation.getHeadingVectorFor(_baseMook.transform.position, PlayerController.Singleton.transform.position) + Vector3.up;
+        if (attackEffect)
+        {
+            attackEffectInstance = GameObject.Instantiate(attackEffect, _baseMook.transform);
+            attackEffectInstance.transform.localPosition = -Orientation.getHeadingVectorFor(_baseMook.transform.position, PlayerController.Singleton.transform.position) + Vector3.up;
+        }
+
         attackReady?.Invoke();
         _animationTrigger.onTriggerState += CastAttackHitBox;
         _animationTrigger.onTriggerStateLeave += StopCastingHitBox;

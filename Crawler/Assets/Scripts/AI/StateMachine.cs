@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class StateMachine
+public class StateMachine
 {
     //The current state is cached, only one state is active for an AI
     IState _currentState;

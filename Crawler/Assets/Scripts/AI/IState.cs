@@ -1,6 +1,6 @@
 ﻿using System;
 public delegate void StateComplete();
-interface IState
+public interface IState
 {
     void Tick();
     void OnStateEnter();

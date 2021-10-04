@@ -41,6 +41,10 @@ public class RockBoss : MonoBehaviour
     [SerializeField] AoEPassiveAttack tornadoAoE;
     [SerializeField] AttainHitBoxWithCircle tornadoHitBoxCircle;
     [SerializeField] StateActionCooldown cooldownForTornadoAttack;
+    //Range attack and its delegates
+    [SerializeField] VolleyFireBallAttack volleyFireBallAttack;
+    [SerializeField] StateActionCooldown cooldownForFireballAttack;
+
     private void Awake()
     {
         //get all required components
@@ -60,6 +64,7 @@ public class RockBoss : MonoBehaviour
 
 
         //Initialize the actual attacks
+        volleyFireBallAttack.InitializeFireBallAttack(PlayerController.Singleton.transform, _baseMook, _animator, _audioSource);
         rightHook.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitboxAttainmentForBasicAttack.getHitBoxes());
         pummelStrike.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitBoxAttainmentForPummelStrike.getHitBoxes());
         tornadoAoE.InitializeAoEPassiveAttack(tornadoHitBoxCircle.getHitBoxes(),tornadoAttackChaseTarget.EndStateManual ,  _baseMook, tornadoAttackChaseTarget);
@@ -71,6 +76,7 @@ public class RockBoss : MonoBehaviour
         pummelStrike.attackHitEnd += cooldownForPummelStrike.setCooldown();
         tornadoAttackChaseTarget.onCharacterChase += cooldownForTornadoAttack.setCooldown();
         tornadoAttackChaseTarget.onCharacterChase += () => tornadoAoE.StartAOE();
+        volleyFireBallAttack.OnAttackStart +=  cooldownForFireballAttack.setCooldown();
 
         rightHook.attackHitEnd += cooldownForBasicAttack.setCooldown();
 
@@ -79,9 +85,10 @@ public class RockBoss : MonoBehaviour
 
         attacksForAttackChooser.Add((pummelStrike, cooldownForPummelStrike));
         attacksForAttackChooser.Add((tornadoAttackChaseTarget, cooldownForTornadoAttack));
+        attacksForAttackChooser.Add((volleyFireBallAttack, cooldownForFireballAttack));
         attacksForAttackChooser.Add((rightHook, cooldownForBasicAttack));
 
-        attackChooser = new ChooseAttackState(ref _stateMachine, attacksForAttackChooser);
+        attackChooser = new ChooseAttackState(ref _stateMachine, attacksForAttackChooser, _baseMook);
 
 
         //Make transistions to different states

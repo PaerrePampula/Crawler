@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 757614094}
   - component: {fileID: 757614093}
   - component: {fileID: 757614096}
-  - component: {fileID: 757614097}
+  - component: {fileID: 757614099}
   - component: {fileID: 757614098}
   m_Layer: 0
   m_Name: Canvas
@@ -1156,19 +1156,6 @@ MonoBehaviour:
   talkingText: {fileID: 1738829765}
   _audioSource: {fileID: 1096614839}
   _characterTalkingSoundEffect: {fileID: 8300000, guid: 921310e56ddf5c54cb98cd3da8d0479a, type: 3}
---- !u!114 &757614097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757614091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9820a537f40b91d45a141f08ad4053aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AIChatText: {fileID: 11400000, guid: 0247629384086f644a46835418d2a389, type: 2}
 --- !u!95 &757614098
 Animator:
   serializedVersion: 4
@@ -1189,6 +1176,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &757614099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757614091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004a925e191b21c4fb81082c494393fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIChatText: {fileID: 11400000, guid: 0247629384086f644a46835418d2a389, type: 2}
 --- !u!1 &766264428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1428,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 757614097}
+      - m_Target: {fileID: 757614099}
+        m_TargetAssemblyTypeName: PlayerEndCanvas, Assembly-CSharp
+        m_MethodName: SubscribeToQuittingGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Quit
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 757614099}
         m_TargetAssemblyTypeName: PlayerEndCanvas, Assembly-CSharp
         m_MethodName: InvokeStoryTellerText
         m_Mode: 5
@@ -1438,18 +1450,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Quit
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 757614097}
-        m_TargetAssemblyTypeName: PlayerEndCanvas, Assembly-CSharp
-        m_MethodName: SubscribeToQuittingGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1069846844
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423482501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 106c930d6e49e334c8d7eed828a4b547, type: 3}
+  m_Script: {fileID: 11500000, guid: 278cca2af9c8bf74383d371084ba3e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   deathCanvas: {fileID: 757614092}
@@ -2054,7 +2054,7 @@ MonoBehaviour:
   oneRoomToGenerate: {fileID: 8613360174015129289, guid: 6ba8b9a80fcb1b04bb41a33a9b0c5c8b, type: 3}
   allRooms:
   - {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
-  - {fileID: 4218164611480388997, guid: 63fd836aee5773440a6e32c9d16099ef, type: 3}
+  - {fileID: 4075043296493688907, guid: 5fc0f23f18931fb46b34bbf3e125effc, type: 3}
   - {fileID: 5366004826432824641, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
   - {fileID: 9008166229396676781, guid: 49a68ac790fbc674b939b71f986f0c25, type: 3}
   - {fileID: 5205253066214800269, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
@@ -2508,7 +2508,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 757614097}
+      - m_Target: {fileID: 757614099}
+        m_TargetAssemblyTypeName: PlayerEndCanvas, Assembly-CSharp
+        m_MethodName: SubscribeToRestartingGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: NewGame
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 757614099}
         m_TargetAssemblyTypeName: PlayerEndCanvas, Assembly-CSharp
         m_MethodName: InvokeStoryTellerText
         m_Mode: 5
@@ -2518,18 +2530,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: NewGame
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 757614097}
-        m_TargetAssemblyTypeName: PlayerEndCanvas, Assembly-CSharp
-        m_MethodName: SubscribeToRestartingGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1942690967

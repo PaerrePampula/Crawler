@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4057903572749583673}
   - component: {fileID: 5227836639440919559}
   - component: {fileID: 8359532854355714055}
-  - component: {fileID: 4757900152176187415}
+  - component: {fileID: 4212734009414527743}
   m_Layer: 6
   m_Name: MrSkellington
   m_TagString: Untagged
@@ -203,7 +203,7 @@ MonoBehaviour:
   mookMask:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &4757900152176187415
+--- !u!114 &4212734009414527743
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,12 +212,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 956667193970488067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2251ba7e0bbca904f94818503752ad26, type: 3}
+  m_Script: {fileID: 11500000, guid: 91a57680d42bc9546b712e3d02040999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _chaseRange: 3
   _reChaseRange: 5
-  _moveSpeed: 0
+  _moveSpeed: 1
   _layersToCastAgainstOnAttack:
     serializedVersion: 2
     m_Bits: 128
@@ -229,10 +229,10 @@ MonoBehaviour:
     attackEffect: {fileID: 3150930110446267672, guid: 41b60c4892014ab47a76f4209aac7105, type: 3}
     hitboxSize: {x: 0, y: 0}
     attackDamage: 3
-    attackDelayMinimum: 0.8
-    attackDelayMaximum: 1
+    attackDelayMinimum: 0.3
+    attackDelayMaximum: 0.6
   hitboxAttainmentForBasicAttack:
-    hitBoxSize: {x: 4.5, y: 0, z: 4.5}
+    hitBoxSize: {x: 2, y: 0, z: 4}
 --- !u!1 &3317210486732156537
 GameObject:
   m_ObjectHideFlags: 0

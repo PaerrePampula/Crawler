@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 class ChooseAttackState : IState
 {
@@ -13,14 +14,15 @@ class ChooseAttackState : IState
     List<(IState, StateActionCooldown)> statesToChooseFrom = new List<(IState, StateActionCooldown)>();
     StateMachine _stateMachine;
     IState chosenState;
-
+    BaseMook _baseMook;
 
     public event StateComplete onStateComplete;
 
-    public ChooseAttackState(ref StateMachine stateMachine, List<(IState, StateActionCooldown)> iStates)
+    public ChooseAttackState(ref StateMachine stateMachine, List<(IState, StateActionCooldown)> iStates, BaseMook baseMook)
     {
         _stateMachine = stateMachine;
         statesToChooseFrom = iStates;
+        _baseMook = baseMook;
     }
 
     public void OnStateEnter()
@@ -41,22 +43,26 @@ class ChooseAttackState : IState
             if ((statesToChooseFrom[i].Item2 == null) || statesToChooseFrom[i].Item2.CooldownPassed().Invoke() == true)
             {
                 chosenState = statesToChooseFrom[i].Item1;
+                //Add a delay to attacks, to give the player a bigger chance of winning the boss fight
+                _baseMook.StartCoroutine(AiActionWaiter.actionWait(() => SetNewState(), Time.time+ 1.2f));
                 break;
             }
 
         }
-        if (chosenState != null)
-        {
 
-            //set the state to the new attack
-            _stateMachine.SetState(chosenState);
-            //Unsubscribe old state attack end
-
-            //Subscribe to the attack end to choose new attack (or to transistion to something else during this new state)
-            chosenState.onStateComplete += ReturnToThisState;
-        }
 
     }
+
+    private void SetNewState()
+    {
+        //set the state to the new attack
+        _stateMachine.SetState(chosenState);
+        //Unsubscribe old state attack end
+
+        //Subscribe to the attack end to choose new attack (or to transistion to something else during this new state)
+        chosenState.onStateComplete += ReturnToThisState;
+    }
+
     void ReturnToThisState()
     {
         chosenState = this;

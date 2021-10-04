@@ -34,7 +34,8 @@ class VolleyFireBallAttack : FireBallAttack
             yield return new WaitForSeconds(delayInVolley);
             shotVolleys++;
         }
-        DoAttack();
+        InvokeStateComplete();
+
     }
 }
 

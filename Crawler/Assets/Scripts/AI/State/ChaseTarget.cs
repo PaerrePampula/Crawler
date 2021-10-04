@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-class ChaseTarget : IState
+public class ChaseTarget : IState
 {
     Transform _target;
     NavMeshAgent _chasingAgent;

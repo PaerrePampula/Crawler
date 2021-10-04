@@ -12,7 +12,12 @@ public class VolleyFireWizardBehaviour : WizardBehaviour
     protected override void Awake()
     {
         fireBallAttack = VolleyfireBallAttack;
+        fireBallAttack.onStateComplete += returnToChase;
         base.Awake();
     }
 
+    private void returnToChase()
+    {
+        _stateMachine.SetState(chaseTarget);
+    }
 }

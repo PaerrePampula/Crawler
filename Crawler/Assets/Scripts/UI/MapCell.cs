@@ -75,10 +75,10 @@ public class MapCell : MonoBehaviour
     }
     private void OnDestroy()
     {
-
-
-        Cell.onCellDiscover -= discoverMapCell;
-
+        if (Cell != null)
+        {
+            Cell.onCellDiscover -= discoverMapCell;
+        }
         CurrentRoomManager.onPlayerRoomSet -= checkIfDiscoveredAndIfIsCurrentRoom;
     }
     void discoverMapCell()

@@ -14,9 +14,5 @@ public class AiActionWaiter
             yield return null;
         }
         action.Invoke();
-
-
-
-
     }
 }

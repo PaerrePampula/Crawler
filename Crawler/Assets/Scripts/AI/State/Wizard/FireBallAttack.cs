@@ -32,6 +32,7 @@ public class FireBallAttack : AiActionWaiter, IState
     public event OnFireballAttackCoolDownStart onFireballCoolDown;
     public delegate void OnAttack(int attacksLeft);
     public event OnAttack onAttack;
+    public Action OnAttackStart;
     public event StateComplete onStateComplete;
 
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
@@ -87,6 +88,7 @@ public class FireBallAttack : AiActionWaiter, IState
 
     private void TriggerAttack()
     {
+        OnAttackStart?.Invoke();
         lastAttackTime = Time.time + UnityEngine.Random.Range(attackCycleWaitTimeMinimum, attackCycleWaitTimeMaximum);
         _animator.gameObject.GetComponent<StateOnAnimationTrigger>().onTriggerState += AttackWithFireBall;
         //only triggers the animator and sound, animation triggers event
@@ -101,6 +103,9 @@ public class FireBallAttack : AiActionWaiter, IState
     {
         _audioSource?.PlayOneShot(castingAudioClip);
         Vector3 projectileDirection = (_target.position - _baseMook.transform.position).normalized;
+        //The projectiles sometimes go down in very weird and janky directions, so reset the fireball to always travel on the same level on the Y as the character itself
+        //(By setting the y to be 0 for the rigid body force apply)
+        projectileDirection.y = 0;
         GameObject go = GameObject.Instantiate(fireballPrefab, _baseMook.transform.position + projectileDirection, Quaternion.identity);
         go.GetComponent<WizardFireball>().InitializeFireball(projectileDirection, _hitLayers, fireballDamage, fireballSpeed);
         readyToChangeState = true;
@@ -115,6 +120,10 @@ public class FireBallAttack : AiActionWaiter, IState
 
         readyToChangeState = true;
         if (waitForAction != null) _baseMook.StopCoroutine(waitForAction);
+    }
+    protected void InvokeStateComplete()
+    {
+        onStateComplete?.Invoke();
     }
 
     public void Tick()

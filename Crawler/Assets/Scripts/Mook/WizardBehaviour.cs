@@ -21,7 +21,7 @@ public class WizardBehaviour : MonoBehaviour
     //For controlling some events, tracking hp maybe.
     BaseMook _baseMook;
     //Behaviour script, so needs a state machine
-    StateMachine _stateMachine;
+    protected StateMachine _stateMachine;
     //Moving AI, so needs a navAgent
     NavMeshAgent _navAgent;
     Animator _animator;
@@ -30,7 +30,7 @@ public class WizardBehaviour : MonoBehaviour
     [SerializeField] TextMeshPro stateText;
     [SerializeField] protected FireBallAttack fireBallAttack;
 
-    ChaseTarget chaseTarget;
+    protected ChaseTarget chaseTarget;
 
     protected virtual void Awake()
     {
