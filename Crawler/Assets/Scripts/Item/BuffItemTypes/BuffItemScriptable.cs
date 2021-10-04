@@ -13,5 +13,6 @@ public class BuffItemScriptable : ItemScriptable
 public enum StatType
 {
     Damage,
-    Hp
+    Hp,
+    MaxHP
 }
