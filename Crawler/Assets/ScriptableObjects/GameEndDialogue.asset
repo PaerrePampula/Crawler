@@ -10,19 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ec5cdb480f0daf47803af7e2d7cb589, type: 3}
-  m_Name: DeathDialogue
+  m_Name: GameEndDialogue
   m_EditorClassIdentifier: 
   chats:
-  - chatIdentifier: Initial
+  - chatIdentifier: GameEnd1
     chatTexts:
-    - Now you are just pulling my leg, that cant be how the story ends!
-  - chatIdentifier: Response
+    - End Dialogue 1
+  - chatIdentifier: GameEnd2
     chatTexts:
-    - Ah, you see the thing is...
-  - chatIdentifier: NewGame
-    chatTexts:
-    - Im just having fun with you, of course thats not how the story ends!
-  - chatIdentifier: Quit
-    chatTexts:
-    - Thats where the book ends...
+    - 'End Dialogue 2
+
+'
   specialChatSoundsForCharacter: []
