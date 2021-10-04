@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorTrap : MonoBehaviour
+public class Trap : MonoBehaviour
 {
-    bool timerBased;
+    bool timerBased = true;
     [SerializeField] float timeBetweenNewTriggers;
     Animator animator;
     Collider damageCollider;
     private void Awake()
     {
         damageCollider = GetComponent<Collider>();
+        animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -27,11 +28,16 @@ public class FloorTrap : MonoBehaviour
     public void StopTrap()
     {
         damageCollider.enabled = false;
+        if (timerBased)
+        {
+            StartCoroutine(AiActionWaiter.actionWait(() => TriggerTrap(), Time.time + timeBetweenNewTriggers));
+        }
     }
     private void TriggerTrap()
     {
         animator.SetTrigger("TriggerTrap");
     }
+
     private void OnTriggerEnter(Collider other)
     {
         Player player = other.GetComponent<Player>();
