@@ -32,7 +32,7 @@ class Player : MonoBehaviour,  IDamageable
     public static event PlayerDeath onPlayerDeath;
     public delegate void PlayerReceivedItem(Item item);
     public static event PlayerReceivedItem onPlayerReceivedItem;
-    Dictionary<StatType, List<Delegate>> delegatesOnStatBuff;
+    Dictionary<StatType, Action<float>> delegatesOnStatBuff = new Dictionary<StatType, Action<float>>();
 
     Dictionary<string, Item> _playerItems = new Dictionary<string, Item>();
     Dictionary<StatType, float> _buffModifiers = new Dictionary<StatType, float>()
@@ -133,8 +133,16 @@ class Player : MonoBehaviour,  IDamageable
         Hp = MaxHp;
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        AddDelegateOnStatBuff(StatType.MaxHP, updateMaxHP);
 
     }
+
+    private void updateMaxHP(float hpChange)
+    {
+        ChangeHp(hpChange);
+        onMaxHPChanged?.Invoke(MaxHp);
+    }
+
     public void GivePlayerItem(Item item)
     {
         Item listItem;
@@ -151,6 +159,8 @@ class Player : MonoBehaviour,  IDamageable
     public void BuffStatModifier(StatType statType, float amount)
     {
         _buffModifiers[statType] += amount;
+        if (delegatesOnStatBuff.ContainsKey(statType)) delegatesOnStatBuff[statType].Invoke(amount);
+
     }
     public float getBonusDamage(float damage)
     {
@@ -185,11 +195,15 @@ class Player : MonoBehaviour,  IDamageable
         spriteRenderer.color = new Color32(255, 255, 255, 255);
         _isInvunerable = false;
     }
-    public void AddDelegateOnStatBuff(StatType statType, Delegate newDelegate)
+    public void AddDelegateOnStatBuff(StatType statType, Action<float> newDelegate)
     {
         if (delegatesOnStatBuff.ContainsKey(statType))
         {
-            //delegatesOnStatBuff.Add
+            delegatesOnStatBuff[statType] += newDelegate;
+        }
+        else
+        {
+            delegatesOnStatBuff[statType] = newDelegate;
         }
     }
 }

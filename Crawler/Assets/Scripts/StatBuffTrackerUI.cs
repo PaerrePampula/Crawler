@@ -38,6 +38,7 @@ public class StatBuffTrackerUI : MonoBehaviour
     private void AddNewBuff(Item item)
     {
         BuffItemScriptable buffItem = (BuffItemScriptable)item.ItemScriptable;
+        if (buffItem.StatToBuff == StatType.MaxHP) return;
         if (currentBuffs.ContainsKey(buffItem.StatToBuff))
         {
             currentBuffs[buffItem.StatToBuff].GetComponent<StatBuffUI>().ChangePercentage(buffItem.BuffAmountPercentage);
