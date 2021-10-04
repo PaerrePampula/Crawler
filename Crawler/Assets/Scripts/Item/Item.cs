@@ -17,10 +17,9 @@ public class Item
     ItemScriptable _itemScriptable;
     public ItemScriptable ItemScriptable { get => _itemScriptable; set => _itemScriptable = value; }
     public IPlayerItemableBehaviourType Itemable { get => itemable; set => itemable = value; }
-
-
     IPlayerItemableBehaviourType itemable;
     int _itemCount = 1;
+
     public int ItemCount { get => _itemCount; set => _itemCount = value; }
     public bool DoItemPickupActionAccordingToItemType()
     {

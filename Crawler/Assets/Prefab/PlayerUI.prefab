@@ -3519,9 +3519,9 @@ RectTransform:
   m_Father: {fileID: 3885053855474047097}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 678, y: -474}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -250, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3885053855426708311
@@ -3666,6 +3666,7 @@ RectTransform:
   - {fileID: 4307233607784262120}
   - {fileID: 3885053855426708308}
   - {fileID: 3885053856177954790}
+  - {fileID: 1995898487366318761}
   - {fileID: 6986534945498920359}
   - {fileID: 6930577112974133272}
   - {fileID: 5763307680724953194}
@@ -4944,11 +4945,11 @@ RectTransform:
   - {fileID: 3344074857835497819}
   - {fileID: 6475592069030433381}
   m_Father: {fileID: 3885053855474047097}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -68.96106, y: -76.32822}
+  m_AnchoredPosition: {x: -68.96106, y: -76.328125}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9011344784764913363
@@ -5210,7 +5211,7 @@ RectTransform:
   - {fileID: 1369764241154805797}
   - {fileID: 3998936149105102497}
   m_Father: {fileID: 3885053855474047097}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -5792,7 +5793,7 @@ RectTransform:
   - {fileID: 2848312409388607872}
   - {fileID: 2714921113718360847}
   m_Father: {fileID: 3885053855474047097}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -5817,3 +5818,79 @@ MonoBehaviour:
   storeNode: {fileID: 6420882878836949973, guid: 9069229c614f06a4dafed738c03c151d, type: 3}
   playerIcon: {fileID: 8251730522752852852, guid: 5c50356f41d77f74fbe9fca689fd0bfa, type: 3}
   mapParent: {fileID: 7282959301336383906}
+--- !u!1 &9035214694440974658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1995898487366318761}
+  - component: {fileID: 4203369976425009565}
+  - component: {fileID: 2909203009536322797}
+  m_Layer: 5
+  m_Name: StatBuffTrackerLayoutParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1995898487366318761
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035214694440974658}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3885053855474047097}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -500, y: -75}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4203369976425009565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035214694440974658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 1
+  m_StartAxis: 0
+  m_CellSize: {x: 64, y: 64}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 1
+  m_ConstraintCount: 5
+--- !u!114 &2909203009536322797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035214694440974658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5a066237cc77d4dae0e879f678fd86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statTypesToSprites: {fileID: 11400000, guid: 2c7a81e572d68b148a6e5f515e76fff4, type: 2}
+  genericSpriteForStatBuffs: {fileID: 3333851955033551633, guid: ac1aa104462dfb6488df4ed0da97b64a, type: 3}

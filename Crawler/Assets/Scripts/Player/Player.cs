@@ -29,6 +29,8 @@ class Player : MonoBehaviour,  IDamageable
     public static event PlayerDodged onPlayerDodged;
     public delegate void PlayerDeath();
     public static event PlayerDeath onPlayerDeath;
+    public delegate void PlayerReceivedItem(Item item);
+    public static event PlayerReceivedItem onPlayerReceivedItem;
 
     Dictionary<string, Item> _playerItems = new Dictionary<string, Item>();
     Dictionary<StatType, float> _buffModifiers = new Dictionary<StatType, float>()
@@ -128,6 +130,7 @@ class Player : MonoBehaviour,  IDamageable
         {
             _playerItems[item.ItemScriptable.ItemID] = item;
         }
+        onPlayerReceivedItem(item);
     }
     public void BuffStatModifier(StatType statType, float amount)
     {

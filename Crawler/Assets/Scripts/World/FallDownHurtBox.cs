@@ -8,6 +8,10 @@ public class FallDownHurtBox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<BaseMook>())
+        {
+            other.GetComponent<BaseMook>().ChangeHp(-10000);
+        }
         if (other.GetComponent<TransformTracker>() != null)
         other.GetComponent<TransformTracker>().returnPlayerToSafety();
     }
