@@ -47,7 +47,7 @@ public class MrSkellingtonBehaviour : MonoBehaviour
         hitboxAttainmentForBasicAttack.InitializeVariables(_layersToCastAgainstOnAttack, transform);
         skellingtonStrike.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitboxAttainmentForBasicAttack.getHitBoxes());
 
-        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
+        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent, () => _baseMook.isCharacterGrounded());
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
         skellingtonStrike.onStateComplete += ResetState;
         _stateMachine.AddTransistion(skellingtonStrike, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));

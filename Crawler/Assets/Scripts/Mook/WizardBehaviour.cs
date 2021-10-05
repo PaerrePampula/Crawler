@@ -41,7 +41,7 @@ public class WizardBehaviour : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
 
         fireBallAttack.InitializeFireBallAttack(PlayerController.Singleton.transform, _baseMook, _animator, _audioSource);
-        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
+        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent, () => _baseMook.isCharacterGrounded());
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
 
         //Add transistions for statemachine

@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class ChaseTarget : IState
 {
+    Func<bool> _grounded;
     Transform _target;
     NavMeshAgent _chasingAgent;
     public delegate void TargetReachedStateChange(bool state);
@@ -16,10 +17,11 @@ public class ChaseTarget : IState
     public Action onCharacterChase;
     public Action onCharacterChaseUpdate;
     public Action onCharacterChaseExit;
-    public ChaseTarget(Transform target, NavMeshAgent chasingAgent)
+    public ChaseTarget(Transform target, NavMeshAgent chasingAgent, Func<bool> grounded)
     {
         _target = target;
         _chasingAgent = chasingAgent;
+        _grounded = grounded;
     }
     public void OnStateEnter()
     {
@@ -43,8 +45,17 @@ public class ChaseTarget : IState
     public void Tick()
     {
 
+        if (_grounded() == false)
+        {
+            _chasingAgent.enabled = false;
+        }
+        else
+        {
+            _chasingAgent.enabled = true;
+        }
         onCharacterChaseUpdate?.Invoke();
-        _chasingAgent.SetDestination(new Vector3(_target.position.x, _chasingAgent.transform.position.y, _target.position.z));
+        if (_chasingAgent.enabled) _chasingAgent.SetDestination(new Vector3(_target.position.x, _chasingAgent.transform.position.y, _target.position.z));
+
     }
 
     //Can always transistion from moving

@@ -55,7 +55,7 @@ public class RockBoss : MonoBehaviour
         _stateMachine = new StateMachine();
         _baseMook = GetComponent<BaseMook>();
         _audioSource = GetComponent<AudioSource>();
-        tornadoAttackChaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
+        tornadoAttackChaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent, () => _baseMook.isCharacterGrounded());
 
         //Initialize variables for delegates
         hitboxAttainmentForBasicAttack.InitializeVariables( _layersToCastAgainstOnAttack, transform);
@@ -92,7 +92,7 @@ public class RockBoss : MonoBehaviour
 
 
         //Make transistions to different states
-        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
+        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent, () => _baseMook.isCharacterGrounded());
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
 
 

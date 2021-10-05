@@ -39,7 +39,7 @@ class SlimeBehaviour : MonoBehaviour
         _stateMachine = new StateMachine();
         _baseMook = GetComponent<BaseMook>();
         _audioSource = GetComponent<AudioSource>();
-        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent);
+        chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent, () => _baseMook.isCharacterGrounded());
         attackWander = new RandomWander(GetComponent<CharacterController>(), _baseMook);
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
         slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack,GetComponentInChildren<Animator>() , _audioSource);
