@@ -150,7 +150,7 @@ public class PlayerWeapon : MonoBehaviour
     }
     bool AttackDelayHasPassed()
     {
-        return (Time.time > lastAttackTime + currentAttackDelay);
+        return (Time.time > lastAttackTime + currentAttackDelay - (currentAttackDelay * Player.Singleton.BuffModifiers[StatType.AttackSpeed]));
     }
     void KnockbackHitCharacter(CharacterController characterController)
     {

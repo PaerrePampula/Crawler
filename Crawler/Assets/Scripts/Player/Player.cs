@@ -43,6 +43,9 @@ class Player : MonoBehaviour,  IDamageable
         {
             StatType.MaxHP, 0f
         },
+        {
+            StatType.AttackSpeed, 0f
+        }
     };
     //The system probably could round hp to one halves for the heart display system, maybe?
     [SerializeField] float _maxHp = 5;
@@ -76,13 +79,15 @@ class Player : MonoBehaviour,  IDamageable
         get 
         {
 
-            return _maxHp + (_buffModifiers[StatType.MaxHP]); 
+            return _maxHp + (BuffModifiers[StatType.MaxHP]); 
         }
         set
         {
             _maxHp = value;
         }
     }
+
+    public Dictionary<StatType, float> BuffModifiers { get => _buffModifiers; set => _buffModifiers = value; }
 
     public bool ChangeHp(float changeAmount)
     {
@@ -158,13 +163,13 @@ class Player : MonoBehaviour,  IDamageable
     }
     public void BuffStatModifier(StatType statType, float amount)
     {
-        _buffModifiers[statType] += amount;
+        BuffModifiers[statType] += amount;
         if (delegatesOnStatBuff.ContainsKey(statType)) delegatesOnStatBuff[statType].Invoke(amount);
 
     }
     public float getBonusDamage(float damage)
     {
-        return damage * _buffModifiers[StatType.Damage];
+        return damage * BuffModifiers[StatType.Damage];
     }
     public bool isInvurnerable()
     {
