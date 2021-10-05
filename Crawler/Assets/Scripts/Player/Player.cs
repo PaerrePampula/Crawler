@@ -57,6 +57,9 @@ class Player : MonoBehaviour,  IDamageable
         },
         {
             StatType.CritChance, 0f
+        },
+        {
+            StatType.PartialDamageReductionChance, 0f
         }
     };
     //The system probably could round hp to one halves for the heart display system, maybe?
@@ -111,7 +114,15 @@ class Player : MonoBehaviour,  IDamageable
 
                 return false;
             }
+            //Reduce damage by damage halving chance
+            float randomChance = UnityEngine.Random.Range(0f, 1f);
+            if (randomChance < BuffModifiers[StatType.PartialDamageReductionChance])
+            {
+                changeAmount *= 0.5f;
+            }
+            //Reduce damage by armor
             changeAmount = changeAmount - (_buffModifiers[StatType.Armor] * changeAmount);
+
             GivePlayerInvicibilityAfterHit();
             onPlayerDamaged?.Invoke();
 

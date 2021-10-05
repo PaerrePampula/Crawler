@@ -25,7 +25,7 @@ public class StatBuffTrackerUI : MonoBehaviour
     }
     private void OnDisable()
     {
-        Player.onPlayerReceivedItem += updateStatBuffsIfNeeded;
+        Player.onPlayerReceivedItem -= updateStatBuffsIfNeeded;
     }
     private void updateStatBuffsIfNeeded(Item item)
     {
