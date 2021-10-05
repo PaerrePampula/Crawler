@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class ChaseTarget : IState
 {
+    float timeStuck;
     Func<bool> _grounded;
     Transform _target;
     NavMeshAgent _chasingAgent;
@@ -45,12 +46,14 @@ public class ChaseTarget : IState
     public void Tick()
     {
 
-        if (_grounded() == false)
+        if (_grounded() == false && timeStuck < 3f)
         {
+            timeStuck += Time.deltaTime;
             _chasingAgent.enabled = false;
         }
         else
         {
+            timeStuck = 0;
             _chasingAgent.enabled = true;
         }
         onCharacterChaseUpdate?.Invoke();
