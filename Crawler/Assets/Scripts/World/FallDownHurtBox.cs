@@ -10,6 +10,7 @@ public class FallDownHurtBox : MonoBehaviour
     {
         if (other.GetComponent<BaseMook>())
         {
+            if (other.GetComponent<RockBoss>()) return;
             other.GetComponent<BaseMook>().ChangeHp(-10000);
         }
         if (other.GetComponent<TransformTracker>() != null)
