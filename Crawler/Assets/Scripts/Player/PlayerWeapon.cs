@@ -107,10 +107,17 @@ public class PlayerWeapon : MonoBehaviour
         Vector3 headingVector = heading.getHeadingVector().normalized;
         Collider[] hitColliders = Physics.OverlapBox(transform.position + headingVector * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, playerAttacks[currentAttackIndex].HitboxScale / 2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0), enemyLayerMask);
         int i = 0;
+
+        float randomChanceForCrit = UnityEngine.Random.Range(0, 100);
+        float totalDamage = playerAttacks[currentAttackIndex].Damage + Player.Singleton.getBonusDamage(playerAttacks[currentAttackIndex].Damage);
+        if (randomChanceForCrit <= Player.Singleton.BuffModifiers[StatType.CritChance]*100)
+        {
+            totalDamage *= 2f;
+        }
         //Check when there is a new collider coming into contact with the box
         while (i < hitColliders.Length)
         {
-            float totalDamage = playerAttacks[currentAttackIndex].Damage + Player.Singleton.getBonusDamage(playerAttacks[currentAttackIndex].Damage);
+
             hitColliders[i].GetComponent<BaseMook>().ChangeHp(-totalDamage);
             audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
             KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());

@@ -19,4 +19,5 @@ public enum StatType
     MovementSpeed,
     Armor,
     ItemDiscovery,
+    CritChance
 }
