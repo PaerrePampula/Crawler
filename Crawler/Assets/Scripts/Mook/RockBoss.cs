@@ -77,6 +77,10 @@ public class RockBoss : MonoBehaviour
         tornadoAttackChaseTarget.onCharacterChase += cooldownForTornadoAttack.setCooldown();
         tornadoAttackChaseTarget.onCharacterChase += () => tornadoAoE.StartAOE();
         volleyFireBallAttack.OnAttackStart +=  cooldownForFireballAttack.setCooldown();
+        volleyFireBallAttack.stateEnterAction += () => _animator.SetTrigger("Transform");
+        tornadoAttackChaseTarget.onCharacterChase += () => _animator.SetTrigger("Transform");
+        tornadoAttackChaseTarget.onCharacterChaseExit += () => _animator.SetTrigger("EndTransform");
+
 
         rightHook.attackHitEnd += cooldownForBasicAttack.setCooldown();
 
@@ -94,7 +98,8 @@ public class RockBoss : MonoBehaviour
         //Make transistions to different states
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent, () => _baseMook.isCharacterGrounded());
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
-
+        chaseTarget.onCharacterChaseUpdate += () => _animator.SetFloat("CharacterSpeed", _navAgent.velocity.magnitude);
+        chaseTarget.onCharacterChaseExit += () => _animator.SetFloat("CharacterSpeed", 0);
 
         _stateMachine.AddTransistion(attackChooser, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
         _stateMachine.AddTransistionFromAnyState(chaseTarget, targetTooFar(PlayerController.Singleton.transform, transform), true);

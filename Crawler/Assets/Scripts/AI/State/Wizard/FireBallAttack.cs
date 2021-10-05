@@ -28,11 +28,13 @@ public class FireBallAttack : AiActionWaiter, IState
     int currentAttackUses;
     [SerializeField] float attacksUsedCoolDown = 2f;
     float lastAttackTime = Mathf.Infinity;
+    //Delegates
     public delegate void OnFireballAttackCoolDownStart(float cooldownLength, int maxAttacks);
     public event OnFireballAttackCoolDownStart onFireballCoolDown;
     public delegate void OnAttack(int attacksLeft);
     public event OnAttack onAttack;
     public Action OnAttackStart;
+    public Action stateEnterAction;
     public event StateComplete onStateComplete;
 
     public void InitializeFireBallAttack(Transform target, BaseMook baseMook, Animator animator, AudioSource audioSource = null)
@@ -46,6 +48,7 @@ public class FireBallAttack : AiActionWaiter, IState
     }
     public void OnStateEnter()
     {
+        stateEnterAction?.Invoke();
         DoAttack();
 
     }

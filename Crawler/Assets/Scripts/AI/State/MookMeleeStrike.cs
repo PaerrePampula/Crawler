@@ -12,6 +12,7 @@ class MookMeleeStrike : IState
     //The collider attainment method is only passed as a func pointer, making the switching of the way of attaining the hit characters
     //a variable (some attacks might get their hitboxes using squares, some might use circles, so different methods are needed)
     public Func<float,Collider[]> hitBoxAttainMethod;
+
     public Action attackReady;
     public Action attackHitEnd;
     public Action updateAttack;
@@ -54,6 +55,7 @@ class MookMeleeStrike : IState
     public void OnStateEnter()
     {
         windupRoutine = _baseMook.StartCoroutine(AiActionWaiter.actionWait(() => ReadyMeleeStrike(), Time.time + UnityEngine.Random.Range(attackDelayMinimum, attackDelayMaximum)));
+
     }
     void ReadyMeleeStrike()
     {
