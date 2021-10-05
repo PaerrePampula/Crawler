@@ -32,8 +32,10 @@ public class BaseMook : MonoBehaviour, IDamageable
     bool isInvulnerable = false;
     CharacterController characterController;
     float gravity;
+    public Func<Vector3> moveForce;
     [SerializeField] float gravityForce = 5;
     [SerializeField] LayerMask mookMask;
+    NavMeshAgent navMeshAgent;
     #endregion
 
     public float Hp
@@ -95,11 +97,29 @@ public class BaseMook : MonoBehaviour, IDamageable
             room.AddMookToRoom(this);
         }
         characterController = GetComponent<CharacterController>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
 
     }
     private void Update()
     {
         ApplyGravity();
+        ApplyMovement();
+    }
+
+    private void ApplyMovement()
+    {
+        if (characterController.enabled)
+        {
+            Vector3? movementFromDifferentForces = moveForce?.Invoke();
+            Vector3 appliedForce = Vector3.zero;
+            if (movementFromDifferentForces != null)
+            {
+                appliedForce = (Vector3)movementFromDifferentForces;
+            }
+            Vector3 movement = new Vector3(appliedForce.x, appliedForce.y + gravity, appliedForce.z);
+            if (!navMeshAgent.enabled) characterController.Move(movement * Time.deltaTime);
+
+        }
 
     }
 

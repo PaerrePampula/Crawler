@@ -44,7 +44,7 @@ public class ChaseTarget : IState
     {
 
         onCharacterChaseUpdate?.Invoke();
-        _chasingAgent.SetDestination(_target.position);
+        _chasingAgent.SetDestination(new Vector3(_target.position.x, _chasingAgent.transform.position.y, _target.position.z));
     }
 
     //Can always transistion from moving

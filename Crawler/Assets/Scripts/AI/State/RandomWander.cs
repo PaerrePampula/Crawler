@@ -29,6 +29,7 @@ class RandomWander : IState
         //One or two wanders
         wanderCount = UnityEngine.Random.Range(1, 3);
         CreateWander();
+        _baseMook.moveForce += MovementTick();
     }
 
     private void CreateWander()
@@ -67,6 +68,7 @@ class RandomWander : IState
     {
         wanderLocation = Vector3.zero;
         currentWanders = 0;
+        _baseMook.moveForce -= MovementTick();
     }
 
     public bool StateReadyToTransistion()
@@ -76,12 +78,20 @@ class RandomWander : IState
 
     public void Tick()
     {
+
+
+    }
+
+    private Func<Vector3> MovementTick() 
+    {
         if (!_baseMook.isCharacterGrounded())
         {
             wanderLocation = Vector3.zero;
         }
-        _characterController.Move(wanderLocation * Time.deltaTime);
+        return () => wanderLocation;
+
     }
+
     public bool WanderIsDone()
     {
         return _wanderDone;
