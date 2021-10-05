@@ -115,8 +115,8 @@ class Player : MonoBehaviour,  IDamageable
                 return false;
             }
             //Reduce damage by damage halving chance
-            float randomChance = UnityEngine.Random.Range(0f, 100f);
-            if (randomChance > BuffModifiers[StatType.PartialDamageReductionChance])
+            float randomChance = UnityEngine.Random.Range(0f, 1f);
+            if (randomChance < BuffModifiers[StatType.PartialDamageReductionChance])
             {
                 changeAmount *= 0.5f;
             }
