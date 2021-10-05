@@ -115,7 +115,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         }
     }
 
-    bool isCharacterGrounded()
+    public bool isCharacterGrounded()
     {
         if (Physics.Raycast(transform.position, Vector3.down, 0.8f, ~mookMask))
         {

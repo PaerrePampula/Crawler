@@ -76,7 +76,7 @@ class RandomWander : IState
 
     public void Tick()
     {
-        if (!Physics.Raycast(_baseMook.transform.position, Vector3.down, _characterController.height/2f+0.3f, ~mookMask))
+        if (!_baseMook.isCharacterGrounded())
         {
             wanderLocation = Vector3.zero;
         }
