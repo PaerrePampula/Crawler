@@ -928,8 +928,8 @@ MonoBehaviour:
     m_Bits: 128
   stateText: {fileID: 5298961177612973964}
   rightHook:
-    _windupAttackSound: {fileID: 8300000, guid: 329c9b4a14860174282d238dcc163a1e, type: 3}
-    _attackHitSuccessSound: {fileID: 0}
+    _windupAttackSound: {fileID: 8300000, guid: ecc1d36dd536cc945b9d4fb904b86ff7, type: 3}
+    _attackHitSuccessSound: {fileID: 8300000, guid: 8e465ea0272587d47bd405ad0715b558, type: 3}
     _attackAnimationWindupStateName: RightHook
     attackEffect: {fileID: 3150930110446267672, guid: 41b60c4892014ab47a76f4209aac7105, type: 3}
     hitboxSize: {x: 0, y: 0}
@@ -941,8 +941,8 @@ MonoBehaviour:
   cooldownForBasicAttack:
     stateActionCooldownLength: 1
   pummelStrike:
-    _windupAttackSound: {fileID: 8300000, guid: 329c9b4a14860174282d238dcc163a1e, type: 3}
-    _attackHitSuccessSound: {fileID: 0}
+    _windupAttackSound: {fileID: 8300000, guid: ecc1d36dd536cc945b9d4fb904b86ff7, type: 3}
+    _attackHitSuccessSound: {fileID: 8300000, guid: 0e98a5d3f135a8a4e8a4fbc0814497f0, type: 3}
     _attackAnimationWindupStateName: AOEStrike
     attackEffect: {fileID: 0}
     hitboxSize: {x: 0, y: 0}
