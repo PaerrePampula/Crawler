@@ -51,6 +51,9 @@ class Player : MonoBehaviour,  IDamageable
         },
         {
             StatType.Armor, 0f
+        },
+        {
+            StatType.ItemDiscovery, 0f
         }
     };
     //The system probably could round hp to one halves for the heart display system, maybe?

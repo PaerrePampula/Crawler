@@ -18,4 +18,5 @@ public enum StatType
     AttackSpeed,
     MovementSpeed,
     Armor,
+    ItemDiscovery,
 }
