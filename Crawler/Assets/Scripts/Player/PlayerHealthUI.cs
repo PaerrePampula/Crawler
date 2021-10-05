@@ -35,7 +35,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void updateHP(float newHP)
     {
-        currentHpText.text = newHP.ToString();
+        currentHpText.text =  newHP.ToString("0.##");
 
         if (sliderChangeCoroutine != null) StopCoroutine(sliderChangeCoroutine);
         StartCoroutine(changeSliderValue(newHP / maxSliderValue));

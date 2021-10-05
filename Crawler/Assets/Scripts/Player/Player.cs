@@ -48,6 +48,9 @@ class Player : MonoBehaviour,  IDamageable
         },
         {
             StatType.MovementSpeed, 0f
+        },
+        {
+            StatType.Armor, 0f
         }
     };
     //The system probably could round hp to one halves for the heart display system, maybe?
@@ -102,6 +105,7 @@ class Player : MonoBehaviour,  IDamageable
 
                 return false;
             }
+            changeAmount = changeAmount - (_buffModifiers[StatType.Armor] * changeAmount);
             GivePlayerInvicibilityAfterHit();
             onPlayerDamaged?.Invoke();
 

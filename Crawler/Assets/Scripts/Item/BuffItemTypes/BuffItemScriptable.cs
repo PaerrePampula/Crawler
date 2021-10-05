@@ -17,4 +17,5 @@ public enum StatType
     MaxHP,
     AttackSpeed,
     MovementSpeed,
+    Armor,
 }
