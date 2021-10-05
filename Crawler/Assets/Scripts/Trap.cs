@@ -10,9 +10,20 @@ public class Trap : MonoBehaviour
     Animator animator;
     [SerializeField] Collider damageCollider;
     [SerializeField] ChildOnTrigger onTrigger;
+    AudioSource audioSource;
+    [SerializeField] AudioClip trapSpringSound;
+    [SerializeField] AudioClip trapLoopSound;
+    public void PlayTrapSpringSound()
+    {
+        audioSource.PlayOneShot(trapSpringSound);
+    }
+    public void PlayTrapLoopSound()
+    {
+        audioSource.PlayOneShot(trapLoopSound);
+    }
     private void Awake()
     {
-
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         if (onTrigger != null)
         {
