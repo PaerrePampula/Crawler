@@ -11,6 +11,7 @@ class RandomWander : IState
     CharacterController _characterController;
     BaseMook _baseMook;
     Vector3 wanderLocation;
+    LayerMask mookMask;
     int wanderCount;
     int currentWanders = 0;
     bool _wanderDone;
@@ -35,7 +36,7 @@ class RandomWander : IState
         if (currentWanders < wanderCount)
         {
             //Add some random coordinate to the current pos, set that as a random wander target
-            wanderLocation = new Vector3(UnityEngine.Random.Range(-3f, 3f), 0, UnityEngine.Random.Range(-3f, 3f));
+            wanderLocation = GetRandomWanderLocation();
             float wanderTime = UnityEngine.Random.Range(0.2f, 0.8f);
             _baseMook.StartCoroutine(waitForWander(wanderTime));
         }
@@ -43,6 +44,12 @@ class RandomWander : IState
         {
             _wanderDone = true;
         }
+    }
+
+    private Vector3 GetRandomWanderLocation()
+    {
+
+        return new Vector3(UnityEngine.Random.Range(-3f, 3f), 0, UnityEngine.Random.Range(-3f, 3f));
     }
 
     IEnumerator waitForWander(float timeForWander)
@@ -69,6 +76,10 @@ class RandomWander : IState
 
     public void Tick()
     {
+        if (!Physics.Raycast(_baseMook.transform.position, Vector3.down, _characterController.height/2f+0.3f, ~mookMask))
+        {
+            wanderLocation = Vector3.zero;
+        }
         _characterController.Move(wanderLocation * Time.deltaTime);
     }
     public bool WanderIsDone()
