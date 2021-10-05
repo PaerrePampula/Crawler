@@ -13,8 +13,12 @@ public class BaseMook : MonoBehaviour, IDamageable
     public static event MookDamaged onMookDamaged;
     public delegate void MookInstanceDamaged(float newHP);
     public event MookInstanceDamaged onMookInstanceDamaged;
+    //Instance of mook dies
     public delegate void MookDeath();
     public event MookDeath onMookDeath;
+    //Any instance of mook dies
+    public delegate void MookDeathGlobal(BaseMook baseMook);
+    public static event MookDeathGlobal onMookDeathGlobal;
     public delegate void MookDeathSpawnItem(Vector3 position);
     public static event MookDeathSpawnItem onMookPossibleItemDrop;
     #endregion
@@ -77,6 +81,7 @@ public class BaseMook : MonoBehaviour, IDamageable
         //TODO: Might also be its own class, loot has nothing to with AI
         GlobalAudioSource.Singleton.PlaySound(mookDeath);
         onMookDeath?.Invoke();
+        onMookDeathGlobal?.Invoke(this);
         onMookPossibleItemDrop?.Invoke(transform.position);
         Instantiate(dieEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
         Destroy(gameObject);

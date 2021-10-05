@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
-public class FireBallAttack : AiActionWaiter, IState
+public class FireBallAttack : ActionDelayer, IState
 {
     protected Transform _target;
     protected BaseMook _baseMook;

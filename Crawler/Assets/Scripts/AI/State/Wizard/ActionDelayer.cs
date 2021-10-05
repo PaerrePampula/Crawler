@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class AiActionWaiter
+public class ActionDelayer
 {
 
 

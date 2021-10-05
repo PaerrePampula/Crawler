@@ -60,6 +60,9 @@ class Player : MonoBehaviour,  IDamageable
         },
         {
             StatType.PartialDamageReductionChance, 0f
+        },
+        {
+            StatType.OnKillBomb, 0f
         }
     };
     //The system probably could round hp to one halves for the heart display system, maybe?

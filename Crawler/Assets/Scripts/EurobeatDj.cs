@@ -27,7 +27,7 @@ public class EurobeatDj : MonoBehaviour
             {
                 doriftoTime = true;
                 innocentAudioSource.Play();
-                StartCoroutine(AiActionWaiter.actionWait(() => SayDorifto(), Time.time + 3f));
+                StartCoroutine(ActionDelayer.actionWait(() => SayDorifto(), Time.time + 3f));
             }
         }
 

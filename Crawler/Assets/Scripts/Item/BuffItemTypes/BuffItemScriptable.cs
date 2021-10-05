@@ -21,4 +21,5 @@ public enum StatType
     ItemDiscovery,
     CritChance,
     PartialDamageReductionChance,
+    OnKillBomb
 }

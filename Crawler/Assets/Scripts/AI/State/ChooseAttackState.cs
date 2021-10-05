@@ -44,7 +44,7 @@ class ChooseAttackState : IState
             {
                 chosenState = statesToChooseFrom[i].Item1;
                 //Add a delay to attacks, to give the player a bigger chance of winning the boss fight
-                _baseMook.StartCoroutine(AiActionWaiter.actionWait(() => SetNewState(), Time.time+ 1.2f));
+                _baseMook.StartCoroutine(ActionDelayer.actionWait(() => SetNewState(), Time.time+ 1.2f));
                 break;
             }
 

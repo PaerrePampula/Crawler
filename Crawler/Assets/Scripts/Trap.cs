@@ -35,7 +35,7 @@ public class Trap : MonoBehaviour
     {
         if (timerBased)
         {
-            StartCoroutine(AiActionWaiter.actionWait(() => TriggerTrap(), Time.time + timeBetweenNewTriggers));
+            StartCoroutine(ActionDelayer.actionWait(() => TriggerTrap(), Time.time + timeBetweenNewTriggers));
         }
     }
     public void StartTrap()
@@ -47,7 +47,7 @@ public class Trap : MonoBehaviour
         damageCollider.enabled = false;
         if (timerBased)
         {
-            StartCoroutine(AiActionWaiter.actionWait(() => TriggerTrap(), Time.time + timeBetweenNewTriggers));
+            StartCoroutine(ActionDelayer.actionWait(() => TriggerTrap(), Time.time + timeBetweenNewTriggers));
         }
     }
     private void TriggerTrap()
