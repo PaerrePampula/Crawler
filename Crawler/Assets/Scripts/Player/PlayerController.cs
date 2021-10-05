@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     private void moveCharacter()
     {
-        characterController.Move((playerMovementVector+externalForce) * Time.fixedDeltaTime);
+        characterController.Move((playerMovementVector+(playerMovementVector*Player.Singleton.BuffModifiers[StatType.MovementSpeed])+externalForce) * Time.fixedDeltaTime);
     }
     void applyGravity()
     {

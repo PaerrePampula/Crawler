@@ -45,6 +45,9 @@ class Player : MonoBehaviour,  IDamageable
         },
         {
             StatType.AttackSpeed, 0f
+        },
+        {
+            StatType.MovementSpeed, 0f
         }
     };
     //The system probably could round hp to one halves for the heart display system, maybe?
