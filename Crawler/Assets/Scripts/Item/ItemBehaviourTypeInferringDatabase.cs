@@ -11,7 +11,8 @@ public static class ItemBehaviourTypeInferringDatabase
     {
         { ItemBehaviourType.Healing, new HealingItemType() },
         { ItemBehaviourType.BuffPlayerStats, new BuffItemType() },
-        { ItemBehaviourType.Money, new MoneyItemType() }
+        { ItemBehaviourType.Money, new MoneyItemType() },
+        { ItemBehaviourType.MapReveal, new RevealMapItemType() }
     };
     public static IPlayerItemableBehaviourType inferItemBehaviourType(ItemBehaviourType itemType)
     {
@@ -23,5 +24,6 @@ public enum ItemBehaviourType
 {
     Healing,
     BuffPlayerStats,
-    Money
+    Money,
+    MapReveal
 }
