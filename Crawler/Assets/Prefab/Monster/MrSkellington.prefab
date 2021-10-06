@@ -198,7 +198,7 @@ MonoBehaviour:
   damageEffect: {fileID: 2358425389147943458, guid: 5a806a0224cf7fe469b988662a37242a, type: 3}
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
-  _maxHP: 5
+  _maxHP: 175
   gravityForce: 5
   mookMask:
     serializedVersion: 2
@@ -228,7 +228,7 @@ MonoBehaviour:
     _attackAnimationWindupStateName: Skeleton-windup
     attackEffect: {fileID: 3150930110446267672, guid: 41b60c4892014ab47a76f4209aac7105, type: 3}
     hitboxSize: {x: 0, y: 0}
-    attackDamage: 3
+    attackDamage: 15
     attackDelayMinimum: 0.3
     attackDelayMaximum: 0.6
   hitboxAttainmentForBasicAttack:

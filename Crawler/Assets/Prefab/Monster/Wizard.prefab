@@ -102,7 +102,7 @@ MonoBehaviour:
   damageEffect: {fileID: 2358425389147943458, guid: 5a806a0224cf7fe469b988662a37242a, type: 3}
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
-  _maxHP: 5
+  _maxHP: 120
   gravityForce: 5
   mookMask:
     serializedVersion: 2
@@ -133,7 +133,7 @@ MonoBehaviour:
     attackAnimationTriggerName: FireBallAttack
     fireballPrefab: {fileID: 3627784119438503513, guid: 14cdd28b2add3c54cacb3009ec98b2bd, type: 3}
     fireballSpeed: 500
-    fireballDamage: 2
+    fireballDamage: 20
     castingAudioClip: {fileID: 8300000, guid: 05b0f82417e77be4ca818533dde7e038, type: 3}
     telegraphingWindupSound: {fileID: 8300000, guid: 83a610395fedd2741bda6f3bb17662b0, type: 3}
     attackCycleWaitTimeMinimum: 1.7
