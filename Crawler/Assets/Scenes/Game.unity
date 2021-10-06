@@ -555,11 +555,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: playerAttacks.Array.data[1].damage
-      value: 22
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: playerAttacks.Array.data[2].damage
-      value: 25
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: playerAttacks.Array.data[0].hitboxScale.x
@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyGenerateOneRoom: 0
-  oneRoomToGenerate: {fileID: 8060310950578512568, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+  oneRoomToGenerate: {fileID: 5456817877121539591, guid: 4cacaf738c724434dbc4df735fef6f00, type: 3}
   allRooms:
   - {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
   - {fileID: 4075043296493688907, guid: 5fc0f23f18931fb46b34bbf3e125effc, type: 3}
@@ -2130,6 +2130,7 @@ MonoBehaviour:
   - {fileID: 1075059197549416928, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
   - {fileID: 8060310950578512568, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
   - {fileID: 5862217029256634596, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+  - {fileID: 5456817877121539591, guid: 4cacaf738c724434dbc4df735fef6f00, type: 3}
 --- !u!4 &1487252953
 Transform:
   m_ObjectHideFlags: 0
