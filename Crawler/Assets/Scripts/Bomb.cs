@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    [SerializeField] float explosionDamage = 1;
+    [SerializeField] float explosionDamage = 10;
     [SerializeField] float explosionRadius = 2.5f;
     [SerializeField] float explosionTimer = 0.8f;
     [SerializeField] LayerMask mookLayer;

@@ -70,7 +70,7 @@ public class Trap : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (other.GetComponent<Player>() != null)
         {
-            player.ChangeHp(-1f);
+            player.ChangeHp(-10f);
         }
     }
 }

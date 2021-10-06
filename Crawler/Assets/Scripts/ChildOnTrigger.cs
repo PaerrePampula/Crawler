@@ -8,8 +8,18 @@ using UnityEngine;
 public class ChildOnTrigger : MonoBehaviour
 {
     public Action<Collider> delegatesOnTrigger;
+    public Func<Collider, bool> predicatesForDelegateTrigger;
     private void OnTriggerEnter(Collider other)
     {
-        delegatesOnTrigger.Invoke(other);
+        //Can either be triggered any time, or by predicates set by parent (as func)
+        if (predicatesForDelegateTrigger != null)
+        {
+            if (predicatesForDelegateTrigger.Invoke(other)) delegatesOnTrigger?.Invoke(other);
+        }
+        else
+        {
+            delegatesOnTrigger?.Invoke(other);
+        }
+
     }
 }
