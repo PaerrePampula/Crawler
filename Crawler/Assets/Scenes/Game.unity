@@ -475,7 +475,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 209074668, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: _maxHp
-      value: 15
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 209074668, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: _playerHitIFramesInSeconds
@@ -548,6 +548,18 @@ PrefabInstance:
     - target: {fileID: 526691528913608200, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[0].damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[1].damage
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: playerAttacks.Array.data[2].damage
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 526691528913608203, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: playerAttacks.Array.data[0].hitboxScale.x
@@ -2109,7 +2121,7 @@ MonoBehaviour:
   - {fileID: 2701988372367606790, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
   - {fileID: 8622497468050805066, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
   - {fileID: 5980495309415950063, guid: b7a98c8589b470b408f322c7f8ff41b3, type: 3}
-  - {fileID: 8345637659892957615, guid: 99a93195bec383346b4e9c513a84b3ac, type: 3}
+  - {fileID: 861378186913848776, guid: 3881dcc78b8a6624599f48ac4b5d9401, type: 3}
   - {fileID: 3457202305668795620, guid: 9facc92ef1a681048afd493043e839a1, type: 3}
   - {fileID: 8126506237170994096, guid: 7d07b945ddb5c7f468fc771822df7f41, type: 3}
   - {fileID: 3798185136635531389, guid: 56c51ff8de80bd04abd85d828d016320, type: 3}
