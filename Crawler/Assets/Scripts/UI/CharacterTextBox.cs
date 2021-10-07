@@ -61,10 +61,10 @@ public class CharacterTextBox : MonoBehaviour
                 delay = referenceDelay;
             }
             talkingText.text += text[i];
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSecondsRealtime(delay);
         }
         onDoneTalking?.Invoke();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(3f);
         talkingText.gameObject.SetActive(false);
     }
 }

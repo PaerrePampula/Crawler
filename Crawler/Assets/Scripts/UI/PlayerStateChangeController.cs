@@ -34,5 +34,6 @@ public class PlayerStateChangeController : MonoBehaviour
     public void ActivateStateCanvas()
     {
         stateCanvas.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 }

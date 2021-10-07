@@ -168,7 +168,11 @@ class Player : MonoBehaviour,  IDamageable
         AddDelegateOnStatBuff(StatType.MaxHP, updateMaxHP);
 
     }
-
+    private void OnEnable()
+    {
+        //Make sure timescale is one at the start of the game
+        Time.timeScale = 1;
+    }
     private void updateMaxHP(float hpChange)
     {
         ChangeHp(hpChange);
