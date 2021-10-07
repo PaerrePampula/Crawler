@@ -2839,7 +2839,9 @@ MonoBehaviour:
   droppableItems:
   - {fileID: 11400000, guid: cacf1303244db7540a91932745aa9a1d, type: 2}
   genericPickup: {fileID: 5422449294699349652, guid: 7ab4d8a249252b5488899b17d79c9d0c, type: 3}
-  hPItemAndSpawnChances: []
+  hPItemAndSpawnChances:
+  - hpItemDroppedByMook: {fileID: 11400000, guid: cacf1303244db7540a91932745aa9a1d, type: 2}
+    weight: 1
 --- !u!1 &336405250
 GameObject:
   m_ObjectHideFlags: 0
