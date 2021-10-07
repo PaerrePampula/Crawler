@@ -30,6 +30,7 @@ public class Seller : MonoBehaviour, IPlayerInteractable
     private void BuyHP()
     {
         bool successInBuying = PlayerEconomy.Singleton.ChangePlayerMoney(-1);
+        onHealthBuy?.Invoke(successInBuying);
         if (successInBuying) ItemDropper.Singleton.GenerateChosenItemAtDropPoint(itemTossPoint.position,healbuyItem);
     }
 

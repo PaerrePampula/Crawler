@@ -69,5 +69,6 @@ public class SellerDiscussion : MonoBehaviour
         SalesPersonTalkingTrigger.onPersonApproach -= greetPlayer;
         SalesPersonTalkingTrigger.onPersonLeave -= sayGoodByeToPlayer;
         Seller.onGamble -= discussGamble;
+        Seller.onHealthBuy -= discussHealthBuy;
     }
 }
