@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4916776655174342482}
   - component: {fileID: 2915274682932862282}
   - component: {fileID: 4716783017199750482}
+  - component: {fileID: 6902957942059703372}
   m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 2915274682932862282}
   m_maskType: 0
+--- !u!114 &6902957942059703372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756938966961130860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8652931ee4b1141b8718facb1832cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3085956876910965912
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,8 +665,8 @@ MonoBehaviour:
     chargePower: 3
     chargeHbRadius: 1
     meleeDamage: 7
-    actionDelayMinimum: 2
-    actionDelayMaximum: 3
+    actionDelayMinimum: 0.9
+    actionDelayMaximum: 1.5
     attackingAudioClip: {fileID: 8300000, guid: d828d8306c0ddf8428836ed350ae6d42, type: 3}
   stateText: {fileID: 4716783017199750482}
 --- !u!82 &1136941065991055061

@@ -4,6 +4,10 @@
 /// </summary>
 static class Globals
 {
+    public delegate void DebugChanged(bool state);
+    public static event DebugChanged onDebugChanged;
+    static bool _debugOn = false;
+
     //25 ms for single character on text box
     static float characterTextSpeed = 0.025f;
     static bool _movementControlsAreEnabled = true;
@@ -24,6 +28,15 @@ static class Globals
         set
         {
             likelinessOfMookDroppingHp = value;
+        }
+    }
+
+    public static bool DebugOn
+    {
+        get => _debugOn; set
+        {
+            _debugOn = value;
+            onDebugChanged?.Invoke(value);
         }
     }
     internal static GenerationSettings GenerationSettings { get => generationSettings; set => generationSettings = value; }
