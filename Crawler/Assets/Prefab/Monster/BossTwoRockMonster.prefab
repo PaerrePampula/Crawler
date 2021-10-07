@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 5500790299907964385}
   - component: {fileID: 8518299826295836113}
   - component: {fileID: 7697655310782148051}
+  - component: {fileID: 2244254884004620274}
   m_Layer: 6
   m_Name: RockMonsterVisual
   m_TagString: Untagged
@@ -349,6 +350,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57471f70f3d6591439aac7b3649aa9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2244254884004620274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362693161104254703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc82e97ba33c5443abf88a3d71df5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 2253272019112187563}
+  audioClips:
+  - _audioClipName: HitGround
+    _audioClips:
+    - {fileID: 8300000, guid: 0e98a5d3f135a8a4e8a4fbc0814497f0, type: 3}
+    - {fileID: 8300000, guid: ecc1d36dd536cc945b9d4fb904b86ff7, type: 3}
+    - {fileID: 8300000, guid: 0617e6e61c25a5b4283d93bd0229fb23, type: 3}
+    - {fileID: 8300000, guid: 2c59ce21561e2a84c99c147b354d4af4, type: 3}
+  - _audioClipName: RockTransform
+    _audioClips:
+    - {fileID: 8300000, guid: bcdc3fa70ebfc6149bac82983e1add00, type: 3}
+  - _audioClipName: RockDeTransform
+    _audioClips:
+    - {fileID: 8300000, guid: bcdc3fa70ebfc6149bac82983e1add00, type: 3}
+  - _audioClipName: RockSpin
+    _audioClips:
+    - {fileID: 8300000, guid: 40cc26ef1978031478283caf79323382, type: 3}
 --- !u!1 &2034796955210132382
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,14 +971,14 @@ MonoBehaviour:
     m_Bits: 128
   stateText: {fileID: 5298961177612973964}
   rightHook:
-    _windupAttackSound: {fileID: 8300000, guid: ecc1d36dd536cc945b9d4fb904b86ff7, type: 3}
+    _windupAttackSound: {fileID: 0}
     _attackHitSuccessSound: {fileID: 8300000, guid: 8e465ea0272587d47bd405ad0715b558, type: 3}
     _attackAnimationWindupStateName: RightHook
     attackEffect: {fileID: 3150930110446267672, guid: 41b60c4892014ab47a76f4209aac7105, type: 3}
     hitboxSize: {x: 0, y: 0}
     attackDamage: 25
-    attackDelayMinimum: 0.5
-    attackDelayMaximum: 1
+    attackDelayMinimum: 0.3
+    attackDelayMaximum: 0.7
   hitboxAttainmentForBasicAttack:
     hitBoxSize: {x: 2, y: 0, z: 2}
   cooldownForBasicAttack:
@@ -960,8 +990,8 @@ MonoBehaviour:
     attackEffect: {fileID: 0}
     hitboxSize: {x: 0, y: 0}
     attackDamage: 45
-    attackDelayMinimum: 0.5
-    attackDelayMaximum: 1
+    attackDelayMinimum: 0.2
+    attackDelayMaximum: 0.5
   hitBoxAttainmentForPummelStrike:
     hitBoxRadius: 4
     hitBoxObject: {fileID: 6217692446538946009, guid: 44a24f1b2bff5614b8ff1c6a045a9a7c, type: 3}
@@ -986,8 +1016,8 @@ MonoBehaviour:
     fireballDamage: 30
     castingAudioClip: {fileID: 8300000, guid: 05b0f82417e77be4ca818533dde7e038, type: 3}
     telegraphingWindupSound: {fileID: 8300000, guid: 83a610395fedd2741bda6f3bb17662b0, type: 3}
-    attackCycleWaitTimeMinimum: 0.4
-    attackCycleWaitTimeMaximum: 0.8
+    attackCycleWaitTimeMinimum: 0.2
+    attackCycleWaitTimeMaximum: 0.4
     maxAttackUses: 1000000
     attacksUsedCoolDown: 2
     volleyCount: 6

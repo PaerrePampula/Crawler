@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8623276059780709969}
   - component: {fileID: 8623276059780709968}
   - component: {fileID: 882937367696661737}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: TrapofThihn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8188715271834039698, guid: 7485c22abd3c0fe4db88281246bcd4fa, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: -4960883034346242640, guid: 7485c22abd3c0fe4db88281246bcd4fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -256,6 +260,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7485c22abd3c0fe4db88281246bcd4fa, type: 3}
       propertyPath: m_Name
       value: floorTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7485c22abd3c0fe4db88281246bcd4fa, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4425000226662756435, guid: 7485c22abd3c0fe4db88281246bcd4fa, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8669240097850023582, guid: 7485c22abd3c0fe4db88281246bcd4fa, type: 3}
       propertyPath: m_LocalPosition.x

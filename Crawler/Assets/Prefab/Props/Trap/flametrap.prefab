@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7059597949073261913}
   - component: {fileID: 2621570980296839366}
   - component: {fileID: 5924016396206233243}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Circle.016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5638408598188441939}
   - component: {fileID: 5638408598188441938}
   - component: {fileID: 5638408598188441949}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: FlameThrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 5638408599153024555}
   - component: {fileID: 5638408599153024556}
   - component: {fileID: 5638408599153024557}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: fx_flameThrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 5014126905271429512}
   - component: {fileID: 5014126905271429515}
   - component: {fileID: 3645150509897899803}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: flametrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,6 +566,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: HugeCandleLit
       objectReference: {fileID: 0}
+    - target: {fileID: 674122896039585847, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378459471739781002, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564851772903861247, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 5663220131759417263, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -609,6 +621,14 @@ PrefabInstance:
     - target: {fileID: 5663220131759417263, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936059480875458582, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9083836546208047381, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
