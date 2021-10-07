@@ -498,6 +498,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HugeCandleLit
       objectReference: {fileID: 0}
+    - target: {fileID: 1118803720920256619, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139004029329697831, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 5663220131759417263, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1086,6 +1094,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1011851352}
     m_Modifications:
+    - target: {fileID: 3568895788308445249, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4855812678166159542, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
       propertyPath: m_Name
       value: LongCandleLit
@@ -1133,6 +1145,10 @@ PrefabInstance:
     - target: {fileID: 5199580917682600460, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -15.367
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854824978871406196, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 0.16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
