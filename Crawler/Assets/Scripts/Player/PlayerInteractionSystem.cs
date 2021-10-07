@@ -10,7 +10,7 @@ using UnityEngine;
 public class PlayerInteractionSystem : MonoBehaviour
 {
     //Cache the text element where the player is informed about interaction prompt
-    [SerializeField] TextMeshProUGUI interactionPrompt;
+    [SerializeField] ButtonPrompt[] interactionPrompts;
     //The interaction raycast only casts against interactable objects, so it needs a layermask
     [SerializeField] LayerMask interactionLayer;
     //Save the current interaction target to make generating prompts a bit better and less 
@@ -68,7 +68,11 @@ public class PlayerInteractionSystem : MonoBehaviour
     private void DisableCurrentPrompt()
     {
         promptOn = false;
-        interactionPrompt.gameObject.SetActive(false);
+        for (int i = 0; i < interactionPrompts.Length; i++)
+        {
+            interactionPrompts[i].gameObject.SetActive(false);
+        }
+
         currentInteractable = null;
     }
 
@@ -82,10 +86,14 @@ public class PlayerInteractionSystem : MonoBehaviour
                 if (!promptOn)
                 {
                     promptOn = true;
-                    interactionPrompt.gameObject.SetActive(true);
+                    for (int i = 0; i < currentInteractable.getPlayerInteractions().Length; i++)
+                    {
+                        interactionPrompts[i].gameObject.SetActive(true);
+                    }
+
                 }
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (currentInteractable.getPlayerInteraction())
                 {
                     currentInteractable.DoPlayerInteraction();
                 }
@@ -97,7 +105,12 @@ public class PlayerInteractionSystem : MonoBehaviour
     void setInteractable(IPlayerInteractable newInteractable)
     {
         if (currentInteractable == newInteractable) return;
-        interactionPrompt.text = newInteractable.getPlayerInteractionString();
+        InputAlias[] aliases = newInteractable.getPlayerInteractions();
+        for (int i = 0; i < aliases.Length; i++)
+        {
+            interactionPrompts[i].SetInputs(aliases[i]);
+        }
+
         currentInteractable = newInteractable;
     }
 }

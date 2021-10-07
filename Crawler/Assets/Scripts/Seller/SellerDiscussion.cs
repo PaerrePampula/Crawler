@@ -26,6 +26,13 @@ public class SellerDiscussion : MonoBehaviour
         SalesPersonTalkingTrigger.onPersonApproach += greetPlayer;
         SalesPersonTalkingTrigger.onPersonLeave += sayGoodByeToPlayer;
         Seller.onGamble += discussGamble;
+        Seller.onHealthBuy += discussHealthBuy;
+    }
+
+    private void discussHealthBuy(bool success)
+    {
+        string state = (success) ? "Buy_Success" : "Buy_Failure";
+        characterText.InvokeTextDisplay(chooseRandomFromIdentifierForChat(state));
     }
 
     private void discussGamble(bool success)

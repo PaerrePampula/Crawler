@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EndTrigger : MonoBehaviour, IPlayerInteractable
 {
-    [SerializeField] string text = "Touch symbol";
+    [SerializeField] InputAlias[] inputs;
     public delegate void EndTriggered();
     public static event EndTriggered onEndTriggered;
     public void DoPlayerInteraction()
@@ -12,20 +12,14 @@ public class EndTrigger : MonoBehaviour, IPlayerInteractable
         onEndTriggered?.Invoke();
     }
 
-    public string getPlayerInteractionString()
+    public InputAlias[] getPlayerInteractions()
     {
-        return text;
+        return inputs;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public bool getPlayerInteraction()
     {
-        
+        return Input.GetKeyDown(KeyCode.E);
     }
 }

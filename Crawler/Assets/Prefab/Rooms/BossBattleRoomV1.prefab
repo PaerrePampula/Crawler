@@ -890,7 +890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7c24bfae176a54aaf94adafa244d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Touch symbol of a labyrinth
+  inputs:
+  - input: E
+    actionDescription: Touch symbol
 --- !u!114 &6815727338873495484
 MonoBehaviour:
   m_ObjectHideFlags: 0

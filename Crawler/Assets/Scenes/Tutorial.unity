@@ -2953,7 +2953,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorLocation: 0
   otherRoom: {fileID: 118805984}
-  interactionText: Open
+  inputs:
+  - input: E
+    actionDescription: Open door
   lockedDoorText: The door wont budge!
   lockVisual: {fileID: 1847824525}
 --- !u!1001 &337064087
@@ -5243,6 +5245,14 @@ PrefabInstance:
       propertyPath: interactionPrompt
       value: 
       objectReference: {fileID: 577013285}
+    - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: interactionPrompts.Array.data[0]
+      value: 
+      objectReference: {fileID: 577013287}
+    - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: interactionPrompts.Array.data[1]
+      value: 
+      objectReference: {fileID: 577013287}
     - target: {fileID: 526691528913608196, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5484,7 +5494,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Read
+  inputs:
+  - input: E
+    actionDescription: Read book
   playerDialog: The odd book states that "...dashing and weaving past the attacks
     of the monsters somehow has an effect on the amount of fortunes found in the
     labyrinth, try avoiding monster attacks for greater rewards". It also states
@@ -5522,6 +5534,7 @@ GameObject:
   - component: {fileID: 577013286}
   - component: {fileID: 577013285}
   - component: {fileID: 577013284}
+  - component: {fileID: 577013287}
   m_Layer: 5
   m_Name: InteractText
   m_TagString: Untagged
@@ -5667,6 +5680,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577013282}
   m_CullTransparentMesh: 1
+--- !u!114 &577013287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577013282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4c52861f426c44886ed1f96b38880c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 820241101}
+  description: {fileID: 577013285}
 --- !u!4 &602498218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64c42812057e5a24a911bccc726afdb5, type: 3}
@@ -7952,7 +7979,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorLocation: 1
   otherRoom: {fileID: 118805984}
-  interactionText: Open
+  inputs:
+  - input: E
+    actionDescription: Open door
   lockedDoorText: Locked! Clear room of enemies to open
   lockVisual: {fileID: 0}
 --- !u!4 &938589240 stripped
@@ -8626,6 +8655,18 @@ PrefabInstance:
       propertyPath: playerDialog
       value: 'A magic bookstand, the open book page states: "...Dashing makes you
         invulnerable for a while..."'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].input
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].actionDescription
+      value: Read book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}
@@ -9307,6 +9348,18 @@ PrefabInstance:
       propertyPath: playerDialog
       value: 'The weird floating book says: "...the rooms of this labyrinth are cursed,
         doors lock behind you, clear the monsters out, then the curse will vanish"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].input
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].actionDescription
+      value: Read book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}
@@ -11719,7 +11772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Read
+  inputs:
+  - input: E
+    actionDescription: Read book
   playerDialog: 'The weird floating book says: "...the rooms of this labyrinth are
     cursed, doors lock behind you, clear the monsters out, then the curse will vanish"'
 --- !u!95 &1369291082
@@ -11769,7 +11824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Read
+  inputs: []
   playerDialog: The odd book states that "...dashing and weaving past the attacks
     of the monsters somehow has an effect on the amount of fortunes found in the
     labyrinth, try avoiding monster attacks for greater rewards". It also states
@@ -11837,7 +11892,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorLocation: 1
   otherRoom: {fileID: 1107070809}
-  interactionText: Open
+  inputs:
+  - input: E
+    actionDescription: Open door
   lockedDoorText: Locked! Clear room of enemies to open
   lockVisual: {fileID: 0}
 --- !u!23 &1370717246
@@ -12185,7 +12242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Examine odd symbol
+  inputs:
+  - input: E
+    actionDescription: Examine symbol
   playerDialog: An odd-looking symbol is carved on the ground, the symbol resembles
     a labyrinth
 --- !u!65 &1500650769
@@ -12471,6 +12530,18 @@ PrefabInstance:
         labyrinth, try avoiding monster attacks for greater rewards". It also states
         that "...the labyrinth is not pleased by explorers who get hit alot, so getting
         hit by monsters after chaining dashes nullifies any bonus rewards..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].input
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].actionDescription
+      value: Read book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}
@@ -13741,7 +13812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Examine cave-in
+  inputs:
+  - input: E
+    actionDescription: Examine cave-in
   playerDialog: The entrance has caved in, there is no turning back...
 --- !u!65 &1690982939
 BoxCollider:
@@ -15938,7 +16011,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorLocation: 0
   otherRoom: {fileID: 2074518007}
-  interactionText: Open
+  inputs:
+  - input: E
+    actionDescription: Open door
   lockedDoorText: Locked! Clear room of enemies to open
   lockVisual: {fileID: 0}
 --- !u!23 &1970955447
@@ -16067,6 +16142,18 @@ PrefabInstance:
 
         A
         glyph [Left Mouse Button] appears on the page'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].input
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].actionDescription
+      value: Read book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}
@@ -16337,7 +16424,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   director: {fileID: 1107070811}
-  interactionText: Continue
+  inputs:
+  - input: E
+    actionDescription: Move on
   lockedInteractionText: Some weird power prevents me from opening this right now!
 --- !u!1 &2013873627
 GameObject:
@@ -17493,6 +17582,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 212085404670555772, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526903491664426768, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141184803033579554, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917315997672729673, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3441553770290985650, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761283437884610666, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466247501410326169, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562186373819454354, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4824353153160997767, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -17537,9 +17658,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5528284054139892113, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911048123669168738, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388696115626901652, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6858902061042867301, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8060310950578512568, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
       propertyPath: m_Name
       value: Room11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8060310950578512568, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198281123296612186, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369174982710172739, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202936984679860239, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf7d010d79e064849b75a8b8cd53b59c, type: 3}
@@ -17598,6 +17751,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room10.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1075059197549416928, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620048793087552685, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765458848790965790, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3171883428186776659, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458975279508420126, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372652794031852522, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341616879262381125, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a03e15d09dfd7e24ab612490f3008ca1, type: 3}
 --- !u!1001 &1589249359730293294
@@ -17607,6 +17788,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297365946406585284, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 607098810817851358, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -17651,6 +17836,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6198272838153995681, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701675479455472491, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7151618295420146248, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
       propertyPath: m_NavMeshData
       value: 
@@ -17659,9 +17852,17 @@ PrefabInstance:
       propertyPath: m_UseGeometry
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8114113328812484136, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8622497468050805066, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
       propertyPath: m_Name
       value: Room04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622497468050805066, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fec51c8edd42cae4cb1ba3e67bb5a563, type: 3}
@@ -17733,6 +17934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room03
       objectReference: {fileID: 0}
+    - target: {fileID: 2701988372367606790, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2701988372367606792, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -17775,6 +17980,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701988372367606792, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968772046145855036, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968772046152701671, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968772046351165241, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968772047358021468, guid: 6e304c8aa7da34d40afb5818fb0ba967, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17891,6 +18112,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagicBookStand
       objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].input
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].actionDescription
+      value: Read book
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}
 --- !u!1 &3416748870649900499 stripped
@@ -17925,6 +18158,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 276234680950503663, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276234681669290726, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276234681807345353, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 276234682167730388, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5205253066214800268, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -17973,6 +18222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room02
       objectReference: {fileID: 0}
+    - target: {fileID: 5205253066214800269, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2af2ffe115c46f340a0384c54eff5937, type: 3}
 --- !u!1001 &7161345080378274059
@@ -17982,6 +18235,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 236950499589224365, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 294757091213812733, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561870699289070046, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 896605103857677539, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426632025891928398, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3682576535914603923, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -18026,9 +18299,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3707850332254347912, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971373069531366403, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
       propertyPath: m_Name
       value: Room10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971373069531366403, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163770580578989516, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635191760764625318, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749203030116544025, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970749929477306120, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027431351416528393, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d07e46005ff1e4398ac1a1ad36ced8, type: 3}
@@ -18039,6 +18340,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 237960912925361106, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 237960912925361106, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -18060,12 +18365,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6075545311112931435, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075545311112931435, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6094776654393467475, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094776654393467475, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424178172490366974, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6424178172490366974, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -18074,6 +18391,10 @@ PrefabInstance:
     - target: {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
       propertyPath: m_Name
       value: Room01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7570014725680095418, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
       propertyPath: m_RootOrder
@@ -18183,9 +18504,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 250637244635010245, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656583866907029013, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2537278616257036926, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378552500380802591, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5862217029256634596, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
       propertyPath: m_Name
       value: Room11.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862217029256634596, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934649420570659342, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361142430795956936, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820922681002311742, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8967430947142658523, guid: 4af12c6287a38c74eaca744ee5ddf98d, type: 3}
       propertyPath: m_RootOrder

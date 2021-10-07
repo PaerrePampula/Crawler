@@ -8,7 +8,7 @@ public class Door : MonoBehaviour, IPlayerInteractable
     public delegate void Transistion(Action actionAfterTransistion);
     public static event Transistion onTransistion;
     [SerializeField] NeighborType doorLocation;
-    [SerializeField] string interactionText = "Open";
+    [SerializeField] InputAlias[] inputs;
     [SerializeField] string lockedDoorText = "A magical curse prevents me from opening this!";
     [SerializeField] AudioClip openAudioClip;
     [SerializeField]
@@ -96,8 +96,13 @@ public class Door : MonoBehaviour, IPlayerInteractable
             }
         }
     }
-    public string getPlayerInteractionString()
+    public InputAlias[] getPlayerInteractions()
     {
-        return interactionText;
+        return inputs;
+    }
+
+    public bool getPlayerInteraction()
+    {
+        return Input.GetKeyDown(KeyCode.E);
     }
 }

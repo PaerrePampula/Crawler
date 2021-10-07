@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Examine chest
+  inputs:
+  - input: E
+    actionDescription: Examine chest
   playerDialog: A huge chest, probably belongs to the weird guy with the twitchy
     legs, how does the guy carry these anyways...?
 --- !u!1 &1083900300255578457
@@ -364,7 +366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Examine traders packback
+  inputs:
+  - input: E
+    actionDescription: Examine backpacks
   playerDialog: How many backpacks does this guy carry...?
 --- !u!114 &2776667248937770257
 MonoBehaviour:
@@ -507,7 +511,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Examine chest
+  inputs:
+  - input: E
+    actionDescription: Examine chest
   playerDialog: I really shouldnt touch this, the trader guy might get mad...
 --- !u!65 &6025362424097501284
 BoxCollider:
@@ -547,7 +553,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Examine cool sword
+  inputs:
+  - input: E
+    actionDescription: Examine cool sword
   playerDialog: What a cool looking sword! Shame that it looks way too heavy to use...
 --- !u!114 &7748106165776079647
 MonoBehaviour:
@@ -625,7 +633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3841f3d1e425a4380fe8f5ac6f6e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: Examine traders packback
+  inputs:
+  - input: E
+    actionDescription: Examine backpacks
   playerDialog: How many backpacks does this guy carry...?
 --- !u!1 &7693040643363446073
 GameObject:
@@ -4097,6 +4107,18 @@ PrefabInstance:
         possible unsavory but friendly folk, some sell items to travelers exploring
         the dungeon by randomly choosing prizes to give out for money..." I wonder
         if that guy has read this...'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].input
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416748871219948254, guid: 616813de5797a6c498c78cdb39969967, type: 3}
+      propertyPath: inputs.Array.data[0].actionDescription
+      value: Read book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616813de5797a6c498c78cdb39969967, type: 3}

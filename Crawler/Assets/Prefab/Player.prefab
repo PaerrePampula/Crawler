@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 279568578}
   - component: {fileID: 279568580}
   m_Layer: 7
-  m_Name: Image
+  m_Name: CircleImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.19515002, b: 0, a: 0.1764706}
+  m_Color: {r: 1, g: 0.19515002, b: 0, a: 0.28627452}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 309033252}
   - component: {fileID: 309033253}
   m_Layer: 7
-  m_Name: GameObject
+  m_Name: CircleArrows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 576347500}
   - component: {fileID: 576347501}
   m_Layer: 7
-  m_Name: playerCircleSpriteRendererObject
+  m_Name: PlayerAttackFacingIndicatorCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6204,8 +6204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d7f2d13721a524b85df6a6b2cfd0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 20
-  _playerHitIFramesInSeconds: 1
+  _maxHp: 100
+  _playerHitIFramesInSeconds: 1.35
 --- !u!114 &526691528913608198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6256,39 +6256,39 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerAttacks:
-  - damage: 1
+  - damage: 20
     delay: 0.23
     attackHitBoxDuration: 0
     attackPlayerPushForwardForce: 5
     attackPlayerPushForwardTime: 0.2
     attackTargetHitPushForceMultiplier: 10
-    hitboxScale: {x: 2, y: 1, z: 2}
+    hitboxScale: {x: 3, y: 1, z: 3}
     swingWeaponSoundEffect: {fileID: 8300000, guid: 8a29c9f02afe08347bba26e13a69fa23, type: 3}
     characterHitSoundEffect: {fileID: 8300000, guid: 329c9b4a14860174282d238dcc163a1e, type: 3}
     swingSprite: {fileID: 8912130283242121736, guid: e412941839211f342a81307c7a347659, type: 3}
     spriteScale: {x: 1, y: 1, z: 1}
     spriteFlipOnY: 0
     swingSpriteColor: {r: 1, g: 1, b: 1, a: 1}
-  - damage: 1
+  - damage: 25
     delay: 0.5
     attackHitBoxDuration: 0
     attackPlayerPushForwardForce: 12
     attackPlayerPushForwardTime: 0.2
     attackTargetHitPushForceMultiplier: 10
-    hitboxScale: {x: 2, y: 1, z: 2}
+    hitboxScale: {x: 3, y: 1, z: 3}
     swingWeaponSoundEffect: {fileID: 8300000, guid: 6eef1523ea1165f4b8f58e5afc715fbc, type: 3}
     characterHitSoundEffect: {fileID: 8300000, guid: 5134b769b4f8bb042a3907122697c20b, type: 3}
     swingSprite: {fileID: 8912130283242121736, guid: e412941839211f342a81307c7a347659, type: 3}
     spriteScale: {x: 1, y: 1, z: 1}
     spriteFlipOnY: 1
     swingSpriteColor: {r: 1, g: 1, b: 1, a: 1}
-  - damage: 2
+  - damage: 35
     delay: 0.6
     attackHitBoxDuration: 0
     attackPlayerPushForwardForce: 25
     attackPlayerPushForwardTime: 0.2
     attackTargetHitPushForceMultiplier: 25
-    hitboxScale: {x: 2.5, y: 1, z: 4}
+    hitboxScale: {x: 3, y: 1, z: 4}
     swingWeaponSoundEffect: {fileID: 8300000, guid: 16706c3f586b91841beb1c5492509980, type: 3}
     characterHitSoundEffect: {fileID: 8300000, guid: 547bce3c6810a8042bae22cdcda4410c, type: 3}
     swingSprite: {fileID: 8912130283242121736, guid: e412941839211f342a81307c7a347659, type: 3}
@@ -6307,7 +6307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7ac1bcb5ef3dd4698153fdbc30195d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionPrompt: {fileID: 0}
+  interactionPrompts:
+  - {fileID: 0}
+  - {fileID: 0}
   interactionLayer:
     serializedVersion: 2
     m_Bits: 256

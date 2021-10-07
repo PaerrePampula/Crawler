@@ -11,7 +11,7 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
     public static event Transistion onTransistion;
     [SerializeField] NeighborType doorLocation;
     [SerializeField] Room otherRoom;
-    [SerializeField] string interactionText = "Open";
+    [SerializeField] InputAlias[] inputs;
     [SerializeField] string lockedDoorText = "The door wont budge!";
     bool locked = false;
     [SerializeField] Transform lockVisual;
@@ -50,10 +50,13 @@ public class TestPlopper : MonoBehaviour, IPlayerInteractable
         transform.root.GetComponent<Room>().onLockStateChange -= SetLockState;
     }
 
-    public string getPlayerInteractionString()
+    public InputAlias[] getPlayerInteractions()
     {
-        return  interactionText;
+        return inputs;
     }
 
-
+    public bool getPlayerInteraction()
+    {
+        return Input.GetKeyDown(KeyCode.E);
+    }
 }

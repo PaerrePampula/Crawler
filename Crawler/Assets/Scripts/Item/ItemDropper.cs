@@ -41,7 +41,7 @@ class ItemDropper : MonoBehaviour
         int random = UnityEngine.Random.Range(0, 101);
         if (random <= Globals.LikelinessOfItemDroppingInRoom)
         {
-            GenerateRandomItemAtCurrentRoomDropPoint(room.PickupsDropPointOnRoomClear.position);
+            GenerateRandomItemAtDropPoint(room.PickupsDropPointOnRoomClear.position);
         }
 
     }
@@ -49,7 +49,12 @@ class ItemDropper : MonoBehaviour
     {
         SortMookDrops();
     }
-    public void GenerateRandomItemAtCurrentRoomDropPoint(Vector3 position)
+    public void GenerateChosenItemAtDropPoint(Vector3 position, ItemScriptable itemScriptable)
+    {
+        GameObject newPickup = Instantiate(genericPickup, position, Quaternion.identity, CurrentRoomManager.Singleton.currentRoom.gameObject.transform);
+        newPickup.GetComponent<Pickup>().InitializePickUp(itemScriptable);
+    }
+    public void GenerateRandomItemAtDropPoint(Vector3 position)
     {
         int randomItemChoice = UnityEngine.Random.Range(0, droppableItems.Count);
         ItemScriptable itemScriptable = droppableItems[randomItemChoice];

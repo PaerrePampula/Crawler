@@ -149,8 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e97bc4430c457e40a9b4c52adce619f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buyItem: Gamble for loot
+  inputs:
+  - input: E
+    actionDescription: Gamble
+  - input: F
+    actionDescription: Buy healing item
   itemTossPoint: {fileID: 0}
+  healbuyItem: {fileID: 11400000, guid: ae31a32eddc5d8841a52b7105caeb637, type: 2}
 --- !u!82 &8643608489911210191
 AudioSource:
   m_ObjectHideFlags: 0

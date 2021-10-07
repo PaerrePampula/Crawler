@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 public class TutorialEndDoorTrigger : MonoBehaviour, IPlayerInteractable
 {
     [SerializeField] PlayableDirector director;
-    [SerializeField] string interactionText = "Continue";
+    [SerializeField] InputAlias[] inputs;
     [SerializeField] string lockedInteractionText = "Some weird power prevents me from opening this right now!";
     bool locked = false;
     public void DoPlayerInteraction()
@@ -24,9 +24,9 @@ public class TutorialEndDoorTrigger : MonoBehaviour, IPlayerInteractable
         }
     }
 
-    public string getPlayerInteractionString()
+    public InputAlias[] getPlayerInteractions()
     {
-        return interactionText;
+        return inputs;
     }
     public void SetLockState(bool state)
     {
@@ -40,5 +40,10 @@ public class TutorialEndDoorTrigger : MonoBehaviour, IPlayerInteractable
     private void OnDisable()
     {
         transform.root.GetComponent<Room>().onLockStateChange -= SetLockState;
+    }
+
+    public bool getPlayerInteraction()
+    {
+        return Input.GetKeyDown(KeyCode.E);
     }
 }
