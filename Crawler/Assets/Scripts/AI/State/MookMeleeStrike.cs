@@ -22,7 +22,7 @@ class MookMeleeStrike : IState
     StateOnAnimationTrigger _animationTrigger;
 
     [Header("FX")]
-    [SerializeField] AudioClip _windupAttackSound;
+    [SerializeField] AudioClip[] _windupAttackSounds;
     [SerializeField] AudioClip _attackHitSuccessSound;
     [SerializeField] string _attackAnimationWindupStateName;
     [SerializeField] GameObject attackEffect;
@@ -60,7 +60,12 @@ class MookMeleeStrike : IState
     void ReadyMeleeStrike()
     {
         readyToChangeState = false;
-        _audioSource.PlayOneShot(_windupAttackSound);
+        if (_windupAttackSounds.Length > 0)
+        {
+            int randomWindupSoundIndex = UnityEngine.Random.Range(0, _windupAttackSounds.Length);
+            _audioSource.PlayOneShot(_windupAttackSounds[randomWindupSoundIndex]);
+        }
+
         _animator.SetTrigger(_attackAnimationWindupStateName);
         if (attackEffect)
         {

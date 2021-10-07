@@ -223,7 +223,11 @@ MonoBehaviour:
     m_Bits: 128
   stateText: {fileID: 2180175781732515104}
   skellingtonStrike:
-    _windupAttackSound: {fileID: 8300000, guid: d9c4b879ced3d7d4ba8dff8fe6d922ae, type: 3}
+    _windupAttackSounds:
+    - {fileID: 8300000, guid: 420540c8c9ef56142b574d084f4512fe, type: 3}
+    - {fileID: 8300000, guid: d9c4b879ced3d7d4ba8dff8fe6d922ae, type: 3}
+    - {fileID: 8300000, guid: 4e7056e144ff9ae48940fa531ed6d59b, type: 3}
+    - {fileID: 8300000, guid: c75ac0d84c4088c4d84b0b058ad179e6, type: 3}
     _attackHitSuccessSound: {fileID: 0}
     _attackAnimationWindupStateName: Skeleton-windup
     attackEffect: {fileID: 9137866322496733819, guid: ac6a48ae9f2cad94586010cfd69a3552, type: 3}
