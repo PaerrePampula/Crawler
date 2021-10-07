@@ -56,9 +56,9 @@ class SlimeAttack : IState
     {
 
         readyToChangeState = false;
-        if (lastAttackTime == Mathf.Infinity) lastAttackTime = Time.time + actionDelayMinimum;
+
         _animator.SetTrigger("slime-windup");
-        windupRoutine = _baseMook.StartCoroutine(ActionDelayer.actionWait(() => SlimeCharge(), lastAttackTime));
+        windupRoutine = _baseMook.StartCoroutine(ActionDelayer.actionWait(() => SlimeCharge(), Time.time + UnityEngine.Random.Range(actionDelayMinimum, actionDelayMaximum)));
     }
 
 
@@ -76,7 +76,7 @@ class SlimeAttack : IState
     }
     public void SlimeCharge()
     {
-        lastAttackTime = Time.time + UnityEngine.Random.Range(actionDelayMinimum, actionDelayMaximum);
+
         chargeRoutine = _baseMook.StartCoroutine(chargeAttack());
         attackRoutine = _baseMook.StartCoroutine(chargeMove());
     }

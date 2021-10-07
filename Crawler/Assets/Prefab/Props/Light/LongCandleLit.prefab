@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: -0.50000006, w: 0.49999997}
   m_LocalPosition: {x: -0.8542301, y: 1.522158, z: 5.679848}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1959738149125095637}
   m_Father: {fileID: 0}
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -84,6 +86,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3568895788308445249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7103274005704990169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 0
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &6933370527932071551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,6 +113,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5199580917682600460}
     m_Modifications:
+    - target: {fileID: 1935122485891526667, guid: 9ebe31862f0c1e341b5ef2b0094a800f, type: 3}
+      propertyPath: m_Shadows.m_Resolution
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 8865939172262657706, guid: 9ebe31862f0c1e341b5ef2b0094a800f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -136,5 +162,10 @@ PrefabInstance:
 --- !u!4 &1959738149125095637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8865939172262657706, guid: 9ebe31862f0c1e341b5ef2b0094a800f, type: 3}
+  m_PrefabInstance: {fileID: 6933370527932071551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7103274005704990169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 192425325861430182, guid: 9ebe31862f0c1e341b5ef2b0094a800f, type: 3}
   m_PrefabInstance: {fileID: 6933370527932071551}
   m_PrefabAsset: {fileID: 0}
