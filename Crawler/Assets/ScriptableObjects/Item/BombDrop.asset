@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BombDrop
   m_EditorClassIdentifier: 
   itemID: Bombdrop
-  itemName: Black Powder Bomb [Chance to drop bomb on monster kill 5%]
+  itemName: Black Powder Bomb [Chance to drop bomb on monster kill 15%]
   itemDescription: 
   itemType: 1
   itemSprite: {fileID: 1646164629410166383, guid: c720d2c7c54c29b4b8d8220e7f67b4d1, type: 3}
   pickupSound: {fileID: 8300000, guid: c4bc408958753a945b1df3d3210468e3, type: 3}
   statToBuff: 9
-  buffAmountPercentage: 1
+  buffAmountPercentage: 0.15
