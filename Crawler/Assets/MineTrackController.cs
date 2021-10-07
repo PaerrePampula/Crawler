@@ -14,7 +14,7 @@ public class MineTrackController : MonoBehaviour
     [SerializeField] Vector3 cartOffset;
     Vector3 cartDirection = Vector3.zero;
     GameObject _cart;
-    private void OnEnable()
+    private void Awake()
     {
         //Parent to this to easily prevent instantiated cart from moving to other rooms
         _cart = Instantiate(_minecartPrefab, transform);
