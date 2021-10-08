@@ -1798,6 +1798,7 @@ GameObject:
   - component: {fileID: 1298185818}
   - component: {fileID: 1298185817}
   - component: {fileID: 1298185819}
+  - component: {fileID: 1298185820}
   m_Layer: 0
   m_Name: GameSingleton
   m_TagString: Untagged
@@ -1866,6 +1867,18 @@ MonoBehaviour:
     weight: 80
   - hpItemDroppedByMook: {fileID: 11400000, guid: f43f1254de2ebc54d9e0d8f4c6b93151, type: 2}
     weight: 20
+--- !u!114 &1298185820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298185816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809a77aed18055d46980f43cb04cfb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1423482501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,7 +2113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2d93e4c50e76d45abdb2eea6a8a674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyGenerateOneRoom: 1
+  onlyGenerateOneRoom: 0
   oneRoomToGenerate: {fileID: 5456817877121539591, guid: 4cacaf738c724434dbc4df735fef6f00, type: 3}
   allRooms:
   - {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
