@@ -17,15 +17,16 @@ class AoEPassiveAttack
     [SerializeField] float attackDamage;
     //TODO: REPLACE WITH ANIMATION
     [SerializeField] string attackSpriteTrigger;
-
+    string _attackName;
     Animator _animator;
-    public void InitializeAoEPassiveAttack(Func<float, Collider[]> hitBoxAttainMethod, Action endFunction ,BaseMook baseMook, IState baseState)
+    public void InitializeAoEPassiveAttack(Func<float, Collider[]> hitBoxAttainMethod, Action endFunction ,BaseMook baseMook, IState baseState, string attackName)
     {
         this.hitBoxAttainMethod = hitBoxAttainMethod;
         _baseMook = baseMook;
         this.baseState = baseState;
         this.hitBoxEndFunction = endFunction;
         _animator = _baseMook.GetComponentInChildren<Animator>();
+        _attackName = attackName;
     }
 
     public void StartAOE()
@@ -46,6 +47,7 @@ class AoEPassiveAttack
             {
                 IDamageable damageable = (IDamageable)hitColliders[i].GetComponent(typeof(IDamageable));
                 damageable.ChangeHp(-attackDamage);
+                _baseMook.InvokeSuccessfullHit(_attackName);
             }
 
             timer += Time.deltaTime;

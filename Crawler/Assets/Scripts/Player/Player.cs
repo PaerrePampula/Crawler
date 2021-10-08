@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Saves infomration about player hp and also invokes events involving player dodging attacks or attacking
+/// Also bit of a mish mash of an inventory system, but not enough big of an issue to seperate to another class for no reason (right now)
 /// </summary>
 class Player : MonoBehaviour,  IDamageable
 {
@@ -21,6 +22,7 @@ class Player : MonoBehaviour,  IDamageable
     }
     Animator anim;
     SpriteRenderer spriteRenderer;
+
     public delegate void OnPlayerHpChanged(float newHP);
     public static event OnPlayerHpChanged onCurrentHpChanged;
     public static event OnPlayerHpChanged onMaxHPChanged;
@@ -32,6 +34,7 @@ class Player : MonoBehaviour,  IDamageable
     public static event PlayerDeath onPlayerDeath;
     public delegate void PlayerReceivedItem(Item item);
     public static event PlayerReceivedItem onPlayerReceivedItem;
+
     Dictionary<StatType, Action<float>> delegatesOnStatBuff = new Dictionary<StatType, Action<float>>();
 
     Dictionary<string, Item> _playerItems = new Dictionary<string, Item>();

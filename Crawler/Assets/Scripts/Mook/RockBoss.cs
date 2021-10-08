@@ -66,8 +66,8 @@ public class RockBoss : MonoBehaviour
         //Initialize the actual attacks
         volleyFireBallAttack.InitializeFireBallAttack(PlayerController.Singleton.transform, _baseMook, _animator, _audioSource);
         rightHook.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitboxAttainmentForBasicAttack.getHitBoxes());
-        pummelStrike.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitBoxAttainmentForPummelStrike.getHitBoxes());
-        tornadoAoE.InitializeAoEPassiveAttack(tornadoHitBoxCircle.getHitBoxes(),tornadoAttackChaseTarget.EndStateManual ,  _baseMook, tornadoAttackChaseTarget);
+        pummelStrike.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitBoxAttainmentForPummelStrike.getHitBoxes(), "AoE");
+        tornadoAoE.InitializeAoEPassiveAttack(tornadoHitBoxCircle.getHitBoxes(),tornadoAttackChaseTarget.EndStateManual ,  _baseMook, tornadoAttackChaseTarget, "Tornado");
 
         //Add in delegates for special attacks
         pummelStrike.attackReady = hitBoxAttainmentForPummelStrike.displayHitBoxWarning();
