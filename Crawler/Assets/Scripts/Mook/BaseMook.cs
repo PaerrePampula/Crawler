@@ -21,6 +21,8 @@ public class BaseMook : MonoBehaviour, IDamageable
     public static event MookDeathGlobal onMookDeathGlobal;
     public delegate void MookDeathSpawnItem(Vector3 position);
     public static event MookDeathSpawnItem onMookPossibleItemDrop;
+    public delegate void MookOnSuccesfulHit(string hitname);
+    public event MookOnSuccesfulHit onMookSuccesfullHit;
     #endregion
 
     #region fields
@@ -150,6 +152,10 @@ public class BaseMook : MonoBehaviour, IDamageable
         {
             return false;
         }
+    }
+    public void InvokeSuccessfullHit(string hitname)
+    {
+        onMookSuccesfullHit?.Invoke(hitname);
     }
 
 }

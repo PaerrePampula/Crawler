@@ -23,6 +23,7 @@ class SlimeAttack : IState
     [SerializeField] AudioClip attackingAudioClip;
     float lastAttackTime = Mathf.Infinity;
     bool playerDodgedAttackSuccessfully = false;
+    string _attackName;
     Vector3 chargeDirection;
     CharacterController _controller;
     Transform _transform;
@@ -35,7 +36,7 @@ class SlimeAttack : IState
     Coroutine windupRoutine;
 
     bool readyToChangeState = true;
-    public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask, Animator animator, AudioSource audioSource = null)
+    public void InitializeSlimeAttack(CharacterController controller, Transform transform, BaseMook baseMook, LayerMask playerMask, Animator animator, AudioSource audioSource = null, string attackName = "BasicAttack")
     {
         _controller = controller;
         _playerMask = playerMask;
@@ -44,6 +45,7 @@ class SlimeAttack : IState
         _playerMask = playerMask;
         _animator = animator;
         _audioSource = audioSource;
+        _attackName = attackName;
     }
 
     public void OnStateEnter()
@@ -131,8 +133,9 @@ class SlimeAttack : IState
         {
             IDamageable damageable = (IDamageable)hitCollider.GetComponent(typeof(IDamageable));
             hasHit = damageable.ChangeHp(-meleeDamage);
-
             //Will return true if there are hits that do damage
+            if (hasHit) _baseMook.InvokeSuccessfullHit(_attackName);
+
 
         }
         if (!hasHit)

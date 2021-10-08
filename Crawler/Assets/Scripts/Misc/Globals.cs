@@ -4,17 +4,25 @@
 /// </summary>
 static class Globals
 {
+    //LOGGING
     public delegate void DebugChanged(bool state);
     public static event DebugChanged onDebugChanged;
+    public delegate void DebugStateLogChanged(bool state);
+    public static event DebugStateLogChanged onLogStatesChange;
     static bool _debugOn = false;
+    static bool _logStates = false;
 
-    //25 ms for single character on text box
-    static float characterTextSpeed = 0.025f;
+
+    //GAMEPLAY VARIABLES
+    //15 ms for single character on text box
+    static float characterTextSpeed = 0.015f;
     static bool _movementControlsAreEnabled = true;
     static bool _controlsAreEnabled = true;
     static float likelinessOfItemDroppingInRoom = 100f;
     static float likelinessOfMookDroppingHp = 20f;
     static GenerationSettings generationSettings;
+
+    //PUBLIC PROPERTIES
     public static bool ControlsAreEnabled { get => _controlsAreEnabled; set => _controlsAreEnabled = value; }
     public static bool MovementControlsAreEnabled { get => _movementControlsAreEnabled; set => _movementControlsAreEnabled = value; }
     public static float CharacterTextSpeed { get => characterTextSpeed; set => characterTextSpeed = value; }
@@ -40,4 +48,16 @@ static class Globals
         }
     }
     internal static GenerationSettings GenerationSettings { get => generationSettings; set => generationSettings = value; }
+    public static bool LogStates
+    {
+        get 
+        { 
+            return _logStates; 
+        }
+        set
+        {
+            _logStates = value;
+            onLogStatesChange?.Invoke(value);
+        }
+    }
 }

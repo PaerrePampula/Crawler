@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// Saves infomration about player hp and also invokes events involving player dodging attacks or attacking
+/// Also bit of a mish mash of an inventory system, but not enough big of an issue to seperate to another class for no reason (right now)
 /// </summary>
 class Player : MonoBehaviour,  IDamageable
 {
@@ -21,7 +22,8 @@ class Player : MonoBehaviour,  IDamageable
     }
     Animator anim;
     SpriteRenderer spriteRenderer;
-    public delegate void OnPlayerHpChanged(float newHP);
+
+    public delegate void OnPlayerHpChanged(float newHP, float changeAmount);
     public static event OnPlayerHpChanged onCurrentHpChanged;
     public static event OnPlayerHpChanged onMaxHPChanged;
     public delegate void PlayerDamaged();
@@ -32,6 +34,7 @@ class Player : MonoBehaviour,  IDamageable
     public static event PlayerDeath onPlayerDeath;
     public delegate void PlayerReceivedItem(Item item);
     public static event PlayerReceivedItem onPlayerReceivedItem;
+
     Dictionary<StatType, Action<float>> delegatesOnStatBuff = new Dictionary<StatType, Action<float>>();
 
     Dictionary<string, Item> _playerItems = new Dictionary<string, Item>();
@@ -88,7 +91,7 @@ class Player : MonoBehaviour,  IDamageable
             {
                 KillCharacter();
             }
-            onCurrentHpChanged?.Invoke(_hp);
+
         }
     }
 
@@ -143,7 +146,7 @@ class Player : MonoBehaviour,  IDamageable
             }
         }
         Hp += changeAmount;
-
+        onCurrentHpChanged?.Invoke(Hp, changeAmount);
         return true;
     }
     public void setInvunerability(bool state)
@@ -161,7 +164,7 @@ class Player : MonoBehaviour,  IDamageable
     {
         //Reset player hp to max on start
         //Current default 5 hp would mean 5 hearts, change to whatever if there is a better number.
-        onMaxHPChanged?.Invoke(MaxHp);
+        onMaxHPChanged?.Invoke(MaxHp, 0);
         Hp = MaxHp;
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -176,7 +179,7 @@ class Player : MonoBehaviour,  IDamageable
     private void updateMaxHP(float hpChange)
     {
         ChangeHp(hpChange);
-        onMaxHPChanged?.Invoke(MaxHp);
+        onMaxHPChanged?.Invoke(MaxHp, 0);
     }
 
     public void GivePlayerItem(Item item)

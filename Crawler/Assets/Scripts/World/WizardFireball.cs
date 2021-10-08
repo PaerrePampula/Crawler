@@ -21,6 +21,7 @@ public class WizardFireball : MonoBehaviour
     private void OnEnable()
     {
         rigidbody = GetComponent<Rigidbody>();
+        Destroy(gameObject, 10);
     }
     private void OnTriggerEnter(Collider other)
     {

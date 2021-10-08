@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 2013666211912055004}
   - component: {fileID: 2013666211912055005}
   - component: {fileID: 1136941065991055061}
+  - component: {fileID: -8678938629702609}
   m_Layer: 6
   m_Name: MookSlime
   m_TagString: Untagged
@@ -688,11 +689,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -725,7 +726,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -765,6 +766,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8678938629702609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112379709052971992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8b7757574573747a813c918f030f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSoundsForAttackType:
+  - _audioClipName: BasicAttack
+    _audioClips:
+    - {fileID: 8300000, guid: 329c9b4a14860174282d238dcc163a1e, type: 3}
 --- !u!1 &8551450801116819237
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StateMachine
 {
+
     //The current state is cached, only one state is active for an AI
     IState _currentState;
     //All transistions for all registered states are cached here, similar to the animator tab transistions
@@ -30,7 +31,7 @@ public class StateMachine
         //Is in this state, makes no sense to re set it, bail out!
         if (state == _currentState) return;
         if (_currentState != null)
-        Debug.Log("Exiting state " + _currentState.GetType().ToString());
+        if (Globals.LogStates) Debug.Log("Exiting state " + _currentState.GetType().ToString());
         //Exit the currently set state
         _currentState?.OnStateExit();
         //Then set the new state as the current state
@@ -41,7 +42,7 @@ public class StateMachine
         if (_currentTransistions == null) _currentTransistions = EmptyTransistionList;
         //New state was entered, so the enter method must be ran
         _currentState.OnStateEnter();
-        Debug.Log("Entering state" + _currentState.GetType().ToString());
+        if (Globals.LogStates) Debug.Log("Entering state" + _currentState.GetType().ToString());
     }
 
     /// <param name="to">

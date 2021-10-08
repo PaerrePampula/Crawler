@@ -27,13 +27,13 @@ public class PlayerHealthUI : MonoBehaviour
         Player.onMaxHPChanged -= updateMaxHP;
     }
 
-    private void updateMaxHP(float newHP)
+    private void updateMaxHP(float newHP, float changeAmount)
     {
         maxSliderValue = newHP;
         maxHPText.text = newHP.ToString();
     }
 
-    private void updateHP(float newHP)
+    private void updateHP(float newHP, float changeAmount)
     {
         currentHpText.text =  newHP.ToString("0.##");
 

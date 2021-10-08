@@ -34,6 +34,7 @@ class MookMeleeStrike : IState
     [SerializeField] float attackDelayMinimum;
     [SerializeField] float attackDelayMaximum;
 
+    string _attackName;
     bool readyToChangeState = true;
     float lastAttackTime = Mathf.Infinity;
     Coroutine attackHitBoxRoutine;
@@ -44,13 +45,14 @@ class MookMeleeStrike : IState
 
     public event StateComplete onStateComplete;
 
-    public void InitializeMeleeStrike(Animator animator, AudioSource audioSource, BaseMook baseMook, StateOnAnimationTrigger stateOnAnimationTrigger, Func<float, Collider[]> colliderFunc)
+    public void InitializeMeleeStrike(Animator animator, AudioSource audioSource, BaseMook baseMook, StateOnAnimationTrigger stateOnAnimationTrigger, Func<float, Collider[]> colliderFunc, string attackName = "BasicAttack")
     {
         hitBoxAttainMethod = colliderFunc;
         _animator = animator;
         _audioSource = audioSource;
         _baseMook = baseMook;
         _animationTrigger = stateOnAnimationTrigger;
+        _attackName = attackName;
     }
     public void OnStateEnter()
     {
@@ -95,7 +97,8 @@ class MookMeleeStrike : IState
             for (int i = 0; i < hitColliders.Length; i++)
             {
                 IDamageable damageable = (IDamageable)hitColliders[i].GetComponent(typeof(IDamageable));
-                damageable.ChangeHp(-attackDamage);
+                bool hasHit = damageable.ChangeHp(-attackDamage);
+                if (hasHit) _baseMook.InvokeSuccessfullHit(_attackName);
             }
             if (hitColliders.Length > 0)
             {

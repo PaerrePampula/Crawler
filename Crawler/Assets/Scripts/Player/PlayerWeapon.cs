@@ -70,7 +70,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             animator.Play("Player-slice" + currentAttackIndex);
 
-            Debug.Log("Attack " + currentAttackIndex);
+
             currentAttackDelay = playerAttacks[currentAttackIndex].Delay;
             //Set the last attack time to be current passed frames.
             lastAttackTime = Time.time;
