@@ -62,8 +62,14 @@ class RunStatsController : MonoBehaviour
 
     private void parseItemReceive(Item item)
     {
-        string identifier;
-        if (item.ItemScriptable.ItemType == ItemBehaviourType.Money) identifier = "MoneyTaken";
+
+        if (item.ItemScriptable.ItemType == ItemBehaviourType.Money)
+        {
+            MoneyItemScriptable moneyItemScriptable = (MoneyItemScriptable)item.ItemScriptable;
+            AddToStats("MoneyTaken", moneyItemScriptable.moneyAmount);
+        }
+        AddToStats("PickupsFound", 1);
+
     }
 
     private void OnDisable()
