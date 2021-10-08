@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
         Vector3 mousePanVector = distanceBetweenMiddleofScreenAndCursor;
 
         //X and Z are affected by player pos and panning, but the Y axis always stays the same
-        newCameraPosition = new Vector3(cameraTarget.position.x + cameraOffset.x + mousePanVector.x * mouseMovementPanMultiplier, cameraOffset.y,
+        newCameraPosition = new Vector3(cameraTarget.position.x + cameraOffset.x + mousePanVector.x * mouseMovementPanMultiplier, cameraTarget.position.y + cameraOffset.y,
                         cameraTarget.position.z + cameraOffset.z + mousePanVector.z * mouseMovementPanMultiplier);
 
 
