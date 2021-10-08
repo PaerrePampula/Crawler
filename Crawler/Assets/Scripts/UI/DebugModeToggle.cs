@@ -10,8 +10,10 @@ public class DebugModeToggle : MonoBehaviour
     {
         _toggle = GetComponent<Toggle>();
     }
-    public void ChangeDebug()
+    public void ChangeDebug(string toggletype)
     {
-        Globals.DebugOn = _toggle.isOn;
+        if (toggletype == "Debug") Globals.DebugOn = _toggle.isOn;
+        if (toggletype == "States") Globals.LogStates = _toggle.isOn;
+
     }
 }
