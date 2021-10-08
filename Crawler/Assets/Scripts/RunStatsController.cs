@@ -5,6 +5,21 @@ using UnityEngine;
 
 class RunStatsController : MonoBehaviour
 {
+    static RunStatsController _singleton;
+    public static RunStatsController Singleton
+    {
+        get
+        {
+            if (_singleton == null)
+            {
+                _singleton = FindObjectOfType<RunStatsController>();
+            }
+            return _singleton;
+        }
+    }
+
+    internal Dictionary<string, RunStat> RunStats { get => runStats; set => runStats = value; }
+
     Dictionary<string, RunStat> runStats = new Dictionary<string, RunStat>()
     {
         {
@@ -29,18 +44,37 @@ class RunStatsController : MonoBehaviour
 
     void AddToStats(string identifier, float value)
     {
-        if (runStats.ContainsKey(identifier))
+        if (RunStats.ContainsKey(identifier))
         {
-            runStats[identifier].Value += value;
+            RunStats[identifier].Value += value;
             if (Globals.DebugOn)
             {
-                Debug.Log(string.Format("New stat change:{0}\nNew value:{1}", runStats[identifier].Description,  runStats[identifier].Value));
+                Debug.Log(string.Format("New stat change:{0}\nNew value:{1}", RunStats[identifier].Description,  RunStats[identifier].Value));
             }
         }
     }
     void Start()
     {
         Player.onCurrentHpChanged += parseHPChange;
+        Player.onPlayerReceivedItem += parseItemReceive;
+        BaseMook.onMookDamaged += parseMookHPChange;
+    }
+
+    private void parseItemReceive(Item item)
+    {
+        string identifier;
+        if (item.ItemScriptable.ItemType == ItemBehaviourType.Money) identifier = "MoneyTaken";
+    }
+
+    private void OnDisable()
+    {
+        Player.onCurrentHpChanged -= parseHPChange;
+        BaseMook.onMookDamaged -= parseMookHPChange;
+    }
+
+    private void parseMookHPChange(float amount, Vector3 location)
+    {
+        AddToStats("DamageGiven", Math.Abs(amount));
     }
 
     private void parseHPChange(float newHP, float changeAmount)
