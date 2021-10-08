@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GenerationSettings longSettings;
     [SerializeField] GenerationSettings shortSettings;
     [SerializeField] AudioClip buttonPress;
+    [SerializeField] AudioMixer mixer;
 
     public void StartGame()
     {
@@ -59,6 +61,16 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void ToggleWindowMode()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+    public void SetVolume(float sliderValue)
+    {
+        //TODO
+        //Debug.Log(sliderValue);
+        mixer.SetFloat("MasterVol", Mathf.Log10 (sliderValue) * 20);
+    }
 }
 [System.Serializable]
 class GenerationSettings
