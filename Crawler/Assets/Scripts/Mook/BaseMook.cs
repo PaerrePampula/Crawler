@@ -64,7 +64,7 @@ public class BaseMook : MonoBehaviour, IDamageable
     public float Gravity { get => gravity; set => gravity = value; }
     public float MaxHP { get => _maxHP; set => _maxHP = value; }
 
-    public bool ChangeHp(float damageAmount)
+    public bool ChangeHp(float damageAmount, Vector3 changeDirection = new Vector3())
     {
         if (!isInvulnerable)
         {

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3315792716913786299}
   - component: {fileID: 7365883510103958908}
   - component: {fileID: 2831875742799990632}
-  m_Layer: 0
+  - component: {fileID: 2128237537}
+  m_Layer: 17
   m_Name: woodbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3820446221145119854}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -26.231468, y: 1.8, z: -2.9075675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &711842113283279217
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3820446221145119854}
-  m_Mesh: {fileID: -1716842359454501035, guid: bbc7568b0de844d4fa53aa1f295fde9a, type: 3}
+  m_Mesh: {fileID: -3537709356157935800, guid: bbc7568b0de844d4fa53aa1f295fde9a, type: 3}
 --- !u!23 &3315792716913786299
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115,3 +116,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.47200003}
   m_TimeToStationary: 0.5
+--- !u!114 &2128237537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820446221145119854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6fb91b1fa88cb429fa91c2ed170aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenPrefab: {fileID: 3661507710983666658, guid: 956a29d09a880c44dbdde48b9bfda3dc, type: 3}

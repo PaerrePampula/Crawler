@@ -110,7 +110,7 @@ class Player : MonoBehaviour,  IDamageable
 
     public Dictionary<StatType, float> BuffModifiers { get => _buffModifiers; set => _buffModifiers = value; }
 
-    public bool ChangeHp(float changeAmount)
+    public bool ChangeHp(float changeAmount, Vector3 changeDirection = new Vector3())
     {
         //The player is not getting healed by objects and is currently in an iframe, no damage.
         if (changeAmount < 0)

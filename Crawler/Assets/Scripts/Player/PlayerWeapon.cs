@@ -106,7 +106,6 @@ public class PlayerWeapon : MonoBehaviour
         //the angle of the heading not only rotates on the wrong direction, but is also 90 degrees offset, so that needs to be corrected for the orientation of the hitbox
         Vector3 headingVector = heading.getHeadingVector().normalized;
         Collider[] hitColliders = Physics.OverlapBox(transform.position + headingVector * playerAttacks[currentAttackIndex].HitboxScale.z / 2f, playerAttacks[currentAttackIndex].HitboxScale / 2f, Quaternion.Euler(0, -heading.getPlayerHeadingAngle() - 90f, 0), enemyLayerMask);
-        int i = 0;
 
         float randomChanceForCrit = UnityEngine.Random.Range(0, 100);
         float totalDamage = playerAttacks[currentAttackIndex].Damage + Player.Singleton.getBonusDamage(playerAttacks[currentAttackIndex].Damage);
@@ -114,19 +113,19 @@ public class PlayerWeapon : MonoBehaviour
         {
             totalDamage *= 2f;
         }
-        //Check when there is a new collider coming into contact with the box
-        while (i < hitColliders.Length)
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            BaseMook baseMook = hitColliders[i].GetComponent<BaseMook>();
-            baseMook.ChangeHp(-totalDamage);
+            IDamageable hittable = (IDamageable)hitColliders[i].GetComponent(typeof(IDamageable));
+            hittable.ChangeHp(-totalDamage, transform.position + headingVector);
             audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
-            KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
+            CharacterController characterController = hitColliders[i].GetComponent<CharacterController>();
+            if (characterController != null) KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
             //Increase the number of Colliders in the array
-            i++;
         }
+
         CreateAttackVisualFX(headingVector);
     }
-
+ 
     private void CreateAttackVisualFX(Vector3 headingVector)
     {
         //Creates a slash effect for the swing

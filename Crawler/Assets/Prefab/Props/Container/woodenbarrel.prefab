@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3773720237713239933}
   - component: {fileID: 6205008814083736464}
   - component: {fileID: 6348159145744547168}
-  m_Layer: 0
+  - component: {fileID: 5926140883326310606}
+  m_Layer: 17
   m_Name: woodenbarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,3 +116,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0.521}
   m_TimeToStationary: 0.5
+--- !u!114 &5926140883326310606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413182059667394216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6fb91b1fa88cb429fa91c2ed170aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenPrefab: {fileID: 8363047816812822621, guid: 8ef597d065bc0fd4790ea612415a0ab1, type: 3}

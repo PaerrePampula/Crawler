@@ -15088,6 +15088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 458c50842f2fdda4796ee9e5d5c2771f, type: 3}
 --- !u!4 &1896381562 stripped
@@ -18281,9 +18285,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6331063802067334965, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6331063802732446107, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
       propertyPath: m_Name
       value: Room05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331063802732446107, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331063802853411475, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331063803356900538, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331063803453440656, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331063803948948668, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c536e6042baba94ca7a2855791f6930, type: 3}
