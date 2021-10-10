@@ -139,9 +139,10 @@ class Player : MonoBehaviour,  IDamageable
             {
                 return false;
             }
-            if (Hp + changeAmount > MaxHp)
+            if (Hp + changeAmount >= MaxHp)
             {
                 Hp = MaxHp;
+                onCurrentHpChanged?.Invoke(Hp, changeAmount);
                 return true;
             }
         }
