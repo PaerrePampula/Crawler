@@ -42,7 +42,7 @@ class Breakable : MonoBehaviour, IDamageable
             go.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(pushDir * 250f);
         }
         onTrigger?.TryTriggerDrop();
-        _audioSource?.PlayOneShot(_audioClip);
+        if (_audioClip != null) AudioSource.PlayClipAtPoint(_audioClip, transform.position);
         Destroy(gameObject);
     }
 }
