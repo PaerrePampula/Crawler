@@ -7,7 +7,7 @@ using UnityEngine;
 
 class Breakable : MonoBehaviour, IDamageable
 {
-    AudioSource _audioSource;
+
     [SerializeField] AudioClip _audioClip;
     [SerializeField] GameObject brokenPrefab;
     float propHP = 1;
@@ -42,7 +42,7 @@ class Breakable : MonoBehaviour, IDamageable
             go.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(pushDir * 250f);
         }
         onTrigger?.TryTriggerDrop();
-        if (_audioClip != null) AudioSource.PlayClipAtPoint(_audioClip, transform.position);
+        if (_audioClip != null) go.GetComponent<AudioSource>().PlayOneShot(_audioClip);
         Destroy(gameObject);
     }
 }
