@@ -37,8 +37,9 @@ class Breakable : MonoBehaviour, IDamageable
         go.transform.parent = transform.root;
         for (int i = 0; i < go.transform.childCount; i++)
         {
-            Vector3 pushDir = go.transform.GetChild(i).position - hitdirection.normalized;
-            go.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(pushDir * 10);
+
+            Vector3 pushDir = (go.transform.GetChild(i).position - hitdirection).normalized;
+            go.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(pushDir * 250f);
         }
         onTrigger?.TryTriggerDrop();
         _audioSource?.PlayOneShot(_audioClip);
