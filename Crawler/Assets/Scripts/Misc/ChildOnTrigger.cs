@@ -8,7 +8,9 @@ using UnityEngine;
 public class ChildOnTrigger : MonoBehaviour
 {
     public Action<Collider> delegatesOnTrigger;
+    public Action<Collider> delegatesOnTriggerExit;
     public Func<Collider, bool> predicatesForDelegateTrigger;
+    public Func<Collider, bool> predicatesForDelegateExitTrigger;
     private void OnTriggerEnter(Collider other)
     {
         //Can either be triggered any time, or by predicates set by parent (as func)
@@ -21,5 +23,16 @@ public class ChildOnTrigger : MonoBehaviour
             delegatesOnTrigger?.Invoke(other);
         }
 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (predicatesForDelegateExitTrigger != null)
+        {
+            if (predicatesForDelegateTrigger.Invoke(other)) delegatesOnTriggerExit?.Invoke(other);
+        }
+        else
+        {
+            delegatesOnTriggerExit?.Invoke(other);
+        }
     }
 }

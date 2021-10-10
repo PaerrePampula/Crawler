@@ -1,0 +1,59 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovingPlatform : MonoBehaviour
+{
+    List<Transform> movePoints = new List<Transform>();
+    int currentTargetPointIndex = 0;
+    [SerializeField] Transform movePointParent;
+    [SerializeField] Transform platform;
+    Vector3 movedir;
+    [SerializeField] float platformMoveSpeed = 2f;
+    [SerializeField] float platformReachEndWaitTime = 1f;
+    bool cycling = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        for (int i = 0; i < movePointParent.childCount; i++)
+        {
+            movePoints.Add(movePointParent.GetChild(i));
+        }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (Vector3.Distance(platform.position, movePoints[currentTargetPointIndex].position) <= 0.05f)
+        {
+
+            if (currentTargetPointIndex == 0 || currentTargetPointIndex == movePoints.Count-1)
+            {
+                if (!cycling)
+                {
+                    cycling = true;
+                    movedir = Vector3.zero;
+                    StartCoroutine(ActionDelayer.actionWait(() => CycleTarget(), Time.time + platformReachEndWaitTime));
+                }
+
+            }
+            else
+            {
+                CycleTarget();
+            }
+
+
+        }
+        platform.position += movedir * Time.deltaTime;
+    }
+
+
+    private void CycleTarget()
+    {
+        currentTargetPointIndex = (currentTargetPointIndex >= movePoints.Count - 1) ? 0 : currentTargetPointIndex + 1;
+        movedir = (movePoints[currentTargetPointIndex].position - platform.position).normalized;
+        movedir = movedir * platformMoveSpeed;
+        cycling = false;
+    }
+}

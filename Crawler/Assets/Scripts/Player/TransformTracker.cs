@@ -14,7 +14,8 @@ public class TransformTracker : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (playerController.isGrounded)
+        //The player might endlessly fall into the void if the platform where the player stands moves, dont save this as a safe location
+        if (playerController.isGrounded && !playerController.IsOnTopOfPlatform)
         {
             locationWhereTransformTouchedGround = transform.position;
 
