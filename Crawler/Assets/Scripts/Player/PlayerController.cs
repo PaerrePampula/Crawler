@@ -93,9 +93,7 @@ public class PlayerController : MonoBehaviour
             playerMovementInput = Vector3.zero;
             playerMovementVector = Vector3.zero;
         }
-        applyGravity();
-        //Frame rate independent movement happens in fixed update.
-        moveCharacter();
+
 
     }
 
@@ -145,9 +143,11 @@ public class PlayerController : MonoBehaviour
         _dashing = false;
 
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-
+        applyGravity();
+        //Frame rate independent movement happens in fixed update.
+        moveCharacter();
     }
 
     private void moveCharacter()
