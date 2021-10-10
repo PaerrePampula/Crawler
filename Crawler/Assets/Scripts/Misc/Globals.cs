@@ -20,7 +20,7 @@ static class Globals
     static bool _controlsAreEnabled = true;
     static float likelinessOfItemDroppingInRoom = 100f;
     static float likelinessOfMookDroppingHp = 20f;
-    static float likelinessOfContainerDroppingHp = 100f;
+    static float likelinessOfContainerDroppingHp = 7.5f;
     static GenerationSettings generationSettings;
 
     //PUBLIC PROPERTIES
