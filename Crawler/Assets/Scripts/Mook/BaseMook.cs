@@ -34,6 +34,7 @@ public class BaseMook : MonoBehaviour, IDamageable
 
     [Header("RPG parameters")]
     [SerializeField] float _maxHP = 3;
+    [SerializeField] float aggroRange = 25;
     float _hp;
     bool isInvulnerable = false;
     CharacterController characterController;
@@ -63,6 +64,7 @@ public class BaseMook : MonoBehaviour, IDamageable
 
     public float Gravity { get => gravity; set => gravity = value; }
     public float MaxHP { get => _maxHP; set => _maxHP = value; }
+    public float AggroRange { get => aggroRange; set => aggroRange = value; }
 
     public bool ChangeHp(float damageAmount, Vector3 changeDirection = new Vector3())
     {
