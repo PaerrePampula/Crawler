@@ -37,7 +37,7 @@ public class RoomGen : MonoBehaviour
         GameObject go = null;
         if (!onlyGenerateOneRoom)
         {
-            List<GameObject> roomsThatCanBeGeneratedHere = roomsByRoomType[cell.RoomType];
+            List<GameObject> roomsThatCanBeGeneratedHere = new List<GameObject>(roomsByRoomType[cell.RoomType]);
             foreach (Cell neighbor in cell.NeighborCells.Values)
             {
                 if (ProceduralGeneration.Singleton.AllCellsWithRooms.ContainsKey(neighbor))
@@ -48,7 +48,7 @@ public class RoomGen : MonoBehaviour
             if (roomsThatCanBeGeneratedHere.Count <= 1)
             {
                 //Not enough rooms! let the generator make same rooms adjancent
-                roomsThatCanBeGeneratedHere.AddRange(roomsByRoomType[cell.RoomType]);
+                roomsThatCanBeGeneratedHere = new List<GameObject>(roomsByRoomType[cell.RoomType]);
             }
             int random = Random.Range(0, roomsThatCanBeGeneratedHere.Count);
             go = Instantiate(roomsThatCanBeGeneratedHere[random]);
