@@ -45,6 +45,11 @@ public class RoomGen : MonoBehaviour
                     roomsThatCanBeGeneratedHere.Remove(ProceduralGeneration.Singleton.AllCellsWithRooms[neighbor].RoomPrefab);
                 }
             }
+            if (roomsThatCanBeGeneratedHere.Count <= 1)
+            {
+                //Not enough rooms! let the generator make same rooms adjancent
+                roomsThatCanBeGeneratedHere.AddRange(roomsByRoomType[cell.RoomType]);
+            }
             int random = Random.Range(0, roomsThatCanBeGeneratedHere.Count);
             go = Instantiate(roomsThatCanBeGeneratedHere[random]);
             go.GetComponent<Room>().RoomPrefab = roomsThatCanBeGeneratedHere[random];
