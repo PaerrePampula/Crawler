@@ -116,11 +116,14 @@ public class PlayerWeapon : MonoBehaviour
         for (int i = 0; i < hitColliders.Length; i++)
         {
             IDamageable hittable = (IDamageable)hitColliders[i].GetComponent(typeof(IDamageable));
-            hittable.ChangeHp(-totalDamage, transform.position + headingVector);
-            audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
-            CharacterController characterController = hitColliders[i].GetComponent<CharacterController>();
-            if (characterController != null) KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
-            //Increase the number of Colliders in the array
+            if (hittable != null)
+            {
+                hittable.ChangeHp(-totalDamage, transform.position + headingVector);
+                audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
+                CharacterController characterController = hitColliders[i].GetComponent<CharacterController>();
+                if (characterController != null) KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
+            }
+
         }
 
         CreateAttackVisualFX(headingVector);
