@@ -119,11 +119,15 @@ public class PlayerWeapon : MonoBehaviour
             if (hittable != null)
             {
                 hittable.ChangeHp(-totalDamage, transform.position + headingVector);
-                audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
-                CharacterController characterController = hitColliders[i].GetComponent<CharacterController>();
-                if (characterController != null) KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
-            }
 
+                CharacterController characterController = hitColliders[i].GetComponent<CharacterController>();
+                if (characterController != null)
+                {
+                    audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
+                    KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
+                }
+
+            }
         }
 
         CreateAttackVisualFX(headingVector);
