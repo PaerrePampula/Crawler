@@ -46,8 +46,8 @@ class AoEPassiveAttack
             for (int i = 0; i < hitColliders.Length; i++)
             {
                 IDamageable damageable = (IDamageable)hitColliders[i].GetComponent(typeof(IDamageable));
-                damageable.ChangeHp(-attackDamage);
-                _baseMook.InvokeSuccessfullHit(_attackName);
+                bool success = damageable.ChangeHp(-attackDamage);
+                if (success) _baseMook.InvokeSuccessfullHit(_attackName);
             }
 
             timer += Time.deltaTime;
