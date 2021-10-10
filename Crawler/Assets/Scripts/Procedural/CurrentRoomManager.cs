@@ -44,6 +44,10 @@ public class CurrentRoomManager : MonoBehaviour
         //Player is spawned in currenly with just info in the inspector about current room
         onPlayerRoomSet?.Invoke(currentRoom);
     }
+    public Transform GetCurrentRoomPickupPoint()
+    {
+        return currentRoom.PickupsDropPointOnRoomClear;
+    }
 
     [SerializeField] public Room currentRoom;
     public void setNewRoom(Room nextRoom, NeighborType connectingNeighborDoor)
