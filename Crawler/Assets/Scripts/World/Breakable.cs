@@ -9,6 +9,11 @@ class Breakable : MonoBehaviour, IDamageable
 {
     [SerializeField] GameObject brokenPrefab;
     float propHP = 1;
+    DropItemOnTrigger onTrigger;
+    private void Start()
+    {
+        onTrigger = GetComponent<DropItemOnTrigger>();
+    }
     public bool ChangeHp(float changeAmount, Vector3 changeDirection = new Vector3())
     {
         propHP += changeAmount;
@@ -33,6 +38,7 @@ class Breakable : MonoBehaviour, IDamageable
             Vector3 pushDir = go.transform.GetChild(i).position - hitdirection.normalized;
             go.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(pushDir * 10);
         }
+        onTrigger.TryTriggerDrop();
         Destroy(gameObject);
     }
 }

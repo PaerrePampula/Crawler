@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7365883510103958908}
   - component: {fileID: 2831875742799990632}
   - component: {fileID: 2128237537}
+  - component: {fileID: 7975396817991333556}
   m_Layer: 17
   m_Name: woodbox
   m_TagString: Untagged
@@ -129,3 +130,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brokenPrefab: {fileID: 3661507710983666658, guid: 956a29d09a880c44dbdde48b9bfda3dc, type: 3}
+--- !u!114 &7975396817991333556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820446221145119854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc62ae4c3813042b128cf257541515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemdrops:
+  - {fileID: 11400000, guid: 857672557a711c942bc627bc93534d13, type: 2}
+  - {fileID: 11400000, guid: cacf1303244db7540a91932745aa9a1d, type: 2}
