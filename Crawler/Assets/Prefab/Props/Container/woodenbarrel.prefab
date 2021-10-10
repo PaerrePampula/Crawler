@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6fb91b1fa88cb429fa91c2ed170aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 23bb1d0b7b05273438dd0762220c1770, type: 3}
   brokenPrefab: {fileID: 8363047816812822621, guid: 8ef597d065bc0fd4790ea612415a0ab1, type: 3}
 --- !u!114 &5957260448465065522
 MonoBehaviour:
@@ -159,7 +159,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 2a98dbc1cd42f7247813badb6e90e9cb, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
