@@ -20,6 +20,9 @@ public class Room : MonoBehaviour
     public Transform PickupsDropPointOnRoomClear { get => pickupsDropPointOnRoomClear; set => pickupsDropPointOnRoomClear = value; }
     internal RoomType RoomType { get => roomType; set => roomType = value; }
     public bool RoomLocked { get => roomLocked; set => roomLocked = value; }
+    //This information is not needed for designers, thus its hidden.
+    [HideInInspector]
+    public GameObject RoomPrefab { get => roomPrefab; set => roomPrefab = value; }
 
     Dictionary<NeighborType, Room> roomNeighbors = new Dictionary<NeighborType, Room>();
     Dictionary<NeighborType, GameObject> roomDoors = new Dictionary<NeighborType, GameObject>();
@@ -34,6 +37,8 @@ public class Room : MonoBehaviour
     bool roomHasHadMooksAdded = false;
     bool roomLocked = false;
     Cell _cell;
+    //This information is used to store the original prefab reference, to make sure e.g that the same rooms dont spawn next to eachother
+    GameObject roomPrefab;
     //Is the room a store, normal room, boss room, etc.
     [SerializeField] RoomType roomType;
     public void AddRoomDoor(NeighborType neighborType, GameObject door)

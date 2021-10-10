@@ -37,15 +37,24 @@ public class RoomGen : MonoBehaviour
         GameObject go = null;
         if (!onlyGenerateOneRoom)
         {
-            int random = Random.Range(0, roomsByRoomType[cell.RoomType].Count);
-            go = Instantiate(roomsByRoomType[cell.RoomType][random]);
-
+            List<GameObject> roomsThatCanBeGeneratedHere = roomsByRoomType[cell.RoomType];
+            foreach (Cell neighbor in cell.NeighborCells.Values)
+            {
+                if (ProceduralGeneration.Singleton.AllCellsWithRooms.ContainsKey(neighbor))
+                {
+                    roomsThatCanBeGeneratedHere.Remove(ProceduralGeneration.Singleton.AllCellsWithRooms[neighbor].RoomPrefab);
+                }
+            }
+            int random = Random.Range(0, roomsThatCanBeGeneratedHere.Count);
+            go = Instantiate(roomsThatCanBeGeneratedHere[random]);
+            go.GetComponent<Room>().RoomPrefab = roomsThatCanBeGeneratedHere[random];
         }
         else
         {
             go = Instantiate(oneRoomToGenerate);
         }
         go.GetComponent<Room>().Cell = cell;
+
         ProceduralGeneration.Singleton.AddCellToRoomInformation(cell, go.GetComponent<Room>());
 
         return go;
