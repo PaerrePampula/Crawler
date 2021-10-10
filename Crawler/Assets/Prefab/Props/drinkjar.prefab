@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 2304727894514048029}
   - component: {fileID: 2905897470292562872}
   - component: {fileID: 1132414597197621106}
-  m_Layer: 0
+  - component: {fileID: 2928148156101199347}
+  - component: {fileID: 3286377364391222680}
+  m_Layer: 17
   m_Name: drinkjar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,3 +86,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2928148156101199347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492900823854859943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6fb91b1fa88cb429fa91c2ed170aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 0}
+  brokenPrefab: {fileID: 3248486172964484921, guid: 14e16497b323efa4587090123ee2c748, type: 3}
+--- !u!65 &3286377364391222680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492900823854859943}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17824236, y: 0.17824234, z: 0.39204228}
+  m_Center: {x: 0, y: 0, z: 0.19602114}
