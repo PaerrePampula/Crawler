@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
+using UnityEngine;
+[Serializable]
 class ChangePlayerStatPerk
 {
-    ItemScriptable[] statChangingItems;
+    [SerializeField] ItemScriptable[] statChangingItems;
     public void InvokeThisPerk()
     {
         for (int i = 0; i < statChangingItems.Length; i++)
@@ -15,4 +15,5 @@ class ChangePlayerStatPerk
             ItemCreator.CreateAndGiveItemToPlayer(statChangingItems[i]);
         }
     }
+    
 }

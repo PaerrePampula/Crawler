@@ -25,7 +25,7 @@ public class PlayerInteractionSystem : MonoBehaviour
     PlayerController playerController;
     private void Start()
     {
-        Globals.ControlsAreEnabled = true;
+
         player = PlayerController.Singleton.transform;
         playerController = GetComponent<PlayerController>();
     }
