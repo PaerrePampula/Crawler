@@ -64,7 +64,7 @@ public class SellerDiscussion : MonoBehaviour
         return sellerChats[identifier][random];
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         SalesPersonTalkingTrigger.onPersonApproach -= greetPlayer;
         SalesPersonTalkingTrigger.onPersonLeave -= sayGoodByeToPlayer;

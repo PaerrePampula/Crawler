@@ -18,5 +18,10 @@ public static class ItemCreator
         item.Itemable = playerItemable;
         return item;
     }
+    public static void CreateAndGiveItemToPlayer(ItemScriptable itemScriptable)
+    {
+        Item item = CreateItemFromScriptable(itemScriptable);
+        item.DoItemPickupActionAccordingToItemType();
+    }
 }
 
