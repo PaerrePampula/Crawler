@@ -32,6 +32,7 @@ public class Pickup : MonoBehaviour
 
     private void OnEnable()
     {
+        GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 250f);
         if (_itemScriptable != null)
         {
             InitializePickupBasedOnScriptable();
