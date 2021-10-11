@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoDamageOnHit : MonoBehaviour
 {
+    [SerializeField] float damage = 10;
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<IDamageable>() != null)

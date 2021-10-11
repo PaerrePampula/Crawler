@@ -1770,6 +1770,12 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7ee5c41d2fd2b194294af8f3f7bf3c92, type: 2}
   swordBeamDelegate:
     laserBeam: {fileID: 4834601987135619920, guid: 4c14d3d2fdf0c0046b706a13e2839692, type: 3}
+  glockDelegate:
+    pistolPrefab: {fileID: 3099314735598710433, guid: 1cf990fe6877764469dbf023bb9b367c, type: 3}
+    hittableMask:
+      serializedVersion: 2
+      m_Bits: 131137
+    chatText: {fileID: 11400000, guid: 7b8336b7b20f96b45a15fa9168068e95, type: 2}
 --- !u!1 &1161264736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,7 +2217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2d93e4c50e76d45abdb2eea6a8a674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyGenerateOneRoom: 1
+  onlyGenerateOneRoom: 0
   oneRoomToGenerate: {fileID: 4610217138739996071, guid: d2b53b90cc5f64846a50515d77b21a06, type: 3}
   allRooms:
   - {fileID: 7570014725680095417, guid: b8c3057c3e9ed774684b42bc8d0b1974, type: 3}
