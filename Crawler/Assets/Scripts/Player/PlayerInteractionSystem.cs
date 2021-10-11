@@ -44,13 +44,13 @@ public class PlayerInteractionSystem : MonoBehaviour
             //only activate if the distance between interactable and player is small enough
             //also check for objects directly in front of player movement, use those as interactable objects also
             Collider[] hitOnMovement = Physics.OverlapSphere(transform.position + playerController.getLatestMovementInput(), 1, interactionLayer);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactionLayer))
-            {
-                SetInteractableThroughRaycast(hit.collider);
-            }
-            else if (hitOnMovement.Length > 0)
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hit;
+            //if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactionLayer))
+            //{
+            //    SetInteractableThroughRaycast(hit.collider);
+            //}
+            if (hitOnMovement.Length > 0)
             {
                 SetInteractableThroughRaycast(hitOnMovement[0]);
             }
