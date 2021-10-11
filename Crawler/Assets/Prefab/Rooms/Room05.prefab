@@ -1435,7 +1435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6331063801958194892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.15, y: 2, z: 0.15}
+  m_LocalPosition: {x: -9.65, y: 2, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
   _maxHP: 120
-  aggroRange: 25
+  aggroRange: 12
   gravityForce: 5
   mookMask:
     serializedVersion: 2
@@ -7051,7 +7051,7 @@ MonoBehaviour:
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
   _maxHP: 175
-  aggroRange: 25
+  aggroRange: 12
   gravityForce: 5
   mookMask:
     serializedVersion: 2
@@ -7588,7 +7588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6331063802507635807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.78, y: 2, z: 0.07}
+  m_LocalPosition: {x: -29.53, y: 2, z: 2.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7661,7 +7661,7 @@ MonoBehaviour:
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
   _maxHP: 120
-  aggroRange: 25
+  aggroRange: 12
   gravityForce: 5
   mookMask:
     serializedVersion: 2
@@ -19015,7 +19015,7 @@ MonoBehaviour:
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
   _maxHP: 175
-  aggroRange: 25
+  aggroRange: 12
   gravityForce: 5
   mookMask:
     serializedVersion: 2
