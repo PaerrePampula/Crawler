@@ -28,6 +28,7 @@ public class PlayerWeapon : MonoBehaviour
     public delegate void OnPlayerAttacks();
     public static event OnPlayerAttacks onPlayerAttacks;
     [SerializeField] List<PlayerAttack> playerAttacks = new List<PlayerAttack>();
+    public Action attackDelegates;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +69,9 @@ public class PlayerWeapon : MonoBehaviour
         //real version should rely on animation length, plus some tiny amount of extra delay on top.
         if (AttackDelayHasPassed())
         {
+            //Invoke attack delegates, such as the laser beam perk effect if possible
+            attackDelegates?.Invoke();
+
             animator.Play("Player-slice" + currentAttackIndex);
 
 

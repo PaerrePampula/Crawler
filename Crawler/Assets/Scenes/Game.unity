@@ -1764,6 +1764,12 @@ MonoBehaviour:
   maxAttackSpeedDelegate:
     statChangingItems:
     - {fileID: 11400000, guid: f163d8919198af143acf8945533a3154, type: 2}
+  lessHpMoreDamageDelegate:
+    statChangingItems:
+    - {fileID: 11400000, guid: 97ae35e5dca448948aa3ed6ef9ddce7e, type: 2}
+    - {fileID: 11400000, guid: 7ee5c41d2fd2b194294af8f3f7bf3c92, type: 2}
+  swordBeamDelegate:
+    laserBeam: {fileID: 4834601987135619920, guid: 4c14d3d2fdf0c0046b706a13e2839692, type: 3}
 --- !u!1 &1161264736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,6 +3303,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3320478033060058661, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
+      propertyPath: m_text
+      value: 3 More!
+      objectReference: {fileID: 0}
     - target: {fileID: 3408733943083821131, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3887,7 +3897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7360810168035477385, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000019848347
+      value: 0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 7495211841048240143, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3950,6 +3960,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8231543282298030437, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837806578506343905, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837806578506343905, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837806578506343905, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837806578506343905, guid: 7c2c646fb7738884e934175ad2512f64, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
