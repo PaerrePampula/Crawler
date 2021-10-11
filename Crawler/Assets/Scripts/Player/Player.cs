@@ -176,7 +176,14 @@ class Player : MonoBehaviour,  IDamageable
     {
         //Make sure timescale is one at the start of the game
         Time.timeScale = 1;
+        Room.onRoomClear += NotifyItemDrop;
     }
+
+    private void NotifyItemDrop(Room room)
+    {
+        PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("Room clear! An item dropped somewhere");
+    }
+
     private void updateMaxHP(float hpChange)
     {
         ChangeHp(hpChange);
