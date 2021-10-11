@@ -13,11 +13,20 @@ class SwordBeam
 {
     [SerializeField] GameObject laserBeam;
     Heading heading;
+    bool triggered;
     void DelegateLaserBeam()
     {
         Player.Singleton.GetComponent<PlayerWeapon>().attackDelegates += FireLaserBeam;
+        triggered = true;
     }
-
+    public void UnsubListener()
+    {
+        if (triggered)
+        {
+            Player.Singleton.GetComponent<PlayerWeapon>().attackDelegates -= FireLaserBeam;
+            triggered = false;
+        }
+    }
     private void FireLaserBeam()
     {
         if (Player.Singleton.Hp >= Player.Singleton.MaxHp*0.8f)

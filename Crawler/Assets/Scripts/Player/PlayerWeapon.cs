@@ -29,6 +29,7 @@ public class PlayerWeapon : MonoBehaviour
     public static event OnPlayerAttacks onPlayerAttacks;
     [SerializeField] List<PlayerAttack> playerAttacks = new List<PlayerAttack>();
     public Action attackDelegates;
+    [SerializeField] AudioClip criticalHitSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,9 +114,12 @@ public class PlayerWeapon : MonoBehaviour
 
         float randomChanceForCrit = UnityEngine.Random.Range(0, 100);
         float totalDamage = playerAttacks[currentAttackIndex].Damage + Player.Singleton.getBonusDamage(playerAttacks[currentAttackIndex].Damage);
+        bool wasCritical = false;
         if (randomChanceForCrit <= Player.Singleton.BuffModifiers[StatType.CritChance]*100)
         {
             totalDamage *= 2f;
+            audioSource.PlayOneShot(criticalHitSound);
+            wasCritical = true;
         }
         for (int i = 0; i < hitColliders.Length; i++)
         {
@@ -127,7 +131,7 @@ public class PlayerWeapon : MonoBehaviour
                 CharacterController characterController = hitColliders[i].GetComponent<CharacterController>();
                 if (characterController != null)
                 {
-                    audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
+                    if (!wasCritical) audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
                     KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
                 }
 

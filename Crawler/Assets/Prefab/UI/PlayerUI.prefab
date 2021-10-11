@@ -962,6 +962,14 @@ MonoBehaviour:
     _ID: maxDMG
   - description: 'Off the meds: 10% attack speed'
     _ID: maxATKSpeed
+  - description: 'Doubling Money: All money received is doubled'
+    _ID: DoublingMoney
+  - description: 'Loot Beggar: The adventurer begs the room for loot. Double loot
+      in each room'
+    _ID: LootBeggar
+  - description: 'Ancient Vampire: The adventurer is a vampire (of non glistening
+      kind). Each room clear gives HP'
+    _ID: Vampire
   - description: 'Glass cannon: 50% less HP, 50% more DMG'
     _ID: 50LessHP
   - description: 'Laser Beam: Fire laser from sword when HP > 80%'

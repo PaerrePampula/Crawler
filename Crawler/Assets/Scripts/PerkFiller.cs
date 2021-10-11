@@ -23,6 +23,7 @@ public class PerkFiller : MonoBehaviour
 [System.Serializable]
 class PerkUIDescriptor
 {
+    [TextArea]
     [SerializeField] string description;
     [SerializeField] string _ID;
 

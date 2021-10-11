@@ -11,11 +11,21 @@ class GlockPerk
     [SerializeField] GameObject pistolPrefab;
     [SerializeField] LayerMask hittableMask;
     [SerializeField] AIChatText chatText;
+    bool triggered;
+    public void UnsubListener()
+    {
+        if (triggered)
+        {
+            Player.Singleton.GetComponent<PlayerWeapon>().attackDelegates -= FireGun;
+            triggered = false;
+        }
+    }
     public void InvokeThisPerk()
     {
         GameObject go = GameObject.Instantiate(pistolPrefab, Player.Singleton.transform);
         Player.Singleton.GetComponent<PlayerWeapon>().attackDelegates += FireGun;
         YellRandomLine();
+        triggered = false;
     }
     void YellRandomLine()
     {
