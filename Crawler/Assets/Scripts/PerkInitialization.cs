@@ -10,6 +10,8 @@ public class PerkInitialization : MonoBehaviour
     [SerializeField] ChangePlayerStatPerk maxAttackSpeedDelegate;
     [SerializeField] ChangePlayerStatPerk lessHpMoreDamageDelegate;
     [SerializeField] ChangePlayerStatPerk megaSpeed;
+    [SerializeField] ChangePlayerStatPerk TwistOfFate;
+    [SerializeField] ChangePlayerStatPerk Kevlar;
 
     [SerializeField] SwordBeam swordBeamDelegate;
 
@@ -34,9 +36,11 @@ public class PerkInitialization : MonoBehaviour
         { "Vampire", new Perk() },
         { "LootBeggar", new Perk() },
         { "DoublingMoney", new Perk() },
-        { "MegaSpeed", new Perk() }
+        { "MegaSpeed", new Perk() },
+        { "TwistOfFate", new Perk() },
+        { "Kevlar", new Perk() }
     };
-
+    //Probably the worst looking code in the game, but this gotta be ready really soon.
     private void Start()
     {
         initializedPerks["maxHP"].Delegates = maxHpPerkDelegate.InvokeThisPerk;
@@ -49,7 +53,8 @@ public class PerkInitialization : MonoBehaviour
         initializedPerks["LootBeggar"].Delegates = lootBeggar.InvokeThisPerk;
         initializedPerks["DoublingMoney"].Delegates = doublingMoney.InvokeThisPerk;
         initializedPerks["MegaSpeed"].Delegates = megaSpeed.InvokeThisPerk;
-
+        initializedPerks["TwistOfFate"].Delegates = TwistOfFate.InvokeThisPerk;
+        initializedPerks["Kevlar"].Delegates = Kevlar.InvokeThisPerk;
         foreach (var item in initializedPerks)
         {
             PerkDataBase.Singleton.AddPerk(item.Key, item.Value);

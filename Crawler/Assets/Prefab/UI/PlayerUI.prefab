@@ -958,51 +958,61 @@ MonoBehaviour:
   perkDescriptors:
   - description: 'Milkdrinker: 20+ HP
 
-      Difficulty Change : Low'
+      Difficulty Change : Easier'
     _ID: maxHP
   - description: 'Strong arms: 10% More damage
 
-      Difficulty Change : Low'
+      Difficulty Change : Easier'
     _ID: maxDMG
   - description: 'Off the meds: 10% attack speed
 
-      Difficulty Change : Low'
+      Difficulty Change : Easier'
     _ID: maxATKSpeed
   - description: 'Doubling Money: All money received is doubled
 
       Difficulty
-      Change : Medium'
+      Change : Easier+'
     _ID: DoublingMoney
   - description: 'Megaspeed: Attack at twice the rate, but at 25% damage
 
       Difficulty
-      Change : Low'
+      Change : Harder'
     _ID: MegaSpeed
+  - description: 'Kevlar Plating: Start with 20 Armor
+
+      Difficulty Change :
+      Easier+'
+    _ID: Kevlar
   - description: 'Loot Beggar: The adventurer begs the room for loot. Double loot
       in each room
 
-      Difficulty Change : High'
+      Difficulty Change : Easier++'
     _ID: LootBeggar
+  - description: 'Twist of Fate: Add 15% Critical hit chance (200% damage hit), but
+      all damage is lowered by 30%
+
+      Difficulty Change: Neutral'
+    _ID: TwistOfFate
   - description: 'Ancient Vampire: The adventurer is a vampire (of non glistening
       kind). Each room clear gives HP
 
-      Difficulty Change : Medium'
+      Difficulty Change : Easier++'
     _ID: Vampire
   - description: 'Glass cannon: 50% less HP, 50% more DMG
 
       Difficulty Change
-      : Low'
+      : Neutral'
     _ID: 50LessHP
   - description: 'Laser Beam: Fire laser from sword when HP > 80%
 
       Difficulty
-      Change : Low'
+      Change : Easier'
     _ID: LaserBeam
   - description: 'Gun fairy: An angry fairy with open carry license fires a glock
       everytime the adventurer attacks, also yells alot
 
       Difficulty Change
-      : Very High!'
+      : Easier++++'
     _ID: JohnWick
 --- !u!1 &2687076375915083383
 GameObject:
