@@ -6,12 +6,10 @@ public class PerkInitialization : MonoBehaviour
 {
 
     [SerializeField] ChangePlayerStatPerk maxHpPerkDelegate;
-
     [SerializeField] ChangePlayerStatPerk maxDmgDelegate;
-
     [SerializeField] ChangePlayerStatPerk maxAttackSpeedDelegate;
-
     [SerializeField] ChangePlayerStatPerk lessHpMoreDamageDelegate;
+    [SerializeField] ChangePlayerStatPerk megaSpeed;
 
     [SerializeField] SwordBeam swordBeamDelegate;
 
@@ -23,6 +21,8 @@ public class PerkInitialization : MonoBehaviour
 
     [SerializeField] DoublingMoney doublingMoney;
 
+
+
     Dictionary<string, Perk> initializedPerks = new Dictionary<string, Perk>()
     {
         { "maxHP", new Perk() },
@@ -33,7 +33,8 @@ public class PerkInitialization : MonoBehaviour
         { "JohnWick", new Perk() },
         { "Vampire", new Perk() },
         { "LootBeggar", new Perk() },
-        { "DoublingMoney", new Perk() }
+        { "DoublingMoney", new Perk() },
+        { "MegaSpeed", new Perk() }
     };
 
     private void Start()
@@ -47,6 +48,7 @@ public class PerkInitialization : MonoBehaviour
         initializedPerks["Vampire"].Delegates = vampirePerk.InvokeThisPerk;
         initializedPerks["LootBeggar"].Delegates = lootBeggar.InvokeThisPerk;
         initializedPerks["DoublingMoney"].Delegates = doublingMoney.InvokeThisPerk;
+        initializedPerks["MegaSpeed"].Delegates = megaSpeed.InvokeThisPerk;
 
         foreach (var item in initializedPerks)
         {

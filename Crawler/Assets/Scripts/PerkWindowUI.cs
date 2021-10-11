@@ -32,6 +32,11 @@ public class PerkWindowUI : MonoBehaviour
     private void InitializePerkChoices()
     {
         PlayerPerks.Singleton.AddPlayerPerksByString(chosenPerks);
+        DisablePerkWindow();
+    }
+
+    public void DisablePerkWindow()
+    {
         Globals.ControlsAreEnabled = true;
         Globals.MovementControlsAreEnabled = true;
         gameObject.SetActive(false);

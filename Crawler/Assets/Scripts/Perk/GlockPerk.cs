@@ -11,6 +11,7 @@ class GlockPerk
     [SerializeField] GameObject pistolPrefab;
     [SerializeField] LayerMask hittableMask;
     [SerializeField] AIChatText chatText;
+    [SerializeField] AudioClip shotSound;
     bool triggered;
     public void UnsubListener()
     {
@@ -40,6 +41,7 @@ class GlockPerk
             heading = Player.Singleton.GetComponent<Heading>();
         }
         RaycastHit raycastHit;
+        Player.Singleton.GetComponent<AudioSource>().PlayOneShot(shotSound);
         if (Physics.Raycast(Player.Singleton.transform.position + Vector3.up*0.15f, heading.getHeadingVector().normalized, out raycastHit, 100, hittableMask))
         {
             if (raycastHit.collider.GetComponent<IDamageable>() != null)
