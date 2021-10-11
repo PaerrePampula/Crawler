@@ -16,6 +16,12 @@ public class RoomGen : MonoBehaviour
     [SerializeField] Dictionary<RoomType, List<GameObject>> roomsByRoomType = new Dictionary<RoomType, List<GameObject>>();
     private void Awake()
     {
+        InitializeRooms();
+    }
+
+    private void InitializeRooms()
+    {
+        roomsByRoomType.Clear();
         if (onlyGenerateOneRoom == true)
         {
             Debug.Log("Debug choice for only generating one type of room is on, disable this if not used on purpose");
@@ -32,9 +38,14 @@ public class RoomGen : MonoBehaviour
             listForRoomType.Add(allRooms[i]);
         }
     }
+
     public GameObject createRoomForCell(Cell cell)
     {
         GameObject go = null;
+        if (roomsByRoomType[cell.RoomType].Count <= 0)
+        {
+            InitializeRooms();
+        }
         if (!onlyGenerateOneRoom)
         {
             List<GameObject> roomsThatCanBeGeneratedHere = new List<GameObject>(roomsByRoomType[cell.RoomType]);
@@ -53,6 +64,7 @@ public class RoomGen : MonoBehaviour
             int random = Random.Range(0, roomsThatCanBeGeneratedHere.Count);
             go = Instantiate(roomsThatCanBeGeneratedHere[random]);
             go.GetComponent<Room>().RoomPrefab = roomsThatCanBeGeneratedHere[random];
+            roomsByRoomType[cell.RoomType].Remove(go.GetComponent<Room>().RoomPrefab);
         }
         else
         {
