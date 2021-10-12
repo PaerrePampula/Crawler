@@ -76,6 +76,7 @@ class RunStatsController : MonoBehaviour
     {
         Player.onCurrentHpChanged -= parseHPChange;
         BaseMook.onMookDamaged -= parseMookHPChange;
+        Player.onPlayerReceivedItem -= parseItemReceive;
     }
 
     private void parseMookHPChange(float amount, Vector3 location)

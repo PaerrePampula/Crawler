@@ -201,7 +201,7 @@ class Player : MonoBehaviour,  IDamageable
         {
             _playerItems[item.ItemScriptable.ItemID] = item;
         }
-        onPlayerReceivedItem(item);
+        onPlayerReceivedItem?.Invoke(item);
     }
     public void BuffStatModifier(StatType statType, float amount)
     {

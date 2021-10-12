@@ -6006,7 +6006,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0d0d22aee3cd8e74a9f95e6dd1dbb767, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -6050,6 +6050,7 @@ GameObject:
   - component: {fileID: 209074660}
   - component: {fileID: 569139271}
   - component: {fileID: 928176473}
+  - component: {fileID: 1089490955}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -6105,7 +6106,7 @@ AudioSource:
   m_GameObject: {fileID: 526691528913608196}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2a98dbc1cd42f7247813badb6e90e9cb, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -6254,7 +6255,7 @@ MonoBehaviour:
   slashEffect: {fileID: 8912130283242121736, guid: e412941839211f342a81307c7a347659, type: 3}
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 131136
   playerAttacks:
   - damage: 20
     delay: 0.23
@@ -6295,6 +6296,7 @@ MonoBehaviour:
     spriteScale: {x: 1.7, y: 1.7, z: 1}
     spriteFlipOnY: 0
     swingSpriteColor: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
+  criticalHitSound: {fileID: 0}
 --- !u!114 &2134328517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6366,6 +6368,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 659cf102ae820244584590a7f6d5b3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1089490955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526691528913608196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb2a0bc5603f664380ea32195ef1a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1384042638241165932
