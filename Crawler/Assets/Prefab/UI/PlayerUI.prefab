@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '*Not taking perks poses a bigger challenge'
+  m_text: '*Not taking 3 perks poses a bigger challenge. You can also skip perks'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08918b364520c0b44b10237b0cd8f9e2, type: 2}
   m_sharedMaterial: {fileID: 3623275298913450556, guid: 08918b364520c0b44b10237b0cd8f9e2, type: 2}
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip taking perks!
+  m_text: Stop picking perks
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08918b364520c0b44b10237b0cd8f9e2, type: 2}
   m_sharedMaterial: {fileID: 3623275298913450556, guid: 08918b364520c0b44b10237b0cd8f9e2, type: 2}
@@ -4887,7 +4887,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1141377611249069078}
         m_TargetAssemblyTypeName: PerkWindowUI, Assembly-CSharp
-        m_MethodName: DisablePerkWindow
+        m_MethodName: InitializePerkChoices
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

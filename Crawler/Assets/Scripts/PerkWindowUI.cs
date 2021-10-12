@@ -29,7 +29,7 @@ public class PerkWindowUI : MonoBehaviour
         if (perksLeft <= 0) InitializePerkChoices();
     }
 
-    private void InitializePerkChoices()
+    public void InitializePerkChoices()
     {
         PlayerPerks.Singleton.AddPlayerPerksByString(chosenPerks);
         DisablePerkWindow();
