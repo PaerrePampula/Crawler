@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3baabc7f931cf6e42ba6a04f59a09775, type: 3}
-  m_Name: DamagePerk
+  m_Name: '[P]Kevlar'
   m_EditorClassIdentifier: 
-  itemID: PerkDMG
-  itemName: '[Perk Power] 10% More damage'
+  itemID: Kevlar
+  itemName: '[Perk Power] Kevlar'
   itemDescription: 
   itemType: 1
   itemSprite: {fileID: 0}
   pickupSound: {fileID: 0}
-  statToBuff: 0
-  buffAmountPercentage: 0.1
+  statToBuff: 5
+  buffAmountPercentage: 0.2

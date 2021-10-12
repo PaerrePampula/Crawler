@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3baabc7f931cf6e42ba6a04f59a09775, type: 3}
-  m_Name: MegaSpeed
+  m_Name: '[P]HealthPerk'
   m_EditorClassIdentifier: 
-  itemID: MegaSpeed
-  itemName: '[Perk power] 100% attack speed'
+  itemID: PerkHP
+  itemName: '[Perk Power] +20 HP'
   itemDescription: 
   itemType: 1
   itemSprite: {fileID: 0}
   pickupSound: {fileID: 0}
-  statToBuff: 3
-  buffAmountPercentage: 1
+  statToBuff: 2
+  buffAmountPercentage: 20

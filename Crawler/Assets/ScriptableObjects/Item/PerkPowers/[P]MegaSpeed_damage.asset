@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3baabc7f931cf6e42ba6a04f59a09775, type: 3}
-  m_Name: 70Damage
+  m_Name: '[P]MegaSpeed_damage'
   m_EditorClassIdentifier: 
-  itemID: 70PercentDamage
-  itemName: '[Perk Power] 70% Damage'
+  itemID: MegaSpeed_DMG
+  itemName: 45% damage
   itemDescription: 
   itemType: 1
   itemSprite: {fileID: 0}
   pickupSound: {fileID: 0}
   statToBuff: 0
-  buffAmountPercentage: -0.3
+  buffAmountPercentage: -0.75
