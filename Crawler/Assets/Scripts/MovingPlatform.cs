@@ -7,6 +7,8 @@ public class MovingPlatform : MonoBehaviour
 {
     List<Transform> movePoints = new List<Transform>();
     int currentTargetPointIndex = 0;
+    [SerializeField] bool returnInReverse = false;
+    bool returning = false;
     [SerializeField] Transform movePointParent;
     [SerializeField] Transform platform;
     Vector3 movedir;
@@ -51,8 +53,28 @@ public class MovingPlatform : MonoBehaviour
 
     private void CycleTarget()
     {
-        currentTargetPointIndex = (currentTargetPointIndex >= movePoints.Count - 1) ? 0 : currentTargetPointIndex + 1;
+        if (returnInReverse)
+        {
+            if (returning)
+            {
+                currentTargetPointIndex = (currentTargetPointIndex - 1 > 0) ? currentTargetPointIndex - 1 : 0;
+            }
+            else
+            {
+                currentTargetPointIndex = (currentTargetPointIndex >= movePoints.Count - 1) ? 0 : currentTargetPointIndex + 1;
+            }
+            if (currentTargetPointIndex == movePoints.Count - 1) returning = true;
+            else if (currentTargetPointIndex == 0) returning = false;
+        }
+        else
+        {
+            currentTargetPointIndex = (currentTargetPointIndex >= movePoints.Count - 1) ? 0 : currentTargetPointIndex + 1;
+        }
+
+
+
         movedir = (movePoints[currentTargetPointIndex].position - platform.position).normalized;
+        
         movedir = movedir * platformMoveSpeed;
         cycling = false;
     }

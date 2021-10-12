@@ -19,7 +19,7 @@ public class PlayerInteractionSystem : MonoBehaviour
     //this bool on false state and no interaction under raycast will disable the interaction prompt text element
     bool promptOn;
     //without this the player can interact with anything from anywhere.
-    float interactionDistance = 3;
+
     //Cache player for a bit more faster accessing
     Transform player;
     PlayerController playerController;
@@ -44,6 +44,7 @@ public class PlayerInteractionSystem : MonoBehaviour
             //only activate if the distance between interactable and player is small enough
             //also check for objects directly in front of player movement, use those as interactable objects also
             Collider[] hitOnMovement = Physics.OverlapSphere(transform.position + playerController.getLatestMovementInput(), 1, interactionLayer);
+            Debug.DrawLine(transform.position, transform.position + playerController.getLatestMovementInput(), Color.green);
             //Enable for mouse control
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //RaycastHit hit;
@@ -81,8 +82,7 @@ public class PlayerInteractionSystem : MonoBehaviour
     {
         if (hit != null)
         {
-            if (Vector3.Distance(hit.transform.position, player.transform.position) <= interactionDistance)
-            {
+
                 setInteractable((IPlayerInteractable)hit.GetComponent(typeof(IPlayerInteractable)));
                 if (!promptOn)
                 {
@@ -98,7 +98,7 @@ public class PlayerInteractionSystem : MonoBehaviour
                 {
                     currentInteractable.DoPlayerInteraction();
                 }
-            }
+
 
         }
     }
