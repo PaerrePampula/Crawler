@@ -48,6 +48,10 @@ public class Pickup : MonoBehaviour
             Instantiate(collectEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
             Destroy(gameObject);
         }
+        else
+        {
+            PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("There is an item on the ground:"  + _item.ItemScriptable.ItemName + ", I cant pick it up, im full on HP");
+        }
         
 
 
