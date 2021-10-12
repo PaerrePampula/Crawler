@@ -72,6 +72,8 @@ class Player : MonoBehaviour,  IDamageable
     [SerializeField] float _maxHp = 5;
     //How long player stays invicible after being hit.
     [SerializeField] float _playerHitIFramesInSeconds = 1f;
+    [SerializeField] AudioClip playerHurt;
+    AudioSource _audioSource;
     float _hp;
     bool _isInvunerable = false;
 
@@ -128,7 +130,7 @@ class Player : MonoBehaviour,  IDamageable
             }
             //Reduce damage by armor
             changeAmount = changeAmount - (_buffModifiers[StatType.Armor] * changeAmount);
-
+            _audioSource.PlayOneShot(playerHurt);
             GivePlayerInvicibilityAfterHit();
             onPlayerDamaged?.Invoke();
 
@@ -169,6 +171,7 @@ class Player : MonoBehaviour,  IDamageable
         Hp = MaxHp;
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
         AddDelegateOnStatBuff(StatType.MaxHP, updateMaxHP);
 
     }
