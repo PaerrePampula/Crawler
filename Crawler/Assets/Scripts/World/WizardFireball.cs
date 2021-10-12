@@ -27,18 +27,29 @@ public class WizardFireball : MonoBehaviour
     {
         if ((hitLayerMask.value & (1 << other.transform.gameObject.layer)) > 0)
         {
-            if (other.CompareTag("Player"))
+
+            if (other.GetComponent(typeof(IDamageable)) != null)
             {
-                Player player = other.GetComponent<Player>();
-                if (!player.isInvurnerable())
+                IDamageable damageable = (IDamageable)other.GetComponent(typeof(IDamageable));
+                if (other.CompareTag("Player"))
                 {
-                    other.GetComponent<Player>().ChangeHp(-_damage);
+                    Player player = other.GetComponent<Player>();
+                    if (!player.isInvurnerable())
+                    {
+                        damageable.ChangeHp(-_damage);
+                        CreateHitEffects();
+                    }
+                }
+                else
+                {
+
+                    damageable.ChangeHp(-_damage);
                     CreateHitEffects();
                 }
 
 
-
             }
+
             else
             {
                 CreateHitEffects();

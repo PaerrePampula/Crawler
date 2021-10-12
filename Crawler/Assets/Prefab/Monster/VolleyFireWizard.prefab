@@ -222,12 +222,12 @@ MonoBehaviour:
   _moveSpeed: 0
   _layersToCastAgainstOnAttack:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 131201
   stateText: {fileID: 1522905851558734586}
   fireBallAttack:
     _hitLayers:
       serializedVersion: 2
-      m_Bits: 129
+      m_Bits: 131201
     attackAnimationTriggerName: FireBallAttack
     fireballPrefab: {fileID: 3627784119438503513, guid: 14cdd28b2add3c54cacb3009ec98b2bd, type: 3}
     fireballSpeed: 455
@@ -241,7 +241,7 @@ MonoBehaviour:
   VolleyfireBallAttack:
     _hitLayers:
       serializedVersion: 2
-      m_Bits: 129
+      m_Bits: 131201
     attackAnimationTriggerName: FireBallAttack
     fireballPrefab: {fileID: 3627784119438503513, guid: 14cdd28b2add3c54cacb3009ec98b2bd, type: 3}
     fireballSpeed: 455
