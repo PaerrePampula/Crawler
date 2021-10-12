@@ -9,7 +9,7 @@ public class DoDamageOnHit : MonoBehaviour
     {
         if (other.GetComponent<IDamageable>() != null)
         {
-            other.GetComponent<IDamageable>().ChangeHp(-10 + Player.Singleton.getBonusDamage(-10));
+            other.GetComponent<IDamageable>().ChangeHp(-damage + Player.Singleton.getBonusDamage(-damage));
         }
         Destroy(gameObject);
     }

@@ -12,6 +12,7 @@ using UnityEngine;
 class SwordBeam
 {
     [SerializeField] GameObject laserBeam;
+    [SerializeField] AudioClip beamSound;
     Heading heading;
     bool triggered;
     void DelegateLaserBeam()
@@ -37,6 +38,7 @@ class SwordBeam
 
             }
             GameObject beam = GameObject.Instantiate(laserBeam, heading.transform.position + heading.getHeadingVector().normalized, Quaternion.Euler(new Vector3(0, -heading.getPlayerHeadingAngle() + 90, 0)));
+            Player.Singleton.GetComponent<AudioSource>().PlayOneShot(beamSound);
             beam.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 1200f);
         }
     }
