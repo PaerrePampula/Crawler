@@ -9,6 +9,7 @@ class GlockPerk
 {
     Heading heading;
     [SerializeField] GameObject pistolPrefab;
+    [SerializeField] GameObject lineRenderer;
     [SerializeField] LayerMask hittableMask;
     [SerializeField] AIChatText chatText;
     [SerializeField] AudioClip shotSound;
@@ -40,6 +41,9 @@ class GlockPerk
         {
             heading = Player.Singleton.GetComponent<Heading>();
         }
+        GameObject cloneRenderer = GameObject.Instantiate(lineRenderer, Player.Singleton.transform.position, Quaternion.identity);
+        cloneRenderer.GetComponent<LineRenderer>().SetPosition(1, heading.getHeadingVector().normalized * 100);
+        cloneRenderer.GetComponent<LineRenderer>().SetPosition(0, PlayerController.Singleton.transform.position);
         RaycastHit raycastHit;
         Player.Singleton.GetComponent<AudioSource>().PlayOneShot(shotSound);
         if (Physics.Raycast(Player.Singleton.transform.position + Vector3.up*0.15f, heading.getHeadingVector().normalized, out raycastHit, 100, hittableMask))
@@ -48,6 +52,7 @@ class GlockPerk
             {
                 raycastHit.collider.GetComponent<IDamageable>().ChangeHp(-50+ Player.Singleton.getBonusDamage(-50));
             }
+            cloneRenderer.GetComponent<LineRenderer>().SetPosition(1, raycastHit.point);
         }
 
     }
