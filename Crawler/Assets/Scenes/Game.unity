@@ -2371,8 +2371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2d93e4c50e76d45abdb2eea6a8a674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyGenerateOneRoom: 0
-  oneRoomToGenerate: {fileID: 3297934626922285200, guid: c0a9adb6280d08849aff1a2aba848c3f, type: 3}
+  onlyGenerateOneRoom: 1
+  oneRoomToGenerate: {fileID: 5073149034893327973, guid: 2661837eaa8b83646b2926db4c7d8957, type: 3}
   allRooms:
   - {fileID: 4075043296493688907, guid: 5fc0f23f18931fb46b34bbf3e125effc, type: 3}
   - {fileID: 5366004826432824641, guid: fa0e38e3f3de88f41b25cc671f51c0bd, type: 3}
@@ -2402,6 +2402,9 @@ MonoBehaviour:
   - {fileID: 1533058729203895977, guid: 91cca3e2d2533844da7979042c7428af, type: 3}
   - {fileID: 4610217138739996071, guid: d2b53b90cc5f64846a50515d77b21a06, type: 3}
   - {fileID: 9194273026922746390, guid: 8cd4ad5805c79724d952e585ecd8ef00, type: 3}
+  - {fileID: 5073149034893327973, guid: 2661837eaa8b83646b2926db4c7d8957, type: 3}
+  - {fileID: 3297934626922285200, guid: c0a9adb6280d08849aff1a2aba848c3f, type: 3}
+  - {fileID: 1899070549045124840, guid: d6141c94f5593c1478e7dc70767f4e0d, type: 3}
 --- !u!4 &1487252953
 Transform:
   m_ObjectHideFlags: 0
