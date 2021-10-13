@@ -15,7 +15,7 @@ static class Globals
 
     //GAMEPLAY VARIABLES
     //17 ms for single character on text box
-    static float characterTextSpeed = 0.017f;
+    static float characterTextSpeed = 0.012f;
     static bool _movementControlsAreEnabled = true;
     static bool _controlsAreEnabled = true;
     static float likelinessOfItemDroppingInRoom = 100f;
