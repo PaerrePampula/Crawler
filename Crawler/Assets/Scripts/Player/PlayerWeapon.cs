@@ -114,6 +114,7 @@ public class PlayerWeapon : MonoBehaviour
 
         float randomChanceForCrit = UnityEngine.Random.Range(0, 100);
         float totalDamage = playerAttacks[currentAttackIndex].Damage + Player.Singleton.getBonusDamage(playerAttacks[currentAttackIndex].Damage);
+        if (Globals.EasyModeOn) totalDamage = totalDamage * 1.333f;
         if (totalDamage < 1) totalDamage = 1;
         bool wasCritical = false;
         if (randomChanceForCrit <= Player.Singleton.BuffModifiers[StatType.CritChance]*100)

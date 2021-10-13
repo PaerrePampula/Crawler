@@ -69,6 +69,10 @@ public class MainMenu : MonoBehaviour
     {
         mainMixer.SetFloat("MasterVol", Mathf.Log10 (sliderValue) * 20);
     }
+    public void DifficulityToggle(bool value)
+    {
+        Globals.EasyModeOn = value;
+    }
 }
 [System.Serializable]
 class GenerationSettings

@@ -122,6 +122,7 @@ class Player : MonoBehaviour,  IDamageable
 
                 return false;
             }
+            if (Globals.EasyModeOn) changeAmount = changeAmount* 0.666f;
             //Reduce damage by damage halving chance
             float randomChance = UnityEngine.Random.Range(0f, 1f);
             if (randomChance < BuffModifiers[StatType.PartialDamageReductionChance])

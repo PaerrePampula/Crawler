@@ -15,6 +15,7 @@ static class Globals
 
     //GAMEPLAY VARIABLES
     //17 ms for single character on text box
+    static bool _easyModeOn = false;
     static float characterTextSpeed = 0.012f;
     static bool _movementControlsAreEnabled = true;
     static bool _controlsAreEnabled = true;
@@ -71,5 +72,5 @@ static class Globals
         }
     }
 
-
+    public static bool EasyModeOn { get => _easyModeOn; set => _easyModeOn = value; }
 }
