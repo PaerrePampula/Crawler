@@ -8700,6 +8700,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1857996996, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_renderer
+      value: 
+      objectReference: {fileID: 569139272}
+    - target: {fileID: 1857996996, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: interactionPrompt
       value: 
@@ -8831,6 +8839,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!23 &569139272 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1857996997, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+  m_PrefabInstance: {fileID: 569139269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &572682210
 PrefabInstance:
   m_ObjectHideFlags: 0

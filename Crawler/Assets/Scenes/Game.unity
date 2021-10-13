@@ -644,6 +644,14 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 24300002, guid: 2a98dbc1cd42f7247813badb6e90e9cb, type: 2}
+    - target: {fileID: 1857996996, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_renderer
+      value: 
+      objectReference: {fileID: 906323524}
+    - target: {fileID: 1857996996, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2134328517, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
       propertyPath: interactionPrompts.Array.data[0]
       value: 
@@ -1612,6 +1620,11 @@ MonoBehaviour:
 --- !u!4 &899742604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 526691528913608200, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
+  m_PrefabInstance: {fileID: 293434868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &906323524 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1857996997, guid: 24c6740c8fb2e38488e7dff84599cce6, type: 3}
   m_PrefabInstance: {fileID: 293434868}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016590300
