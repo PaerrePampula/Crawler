@@ -625,6 +625,14 @@ PrefabInstance:
       propertyPath: m_AdditionalLightsShadowResolutionTier
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1943168045792422235, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139004029329697831, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4139004029329697831, guid: b671a319bdf04b94788f3f743a817a7e, type: 3}
       propertyPath: m_Shadows.m_Strength
       value: 0.16
@@ -1417,6 +1425,14 @@ PrefabInstance:
     - target: {fileID: 5199580917682600460, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -15.367
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441730015177558792, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
+      propertyPath: m_AdditionalLightsShadowResolutionTier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854824978871406196, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8854824978871406196, guid: e820d4fde98e0a8429b7cf4d093a8c2e, type: 3}
       propertyPath: m_Shadows.m_Strength
