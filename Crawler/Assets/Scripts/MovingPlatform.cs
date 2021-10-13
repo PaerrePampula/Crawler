@@ -26,7 +26,6 @@ public class MovingPlatform : MonoBehaviour
     private void OnEnable()
     {
         currentTargetPointIndex = 0;
-        returnInReverse = false;
         platform.position = movePoints[currentTargetPointIndex].position;
         StopAllCoroutines();
         cycling = false;
