@@ -3456,6 +3456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3885053855010547080}
+  - component: {fileID: 3156539719527885919}
   m_Layer: 5
   m_Name: InteractionPromptParent
   m_TagString: Untagged
@@ -3485,6 +3486,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 131.30612}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &3156539719527885919
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885053855010547081}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b44eef4dbaa8124092e1b76b073b4fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3885053855028023030
 GameObject:
   m_ObjectHideFlags: 0

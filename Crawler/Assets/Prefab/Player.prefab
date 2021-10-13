@@ -994,7 +994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Text for player
+  m_text: Text for salesperson! Hi there player!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08918b364520c0b44b10237b0cd8f9e2, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: fadb1dc2c846ea0468a71042bfc459e8, type: 2}
@@ -1003,8 +1003,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280890457
-  m_fontColor: {r: 0.5283019, g: 0.11712353, b: 0.14077212, a: 1}
+    rgba: 4294923008
+  m_fontColor: {r: 0, g: 0.32636428, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   _SortingLayerID: 0
   _SortingOrder: 0
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1857996997}
+  m_renderer: {fileID: 0}
   m_maskType: 0
 --- !u!1 &2064636487
 GameObject:
@@ -6207,6 +6207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 100
   _playerHitIFramesInSeconds: 1.35
+  playerHurt: {fileID: 0}
 --- !u!114 &526691528913608198
 MonoBehaviour:
   m_ObjectHideFlags: 0
