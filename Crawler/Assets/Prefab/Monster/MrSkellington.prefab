@@ -97,7 +97,7 @@ AudioSource:
   m_GameObject: {fileID: 956667193970488067}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2a98dbc1cd42f7247813badb6e90e9cb, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -200,6 +200,7 @@ MonoBehaviour:
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
   _maxHP: 175
+  aggroRange: 25
   gravityForce: 5
   mookMask:
     serializedVersion: 2
@@ -253,7 +254,7 @@ MonoBehaviour:
   _hitSoundsForAttackType:
   - _audioClipName: BasicAttack
     _audioClips:
-    - {fileID: 8300000, guid: 329c9b4a14860174282d238dcc163a1e, type: 3}
+    - {fileID: 8300000, guid: 5b5e42b3fb84cf046ad1fdaac7796907, type: 3}
 --- !u!1 &3317210486732156537
 GameObject:
   m_ObjectHideFlags: 0

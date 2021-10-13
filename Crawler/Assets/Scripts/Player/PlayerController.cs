@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     Player playerComponent;
     AudioSource audioSource;
+    
     //Should really be in a class of its own but its bit of a bother just for a simple effect
 
     [SerializeField] VisualEffect dashEffect;
@@ -48,7 +49,11 @@ public class PlayerController : MonoBehaviour
     bool _isStationary = true;
     [SerializeField] float dashingTime = 1f;
     [SerializeField] float dashDistanceMultiplier = 3f;
+    bool _isOnTopOfPlatform;
     public bool isGrounded { get => isCharacterGrounded(); }
+    //if the player is on a moving platform, the transform tracker component will not update a new "safe location for player"
+    public bool IsOnTopOfPlatform { get => _isOnTopOfPlatform; set => _isOnTopOfPlatform = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -147,13 +152,17 @@ public class PlayerController : MonoBehaviour
 
     private void moveCharacter()
     {
-        characterController.Move((playerMovementVector+(playerMovementVector*Player.Singleton.BuffModifiers[StatType.MovementSpeed])+externalForce) * Time.fixedDeltaTime);
+        if (playerMovementVector != Vector3.zero || externalForce.magnitude != 0)
+        {
+            characterController.Move((playerMovementVector + (playerMovementVector * Player.Singleton.BuffModifiers[StatType.MovementSpeed]) + externalForce) * Time.deltaTime);
+        }
+
     }
     void applyGravity()
     {
         if (isCharacterGrounded() == false)
         {
-            verticalForce += gravityAccelerationSpeed * -1 * Time.fixedDeltaTime;
+            verticalForce += gravityAccelerationSpeed * -1 * Time.deltaTime;
         }
         else
         {

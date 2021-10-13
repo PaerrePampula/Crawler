@@ -1,5 +1,5 @@
 {
-    "m_SGVersion": 2,
+    "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.GraphData",
     "m_ObjectId": "43b6cd923ce94c7da8ef2941f1c416ea",
     "m_Properties": [
@@ -17,6 +17,12 @@
         }
     ],
     "m_Keywords": [],
+    "m_Dropdowns": [],
+    "m_CategoryData": [
+        {
+            "m_Id": "f7d6523027cb4f05b67b9c121d4e08e2"
+        }
+    ],
     "m_Nodes": [
         {
             "m_Id": "3ac7df21a3564e9cb49acb110d9098d9"
@@ -279,10 +285,11 @@
         "serializedMesh": {
             "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
             "m_Guid": ""
-        }
+        },
+        "preventRotation": false
     },
     "m_Path": "Shader Graphs",
-    "m_ConcretePrecision": 0,
+    "m_GraphPrecision": 0,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": ""
@@ -969,9 +976,13 @@
         "m_GuidSerialized": "b9edaff5-cfb9-4dde-9950-fff3a56ea2d9"
     },
     "m_Name": "EdgeColor",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Color_538cc98d3b1445a28965b94c57b272e4",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -982,6 +993,7 @@
         "b": 0.0,
         "a": 0.0
     },
+    "isMainColor": false,
     "m_ColorMode": 1
 }
 
@@ -1008,9 +1020,13 @@
         "m_GuidSerialized": "5d949a05-4a68-4b61-a41c-bcb7e50f3a28"
     },
     "m_Name": "EdgeThickness",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_658ead15628546fb8f6c4c1153e20f43",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -1277,9 +1293,13 @@
         "m_GuidSerialized": "f85922af-6d6f-470f-9722-0f872de4f98d"
     },
     "m_Name": "DissolveAmount",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_a5fe3aaf54f3469e92b193ab2025caa3",
     "m_OverrideReferenceName": "DissolveAmount",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -1324,9 +1344,13 @@
         "m_GuidSerialized": "5c292071-e192-4395-a33e-2d08724a6771"
     },
     "m_Name": "Color",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Color_ac5946f400b34b51a5ea2e408964238c",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -1337,6 +1361,7 @@
         "b": 0.0,
         "a": 0.0
     },
+    "isMainColor": false,
     "m_ColorMode": 1
 }
 
@@ -1632,16 +1657,21 @@
 }
 
 {
-    "m_SGVersion": 0,
+    "m_SGVersion": 1,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
     "m_ObjectId": "d96077bb819e4b87a546d38e460a1f33",
     "m_ActiveSubTarget": {
         "m_Id": "84f804b84a9b4188baba0cb053ad87e5"
     },
+    "m_AllowMaterialOverride": false,
     "m_SurfaceType": 0,
+    "m_ZTestMode": 4,
+    "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_TwoSided": false,
+    "m_RenderFace": 2,
     "m_AlphaClip": true,
+    "m_CastShadows": true,
+    "m_ReceiveShadows": true,
     "m_CustomEditorGUI": ""
 }
 
@@ -1788,5 +1818,26 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "f7d6523027cb4f05b67b9c121d4e08e2",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "a5fe3aaf54f3469e92b193ab2025caa3"
+        },
+        {
+            "m_Id": "ac5946f400b34b51a5ea2e408964238c"
+        },
+        {
+            "m_Id": "538cc98d3b1445a28965b94c57b272e4"
+        },
+        {
+            "m_Id": "658ead15628546fb8f6c4c1153e20f43"
+        }
+    ]
 }
 

@@ -72,6 +72,8 @@ class Player : MonoBehaviour,  IDamageable
     [SerializeField] float _maxHp = 5;
     //How long player stays invicible after being hit.
     [SerializeField] float _playerHitIFramesInSeconds = 1f;
+    [SerializeField] AudioClip playerHurt;
+    AudioSource _audioSource;
     float _hp;
     bool _isInvunerable = false;
 
@@ -110,7 +112,7 @@ class Player : MonoBehaviour,  IDamageable
 
     public Dictionary<StatType, float> BuffModifiers { get => _buffModifiers; set => _buffModifiers = value; }
 
-    public bool ChangeHp(float changeAmount)
+    public bool ChangeHp(float changeAmount, Vector3 changeDirection = new Vector3(), bool wasCritical = false)
     {
         //The player is not getting healed by objects and is currently in an iframe, no damage.
         if (changeAmount < 0)
@@ -128,7 +130,7 @@ class Player : MonoBehaviour,  IDamageable
             }
             //Reduce damage by armor
             changeAmount = changeAmount - (_buffModifiers[StatType.Armor] * changeAmount);
-
+            _audioSource.PlayOneShot(playerHurt);
             GivePlayerInvicibilityAfterHit();
             onPlayerDamaged?.Invoke();
 
@@ -139,9 +141,10 @@ class Player : MonoBehaviour,  IDamageable
             {
                 return false;
             }
-            if (Hp + changeAmount > MaxHp)
+            if (Hp + changeAmount >= MaxHp)
             {
                 Hp = MaxHp;
+                onCurrentHpChanged?.Invoke(Hp, changeAmount);
                 return true;
             }
         }
@@ -168,6 +171,7 @@ class Player : MonoBehaviour,  IDamageable
         Hp = MaxHp;
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
         AddDelegateOnStatBuff(StatType.MaxHP, updateMaxHP);
 
     }
@@ -175,7 +179,14 @@ class Player : MonoBehaviour,  IDamageable
     {
         //Make sure timescale is one at the start of the game
         Time.timeScale = 1;
+        Room.onRoomClear += NotifyItemDrop;
     }
+
+    private void NotifyItemDrop(Room room)
+    {
+        PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("Room clear! An item dropped somewhere");
+    }
+
     private void updateMaxHP(float hpChange)
     {
         ChangeHp(hpChange);
@@ -193,7 +204,7 @@ class Player : MonoBehaviour,  IDamageable
         {
             _playerItems[item.ItemScriptable.ItemID] = item;
         }
-        onPlayerReceivedItem(item);
+        onPlayerReceivedItem?.Invoke(item);
     }
     public void BuffStatModifier(StatType statType, float amount)
     {
@@ -245,5 +256,6 @@ class Player : MonoBehaviour,  IDamageable
             delegatesOnStatBuff[statType] = newDelegate;
         }
     }
+
 }
 

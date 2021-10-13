@@ -28,7 +28,7 @@ public class MrSkellingtonBehaviour : MonoBehaviour
     bool gizmo_gameStarted = false;
     ChaseTarget chaseTarget;
     RandomWander randomWander;
-
+    IdleState _idleState;
    [SerializeField] MookMeleeStrike skellingtonStrike;
     [SerializeField] AttainHitBoxWithOverLapBox hitboxAttainmentForBasicAttack;
 
@@ -44,6 +44,7 @@ public class MrSkellingtonBehaviour : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _characterController = GetComponent<CharacterController>();
         randomWander = new RandomWander(_characterController, _baseMook);
+        _idleState = new IdleState();
         hitboxAttainmentForBasicAttack.InitializeVariables(_layersToCastAgainstOnAttack, transform);
         skellingtonStrike.InitializeMeleeStrike(_animator, _audioSource, _baseMook, stateOnAnimationTrigger, hitboxAttainmentForBasicAttack.getHitBoxes());
 
@@ -52,7 +53,8 @@ public class MrSkellingtonBehaviour : MonoBehaviour
         skellingtonStrike.onStateComplete += ResetState;
         _stateMachine.AddTransistion(skellingtonStrike, chaseTarget, targetReached(PlayerController.Singleton.transform, transform));
         _stateMachine.AddTransistionFromAnyState(chaseTarget, targetTooFar(PlayerController.Singleton.transform, transform), true);
-        _stateMachine.SetState(chaseTarget);
+        _stateMachine.AddTransistion(chaseTarget, _idleState, GenericStateFuncs.metAggroRange(_baseMook.AggroRange, PlayerController.Singleton.transform, transform));
+        _stateMachine.SetState(_idleState);
     }
 
     private void ResetState()

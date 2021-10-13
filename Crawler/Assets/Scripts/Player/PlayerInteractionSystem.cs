@@ -19,13 +19,13 @@ public class PlayerInteractionSystem : MonoBehaviour
     //this bool on false state and no interaction under raycast will disable the interaction prompt text element
     bool promptOn;
     //without this the player can interact with anything from anywhere.
-    float interactionDistance = 3;
+
     //Cache player for a bit more faster accessing
     Transform player;
     PlayerController playerController;
     private void Start()
     {
-        Globals.ControlsAreEnabled = true;
+
         player = PlayerController.Singleton.transform;
         playerController = GetComponent<PlayerController>();
     }
@@ -44,13 +44,15 @@ public class PlayerInteractionSystem : MonoBehaviour
             //only activate if the distance between interactable and player is small enough
             //also check for objects directly in front of player movement, use those as interactable objects also
             Collider[] hitOnMovement = Physics.OverlapSphere(transform.position + playerController.getLatestMovementInput(), 1, interactionLayer);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactionLayer))
-            {
-                SetInteractableThroughRaycast(hit.collider);
-            }
-            else if (hitOnMovement.Length > 0)
+            Debug.DrawLine(transform.position, transform.position + playerController.getLatestMovementInput(), Color.green);
+            //Enable for mouse control
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hit;
+            //if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactionLayer))
+            //{
+            //    SetInteractableThroughRaycast(hit.collider);
+            //}
+            if (hitOnMovement.Length > 0)
             {
                 SetInteractableThroughRaycast(hitOnMovement[0]);
             }
@@ -80,9 +82,10 @@ public class PlayerInteractionSystem : MonoBehaviour
     {
         if (hit != null)
         {
-            if (Vector3.Distance(hit.transform.position, player.transform.position) <= interactionDistance)
+
+            setInteractable((IPlayerInteractable)hit.GetComponent(typeof(IPlayerInteractable)));
+            if (currentInteractable != null)
             {
-                setInteractable((IPlayerInteractable)hit.GetComponent(typeof(IPlayerInteractable)));
                 if (!promptOn)
                 {
                     promptOn = true;
@@ -98,6 +101,8 @@ public class PlayerInteractionSystem : MonoBehaviour
                     currentInteractable.DoPlayerInteraction();
                 }
             }
+
+
 
         }
     }

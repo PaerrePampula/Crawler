@@ -32,6 +32,7 @@ public class Pickup : MonoBehaviour
 
     private void OnEnable()
     {
+        GetComponent<Rigidbody>().AddRelativeForce(Vector3.up * 250f);
         if (_itemScriptable != null)
         {
             InitializePickupBasedOnScriptable();
@@ -46,6 +47,10 @@ public class Pickup : MonoBehaviour
             PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("I just received an item: " + _item.ItemScriptable.ItemName);
             Instantiate(collectEffect, transform.position += Vector3.up * 0.5f, transform.rotation = Quaternion.Euler(30, 0, 0));
             Destroy(gameObject);
+        }
+        else
+        {
+            PlayerController.Singleton.GetComponentInChildren<CharacterTextBox>().InvokeTextDisplay("There is an item on the ground:"  + _item.ItemScriptable.ItemName + ", I cant pick it up, im full on HP");
         }
         
 

@@ -104,6 +104,7 @@ MonoBehaviour:
   dieEffect: {fileID: 920668936353045122, guid: 379c46ddcd540e146a468e805792c6fe, type: 3}
   mookDeath: {fileID: 8300000, guid: 92c2aa0adbe751746b58146cb0ac4683, type: 3}
   _maxHP: 120
+  aggroRange: 25
   gravityForce: 5
   mookMask:
     serializedVersion: 2
@@ -125,12 +126,12 @@ MonoBehaviour:
   _moveSpeed: 1
   _layersToCastAgainstOnAttack:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 131201
   stateText: {fileID: 167159018732426325}
   fireBallAttack:
     _hitLayers:
       serializedVersion: 2
-      m_Bits: 129
+      m_Bits: 131201
     attackAnimationTriggerName: FireBallAttack
     fireballPrefab: {fileID: 3627784119438503513, guid: 14cdd28b2add3c54cacb3009ec98b2bd, type: 3}
     fireballSpeed: 500
@@ -150,7 +151,7 @@ AudioSource:
   m_GameObject: {fileID: 1249352874547124854}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2a98dbc1cd42f7247813badb6e90e9cb, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -252,7 +253,7 @@ MonoBehaviour:
   _hitSoundsForAttackType:
   - _audioClipName: BasicAttack
     _audioClips:
-    - {fileID: 8300000, guid: 329c9b4a14860174282d238dcc163a1e, type: 3}
+    - {fileID: 8300000, guid: 5b5e42b3fb84cf046ad1fdaac7796907, type: 3}
 --- !u!1 &2994583117258003793
 GameObject:
   m_ObjectHideFlags: 0

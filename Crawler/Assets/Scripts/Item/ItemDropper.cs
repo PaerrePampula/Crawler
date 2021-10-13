@@ -28,14 +28,26 @@ class ItemDropper : MonoBehaviour
 
     private void OnEnable()
     {
-        Room.onRoomClear += checkForRandomChanceToDropLootInRoom;
+        SubscribeLootDrop();
         BaseMook.onMookPossibleItemDrop += GenerateRandomHealthItemAtMookDeath;
     }
+
+    public void SubscribeLootDrop()
+    {
+        Room.onRoomClear += checkForRandomChanceToDropLootInRoom;
+    }
+
     private void OnDisable()
     {
-        Room.onRoomClear -= checkForRandomChanceToDropLootInRoom;
+        UnSubscribeLootDrop();
         BaseMook.onMookPossibleItemDrop -= GenerateRandomHealthItemAtMookDeath;
     }
+
+    public void UnSubscribeLootDrop()
+    {
+        Room.onRoomClear -= checkForRandomChanceToDropLootInRoom;
+    }
+
     private void checkForRandomChanceToDropLootInRoom(Room room)
     {
         int random = UnityEngine.Random.Range(0, 101);

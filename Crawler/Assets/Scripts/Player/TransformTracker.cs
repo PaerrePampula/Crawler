@@ -14,7 +14,8 @@ public class TransformTracker : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (playerController.isGrounded)
+        //The player might endlessly fall into the void if the platform where the player stands moves, dont save this as a safe location
+        if (playerController.isGrounded && !playerController.IsOnTopOfPlatform)
         {
             locationWhereTransformTouchedGround = transform.position;
 
@@ -23,7 +24,11 @@ public class TransformTracker : MonoBehaviour
     }
     public void returnPlayerToSafety()
     {
-
+        if (!Physics.Raycast(locationWhereTransformTouchedGround, Vector3.down, 100))
+        {
+            //Cant touch ground for some reason, failsafe the player to spawn at loot drop point
+            locationWhereTransformTouchedGround = CurrentRoomManager.Singleton.GetCurrentRoomPickupPoint().position;
+        }
         transform.position = locationWhereTransformTouchedGround;
         Physics.SyncTransforms();
     }

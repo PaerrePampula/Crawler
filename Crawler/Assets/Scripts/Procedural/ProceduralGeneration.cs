@@ -20,6 +20,7 @@ class ProceduralGeneration : MonoBehaviour
     public int MapWidth { get => maximumMapWidth; set => maximumMapWidth = value; }
     public int MapHeight { get => maximumMapHeight; set => maximumMapHeight = value; }
     public Dictionary<Vector2, Cell> CellsTable { get => cellsTable; set => cellsTable = value; }
+    public Dictionary<Cell, Room> AllCellsWithRooms { get => _allCellsWithRooms; set => _allCellsWithRooms = value; }
 
 
     //All initialized cells in an ordered list
@@ -282,8 +283,8 @@ class ProceduralGeneration : MonoBehaviour
         {
             GetComponent<RoomGen>().createRoomForCell(allCellsUsedByGeneratedDungeon[i]);
         }
-        CurrentRoomManager.Singleton.currentRoom = _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]];
-        _allCellsWithRooms[allCellsUsedByGeneratedDungeon[0]].gameObject.SetActive(true);
+        CurrentRoomManager.Singleton.currentRoom = AllCellsWithRooms[allCellsUsedByGeneratedDungeon[0]];
+        AllCellsWithRooms[allCellsUsedByGeneratedDungeon[0]].gameObject.SetActive(true);
         onGenerationComplete?.Invoke(allCellsUsedByGeneratedDungeon);
 
     }
@@ -350,12 +351,12 @@ class ProceduralGeneration : MonoBehaviour
     public Room GetRoomByCell(Cell cell)
     {
         Room room;
-        _allCellsWithRooms.TryGetValue(cell, out room);
+        AllCellsWithRooms.TryGetValue(cell, out room);
         return room;
     }
     public void AddCellToRoomInformation(Cell cell, Room room)
     {
-        _allCellsWithRooms.Add(cell, room);
+        AllCellsWithRooms.Add(cell, room);
     }
     #endregion
 }

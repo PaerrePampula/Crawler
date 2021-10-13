@@ -14,15 +14,17 @@ static class Globals
 
 
     //GAMEPLAY VARIABLES
-    //15 ms for single character on text box
-    static float characterTextSpeed = 0.015f;
+    //17 ms for single character on text box
+    static float characterTextSpeed = 0.017f;
     static bool _movementControlsAreEnabled = true;
     static bool _controlsAreEnabled = true;
     static float likelinessOfItemDroppingInRoom = 100f;
     static float likelinessOfMookDroppingHp = 20f;
+    static float likelinessOfContainerDroppingHp = 7.5f;
     static GenerationSettings generationSettings;
 
     //PUBLIC PROPERTIES
+
     public static bool ControlsAreEnabled { get => _controlsAreEnabled; set => _controlsAreEnabled = value; }
     public static bool MovementControlsAreEnabled { get => _movementControlsAreEnabled; set => _movementControlsAreEnabled = value; }
     public static float CharacterTextSpeed { get => characterTextSpeed; set => characterTextSpeed = value; }
@@ -37,6 +39,14 @@ static class Globals
         {
             likelinessOfMookDroppingHp = value;
         }
+    }
+    public static float LikelinessOfContainerDroppingHp 
+    { get
+        {
+            //50% of item discovery is buffing container drops
+            return likelinessOfContainerDroppingHp + (Player.Singleton.BuffModifiers[StatType.ItemDiscovery]*50); 
+        } 
+        set => likelinessOfContainerDroppingHp = value; 
     }
 
     public static bool DebugOn
@@ -60,4 +70,6 @@ static class Globals
             onLogStatesChange?.Invoke(value);
         }
     }
+
+
 }

@@ -19,11 +19,12 @@ public class DamageDisplayer : MonoBehaviour
         BaseMook.onMookDamaged -= displayDamage;
     }
 
-    private void displayDamage(float amount, Vector3 location)
+    private void displayDamage(float amount, Vector3 location, bool wasCritical = false)
     {
         float randomRotation = UnityEngine.Random.Range(-17f, 17f);
         GameObject textClone = Instantiate(damageDisplayPrefab, location, Quaternion.identity);
         textClone.transform.rotation = Quaternion.Euler(0, 0, randomRotation);
         textClone.GetComponentInChildren<TextMeshPro>().text = Math.Abs(amount).ToString("0");
+        if (wasCritical) textClone.GetComponent<Animator>().Play("Critical");
     }
 }

@@ -30,6 +30,7 @@ class SlimeBehaviour : MonoBehaviour
     //Ai for chase sequence (player too far etc.)
     ChaseTarget chaseTarget;
     RandomWander attackWander;
+    IdleState _idleState;
     [SerializeField] TextMeshPro stateText;
     #endregion
 
@@ -41,6 +42,7 @@ class SlimeBehaviour : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         chaseTarget = new ChaseTarget(PlayerController.Singleton.transform, _navAgent, () => _baseMook.isCharacterGrounded());
         attackWander = new RandomWander(GetComponent<CharacterController>(), _baseMook);
+        _idleState = new IdleState();
         chaseTarget.OnTargetReachedStateChange += updateChaseState;
         slimeAttack.InitializeSlimeAttack(GetComponent<CharacterController>(), transform, _baseMook, _layersToCastAgainstOnAttack,GetComponentInChildren<Animator>() , _audioSource);
         //Add transistions for statemachine
@@ -48,8 +50,9 @@ class SlimeBehaviour : MonoBehaviour
         _stateMachine.AddTransistion(chaseTarget, slimeAttack, targetTooFar(PlayerController.Singleton.transform, transform));
         _stateMachine.AddTransistion(attackWander, slimeAttack, targetReached(PlayerController.Singleton.transform, transform), true);
         _stateMachine.AddTransistion(chaseTarget, attackWander, wanderComplete(attackWander));
+        _stateMachine.AddTransistion(chaseTarget, _idleState, GenericStateFuncs.metAggroRange(_baseMook.AggroRange, PlayerController.Singleton.transform, transform));
         //Set default state to chase player in state machine
-        _stateMachine.SetState(chaseTarget);
+        _stateMachine.SetState(_idleState);
     }
 
     private void OnDisable()
