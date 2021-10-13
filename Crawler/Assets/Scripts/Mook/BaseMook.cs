@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class BaseMook : MonoBehaviour, IDamageable
 {
     #region events
-    public delegate void MookDamaged(float amount, Vector3 location);
+    public delegate void MookDamaged(float amount, Vector3 location, bool wasCritical = false);
     public static event MookDamaged onMookDamaged;
     public delegate void MookInstanceDamaged(float newHP);
     public event MookInstanceDamaged onMookInstanceDamaged;
@@ -66,11 +66,11 @@ public class BaseMook : MonoBehaviour, IDamageable
     public float MaxHP { get => _maxHP; set => _maxHP = value; }
     public float AggroRange { get => aggroRange; set => aggroRange = value; }
 
-    public bool ChangeHp(float damageAmount, Vector3 changeDirection = new Vector3())
+    public bool ChangeHp(float damageAmount, Vector3 changeDirection = new Vector3(), bool wasCritical = false)
     {
         if (!isInvulnerable)
         {
-            onMookDamaged?.Invoke(damageAmount, transform.position);
+            onMookDamaged?.Invoke(damageAmount, transform.position, wasCritical);
             Hp += damageAmount;
             onMookInstanceDamaged?.Invoke(Hp);
             Instantiate(damageEffect, transform.position + Vector3.up * 0.5f, transform.rotation);

@@ -79,7 +79,7 @@ class RunStatsController : MonoBehaviour
         Player.onPlayerReceivedItem -= parseItemReceive;
     }
 
-    private void parseMookHPChange(float amount, Vector3 location)
+    private void parseMookHPChange(float amount, Vector3 location, bool wasCritical = false)
     {
         AddToStats("DamageGiven", Math.Abs(amount));
     }

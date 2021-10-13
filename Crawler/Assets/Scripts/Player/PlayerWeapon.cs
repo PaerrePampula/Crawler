@@ -114,24 +114,27 @@ public class PlayerWeapon : MonoBehaviour
 
         float randomChanceForCrit = UnityEngine.Random.Range(0, 100);
         float totalDamage = playerAttacks[currentAttackIndex].Damage + Player.Singleton.getBonusDamage(playerAttacks[currentAttackIndex].Damage);
+        if (totalDamage < 1) totalDamage = 1;
         bool wasCritical = false;
         if (randomChanceForCrit <= Player.Singleton.BuffModifiers[StatType.CritChance]*100)
         {
             totalDamage *= 2f;
-            audioSource.PlayOneShot(criticalHitSound);
+
             wasCritical = true;
         }
+
         for (int i = 0; i < hitColliders.Length; i++)
         {
             IDamageable hittable = (IDamageable)hitColliders[i].GetComponent(typeof(IDamageable));
             if (hittable != null)
             {
-                hittable.ChangeHp(-totalDamage, transform.position + headingVector);
+                hittable.ChangeHp(-totalDamage, transform.position + headingVector, wasCritical);
 
                 CharacterController characterController = hitColliders[i].GetComponent<CharacterController>();
                 if (characterController != null)
                 {
                     if (!wasCritical) audioSource.PlayOneShot(playerAttacks[currentAttackIndex].CharacterHitSoundEffect);
+                    else audioSource.PlayOneShot(criticalHitSound);
                     KnockbackHitCharacter(hitColliders[i].GetComponent<CharacterController>());
                 }
 

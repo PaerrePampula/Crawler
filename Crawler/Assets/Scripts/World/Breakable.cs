@@ -16,7 +16,7 @@ class Breakable : MonoBehaviour, IDamageable
     {
         onTrigger = GetComponent<DropItemOnTrigger>();
     }
-    public bool ChangeHp(float changeAmount, Vector3 changeDirection = new Vector3())
+    public bool ChangeHp(float changeAmount, Vector3 changeDirection = new Vector3(), bool wasCritical = false)
     {
         propHP += changeAmount;
         if (propHP < 0)

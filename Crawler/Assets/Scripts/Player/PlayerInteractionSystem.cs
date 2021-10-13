@@ -83,7 +83,9 @@ public class PlayerInteractionSystem : MonoBehaviour
         if (hit != null)
         {
 
-                setInteractable((IPlayerInteractable)hit.GetComponent(typeof(IPlayerInteractable)));
+            setInteractable((IPlayerInteractable)hit.GetComponent(typeof(IPlayerInteractable)));
+            if (currentInteractable != null)
+            {
                 if (!promptOn)
                 {
                     promptOn = true;
@@ -98,6 +100,8 @@ public class PlayerInteractionSystem : MonoBehaviour
                 {
                     currentInteractable.DoPlayerInteraction();
                 }
+            }
+
 
 
         }
