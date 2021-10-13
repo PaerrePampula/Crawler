@@ -12,4 +12,9 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;
     }
+    public void ChangeScenetoMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+    }
 }
