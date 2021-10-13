@@ -23,7 +23,14 @@ public class MovingPlatform : MonoBehaviour
             movePoints.Add(movePointParent.GetChild(i));
         }
     }
-
+    private void OnEnable()
+    {
+        currentTargetPointIndex = 0;
+        returnInReverse = false;
+        platform.position = movePoints[currentTargetPointIndex].position;
+        StopAllCoroutines();
+        cycling = false;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
