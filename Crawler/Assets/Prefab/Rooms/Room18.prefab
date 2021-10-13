@@ -307,15 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3a612141114544986a28315d822acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorLocations:
-  - neighborType: 3
-    location: {fileID: 548765869395379289}
-  - neighborType: 2
-    location: {fileID: 548765869941378085}
-  - neighborType: 0
-    location: {fileID: 548765870761916120}
-  - neighborType: 1
-    location: {fileID: 548765870356881528}
+  doorLocations: []
   roomNeighborsList: []
   pickupsDropPointOnRoomClear: {fileID: 5509094531552628112}
   roomType: 0
@@ -1979,16 +1971,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5470087867554340575, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
+      propertyPath: doorLocation
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
 --- !u!4 &548765869395379295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5470087867554340572, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
-  m_PrefabInstance: {fileID: 5509094531060701827}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &548765869395379289 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5470087867554340570, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
   m_PrefabInstance: {fileID: 5509094531060701827}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5509094531137456299
@@ -2858,13 +2849,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5470087867554340575, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
+      propertyPath: doorLocation
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
---- !u!1 &548765869941378085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5470087867554340570, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
-  m_PrefabInstance: {fileID: 5509094531589919487}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &548765869941378083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5470087867554340572, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
@@ -3243,13 +3233,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5470087867554340575, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
+      propertyPath: doorLocation
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
---- !u!1 &548765870356881528 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5470087867554340570, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
-  m_PrefabInstance: {fileID: 5509094531711827618}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &548765870356881534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5470087867554340572, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
@@ -4382,16 +4371,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5470087867554340575, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
+      propertyPath: doorLocation
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
 --- !u!4 &548765870761916126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5470087867554340572, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
-  m_PrefabInstance: {fileID: 5509094532376897538}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &548765870761916120 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5470087867554340570, guid: b6268373b98cc4743a9d4ff7b2350c04, type: 3}
   m_PrefabInstance: {fileID: 5509094532376897538}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5509094532385248792
