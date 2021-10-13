@@ -991,7 +991,7 @@ MonoBehaviour:
     _attackAnimationWindupStateName: AOEStrike
     attackEffect: {fileID: 0}
     hitboxSize: {x: 0, y: 0}
-    attackDamage: 45
+    attackDamage: 50
     attackDelayMinimum: 0.2
     attackDelayMaximum: 0.5
   hitBoxAttainmentForPummelStrike:
@@ -1001,7 +1001,7 @@ MonoBehaviour:
     stateActionCooldownLength: 8
   tornadoAoE:
     attackLength: 3
-    attackDamage: 15
+    attackDamage: 7
     attackSpriteTrigger: TornadoAttack
   tornadoHitBoxCircle:
     hitBoxRadius: 1.5
