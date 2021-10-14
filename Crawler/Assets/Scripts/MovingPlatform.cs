@@ -16,7 +16,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] float platformReachEndWaitTime = 1f;
     bool cycling = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < movePointParent.childCount; i++)
         {
