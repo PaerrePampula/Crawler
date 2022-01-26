@@ -5,6 +5,8 @@
  Unity 3D Roguelike, student project.
  
  A dungeon crawling game with a procedurally generated map. The player character advances through a dungeon defeating monsters and looting reward items, the goal of the game is to beat the final boss, found somewhere in the dungeon
+ 
+Total development time, including preplanning and design: 2½ months, with active development time totaling around 2 months
 
 
 ![i](https://i.imgur.com/lxgQ6CX.png)
