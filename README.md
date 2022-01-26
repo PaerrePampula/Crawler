@@ -8,6 +8,8 @@
  
 Total development time, including preplanning design and polish: 2½ months, with active development time totaling around <2 months
 
+Received grading as part of the student module: 100pts/100pts
+
 
 ![i](https://i.imgur.com/lxgQ6CX.png)
 ![i](https://i.imgur.com/XQIyj52.png)
