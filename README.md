@@ -2,7 +2,7 @@
 # Open releases sidebar for the built project!
 
 
- Unity 3D Roguelike, student project.
+ Unity 3D Roguelike, student project made for a game design student module.
  
  A dungeon crawling game with a procedurally generated map. The player character advances through a dungeon defeating monsters and looting reward items, the goal of the game is to beat the final boss, found somewhere in the dungeon
  
